@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koitt.movie.dao.MovieDaoImpl">
+
+	<insert id="insert" parameterType="Movie">
+		<selectKey keyProperty="no" resultType="Integer" order="BEFORE">
+			SELECT movie_seq.NEXTVAL no FROM DUAL
+		</selectKey>
+		INSERT INTO
+		Movie(Movie_no,title,content,grade,mrun,start_date,end_date,m_post)
+		VALUES (#{Movie_no}, #{title}, #{content}, #{grade}, #{mrun},
+		#{start_date}, #{end_date}, #{m_post})
+	</insert>
+
+	<select id="select" parameterType="String" >
+		SELECT Movie_no, title, content, grade, mrun, start_date, end_date, m_post
+		FROM Movie
+		WHERE movie_no = #{movie_no}
+	</select>
+
+	<select id="selectAll" resultType="Movie">
+		SELECT * FROM MOVIE
+	</select>
+
+	<delete id="delete" parameterType="String">
+		DELETE FROM MOVIE WHERE
+		Movie_no= #{no}
+	</delete>
+
+</mapper>
