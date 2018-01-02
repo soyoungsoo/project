@@ -5,9 +5,9 @@ UPDATE movie
 SET title = '1987', content = '내용', genre = '한국 드라마', grade = '15세 이용가', mrun = '117분', start_date = '2017-12-27', end_date = '2017-12-29', m_post = null 
 WHERE Movie_no = 46;
 /* 영화 추가*/
-INSERT INTO Movie(Movie_no,title,content,grade,mrun,start_date,end_date,m_post)
+INSERT INTO Movie(Movie_no,title,content,genre,grade,mrun,start_date,end_date,m_post)
 VALUES (Movie_seq.nextval,
-'신과함께',	
+'강철비',	
 '“책상을 탁! 치니 억! 하고 죽었습니다”
 
 1987년 1월, 경찰 조사를 받던 스물두 살 대학생이 사망한다.
@@ -17,6 +17,7 @@ VALUES (Movie_seq.nextval,
 
 한 사람이 죽고, 모든 것이 변화하기 시작했다.
 모두가 뜨거웠던 1987년의 이야기.',
+'한국드라마',
 '15',
 '117',
 '2017-10-21',
@@ -30,7 +31,7 @@ SELECT Movie_no, title, content, grade, mrun, start_date, end_date, m_post
 FROM Movie
 ;
 
-SELECT movie_no, title
+SELECT *
 FROM Movie;
 
 SELECT * FROM MOVIE;

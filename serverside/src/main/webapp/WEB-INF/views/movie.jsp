@@ -14,13 +14,13 @@
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
-			<th>작성자</th>			
+			<th>영화포스터</th>			
 		</tr>
 		<c:forEach items="${ list }" var="item">
 			<tr>
-				<td><a href="<c:url value='/board/detail.do?no=${ item.movie_no }'/>">${ item.movie_no }</a></td>
-				<td>${ item.title}</td>
-				<td>${ item.M_POST}</td>				
+				<td><a href="<c:url value='/movie/detail.do?no=${ item.movie_no }'/>">${item.movie_no}</a></td>
+				<td>${item.title}</td>
+				<td></td>				
 			</tr>
 		</c:forEach>
 	</table>
