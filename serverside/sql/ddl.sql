@@ -1,53 +1,52 @@
 /* 좌석 */
 CREATE TABLE seat (
-	t_no NUMBER NOT NULL, /* 상영관번호 */
-	seat_no VARCHAR2(10) NOT NULL, /* 좌석번호 */
+	tno NUMBER NOT NULL, /* 상영관번호 */
+	seatno VARCHAR2(10) NOT NULL, /* 좌석번호 */
 	issue NUMBER /* 예약여부 */
 );
 
 CREATE UNIQUE INDEX PK_seat
 	ON seat (
-		t_no ASC,
-		seat_no ASC
+		tno ASC,
+		seatno ASC
 	);
 
 ALTER TABLE seat
 	ADD
 		CONSTRAINT PK_seat
 		PRIMARY KEY (
-			t_no,
-			seat_no
+			tno,
+			seatno
 		);
-
 
 /* 영화 */
 CREATE TABLE Movie (
-	Movie_no NUMBER NOT NULL, /* 영화번호 */
+	Mno NUMBER NOT NULL, /* 영화번호 */
 	title VARCHAR2(60) NOT NULL, /* 제목 */
 	content VARCHAR2(2000) NOT NULL, /* 시놉시스 */
 	genre VARCHAR2(30), /* 장르 */
 	grade VARCHAR2(30), /* 관람등급 */
 	mrun VARCHAR2(30), /* 러닝타임 */
-	start_date DATE, /* 개봉날짜 */
-	end_date DATE, /* 종영날짜 */
-	m_post VARCHAR2(300) /* 영화포스터 */
+	sdate DATE, /* 개봉날짜 */
+	edate DATE, /* 종영날짜 */
+	post VARCHAR2(300) /* 영화포스터 */
 );
 
 CREATE UNIQUE INDEX PK_Movie
 	ON Movie (
-		Movie_no ASC
+		Mno ASC
 	);
 
 ALTER TABLE Movie
 	ADD
 		CONSTRAINT PK_Movie
 		PRIMARY KEY (
-			Movie_no
+			Mno
 		);
 
 /* 회원 */
 CREATE TABLE Member (
-	Member_no NUMBER NOT NULL, /* 회원번호 */
+	MemberNo NUMBER NOT NULL, /* 회원번호 */
 	id VARCHAR2(20) NOT NULL, /* 아이디 */
 	pwd VARCHAR2(60) NOT NULL, /* 비밀번호 */
 	name VARCHAR2(20) NOT NULL, /* 이름 */
@@ -57,7 +56,7 @@ CREATE TABLE Member (
 
 CREATE UNIQUE INDEX PK_Member
 	ON Member (
-		Member_no ASC
+		MemberNo ASC
 	);
 
 CREATE UNIQUE INDEX UIX_Member
@@ -69,7 +68,7 @@ ALTER TABLE Member
 	ADD
 		CONSTRAINT PK_Member
 		PRIMARY KEY (
-			Member_no
+			MemberNo
 		);
 
 ALTER TABLE Member
@@ -81,29 +80,29 @@ ALTER TABLE Member
 
 /* 티켓 */
 CREATE TABLE Ticket (
-	Movie_no NUMBER NOT NULL, /* 영화번호 */
-	T_no NUMBER NOT NULL, /* 티켓번호 */
-	r_no NUMBER /* 예매번호 */
+	Mno NUMBER NOT NULL, /* 영화번호 */
+	Tno NUMBER NOT NULL, /* 티켓번호 */
+	rno NUMBER /* 예매번호 */
 );
 
 CREATE UNIQUE INDEX PK_Ticket
 	ON Ticket (
-		Movie_no ASC,
-		T_no ASC
+		Mno ASC,
+		Tno ASC
 	);
 
 ALTER TABLE Ticket
 	ADD
 		CONSTRAINT PK_Ticket
 		PRIMARY KEY (
-			Movie_no,
-			T_no
+			Mno,
+			Tno
 		);
 
 /* 계정타입 */
 CREATE TABLE user_type (
 	id NUMBER NOT NULL, /* 타입번호 */
-	type VARCHARnt,2(30) NOT NULL /* 타입명 */
+	type VARCHAR2(30) NOT NULL /* 타입명 */
 );
 
 CREATE UNIQUE INDEX PK_user_type
@@ -120,13 +119,13 @@ ALTER TABLE user_type
 
 /* 계정정보타입 */
 CREATE TABLE user_info_type (
-	Member_no NUMBER NOT NULL, /* 회원번호 */
+	MemberNo NUMBER NOT NULL, /* 회원번호 */
 	id NUMBER NOT NULL /* 타입번호 */
 );
 
 CREATE UNIQUE INDEX PK_user_info_type
 	ON user_info_type (
-		Member_no ASC,
+		MemberNo ASC,
 		id ASC
 	);
 
@@ -134,14 +133,14 @@ ALTER TABLE user_info_type
 	ADD
 		CONSTRAINT PK_user_info_type
 		PRIMARY KEY (
-			Member_no,
+			MemberNo,
 			id
 		);
 
 /* 출연진 */
 CREATE TABLE Actors (
 	ano NUMBER NOT NULL, /* 출연진코드 */
-	Movie_no NUMBER, /* 영화번호 */
+	Mno NUMBER, /* 영화번호 */
 	name NVARCHAR2(60) NOT NULL, /* 이름 */
 	job NVARCHAR2(30) NOT NULL /* 직업 */
 );
@@ -160,69 +159,69 @@ ALTER TABLE Actors
 
 /* 상영일정 */
 CREATE TABLE Schedule (
-	s_date DATE NOT NULL, /* 상영일자 */
-	Movie_no NUMBER, /* 영화번호 */
+	rdate DATE NOT NULL, /* 상영일자 */
+	Mno NUMBER, /* 영화번호 */
 	sdate DATE, /* 날짜 */
 	stime VARCHAR2(10) /* 시간 */
 );
 
 CREATE UNIQUE INDEX PK_Schedule
 	ON Schedule (
-		s_date ASC
+		rdate ASC
 	);
 
 ALTER TABLE Schedule
 	ADD
 		CONSTRAINT PK_Schedule
 		PRIMARY KEY (
-			s_date
+			rdate
 		);
 
 /* 상영관 */
 CREATE TABLE theater (
-	t_no NUMBER NOT NULL, /* 상영관번호 */
-	total_seat_no NUMBER /* 총좌석수 */
+	tno NUMBER NOT NULL, /* 상영관번호 */
+	totalSeatNo NUMBER /* 총좌석수 */
 );
 
 CREATE UNIQUE INDEX PK_theater
 	ON theater (
-		t_no ASC
+		tno ASC
 	);
 
 ALTER TABLE theater
 	ADD
 		CONSTRAINT PK_theater
 		PRIMARY KEY (
-			t_no
+			tno
 		);
 
 /* 티켓예매 */
 CREATE TABLE reservation (
-	r_no NUMBER NOT NULL, /* 예매번호 */
-	Member_no NUMBER, /* 회원번호 */
-	Movie_no NUMBER, /* 영화번호 */
-	t_no NUMBER, /* 상영관번호 */
-	seat_no VARCHAR2(10), /* 좌석번호 */
+	rno NUMBER NOT NULL, /* 예매번호 */
+	MemberNo NUMBER, /* 회원번호 */
+	Mno NUMBER, /* 영화번호 */
+	tno NUMBER, /* 상영관번호 */
+	seatno VARCHAR2(10), /* 좌석번호 */
 	bno VARCHAR2(10) /* 티켓팅코드 */
 );
 
 CREATE UNIQUE INDEX PK_reservation
 	ON reservation (
-		r_no ASC
+		rno ASC
 	);
 
 ALTER TABLE reservation
 	ADD
 		CONSTRAINT PK_reservation
 		PRIMARY KEY (
-			r_no
+			rno
 		);
 
 /* 평점 */
 CREATE TABLE movie_coment (
-	coment_no NUMBER NOT NULL, /* 댓글번호 */
-	Movie_no NUMBER NOT NULL, /* 영화번호 */
-	Member_no NUMBER, /* 회원번호 */
+	cno NUMBER NOT NULL, /* 댓글번호 */
+	Mno NUMBER NOT NULL, /* 영화번호 */
+	MemberNo NUMBER, /* 회원번호 */
 	coment VARCHAR2(255), /* 댓글 */
 	score NUMBER, /* 평점 */
 	viewcount NUMBER /* 추천수 */
@@ -230,14 +229,14 @@ CREATE TABLE movie_coment (
 
 CREATE UNIQUE INDEX PK_movie_coment
 	ON movie_coment (
-		coment_no ASC
+		cno ASC
 	);
 
 ALTER TABLE movie_coment
 	ADD
 		CONSTRAINT PK_movie_coment
 		PRIMARY KEY (
-			coment_no
+			cno
 		);
 
 /* 티켓팅정보 */
@@ -262,41 +261,41 @@ ALTER TABLE seat
 	ADD (
 		CONSTRAINT FK_theater_TO_seat
 		FOREIGN KEY (
-			t_no
+			tno
 		)
 		REFERENCES theater (
-			t_no
+			tno
 		) ON DELETE CASCADE);
 
 ALTER TABLE Ticket
 	ADD (
 		CONSTRAINT FK_Movie_TO_Ticket
 		FOREIGN KEY (
-			Movie_no
+			Mno
 		)
 		REFERENCES Movie (
-			Movie_no
+			Mno
 		) ON DELETE CASCADE);
 
 ALTER TABLE Ticket
-	ADD (
+	ADD(
 		CONSTRAINT FK_reservation_TO_Ticket
 		FOREIGN KEY (
-			r_no
+			rno
 		)
 		REFERENCES reservation (
-			r_no
+			rno
 		) ON DELETE CASCADE);
 
 ALTER TABLE user_info_type
-	ADD (
+	ADD
 		CONSTRAINT FK_Member_TO_user_info_type
 		FOREIGN KEY (
-			Member_no
+			MemberNo
 		)
 		REFERENCES Member (
-			Member_no
-		) ON DELETE CASCADE);
+			MemberNo
+		);
 
 ALTER TABLE user_info_type
 	ADD (
@@ -312,52 +311,52 @@ ALTER TABLE Actors
 	ADD (
 		CONSTRAINT FK_Movie_TO_Actors
 		FOREIGN KEY (
-			Movie_no
+			Mno
 		)
 		REFERENCES Movie (
-			Movie_no
+			Mno
 		) ON DELETE CASCADE);
 
 ALTER TABLE Schedule
 	ADD (
 		CONSTRAINT FK_Movie_TO_Schedule
 		FOREIGN KEY (
-			Movie_no
+			Mno
 		)
 		REFERENCES Movie (
-			Movie_no
+			Mno
 		) ON DELETE CASCADE);
 
 ALTER TABLE reservation
 	ADD (
 		CONSTRAINT FK_Member_TO_reservation
 		FOREIGN KEY (
-			Member_no
+			MemberNo
 		)
 		REFERENCES Member (
-			Member_no
-		) ON DELETE CASCADE);
+			MemberNo
+		)ON DELETE CASCADE);
 
 ALTER TABLE reservation
 	ADD (
 		CONSTRAINT FK_Movie_TO_reservation
 		FOREIGN KEY (
-			Movie_no
+			Mno
 		)
 		REFERENCES Movie (
-			Movie_no
+			Mno
 		) ON DELETE CASCADE);
 
 ALTER TABLE reservation
 	ADD (
 		CONSTRAINT FK_seat_TO_reservation
 		FOREIGN KEY (
-			t_no,
-			seat_no
+			tno,
+			seatno
 		)
 		REFERENCES seat (
-			t_no,
-			seat_no
+			tno,
+			seatno
 		) ON DELETE CASCADE);
 
 ALTER TABLE reservation
@@ -374,18 +373,18 @@ ALTER TABLE movie_coment
 	ADD (
 		CONSTRAINT FK_Movie_TO_movie_coment
 		FOREIGN KEY (
-			Movie_no
+			Mno
 		)
 		REFERENCES Movie (
-			Movie_no
+			Mno
 		) ON DELETE CASCADE);
 
 ALTER TABLE movie_coment
 	ADD (
 		CONSTRAINT FK_Member_TO_movie_coment
 		FOREIGN KEY (
-			Member_no
+			MemberNo
 		)
 		REFERENCES Member (
-			Member_no
+			MemberNo
 		) ON DELETE CASCADE);

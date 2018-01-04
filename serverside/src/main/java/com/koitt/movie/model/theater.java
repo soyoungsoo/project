@@ -2,38 +2,39 @@ package com.koitt.movie.model;
 
 public class theater {
 
-	private Integer t_no;
-	private Integer total_seat_no;
+	private Integer tno;
+	private Integer totalSeatNo;
 	
 	public theater() {}
 
-	public theater(Integer t_no, Integer total_seat_no) {		
-		this.t_no = t_no;
-		this.total_seat_no = total_seat_no;
+	public theater(Integer tno, Integer totalSeatNo) {
+		super();
+		this.tno = tno;
+		this.totalSeatNo = totalSeatNo;
 	}
 
-	public Integer getT_no() {
-		return t_no;
+	public Integer getTno() {
+		return tno;
 	}
 
-	public void setT_no(Integer t_no) {
-		this.t_no = t_no;
+	public void setTno(Integer tno) {
+		this.tno = tno;
 	}
 
-	public Integer getTotal_seat_no() {
-		return total_seat_no;
+	public Integer getTotalSeatNo() {
+		return totalSeatNo;
 	}
 
-	public void setTotal_seat_no(Integer total_seat_no) {
-		this.total_seat_no = total_seat_no;
+	public void setTotalSeatNo(Integer totalSeatNo) {
+		this.totalSeatNo = totalSeatNo;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((t_no == null) ? 0 : t_no.hashCode());
-		result = prime * result + ((total_seat_no == null) ? 0 : total_seat_no.hashCode());
+		result = prime * result + ((tno == null) ? 0 : tno.hashCode());
+		result = prime * result + ((totalSeatNo == null) ? 0 : totalSeatNo.hashCode());
 		return result;
 	}
 
@@ -46,15 +47,15 @@ public class theater {
 		if (getClass() != obj.getClass())
 			return false;
 		theater other = (theater) obj;
-		if (t_no == null) {
-			if (other.t_no != null)
+		if (tno == null) {
+			if (other.tno != null)
 				return false;
-		} else if (!t_no.equals(other.t_no))
+		} else if (!tno.equals(other.tno))
 			return false;
-		if (total_seat_no == null) {
-			if (other.total_seat_no != null)
+		if (totalSeatNo == null) {
+			if (other.totalSeatNo != null)
 				return false;
-		} else if (!total_seat_no.equals(other.total_seat_no))
+		} else if (!totalSeatNo.equals(other.totalSeatNo))
 			return false;
 		return true;
 	}
@@ -62,10 +63,10 @@ public class theater {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("theater [t_no=");
-		builder.append(t_no);
-		builder.append(", total_seat_no=");
-		builder.append(total_seat_no);
+		builder.append("theater [tno=");
+		builder.append(tno);
+		builder.append(", totalSeatNo=");
+		builder.append(totalSeatNo);
 		builder.append("]");
 		return builder.toString();
 	}

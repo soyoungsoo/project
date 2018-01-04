@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>영화등록하기</h1>
-	<form action="<c:url value='/movie/new.do'/>" method="post"
+	<form action="<c:url value='/new.do'/>" method="post"
 		enctype="multipart/form-data">
 		<div>영화번호</div>
 		<div>
@@ -25,19 +25,18 @@
 			<label>관람등급 <input type="text" name="grade"></label>
 		</div>
 		<div>
-			<label>상영시간 <input type="time" name="mrun"></label>
+			<label>상영시간 <input type="text" name="mrun"></label>
 		</div>
 		<div>
-			<label>개봉일 <input type="date" name="start_date"></label>
+			<label>개봉일 <input type="date" name="sdate"></label>
 		</div>
 		<div>
-			<label>종영일 <input type="date" name="end_date"></label>
+			<label>종영일 <input type="date" name="edate"></label>
 		</div>
 		<div>
-			<label>첨부파일 <input type="file" name="m_post" multiple="multiple"></label>
-		</div>
-		<input type="hidden" name="id" value="${ movie_no }">
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+			<label>첨부파일 <input type="file" name="post" multiple="multiple"></label>
+		</div>		
+<%-- 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> --%>
 		<input type="submit">
 		<input type="reset">
 	</form>

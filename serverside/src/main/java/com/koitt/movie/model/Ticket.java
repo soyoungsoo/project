@@ -2,49 +2,49 @@ package com.koitt.movie.model;
 
 public class Ticket {
 
-	private Integer Movie_no; // 영화번호
-	private Integer T_no;	  // 티켓번호 (Primary Key)
-	private Integer r_no;	  // 예매번호
+	private Integer mno; // 영화번호
+	private Integer Tno;	  // 티켓번호 (Primary Key)
+	private Integer rno;	  // 예매번호
 	
 	public Ticket() {}
 
-	public Ticket(Integer movie_no, Integer t_no, Integer r_no) {		
-		this.Movie_no = movie_no;
-		this.T_no = t_no;
-		this.r_no = r_no;
+	public Ticket(Integer mno, Integer tno, Integer rno) {		
+		this.mno = mno;
+		this.Tno = tno;
+		this.rno = rno;
 	}
 
-	public Integer getMovie_no() {
-		return Movie_no;
+	public Integer getMno() {
+		return mno;
 	}
 
-	public void setMovie_no(Integer movie_no) {
-		Movie_no = movie_no;
+	public void setMno(Integer mno) {
+		this.mno = mno;
 	}
 
-	public Integer getT_no() {
-		return T_no;
+	public Integer getTno() {
+		return Tno;
 	}
 
-	public void setT_no(Integer t_no) {
-		T_no = t_no;
+	public void setTno(Integer tno) {
+		Tno = tno;
 	}
 
-	public Integer getR_no() {
-		return r_no;
+	public Integer getRno() {
+		return rno;
 	}
 
-	public void setR_no(Integer r_no) {
-		this.r_no = r_no;
+	public void setRno(Integer rno) {
+		this.rno = rno;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Movie_no == null) ? 0 : Movie_no.hashCode());
-		result = prime * result + ((T_no == null) ? 0 : T_no.hashCode());
-		result = prime * result + ((r_no == null) ? 0 : r_no.hashCode());
+		result = prime * result + ((Tno == null) ? 0 : Tno.hashCode());
+		result = prime * result + ((mno == null) ? 0 : mno.hashCode());
+		result = prime * result + ((rno == null) ? 0 : rno.hashCode());
 		return result;
 	}
 
@@ -57,20 +57,20 @@ public class Ticket {
 		if (getClass() != obj.getClass())
 			return false;
 		Ticket other = (Ticket) obj;
-		if (Movie_no == null) {
-			if (other.Movie_no != null)
+		if (Tno == null) {
+			if (other.Tno != null)
 				return false;
-		} else if (!Movie_no.equals(other.Movie_no))
+		} else if (!Tno.equals(other.Tno))
 			return false;
-		if (T_no == null) {
-			if (other.T_no != null)
+		if (mno == null) {
+			if (other.mno != null)
 				return false;
-		} else if (!T_no.equals(other.T_no))
+		} else if (!mno.equals(other.mno))
 			return false;
-		if (r_no == null) {
-			if (other.r_no != null)
+		if (rno == null) {
+			if (other.rno != null)
 				return false;
-		} else if (!r_no.equals(other.r_no))
+		} else if (!rno.equals(other.rno))
 			return false;
 		return true;
 	}
@@ -78,15 +78,15 @@ public class Ticket {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Ticket [Movie_no=");
-		builder.append(Movie_no);
-		builder.append(", T_no=");
-		builder.append(T_no);
-		builder.append(", r_no=");
-		builder.append(r_no);
+		builder.append("Ticket [mno=");
+		builder.append(mno);
+		builder.append(", Tno=");
+		builder.append(Tno);
+		builder.append(", rno=");
+		builder.append(rno);
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
 	
 }

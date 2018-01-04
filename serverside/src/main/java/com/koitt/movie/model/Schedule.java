@@ -4,34 +4,35 @@ import java.util.Date;
 
 public class Schedule {
 
-	private Date s_date;
-	private Integer Movie_no;
+	private Date rdate;
+	private Integer mno;
 	private Date sdate;
 	private String stime;
 	
 	public Schedule() {}
 
-	public Schedule(Date s_date, Integer movie_no, Date sdate, String stime) {		
-		this.s_date = s_date;
-		Movie_no = movie_no;
+	public Schedule(Date rdate, Integer mno, Date sdate, String stime) {
+		super();
+		this.rdate = rdate;
+		this.mno = mno;
 		this.sdate = sdate;
 		this.stime = stime;
 	}
 
-	public Date getS_date() {
-		return s_date;
+	public Date getRdate() {
+		return rdate;
 	}
 
-	public void setS_date(Date s_date) {
-		this.s_date = s_date;
+	public void setRdate(Date rdate) {
+		this.rdate = rdate;
 	}
 
-	public Integer getMovie_no() {
-		return Movie_no;
+	public Integer getMno() {
+		return mno;
 	}
 
-	public void setMovie_no(Integer movie_no) {
-		Movie_no = movie_no;
+	public void setMno(Integer mno) {
+		this.mno = mno;
 	}
 
 	public Date getSdate() {
@@ -54,8 +55,8 @@ public class Schedule {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Movie_no == null) ? 0 : Movie_no.hashCode());
-		result = prime * result + ((s_date == null) ? 0 : s_date.hashCode());
+		result = prime * result + ((mno == null) ? 0 : mno.hashCode());
+		result = prime * result + ((rdate == null) ? 0 : rdate.hashCode());
 		result = prime * result + ((sdate == null) ? 0 : sdate.hashCode());
 		result = prime * result + ((stime == null) ? 0 : stime.hashCode());
 		return result;
@@ -70,15 +71,15 @@ public class Schedule {
 		if (getClass() != obj.getClass())
 			return false;
 		Schedule other = (Schedule) obj;
-		if (Movie_no == null) {
-			if (other.Movie_no != null)
+		if (mno == null) {
+			if (other.mno != null)
 				return false;
-		} else if (!Movie_no.equals(other.Movie_no))
+		} else if (!mno.equals(other.mno))
 			return false;
-		if (s_date == null) {
-			if (other.s_date != null)
+		if (rdate == null) {
+			if (other.rdate != null)
 				return false;
-		} else if (!s_date.equals(other.s_date))
+		} else if (!rdate.equals(other.rdate))
 			return false;
 		if (sdate == null) {
 			if (other.sdate != null)
@@ -96,10 +97,10 @@ public class Schedule {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Schedule [s_date=");
-		builder.append(s_date);
-		builder.append(", Movie_no=");
-		builder.append(Movie_no);
+		builder.append("Schedule [rdate=");
+		builder.append(rdate);
+		builder.append(", mno=");
+		builder.append(mno);
 		builder.append(", sdate=");
 		builder.append(sdate);
 		builder.append(", stime=");

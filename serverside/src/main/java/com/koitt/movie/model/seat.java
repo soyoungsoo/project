@@ -2,32 +2,32 @@ package com.koitt.movie.model;
 
 public class seat {
 	
-	private Integer t_no;
-	private String seat_no;
+	private Integer tno;
+	private String seatno;
 	private Integer issue;
 	
 	public seat() {}
 
-	public seat(Integer t_no, String seat_no, Integer issue) {	
-		this.t_no = t_no;
-		this.seat_no = seat_no;
+	public seat(Integer tno, String seatno, Integer issue) {		
+		this.tno = tno;
+		this.seatno = seatno;
 		this.issue = issue;
 	}
 
-	public Integer getT_no() {
-		return t_no;
+	public Integer getTno() {
+		return tno;
 	}
 
-	public void setT_no(Integer t_no) {
-		this.t_no = t_no;
+	public void setTno(Integer tno) {
+		this.tno = tno;
 	}
 
-	public String getSeat_no() {
-		return seat_no;
+	public String getSeatno() {
+		return seatno;
 	}
 
-	public void setSeat_no(String seat_no) {
-		this.seat_no = seat_no;
+	public void setSeatno(String seatno) {
+		this.seatno = seatno;
 	}
 
 	public Integer getIssue() {
@@ -40,41 +40,53 @@ public class seat {
 
 	@Override
 	public int hashCode() {
-		int result = this.t_no.hashCode() + this.seat_no.hashCode() + this.issue.hashCode();
-		
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((issue == null) ? 0 : issue.hashCode());
+		result = prime * result + ((seatno == null) ? 0 : seatno.hashCode());
+		result = prime * result + ((tno == null) ? 0 : tno.hashCode());
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
+		if (this == obj)
 			return true;
-		}
-		if (obj == null) {
+		if (obj == null)
 			return false;
-		}
-		if (!(obj instanceof seat)) {
+		if (getClass() != obj.getClass())
 			return false;
-		}
-		seat item = (seat) obj;
-		if (this.seat_no.equals(item.seat_no)) {
-			return true;
-		}
-		return false;
+		seat other = (seat) obj;
+		if (issue == null) {
+			if (other.issue != null)
+				return false;
+		} else if (!issue.equals(other.issue))
+			return false;
+		if (seatno == null) {
+			if (other.seatno != null)
+				return false;
+		} else if (!seatno.equals(other.seatno))
+			return false;
+		if (tno == null) {
+			if (other.tno != null)
+				return false;
+		} else if (!tno.equals(other.tno))
+			return false;
+		return true;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("seat [t_no=");
-		builder.append(t_no);
-		builder.append(", seat_no=");
-		builder.append(seat_no);
+		builder.append("seat [tno=");
+		builder.append(tno);
+		builder.append(", seatno=");
+		builder.append(seatno);
 		builder.append(", issue=");
 		builder.append(issue);
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
 	
 }

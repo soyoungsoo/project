@@ -31,7 +31,7 @@ public class MovieServiceImpl implements MovieService{
 	@Override
 	public String remove(String no) throws CommonException {			
 		Movie item = dao.select(no);
-		String filename = item.getM_post();
+		String filename = item.getPost();
 		dao.delete(no);
 
 		return filename;
@@ -44,8 +44,8 @@ public class MovieServiceImpl implements MovieService{
 		 *  파라메터의 board 객체는 이미 수정된 정보를 담고 있다.
 		 *  따라서 기존 데이터베이스에서 글번호로 기존 데이터를 불러온다.
 		 */
-		Movie item = dao.select(Integer.toString(movie.getMovie_no()));
-		String oldFilename = item.getM_post();
+		Movie item = dao.select(Integer.toString(movie.getMno()));
+		String oldFilename = item.getPost();
 		dao.update(movie);
 
 		return oldFilename;

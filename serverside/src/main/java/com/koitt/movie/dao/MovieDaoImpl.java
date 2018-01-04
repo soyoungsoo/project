@@ -25,18 +25,21 @@ public class MovieDaoImpl implements MovieDao{
 	
 	@Override
 	public void insert(Movie movie) throws CommonException {
-		try {
+		try {			
+			
 			sqlSession.insert(MAPPER_NAMESPACE + ".insert", movie);
 		}catch (Exception e) {
 			logger.debug(e.getMessage());
+			logger.debug("dao 실행");
+			logger.debug(movie);
 			throw new CommonException("E01: 영화등록 실패");
 		}		
 	}
 
 	@Override
-	public void delete(String no) throws CommonException {
+	public void delete(String mno) throws CommonException {
 		try {
-			sqlSession.delete(MAPPER_NAMESPACE + ".delete", no);
+			sqlSession.delete(MAPPER_NAMESPACE + ".delete", mno);
 		} catch (Exception e) {
 			logger.debug(e.getMessage());
 			throw new CommonException("E02: 영화삭제 실패");
@@ -59,9 +62,11 @@ public class MovieDaoImpl implements MovieDao{
 	public Movie select(String no) throws CommonException {
 			Movie movie = null; 
 			try {
+				logger.debug("no번 값", no);
 				movie = sqlSession.selectOne(MAPPER_NAMESPACE + ".select", no);
 			} catch (Exception e) {
-				logger.debug(e.getMessage());
+				logger.debug(e.getMessage());				
+				
 				throw new CommonException("E04: 영화 상세보기 실패");
 			}
 		return movie;
@@ -73,10 +78,7 @@ public class MovieDaoImpl implements MovieDao{
 			try {												  
 				list = sqlSession.selectList(MAPPER_NAMESPACE + ".selectAll");
 			} catch (Exception e) {
-				logger.debug(e.getMessage());
-				logger.debug("DaoImpl");
-				logger.debug(MAPPER_NAMESPACE);
-				logger.debug(list);
+				logger.debug(e.getMessage());												
 				throw new CommonException("E05: 영화 전체보기 실패");
 			}		
 		return list;

@@ -2,40 +2,44 @@ package com.koitt.movie.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Movie {
 	
-	private Integer Movie_no;
+	private Integer mno;
 	private String title;
 	private String content;
 	private String genre;
 	private String grade;
 	private String mrun;
-	private Date start_date;
-	private Date end_date;
-	private String m_post; 
+	
+	@DateTimeFormat(pattern = "yyyy-dd-MM")		
+	private Date sdate;
+	@DateTimeFormat(pattern = "yyyy-dd-MM")
+	private Date edate;
+	private String post; 
 
 	public Movie() {}
 
-	public Movie(Integer movie_no, String title, String content, String genre, String grade, String mrun,
-			Date start_date, Date end_date, String m_post) {
-		super();
-		Movie_no = movie_no;
+	public Movie(Integer mno, String title, String content, String genre, String grade, String mrun, Date sdate,
+			Date edate, String post) {		
+		this.mno = mno;
 		this.title = title;
 		this.content = content;
 		this.genre = genre;
 		this.grade = grade;
 		this.mrun = mrun;
-		this.start_date = start_date;
-		this.end_date = end_date;
-		this.m_post = m_post;
+		this.sdate = sdate;
+		this.edate = edate;
+		this.post = post;
 	}
 
-	public Integer getMovie_no() {
-		return Movie_no;
+	public Integer getMno() {
+		return mno;
 	}
 
-	public void setMovie_no(Integer movie_no) {
-		Movie_no = movie_no;
+	public void setMno(Integer mno) {
+		this.mno = mno;
 	}
 
 	public String getTitle() {
@@ -78,42 +82,42 @@ public class Movie {
 		this.mrun = mrun;
 	}
 
-	public Date getStart_date() {
-		return start_date;
+	public Date getSdate() {
+		return sdate;
 	}
 
-	public void setStart_date(Date start_date) {
-		this.start_date = start_date;
+	public void setSdate(Date sdate) {
+		this.sdate = sdate;
 	}
 
-	public Date getEnd_date() {
-		return end_date;
+	public Date getEdate() {
+		return edate;
 	}
 
-	public void setEnd_date(Date end_date) {
-		this.end_date = end_date;
+	public void setEdate(Date edate) {
+		this.edate = edate;
 	}
 
-	public String getM_post() {
-		return m_post;
+	public String getPost() {
+		return post;
 	}
 
-	public void setM_post(String m_post) {
-		this.m_post = m_post;
+	public void setPost(String post) {
+		this.post = post;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Movie_no == null) ? 0 : Movie_no.hashCode());
 		result = prime * result + ((content == null) ? 0 : content.hashCode());
-		result = prime * result + ((end_date == null) ? 0 : end_date.hashCode());
+		result = prime * result + ((edate == null) ? 0 : edate.hashCode());
 		result = prime * result + ((genre == null) ? 0 : genre.hashCode());
 		result = prime * result + ((grade == null) ? 0 : grade.hashCode());
-		result = prime * result + ((m_post == null) ? 0 : m_post.hashCode());
+		result = prime * result + ((mno == null) ? 0 : mno.hashCode());
 		result = prime * result + ((mrun == null) ? 0 : mrun.hashCode());
-		result = prime * result + ((start_date == null) ? 0 : start_date.hashCode());
+		result = prime * result + ((post == null) ? 0 : post.hashCode());
+		result = prime * result + ((sdate == null) ? 0 : sdate.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
@@ -127,20 +131,15 @@ public class Movie {
 		if (getClass() != obj.getClass())
 			return false;
 		Movie other = (Movie) obj;
-		if (Movie_no == null) {
-			if (other.Movie_no != null)
-				return false;
-		} else if (!Movie_no.equals(other.Movie_no))
-			return false;
 		if (content == null) {
 			if (other.content != null)
 				return false;
 		} else if (!content.equals(other.content))
 			return false;
-		if (end_date == null) {
-			if (other.end_date != null)
+		if (edate == null) {
+			if (other.edate != null)
 				return false;
-		} else if (!end_date.equals(other.end_date))
+		} else if (!edate.equals(other.edate))
 			return false;
 		if (genre == null) {
 			if (other.genre != null)
@@ -152,20 +151,25 @@ public class Movie {
 				return false;
 		} else if (!grade.equals(other.grade))
 			return false;
-		if (m_post == null) {
-			if (other.m_post != null)
+		if (mno == null) {
+			if (other.mno != null)
 				return false;
-		} else if (!m_post.equals(other.m_post))
+		} else if (!mno.equals(other.mno))
 			return false;
 		if (mrun == null) {
 			if (other.mrun != null)
 				return false;
 		} else if (!mrun.equals(other.mrun))
 			return false;
-		if (start_date == null) {
-			if (other.start_date != null)
+		if (post == null) {
+			if (other.post != null)
 				return false;
-		} else if (!start_date.equals(other.start_date))
+		} else if (!post.equals(other.post))
+			return false;
+		if (sdate == null) {
+			if (other.sdate != null)
+				return false;
+		} else if (!sdate.equals(other.sdate))
 			return false;
 		if (title == null) {
 			if (other.title != null)
@@ -178,8 +182,8 @@ public class Movie {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Movie [Movie_no=");
-		builder.append(Movie_no);
+		builder.append("Movie [mno=");
+		builder.append(mno);
 		builder.append(", title=");
 		builder.append(title);
 		builder.append(", content=");
@@ -190,15 +194,15 @@ public class Movie {
 		builder.append(grade);
 		builder.append(", mrun=");
 		builder.append(mrun);
-		builder.append(", start_date=");
-		builder.append(start_date);
-		builder.append(", end_date=");
-		builder.append(end_date);
-		builder.append(", m_post=");
-		builder.append(m_post);
+		builder.append(", sdate=");
+		builder.append(sdate);
+		builder.append(", edate=");
+		builder.append(edate);
+		builder.append(", post=");
+		builder.append(post);
 		builder.append("]");
 		return builder.toString();
-	}	
-	
+	}
+
 	
 }

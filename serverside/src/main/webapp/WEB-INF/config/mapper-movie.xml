@@ -5,19 +5,15 @@
 <mapper namespace="com.koitt.movie.dao.MovieDaoImpl">
 
 	<insert id="insert" parameterType="Movie">
-		<selectKey keyProperty="no" resultType="Integer" order="BEFORE">
-			SELECT movie_seq.NEXTVAL no FROM DUAL
+		<selectKey keyProperty="mno" resultType="Integer" order="BEFORE">
+			SELECT mno_seq.NEXTVAL mno FROM DUAL			
 		</selectKey>
-		INSERT INTO
-		Movie(Movie_no,title,content,grade,mrun,start_date,end_date,m_post)
-		VALUES (#{Movie_no}, #{title}, #{content}, #{grade}, #{mrun},
-		#{start_date}, #{end_date}, #{m_post})
+		INSERT INTO Movie(mno,title,content,genre,grade,mrun,sdate,edate,post)
+		VALUES (#{mno},#{title},#{content},#{genre},#{grade},#{mrun},#{sdate},#{edate},#{post})
 	</insert>
 
-	<select id="select" parameterType="String" >
-		SELECT Movie_no, title, content, grade, mrun, start_date, end_date, m_post
-		FROM Movie
-		WHERE movie_no = #{movie_no}
+	<select id="select" parameterType="String" resultType="Movie">
+		SELECT * FROM Movie	WHERE mno = #{mno}
 	</select>
 
 	<select id="selectAll" resultType="Movie">
@@ -26,7 +22,7 @@
 
 	<delete id="delete" parameterType="String">
 		DELETE FROM MOVIE WHERE
-		Movie_no= #{no}
+		mno= #{mno}
 	</delete>
 
 </mapper>

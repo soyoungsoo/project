@@ -2,48 +2,47 @@ package com.koitt.movie.model;
 
 public class Movie_coment {
 
-	private Integer coment_no;
-	private Integer Movie_no;
-	private Integer Member_no;
+	private Integer cno;
+	private Integer mno;
+	private Integer memberno;
 	private String coment;
 	private Integer score;
 	private Integer viewcount;
 	
 	public Movie_coment() {}
 
-	public Movie_coment(Integer coment_no, Integer movie_no, Integer member_no, String coment, Integer score,
-			Integer viewcount) {
+	public Movie_coment(Integer cno, Integer mno, Integer memberno, String coment, Integer score, Integer viewcount) {
 		super();
-		this.coment_no = coment_no;
-		Movie_no = movie_no;
-		Member_no = member_no;
+		this.cno = cno;
+		this.mno = mno;
+		this.memberno = memberno;
 		this.coment = coment;
 		this.score = score;
 		this.viewcount = viewcount;
 	}
 
-	public Integer getComent_no() {
-		return coment_no;
+	public Integer getCno() {
+		return cno;
 	}
 
-	public void setComent_no(Integer coment_no) {
-		this.coment_no = coment_no;
+	public void setCno(Integer cno) {
+		this.cno = cno;
 	}
 
-	public Integer getMovie_no() {
-		return Movie_no;
+	public Integer getMno() {
+		return mno;
 	}
 
-	public void setMovie_no(Integer movie_no) {
-		Movie_no = movie_no;
+	public void setMno(Integer mno) {
+		this.mno = mno;
 	}
 
-	public Integer getMember_no() {
-		return Member_no;
+	public Integer getMemberno() {
+		return memberno;
 	}
 
-	public void setMember_no(Integer member_no) {
-		Member_no = member_no;
+	public void setMemberno(Integer memberno) {
+		this.memberno = memberno;
 	}
 
 	public String getComent() {
@@ -74,10 +73,10 @@ public class Movie_coment {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Member_no == null) ? 0 : Member_no.hashCode());
-		result = prime * result + ((Movie_no == null) ? 0 : Movie_no.hashCode());
+		result = prime * result + ((cno == null) ? 0 : cno.hashCode());
 		result = prime * result + ((coment == null) ? 0 : coment.hashCode());
-		result = prime * result + ((coment_no == null) ? 0 : coment_no.hashCode());
+		result = prime * result + ((memberno == null) ? 0 : memberno.hashCode());
+		result = prime * result + ((mno == null) ? 0 : mno.hashCode());
 		result = prime * result + ((score == null) ? 0 : score.hashCode());
 		result = prime * result + ((viewcount == null) ? 0 : viewcount.hashCode());
 		return result;
@@ -92,25 +91,25 @@ public class Movie_coment {
 		if (getClass() != obj.getClass())
 			return false;
 		Movie_coment other = (Movie_coment) obj;
-		if (Member_no == null) {
-			if (other.Member_no != null)
+		if (cno == null) {
+			if (other.cno != null)
 				return false;
-		} else if (!Member_no.equals(other.Member_no))
-			return false;
-		if (Movie_no == null) {
-			if (other.Movie_no != null)
-				return false;
-		} else if (!Movie_no.equals(other.Movie_no))
+		} else if (!cno.equals(other.cno))
 			return false;
 		if (coment == null) {
 			if (other.coment != null)
 				return false;
 		} else if (!coment.equals(other.coment))
 			return false;
-		if (coment_no == null) {
-			if (other.coment_no != null)
+		if (memberno == null) {
+			if (other.memberno != null)
 				return false;
-		} else if (!coment_no.equals(other.coment_no))
+		} else if (!memberno.equals(other.memberno))
+			return false;
+		if (mno == null) {
+			if (other.mno != null)
+				return false;
+		} else if (!mno.equals(other.mno))
 			return false;
 		if (score == null) {
 			if (other.score != null)
@@ -128,12 +127,12 @@ public class Movie_coment {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Movie_coment [coment_no=");
-		builder.append(coment_no);
-		builder.append(", Movie_no=");
-		builder.append(Movie_no);
-		builder.append(", Member_no=");
-		builder.append(Member_no);
+		builder.append("Movie_coment [cno=");
+		builder.append(cno);
+		builder.append(", mno=");
+		builder.append(mno);
+		builder.append(", memberno=");
+		builder.append(memberno);
 		builder.append(", coment=");
 		builder.append(coment);
 		builder.append(", score=");
