@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>   
    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -24,6 +24,7 @@
 		<dd>${ item.mrun }</dd>
 		<dt>상영일</dt>
 		<dd>${ item.sdate }</dd>
+		
 		<dt>종영일</dt>
 		<dd>${ item.edate }</dd>
 		<c:if test="${ !empty post }">
@@ -31,6 +32,6 @@
 			<dd><a href="<c:url value='/download.do?filename=${ item.post }'/>">${ post }</a></dd>
 		</c:if>
 	</dl>	
-	
+	<a href="modify.do?mno=${item.mno}">수정하기</a>
 </body>
 </html>

@@ -25,4 +25,9 @@
 		mno= #{mno}
 	</delete>
 
+	<update id="update" parameterType="Movie">
+	UPDATE movie 
+	SET title = #{title}, content = #{content}, genre = #{genre}, grade = #{grade}, mrun = #{mrun}, sdate = #{sdate}, edate = #{edate}, post = #{post} 
+	WHERE mno = #{mno}
+	</update>
 </mapper>

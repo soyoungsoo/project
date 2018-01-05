@@ -61,12 +61,12 @@ public class MovieDaoImpl implements MovieDao{
 	@Override
 	public Movie select(String no) throws CommonException {
 			Movie movie = null; 
-			try {
-				logger.debug("no번 값", no);
+			try {				
 				movie = sqlSession.selectOne(MAPPER_NAMESPACE + ".select", no);
+				logger.debug(movie);
 			} catch (Exception e) {
 				logger.debug(e.getMessage());				
-				
+				logger.debug(movie);
 				throw new CommonException("E04: 영화 상세보기 실패");
 			}
 		return movie;
@@ -78,7 +78,7 @@ public class MovieDaoImpl implements MovieDao{
 			try {												  
 				list = sqlSession.selectList(MAPPER_NAMESPACE + ".selectAll");
 			} catch (Exception e) {
-				logger.debug(e.getMessage());												
+				logger.debug(e.getMessage());					
 				throw new CommonException("E05: 영화 전체보기 실패");
 			}		
 		return list;

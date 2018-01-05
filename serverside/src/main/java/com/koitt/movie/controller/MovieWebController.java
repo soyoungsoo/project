@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Movie;
+import com.koitt.movie.service.FileService;
 import com.koitt.movie.service.MovieService;
 
 @Controller
@@ -39,10 +40,13 @@ public class MovieWebController {
 	@Autowired
 	private MovieService movieService;
 	
+	@Autowired
+	private FileService fileService;	
+	
 	@InitBinder     
 	public void initBinder(WebDataBinder binder){
 	     binder.registerCustomEditor(Date.class,     
-	                         new CustomDateEditor(new SimpleDateFormat("yyyy-dd-MM"), true, 10));   
+	                         new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), true, 10));   
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -83,7 +87,7 @@ public class MovieWebController {
 		public String newBoard() {
 							
 
-			return "movieinsert";
+			return "movieInsert";
 		}
 
 		// 글 작성 후, 글 목록 화면으로 이동
@@ -94,9 +98,9 @@ public class MovieWebController {
 				String genre,
 				String grade,
 				String mrun,
-//				@DateTimeFormat(pattern = "yyyy-dd-MM")	
+				@DateTimeFormat(pattern = "yyyy-dd-MM")	
 				Date sdate,
-//				@DateTimeFormat(pattern = "yyyy-dd-MM")	
+				@DateTimeFormat(pattern = "yyyy-dd-MM")	
 				Date edate,				
 				@RequestParam("post") MultipartFile post)
 						throws CommonException, Exception {
@@ -137,4 +141,71 @@ public class MovieWebController {
 			movieService.newMovie(movie);
 			return "redirect:list.do";
 		}
+		
+		// 글 수정하기 화면
+		@RequestMapping(value = "/modify.do", method = RequestMethod.GET)
+		public String modify(Model model, String mno) throws CommonException{
+			
+			Movie item = null;
+			
+			item = movieService.detail(mno);
+			
+			model.addAttribute("item", item);
+			
+			return "modify";
+		}
+		// 글 수정 후, 글 목록 화면으로 이동
+		@RequestMapping(value = "/modify.do", method = RequestMethod.POST)
+		public String modify(HttpServletRequest request,
+				Integer mno,
+				String title,
+				String content,
+				String genre,
+				String grade,
+				String mrun,
+				Date sdate,
+				Date edate,				
+				@RequestParam("post") MultipartFile post)
+						throws CommonException, Exception {
+			
+//			// 비밀번호 비교해서 같지 않다면 오류메시지 출력
+//			boolean isMatched = userInfoService.isBoardMatched(no, password);
+//			if (!isMatched) {
+//				return "redirect:/board/modify.do?no=" + no + "&action=error-password";
+//			}
+
+			Movie movie = new Movie();
+			movie.setMno(mno);
+			movie.setTitle(title);
+			movie.setContent(content);
+			movie.setGenre(genre);
+			movie.setGrade(grade);
+			movie.setMrun(mrun);
+			movie.setSdate(sdate);
+			movie.setEdate(edate);
+
+			String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);
+			String originalName = post.getOriginalFilename();
+
+			// attachment 객체를 이용하여, 파일을 서버에 전송
+			if (post != null && !post.isEmpty()) {
+				int idx = originalName.lastIndexOf(".");
+				String name = originalName.substring(0, idx);
+				String ext = originalName.substring(idx, originalName.length());
+				String uploadFilename = name
+						+ Long.toHexString(System.currentTimeMillis())
+						+ ext;
+				post.transferTo(new File(path, uploadFilename));
+				uploadFilename = URLEncoder.encode(uploadFilename, "UTF-8");
+				movie.setPost(uploadFilename);
+			}
+
+			String oldFilename = movieService.modify(movie);
+			if (oldFilename != null && !oldFilename.trim().isEmpty()) {
+				fileService.remove(request, UPLOAD_FOLDER, oldFilename);
+			}
+
+			return "redirect:list.do";
+		}
+
 }

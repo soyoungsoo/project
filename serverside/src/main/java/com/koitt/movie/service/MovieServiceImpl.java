@@ -44,6 +44,7 @@ public class MovieServiceImpl implements MovieService{
 		 *  파라메터의 board 객체는 이미 수정된 정보를 담고 있다.
 		 *  따라서 기존 데이터베이스에서 글번호로 기존 데이터를 불러온다.
 		 */
+		logger.debug(movie);
 		Movie item = dao.select(Integer.toString(movie.getMno()));
 		String oldFilename = item.getPost();
 		dao.update(movie);

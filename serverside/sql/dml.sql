@@ -2,8 +2,8 @@
 DELETE FROM MOVIE WHERE Movie_no=43;
 SELECT * FROM Movie;
 UPDATE movie 
-SET title = '1987', content = '내용', genre = '한국 드라마', grade = '15세 이용가', mrun = '117분', start_date = '2017-12-27', end_date = '2017-12-29', m_post = null 
-WHERE Movie_no = 46;
+SET title = '1987', content = '내용', genre = '한국 드라마', grade = '15세 이용가', mrun = '117분', sdate = '2017-12-27', edate = '2017-12-29', post = null 
+WHERE mno = 11;
 /* 영화 추가*/
 CREATE SEQUENCE mno_seq
 START WITH 1 INCREMENT BY 1;

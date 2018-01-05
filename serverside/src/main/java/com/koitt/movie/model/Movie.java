@@ -1,5 +1,6 @@
 package com.koitt.movie.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,23 +13,23 @@ public class Movie {
 	private String genre;
 	private String grade;
 	private String mrun;
-	
+
 	@DateTimeFormat(pattern = "yyyy-dd-MM")		
 	private Date sdate;
 	@DateTimeFormat(pattern = "yyyy-dd-MM")
 	private Date edate;
 	private String post; 
 
-	public Movie() {}
-
+	public Movie() {}			
+	
 	public Movie(Integer mno, String title, String content, String genre, String grade, String mrun, Date sdate,
-			Date edate, String post) {		
+			Date edate, String post) {			
 		this.mno = mno;
 		this.title = title;
 		this.content = content;
 		this.genre = genre;
 		this.grade = grade;
-		this.mrun = mrun;
+		this.mrun = mrun;	
 		this.sdate = sdate;
 		this.edate = edate;
 		this.post = post;
