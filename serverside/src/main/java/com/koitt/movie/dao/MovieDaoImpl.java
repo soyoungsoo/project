@@ -28,10 +28,10 @@ public class MovieDaoImpl implements MovieDao{
 		try {			
 			
 			sqlSession.insert(MAPPER_NAMESPACE + ".insert", movie);
+			logger.debug("dddddddddddddddddddddddddd");
+			logger.debug(movie);
 		}catch (Exception e) {
 			logger.debug(e.getMessage());
-			logger.debug("dao 실행");
-			logger.debug(movie);
 			throw new CommonException("E01: 영화등록 실패");
 		}		
 	}

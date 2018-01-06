@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>영화등록하기</h1>
-	<form action="<c:url value='/new.do'/>" method="post"
+	<form action="<c:url value='/movie/new.do'/>" method="post"
 		enctype="multipart/form-data">
 		<div>영화번호</div>
 		<div>

@@ -1,6 +1,6 @@
 package com.koitt.movie.model;
 
-public class Movie_coment {
+public class Coment {
 
 	private Integer cno;
 	private Integer mno;
@@ -9,9 +9,9 @@ public class Movie_coment {
 	private Integer score;
 	private Integer viewcount;
 	
-	public Movie_coment() {}
+	public Coment() {}
 
-	public Movie_coment(Integer cno, Integer mno, Integer memberno, String coment, Integer score, Integer viewcount) {
+	public Coment(Integer cno, Integer mno, Integer memberno, String coment, Integer score, Integer viewcount) {
 		super();
 		this.cno = cno;
 		this.mno = mno;
@@ -90,7 +90,7 @@ public class Movie_coment {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Movie_coment other = (Movie_coment) obj;
+		Coment other = (Coment) obj;
 		if (cno == null) {
 			if (other.cno != null)
 				return false;

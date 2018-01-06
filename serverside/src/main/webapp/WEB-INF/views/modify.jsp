@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>수정하기</h1>
-	<form action="modify.do" method="post" enctype="multipart/form-data">	
+	<form action="/special/movie/modify.do" method="post" enctype="multipart/form-data">	
 		<div>
 			<label>제목<input type="text" name="title" value="${item.title}"></label>
 		</div>

@@ -59,8 +59,7 @@ public class MovieServiceImpl implements MovieService{
 	}
 
 	@Override
-	public List<Movie> list() throws CommonException {		
-		logger.debug("서비스 실행");
+	public List<Movie> list() throws CommonException {				
 		return dao.selectAll();
 	}
 

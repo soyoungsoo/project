@@ -32,6 +32,6 @@
 			<dd><a href="<c:url value='/download.do?filename=${ item.post }'/>">${ post }</a></dd>
 		</c:if>
 	</dl>	
-	<a href="modify.do?mno=${item.mno}">수정하기</a>
+	<a href="/special/movie/modify.do?mno=${item.mno}">수정하기</a>
 </body>
 </html>

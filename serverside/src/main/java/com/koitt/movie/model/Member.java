@@ -4,18 +4,20 @@ import java.util.Set;
 
 public class Member {
 	
-	private Integer memberno;			// 회원번호 (Primary Key)
-	private String id;				// 이메일
+	private Integer memno;			// 회원번호 (Primary Key)
+	private String id;				// 아이디
 	private String pwd;			// 비밀번호
 	private String name;				// 이름
-	private String birth;				// 아바타 이미지 파일명
-	private String email;
+	private String birth;				// 생일
+	private String email;				//이메일
 	private Set<UserType> userTypes;	// ADMIN, USER
-	
+
 	public Member() {}
 
-	public Member(Integer memberno, String id, String pwd, String name, String birth, String email) {		
-		this.memberno = memberno;
+	public Member(Integer memno, String id, String pwd, String name, String birth, String email,
+			Set<UserType> userTypes) {
+		super();
+		this.memno = memno;
 		this.id = id;
 		this.pwd = pwd;
 		this.name = name;
@@ -24,12 +26,12 @@ public class Member {
 		this.userTypes = userTypes;
 	}
 
-	public Integer getMemberno() {
-		return memberno;
+	public Integer getMemno() {
+		return memno;
 	}
 
-	public void setMemberno(Integer memberno) {
-		this.memberno = memberno;
+	public void setMemno(Integer memno) {
+		this.memno = memno;
 	}
 
 	public String getId() {
@@ -87,7 +89,7 @@ public class Member {
 		result = prime * result + ((birth == null) ? 0 : birth.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((memberno == null) ? 0 : memberno.hashCode());
+		result = prime * result + ((memno == null) ? 0 : memno.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((pwd == null) ? 0 : pwd.hashCode());
 		result = prime * result + ((userTypes == null) ? 0 : userTypes.hashCode());
@@ -118,10 +120,10 @@ public class Member {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (memberno == null) {
-			if (other.memberno != null)
+		if (memno == null) {
+			if (other.memno != null)
 				return false;
-		} else if (!memberno.equals(other.memberno))
+		} else if (!memno.equals(other.memno))
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -144,8 +146,8 @@ public class Member {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Member [memberno=");
-		builder.append(memberno);
+		builder.append("Member [memno=");
+		builder.append(memno);
 		builder.append(", id=");
 		builder.append(id);
 		builder.append(", pwd=");
@@ -162,6 +164,5 @@ public class Member {
 		return builder.toString();
 	}
 
-	
-	
+
 }

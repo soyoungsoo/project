@@ -8,6 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>		  
-	<a href="/special/list.do">목록가기</a>
+	<a href="/special/movie/list.do">목록가기</a>
 </body>
 </html>

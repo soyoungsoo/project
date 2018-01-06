@@ -30,7 +30,7 @@ import com.koitt.movie.service.FileService;
 import com.koitt.movie.service.MovieService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/movie")
 public class MovieWebController {
 	
 	private static final String UPLOAD_FOLDER ="/movieImage";
@@ -51,7 +51,7 @@ public class MovieWebController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String homePage(Model model) {		
-		return "/index";
+		return "index";
 	}
 	@RequestMapping(value = "/list.do", method = RequestMethod.GET)
 	public String list(Model model) throws CommonException{
@@ -59,7 +59,7 @@ public class MovieWebController {
 		
 		list = movieService.list();		
 		model.addAttribute("list", list);
-		return "movie";
+		return "home";
 	}
 	
 	// 글 상세 화면
@@ -207,5 +207,12 @@ public class MovieWebController {
 
 			return "redirect:list.do";
 		}
-
+		
+//	@RequestMapping(value="remove.do", method=RequestMethod.GET)
+//	public String remove(Model model, @RequestParam(value = "mno", required = true) String mno ) {
+//		
+//		
+//		
+//		return "remove-confirm";
+//	}
 }
