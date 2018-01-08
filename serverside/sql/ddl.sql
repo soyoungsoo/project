@@ -34,7 +34,7 @@ CREATE TABLE Member (
 	CONSTRAINT pk_Member PRIMARY KEY (MemNo),
 	CONSTRAINT pk_Member1 UNIQUE (id)
 );
-
+drop table member CASCADE CONSTRAINTS;
 select * from member;
 /* 티켓 */
 CREATE TABLE Ticket (
@@ -42,7 +42,7 @@ CREATE TABLE Ticket (
 	Tno NUMBER NOT NULL, /* 티켓번호 */
 	rno NUMBER, /* 예매번호 */
 	CONSTRAINT pk_Ticket PRIMARY KEY (Tno),
-	CONSTRAINT fk_Movie FOREIGN KEY (Mno) REFERENCES Movie (Mno),
+	CONSTRAINT fk_Movie_T FOREIGN KEY (Mno) REFERENCES Movie (Mno),
 	CONSTRAINT fk_reservation FOREIGN KEY (rno) REFERENCES reservation (rno)
 );
 

@@ -26,23 +26,19 @@ INSERT INTO Member(memno,id,pwd,name,birth,email)
 VALUES (memno_seq.nextval,'admin','1234','관리자','2018-01-06','admin@koitt.com');
 	
 SELECT * FROM MEMBER;
-delete  from MEMBER where memno=2;
+delete  from MEMBER where id='admin';
+delete  from MEMBER where memno=21;
 
 INSERT INTO user_type(id,type) 
-VALUES (1,'ADMIN');
+VALUES (22,'ADMIN');
 
 INSERT INTO user_type(id,type) 
 VALUES (2,'USER');
 
-
-SELECT * FROM user_info_type;
-
-insert into user_info_type(memno,user_info_type_id) values (5,1);
+insert into user_info_type(memno,user_info_type_id) values (22,1);
 insert into user_info_type(memno,user_info_type_id) values (5,2);
 
 SELECT * FROM user_type WHERE user_type.id = #{id}
-
-SELECT * FROM user_info_type;
 
 	INSERT INTO Member
 		VALUES (memno_seq.nextval,'111','d','d','2222-02-02','koitt@koitt.com');

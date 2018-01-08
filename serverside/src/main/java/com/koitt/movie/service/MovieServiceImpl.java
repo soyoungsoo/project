@@ -29,10 +29,10 @@ public class MovieServiceImpl implements MovieService{
 
 	@Transactional
 	@Override
-	public String remove(String no) throws CommonException {			
-		Movie item = dao.select(no);
+	public String remove(String mno) throws CommonException {			
+		Movie item = dao.select(mno);
 		String filename = item.getPost();
-		dao.delete(no);
+		dao.delete(mno);
 
 		return filename;
 	}

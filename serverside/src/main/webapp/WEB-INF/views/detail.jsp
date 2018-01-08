@@ -6,6 +6,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script>
+
+function deleteCheck(){ 
+	if (confirm("삭제 하시겠습니까?")){ 
+		location.href="/special/movie/remove.do?mno=${item.mno}";		
+	}else{ 
+		alert("삭제 취소 되었습니다."); 
+	return; 
+	} 
+} 
+</script>
 </head>
 <body>
 	<h1>영화 정보</h1>
@@ -31,7 +42,18 @@
 			<dt>첨부파일</dt>
 			<dd><a href="<c:url value='/download.do?filename=${ item.post }'/>">${ post }</a></dd>
 		</c:if>
-	</dl>	
-	<a href="/special/movie/modify.do?mno=${item.mno}">수정하기</a>
+	</dl>			
+	
+	<c:forEach var="list" items="${ member.userTypes }">
+		<c:choose>
+	       <c:when test="${list.type == 'ADMIN'}">
+	         <a href="/special/movie/modify.do?mno=${item.mno}">수정하기</a>
+	         <%-- 팝업창 띄우기 --%>
+<%-- 	         <a href="/special/movie/remove.do?mno=${item.mno}">삭제하기</a>					 --%>
+			<a href="javascript:deleteCheck();">삭제하기</a>
+	       </c:when>	      
+	   </c:choose>	
+	</c:forEach>	
+	
 </body>
 </html>

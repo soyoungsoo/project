@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Member;
 import com.koitt.movie.service.MemberService;
@@ -39,11 +38,16 @@ public class UserWebController {
 	@Autowired
 	private PasswordEncoder encoder;
 	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String homePage() {		
+		return "redirect:/movie/list.do";
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage() {
-		return "user/login";
+		return "redirect:/movie/list.do";
 	}
-
+	
 	@RequestMapping(value = "/logout" , method = RequestMethod.GET)
 	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();

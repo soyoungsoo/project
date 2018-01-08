@@ -23,4 +23,4 @@ SELECT user_info_type.memno, user_type.id, user_type.type
 	(SELECT user_info_type.memno, user_type.id, user_type.type
 	FROM user_info_type, user_type
 	WHERE user_type.id = user_info_type_id) ut
-	WHERE m.memno = ut.memno AND m.id = 'test';
+	WHERE m.memno = ut.memno AND m.id = 'admin';

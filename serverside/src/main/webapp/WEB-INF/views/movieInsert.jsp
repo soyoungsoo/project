@@ -36,7 +36,7 @@
 		<div>
 			<label>첨부파일 <input type="file" name="post" multiple="multiple"></label>
 		</div>		
-<%-- 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> --%>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 		<input type="submit">
 		<input type="reset">
 	</form>
