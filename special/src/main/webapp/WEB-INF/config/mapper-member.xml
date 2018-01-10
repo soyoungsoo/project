@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koitt.movie.dao.MemberDaoImpl">
+
+	<insert id="insert" parameterType="Member">		
+		<selectKey keyProperty="memno" resultType="Integer" order="BEFORE">
+			SELECT memno_seq.NEXTVAL memno FROM DUAL
+		</selectKey>
+			INSERT INTO Member(memno,id,pwd,name,birth,email) 
+			VALUES (#{memno}, #{id}, #{pwd}, #{name}, #{birth},#{email})
+	</insert>
+	
+	<insert id="insertUserTypes" parameterType="Member">
+		INSERT ALL
+		<foreach collection="userTypes"  item="item">
+			INTO user_info_type(memno, user_info_type_id)
+			VALUES (#{memno}, #{item.id})
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+	
+	<resultMap type="Member" id="memberResultMap">
+		<id property="memno" column="memno" />
+		<result property="id" column="id" />
+		<result property="pwd" column="pwd" />
+		<result property="name" column="name" />
+		<result property="birth" column="birth" />
+		<result property="email" column="email" />
+		<collection property="userTypes" ofType="UserType">
+			<id property="id" column="user_info_type_id" />
+			<result property="type" column="type"/>
+		</collection>
+	</resultMap>
+	
+	<select id="select" parameterType="String" resultMap="memberResultMap">
+		SELECT m.memno, m.id, m.pwd, m.name, m.birth, m.email, ut.id, ut.type
+	FROM member m,
+	(SELECT user_info_type.memno, user_type.id, user_type.type
+	FROM user_info_type, user_type
+	WHERE user_type.id = user_info_type_id) ut
+	WHERE m.memno = ut.memno AND m.id = #{id}
+	</select>
+	
+	<select id="selectById" parameterType="String" resultMap="memberResultMap">
+	
+	SELECT m.memno, m.id, m.pwd, m.name, m.birth, m.email, ut.id, ut.type
+	FROM member m,
+	(SELECT user_info_type.memno, user_type.id, user_type.type
+	FROM user_info_type, user_type
+	WHERE user_type.id = user_info_type_id) ut
+	WHERE m.memno = ut.memno AND m.id = #{id}
+	</select>
+	
+	<delete id= "delete" parameterType = "Integer">		
+		DELETE FROM MEMBER WHERE memno = #{memno}
+	</delete>	
+	
+	<delete id= "deleteUserTypes" parameterType = "Integer">
+		DELETE FROM USER_INFO_TYPE WHERE MEMNO = #{memno};
+	</delete>
+	
+	<update id="update" parameterType="Member">
+		update member
+		set pwd = #{pwd}, name = #{name} , birth = #{birth}, email= #{email}
+		where id = #{id}
+	</update>
+</mapper>
