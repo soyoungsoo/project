@@ -1,4 +1,4 @@
-/* 영화 쿼리*/
+/* 영화 쿼리*/9
 CREATE SEQUENCE mno_seq
 START WITH 1 INCREMENT BY 1;
 /* 검색 */
@@ -17,7 +17,7 @@ select* from MOVIE;
 
 INSERT INTO user_type(id,type) 
 VALUES (1,'admin');
-
+select * from movie;
 /* 회원 추가*/
 CREATE SEQUENCE memno_seq
 START WITH 1 INCREMENT BY 1;
@@ -47,9 +47,94 @@ INSERT INTO Member(memno,id,pwd,name,birth,email)
 		VALUES (#{memno}, #{id}, #{pwd}, #{name}, #{birth},#{email})
 		
 		
-insert into 
-SELECT memno_seq.NEXTVAL memno FROM DUAL;
-SELECT mno_seq.NEXTVAL mno FROM DUAL;		
+select * from theater;
+
+INSERT INTO theater VALUES(1,45);
+INSERT INTO theater VALUES(2,45);
+INSERT INTO theater VALUES(3,45);
+INSERT INTO theater VALUES(4,45);
+INSERT INTO theater VALUES(5,45);
+
+INSERT INTO seat VALUES (1,'A-1',0);
+INSERT INTO seat VALUES (1,'A-2',0);
+INSERT INTO seat VALUES (1,'A-3',0);
+INSERT INTO seat VALUES (1,'A-4',0);
+INSERT INTO seat VALUES (1,'A-5',0);
+
+INSERT INTO seat VALUES (1,'A-6',0);
+INSERT INTO seat VALUES (1,'A-7',0);
+INSERT INTO seat VALUES (1,'A-8',0);
+INSERT INTO seat VALUES (1,'A-9',0);
+INSERT INTO seat VALUES (1,'A-10',0);
+
+INSERT INTO seat VALUES (1,'A-11',0);
+INSERT INTO seat VALUES (1,'A-12',0);
+INSERT INTO seat VALUES (1,'A-13',0);
+INSERT INTO seat VALUES (1,'A-14',0);
+INSERT INTO seat VALUES (1,'A-15',0);
+
+INSERT INTO seat VALUES (1,'B-1',0);
+INSERT INTO seat VALUES (1,'B-2',0);
+INSERT INTO seat VALUES (1,'B-3',0);
+INSERT INTO seat VALUES (1,'B-4',0);
+INSERT INTO seat VALUES (1,'B-5',0);
+
+INSERT INTO seat VALUES (1,'B-6',0);
+INSERT INTO seat VALUES (1,'B-7',0);
+INSERT INTO seat VALUES (1,'B-8',0);
+INSERT INTO seat VALUES (1,'B-9',0);
+INSERT INTO seat VALUES (1,'B-10',0);
+
+INSERT INTO seat VALUES (1,'B-11',0);
+INSERT INTO seat VALUES (1,'B-12',0);
+INSERT INTO seat VALUES (1,'B-13',0);
+INSERT INTO seat VALUES (1,'B-14',0);
+INSERT INTO seat VALUES (1,'B-15',0);
 
 
+INSERT INTO seat VALUES (1,'C-1',0);
+INSERT INTO seat VALUES (1,'C-2',0);
+INSERT INTO seat VALUES (1,'C-3',0);
+INSERT INTO seat VALUES (1,'C-4',0);
+INSERT INTO seat VALUES (1,'C-5',0);
+
+INSERT INTO seat VALUES (1,'C-6',0);
+INSERT INTO seat VALUES (1,'C-7',0);
+INSERT INTO seat VALUES (1,'C-8',0);
+INSERT INTO seat VALUES (1,'C-9',0);
+INSERT INTO seat VALUES (1,'C-10',0);
+
+INSERT INTO seat VALUES (1,'C-11',0);
+INSERT INTO seat VALUES (1,'C-12',0);
+INSERT INTO seat VALUES (1,'C-13',0);
+INSERT INTO seat VALUES (1,'C-14',0);
+INSERT INTO seat VALUES (1,'C-15',0);
+
+CREATE SEQUENCE SEQ_bNO
+START WITH 1 INCREMENT BY 1;
+SELECT * FROM movie;
+select seq_rno.nextval from dual;
+
+SELECT * FROM seat;
+UPDATE SEAT
+SET ISSUE = 1
+WHERE TNO = 1 AND SEATNO = 'A-1';
+
+
+
+SELECT r.rno, r.memno, r.mno, r.tno, r.seatno, r.btime,s.rdate
+FROM reservation r,(SELECT * FROM Schedule) s
+WHERE s.mno = r.mno;
+
+
+
+
+drop sequence seq_bno;
+DELETE FROM RESERVATION WHERE RNO = 3;
+INSERT INTO reservation VALUES (seq_rno.nextval,82,81,1,'A-1',sysdate);
+select * from reservation;
+
+SELECT * FROM RESERVATION WHERE MemNo = 1;
+select * from reservation;
+insert into schedule values (to_date('2002-09-05-14-11-12', 'yyyy-mm-dd-hh24-mi-ss'),81);
 

@@ -14,7 +14,7 @@
 			<label>제목<input type="text" name="title" value="${item.title}"></label>
 		</div>
 		<div>
-			<label>시놉시스<textarea name="content">${item.title}</textarea></label>
+			<label>시놉시스<textarea name="content">${item.content}</textarea></label>			
 		</div>
 		<div>
 			<label>장르<input type="text" name="genre" value="${item.genre}"></label>
@@ -33,10 +33,11 @@
 		</div>
 		<div>
 			<label>영화포스터<input type="file" name="post" multiple="multiple"></label>
-		</div>
+		</div>		
 		<input type="hidden" name="mno" value="${item.mno}">
 		<input type="submit">
-		<input type="reset">		
+		<input type="reset">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">		
 	</form>
 
 </body>

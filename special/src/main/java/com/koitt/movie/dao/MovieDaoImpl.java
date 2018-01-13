@@ -78,7 +78,7 @@ public class MovieDaoImpl implements MovieDao{
 			try {												  
 				list = sqlSession.selectList(MAPPER_NAMESPACE + ".selectAll");
 			} catch (Exception e) {
-				logger.debug(e.getMessage());					
+
 				throw new CommonException("E05: 영화 전체보기 실패");
 			}		
 		return list;

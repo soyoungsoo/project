@@ -1,13 +1,3 @@
-/* 좌석 */
-CREATE TABLE seat (
-	tno NUMBER NOT NULL, /* 상영관번호 */
-	seatno VARCHAR2(10) NOT NULL, /* 좌석번호 */
-	issue NUMBER,/* 예약여부 */
-	CONSTRAINT pk_seat PRIMARY KEY (seatno),
-	CONSTRAINT fk_theater FOREIGN KEY (tno) REFERENCES theater(tno)
-);
-select * from seat;
-
 /* 영화 */
 CREATE TABLE Movie (
 	Mno NUMBER NOT NULL, /* 영화번호 */
@@ -91,6 +81,16 @@ CREATE TABLE theater (
 );
 select * from theater;
 
+/* 좌석 */
+CREATE TABLE seat (
+	tno NUMBER NOT NULL, /* 상영관번호 */
+	seatno VARCHAR2(10) NOT NULL, /* 좌석번호 */
+	issue NUMBER,/* 예약여부 */	
+	CONSTRAINT fk_theater FOREIGN KEY (tno) REFERENCES theater(tno)
+);
+drop table seat cascade constraints;
+select * from seat;
+
 /* 티켓예매 */
 CREATE TABLE reservation (
 	rno NUMBER NOT NULL, /* 예매번호 */
@@ -98,16 +98,14 @@ CREATE TABLE reservation (
 	Mno NUMBER, /* 영화번호 */
 	tno NUMBER, /* 상영관번호 */
 	seatno VARCHAR2(10), /* 좌석번호 */
-	bno VARCHAR2(10), /* 티켓팅코드 */
+	btime TIMESTAMP, /* 티켓팅코드 */
 	CONSTRAINT pk_reservation21 PRIMARY KEY (rno),
 	CONSTRAINT fk_Member3 FOREIGN KEY (MemNo) REFERENCES Member(MemNo),
 	CONSTRAINT fk_Movie12 FOREIGN KEY (Mno) REFERENCES Movie(Mno),
-	CONSTRAINT fk_theater12 FOREIGN KEY (tno) REFERENCES theater(tno),
-	CONSTRAINT fk_seat12 FOREIGN KEY (seatno) REFERENCES seat(seatno),
-	CONSTRAINT fk_buy12 FOREIGN KEY (bno) REFERENCES buy(bno)
+	CONSTRAINT fk_theater12 FOREIGN KEY (tno) REFERENCES theater(tno)	
 );
-
-
+drop table reservation cascade constraints;
+select * from RESERVATION;
 /* 평점 */
 CREATE TABLE movie_coment (
 	cno NUMBER NOT NULL, /* 댓글번호 */
@@ -127,4 +125,5 @@ CREATE TABLE buy (
 	btime TIMESTAMP, /* 티켓팅시간 */
 	CONSTRAINT pk_buy PRIMARY KEY (bno)
 );
+drop table buy cascade constraints;
 select * from buy;

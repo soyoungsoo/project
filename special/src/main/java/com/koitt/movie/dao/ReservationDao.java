@@ -1,0 +1,22 @@
+package com.koitt.movie.dao;
+
+import java.util.List;
+
+import com.koitt.movie.model.CommonException;
+import com.koitt.movie.model.Reservation;
+import com.koitt.movie.model.seat;
+
+public interface ReservationDao {
+
+	//상영관 좌석 상태
+	public List<seat> SeatAll(seat seat) throws CommonException;
+	//예매좌석 상태변경
+	public void stateChange(String seatno) throws CommonException;
+	// 티켓예매
+	public void ticketing(Reservation reservation) throws CommonException;
+	public void time() throws CommonException;
+	// 티켓 취소
+	public void Cancel(Integer rno) throws CommonException;
+	// 회원 번호로 예매 조회 
+	public List<Reservation> Lookup(Integer memno) throws CommonException;
+}

@@ -32,9 +32,11 @@ import javax.servlet.http.HttpSession;
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Member;
 import com.koitt.movie.model.Movie;
+import com.koitt.movie.model.Reservation;
 import com.koitt.movie.service.FileService;
 import com.koitt.movie.service.MemberService;
 import com.koitt.movie.service.MovieService;
+import com.koitt.movie.service.TicketService;
 
 @Controller
 @RequestMapping("/movie")
@@ -44,7 +46,9 @@ public class MovieWebController {
 
 	@Autowired
 	private MemberService MemberService;
-
+	@Autowired
+	private TicketService ticketService;
+	
 	private Logger logger = LogManager.getLogger(this.getClass());
 
 	@Autowired
@@ -203,13 +207,6 @@ public class MovieWebController {
 			Date edate,				
 			@RequestParam("post") MultipartFile post)
 					throws CommonException, Exception {
-
-		//			// 비밀번호 비교해서 같지 않다면 오류메시지 출력
-		//			boolean isMatched = userInfoService.isBoardMatched(no, password);
-		//			if (!isMatched) {
-		//				return "redirect:/board/modify.do?no=" + no + "&action=error-password";
-		//			}
-
 		Movie movie = new Movie();
 		movie.setMno(mno);
 		movie.setTitle(title);
@@ -240,17 +237,10 @@ public class MovieWebController {
 		if (oldFilename != null && !oldFilename.trim().isEmpty()) {
 			fileService.remove(request, UPLOAD_FOLDER, oldFilename);
 		}
-
+		System.out.println("실행");
 		return "redirect:list.do";
 	}
-	// 글 삭제 확인 화면
-//		@RequestMapping(value = "/remove.do", method = RequestMethod.GET)
-//		public String removeConfirm(Model model,
-//				@RequestParam(value = "no", required = true) String no) {
-//
-//			return "remove-confirm";
-//		}
-	
+
 	// 글 삭제 후, 글 목록 화면으로 이동
 		@RequestMapping(value = "/remove.do", method = RequestMethod.GET)
 		public String remove(HttpServletRequest request,
@@ -261,8 +251,24 @@ public class MovieWebController {
 			if (filename != null && !filename.trim().isEmpty()) {
 				fileService.remove(request, UPLOAD_FOLDER, filename);
 			}
-
 			return "redirect:list.do";
 		}
-
+		@RequestMapping(value="/ticket", method=RequestMethod.GET)
+		public String reserve() {			
+			return "reservation";
+		}
+		
+		@RequestMapping(value = "/ticket", method = RequestMethod.POST)
+		public String reserve(HttpSession session, @RequestParam(value = "mno", required = true)Integer mno, Integer tno, String seatno)
+			throws CommonException, UnsupportedEncodingException{
+				Member member = (Member)session.getAttribute("member");				
+				Integer memberno = member.getMemno();
+				Reservation reservation = new Reservation();
+				reservation.setMemNo(memberno);
+				reservation.setMno(mno);
+				reservation.setTno(tno);
+				reservation.setSeatno(seatno);				
+				ticketService.ticketing(reservation);
+			return "redirect:list.do";			
+		}
 }

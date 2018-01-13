@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koitt.movie.dao.ReservationDaoImpl">
+
+	<insert id="insert" parameterType="Reservation">	
+		<selectKey keyProperty="rno" resultType="Integer" order="BEFORE">
+			SELECT seq_rno.NEXTVAL rno FROM DUAL			
+		</selectKey>	
+		INSERT INTO reservation 
+		VALUES (#{rno},#{memno}, #{mno},#{tno},#{seatno},sysdate)
+	</insert>
+
+	<insert id="timeInsert">	
+		<selectKey keyProperty="bno" resultType="Integer" order="BEFORE">
+			SELECT seq_bno.NEXTVAL bno FROM DUAL			
+		</selectKey>	
+		INSERT INTO BUY 
+		VALUES (#{bno}, SYSDATE)	
+	</insert>
+	<select id="select" parameterType="Integer" resultType="Reservation">
+		SELECT r.rno, r.memno, r.mno, r.tno, r.seatno, r.btime,s.rdate
+		FROM reservation r,(SELECT * FROM Schedule) s
+		WHERE s.mno = r.mno AND MEMNO = #{memno};
+	</select>
+	
+
+	<select id="seatSelect" parameterType="Integer" resultType="seat">
+		SELECT * FROM SEAT WHERE tno = #{tno}
+	</select>
+	<delete id= "delete" parameterType = "Integer">
+		DELETE FROM RESERVATION WHERE rno = #{rno}
+	</delete>	
+	
+	<update id="update" parameterType="Member">
+		update RESERVATION
+		set pwd = #{pwd}, name = #{name} , birth = #{birth}, email= #{email}
+		where id = #{id}
+	</update>
+	
+	<update id="seatUpdate" parameterType="String">
+		UPDATE SEAT
+		SET ISSUE = #{ISSUE}
+		WHERE TNO = #{TNO} AND SEATNO = #{SEATNO};
+	</update>
+</mapper>

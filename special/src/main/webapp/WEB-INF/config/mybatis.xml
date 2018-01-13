@@ -11,6 +11,8 @@
 	<typeAliases>		
 		<typeAlias type="com.koitt.movie.model.Movie" alias="Movie"/>						 
 		<typeAlias type="com.koitt.movie.model.Member" alias="Member"/>
+		<typeAlias type="com.koitt.movie.model.Reservation" alias="Reservation"/>
 		<typeAlias type="com.koitt.movie.model.UserType" alias="UserType"/>
+		<typeAlias type="com.koitt.movie.model.seat" alias="seat"/>
 	</typeAliases>
 </configuration>
