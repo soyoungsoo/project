@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <title>Untitled Document</title>
+    <script>
+        function submitTest() {                
+                    if ($('.reg-name').val() === "") {
+                        alert("이름을 입력해주세요!");
+                        return false;
+                    } else if ($('.reg-id').val() === "") {
+                        alert("아이디를 입력해주세요!");
+                        return false;
+                    } else if ($('.reg-pwd').val() === "") {
+                        alert("비밀번호를 입력해주세요!");
+                        return false;
+                    } else if ($('.reg-email').val() === "") {
+                        alert("이메일을 입력해주세요!");
+                        return false;
+                    } else if ($('.reg-birth').val() === "") {
+                        alert("생년월일을 입력해주세요!");
+                        return false;
+                    } else {
+                        $('#joinForm').submit();
+                    }
+                    
+                    return true;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="frame">
+        <div class="container">
+            <div class="header">
+                <div class="logo"><a href="Movies_Main.html"> Movie Theater </a> </div>
+            </div>
+            <div class="content">
+                <form action="#" method="post" id = "joinForm">
+                    <table class="table-join">
+                        <tr>
+                            <th colspan="2" class="text-center"><h3>회원가입</h3></th>
+                        </tr>
+                        <tr>
+                            <th class="text-right">- 이름</th>
+                            <td class="text-center"><input type="text" id="sname" name="reg-name" class = "reg-name" autofocus value = ""></td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">- 아이디</th>
+                            <td class="text-center"><input type="text" id="sname"  class = " reg-id" name="reg-id" value = ""></td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">- 비밀번호</th>
+                            <td class="text-center"><input type="password" id="sname" class = "reg-pwd" name="reg-pwd" value = ""></td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">- 이메일</th>
+                            <td class="text-center"><input type="email" id="sname" class =  "reg-email" name="reg-email" value = ""></td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">- 생년월일</th>
+                            <td class="text-center">
+                                <input type="date" id="sname" name="reg-birth" class = "reg-birth" value = "">
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <th colspan="2" class="text-center">
+                                <a href="javascript:{}" onclick="submitTest();" class = "reg-btn">회원가입</a></th>
+                        </tr>
+
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="footer">
+                <p class="copyright">&copy;copyright reserved larl</p>
+            </div>
+    </div>
+    <script src="bootstrap/js/jquery-1.12.4.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
