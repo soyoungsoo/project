@@ -2,14 +2,141 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="jQuery-Radiobtn/css/zInput_default_stylesheet.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <link rel="stylesheet" type="text/css" href="css/seat.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="jQuery-Radiobtn/zInput.js"></script>
+
     <meta charset="UTF-8">
     <title>Untitled Document</title>
+    <script>
+        $(function() {
+            $(".preserv-folded").hide();
+        });
+    </script>
     <style>
+        .cal-radio {
+            display: none;
+        }
+
+        .calendar {
+            width: 994px;
+        }
+
+        .zInputWrapper {
+            background-color: #9197B5;
+            padding: 4px;
+            max-width: 100%;
+            margin: 2px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        .zInput {
+            display: inline-block;
+            width: 85px;
+            height: 80px;
+            background-color: white;
+            margin: 4px;
+            padding: 12px;
+            display: inline-block;
+            text-align: center;
+            cursor: default;
+            color: black;
+            border: #f7cac9 1px solid;
+            border-radius: 10px;
+            font-size: 18px;
+            overflow: hidden;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .zCheckbox {
+            color: #e74c3c;
+            border: #e74c3c 1px solid;
+        }
+
+        .zSelected {
+            color: white;
+            background-color: #88B04B;
+        }
+
+        .zSelected.zCheckbox {
+            background-color: #e74c3c;
+        }
+
+        .theater-container h2 {
+            margin-left: 60px;
+            margin-top: 40px;
+        }
+
+        .theater-container h4 {
+            margin-left: 90px;
+        }
+
+        .movie-title {
+            display: inline;
+        }
+
+        .hr {
+            margin-top: 40px;
+            border: 0.3px solid lightgray;
+        }
+
+        .preserv-time {
+            position: relative;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .preserv-time ul li {
+            display: inline-block;
+            background-color: #9197B5;
+            text-align: center;
+            width: 200px;
+            height: 100px;
+            border: 0.1px solid black;
+        }
+
+        .preserv-time ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .cine-place {
+            display: block;
+            height: 25px;
+            line-height: 25px;
+            border-bottom: 0.1px solid black;
+
+        }
+
+        .cine-time {
+            display: block;
+            font-size: 1.5em;
+            height: 50px;
+            line-height: 50px;
+            border-bottom: 0.1px solid black;
+        }
+
+        .cine-seat {
+            display: block;
+        }
     </style>
 </head>
 
@@ -17,137 +144,174 @@
     <div class="frame">
         <div class="container">
             <div class="header">
-                <div class="logo"> <a href="Movies_Main.html">Movie Theater</a> </div>
+                <div class="logo text-center"> <a href="Movies_Main.html">Movie Theater</a> </div>
             </div>
-            <div class="content">
-                <div class="mseat_wrap">
-                    <div class="mseat_inner">
-                        <div class="screen_box">
-                            <strong class="screen_tit">Screen</strong>
-                            <div class="screen_scroll">
-                                <div class="screen_Fbox seatSet1">
-                                    <span class="floor_tit" style="display: none;">
-                                        <em>6F</em>
+            <div class="content ">
+                <div class="calendar zInputWrapper text-center">
+                    <input type="radio" name="cal-radio" class="cal-radio" name="day" value="2018-01-13" id="jan-13" title="토<br> 13">
+                    <input type="radio" name="cal-radio" class="cal-radio" name="day" value="2018-01-14" id="jan-14" title="일<br> 14">
+                    <input type="radio" name="cal-radio" class="cal-radio" name="day" value="2018-01-15" id="jan-15" title="월<br> 15">
+                    <input type="radio" name="cal-radio" class="cal-radio" name="day" value="2018-01-16" id="jan-16" title="화<br> 16">
+                    <input type="radio" name="cal-radio" class="cal-radio" name="day" value="2018-01-17" id="jan-17" title="수<br> 17">
+                    <input type="radio" name="cal-radio" class="cal-radio" name="day" value="2018-01-18" id="jan-18" title="목<br> 18">
+                    <input type="radio" name="cal-radio" class="cal-radio" name="day" value="2018-01-19" id="jan-19" title="금<br> 19">
+                    <input type="radio" name="cal-radio" class="cal-radio" name="day" value="2018-01-20" id="jan-20" title="토<br> 20">
+                    <input type="radio" name="cal-radio" class="cal-radio" name="day" value="2018-01-21" id="jan-21" title="일<br> 21">
+                    <input type="radio" name="cal-radio" class="cal-radio" name="day" value="2018-01-22" id="jan-22" title="월<br> 22">
+                </div>
+                <div class="theater-container">
+                    <h2>- 상영관</h2>
+                    <h4>현재 영화 :
+                        <p class="movie-title">문 라이트</p>
+                    </h4>
+                    <div class="preserv-folded">
+                        <hr class="hr">
+                        <div class="preserv-time">
+                            <ul>
+                                <li><a href="#">
+                                    <span class="cine-place">
+                                        1관
                                     </span>
-                                    <div class="seat_Barea">
-                                        <div class="seat_area" style="height: 184px; margin-left: 308.5px;">
-                                            <span class="seat_tit" style="left: -30px; top: 0px;">A</span>
-                                            <a class="p0 grNum3" data-seat="A1" seat-group="grNum3" style="left : 22px; top:0px;" title="좌석 번호: A1 - 일반석" seat-code="1A01">1</a>
-                                            <a class="p0 grNum3" data-seat="A2" seat-group="grNum3" style="left : 48px; top:0px;" title="좌석 번호: A2 - 일반석" seat-code="1A02">2</a>
-                                            <a class="p0 grNum4" data-seat="A3" seat-group="grNum4" style="left : 89px; top:0px;" title="좌석 번호: A3 - 일반석" seat-code="1A03">3</a>
-                                            <a class="p0 grNum4" data-seat="A4" seat-group="grNum4" style="left : 115px; top:0px;" title="좌석 번호: A4 - 일반석" seat-code="1A04">4</a>
-                                            <a class="p0 grNum4" data-seat="A5" seat-group="grNum4" style="left : 142px; top:0px;" title="좌석 번호: A5 - 일반석" seat-code="1A05">5</a>
-                                            <a class="p0 grNum4" data-seat="A6" seat-group="grNum4" style="left : 169px; top:0px;" title="좌석 번호: A6 - 일반석" seat-code="1A06">6</a>
-                                            <a class="p0 grNum4" data-seat="A7" seat-group="grNum4" style="left : 196px; top:0px;" title="좌석 번호: A7 - 일반석" seat-code="1A07">7</a>
-                                            <a class="p0 grNum4" data-seat="A8" seat-group="grNum4" style="left : 222px; top:0px;" title="좌석 번호: A8 - 일반석" seat-code="1A08">8</a>
-                                            <a class="p0 grNum4" data-seat="A9" seat-group="grNum4" style="left : 249px; top:0px;" title="좌석 번호: A9 - 일반석" seat-code="1A09">9</a>
-                                            <a class="p0 grNum4" data-seat="A10" seat-group="grNum4" style="left : 276px; top:0px;" title="좌석 번호: A10 - 일반석" seat-code="1A10">10</a>
-                                            <a class="p0 grNum5" data-seat="A11" seat-group="grNum5" style="left : 316px; top:0px;" title="좌석 번호: A11 - 일반석" seat-code="1A11">11</a>
-                                            <a class="p0 grNum5" data-seat="A12" seat-group="grNum5" style="left : 343px; top:0px;" title="좌석 번호: A12 - 일반석" seat-code="1A12">12</a>
-                                            <span class="seat_tit" style="left: -30px; top: 27px;">B</span>
-                                            <a class="p0 grNum6" data-seat="B1" seat-statuscode="0" block-code="p0" seat-group="grNum6" style="left: 22px; top: 27px;" title="좌석 번호:B1 - 일반석" seat-code="1B01">1</a>
-                                            <a class="p0 grNum6" data-seat="B2" seat-statuscode="0" block-code="p0" seat-group="grNum6" style="left: 48px; top: 27px;" title="좌석 번호:B2 - 일반석" seat-code="1B02">2</a>
-                                            <a class="p0 grNum7" data-seat="B3" seat-statuscode="0" block-code="p0" seat-group="grNum7" style="left: 89px; top: 27px;" title="좌석 번호:B3 - 일반석" seat-code="1B03">3</a>
-                                            <a class="p0 grNum7" data-seat="B4" seat-statuscode="0" block-code="p0" seat-group="grNum7" style="left: 115px; top: 27px;" title="좌석 번호:B4 - 일반석" seat-code="1B04">4</a>
-                                            <a class="p0 grNum7" data-seat="B5" seat-statuscode="0" block-code="p0" seat-group="grNum7" style="left: 142px; top: 27px;" title="좌석 번호:B5 - 일반석" seat-code="1B05">5</a>
-                                            <a class="p0 grNum7" data-seat="B6" seat-statuscode="0" block-code="p0" seat-group="grNum7" style="left: 169px; top: 27px;" title="좌석 번호:B6 - 일반석" seat-code="1B06">6</a>
-
-                                            <a class="p0 grNum7" data-seat="B7" seat-statuscode="0" block-code="p0" seat-group="grNum7" style="left: 196px; top: 27px;" title="좌석 번호:B7 - 일반석" seat-code="1B07">7</a>
-                                            <a class="p0 grNum7" data-seat="B8" seat-statuscode="0" block-code="p0" seat-group="grNum7" style="left: 222px; top: 27px;" title="좌석 번호:B8 - 일반석" seat-code="1B08">8</a>
-                                            <a class="p0 grNum7" data-seat="B9" seat-statuscode="0" block-code="p0" seat-group="grNum7" style="left: 249px; top: 27px;" title="좌석 번호:B9 - 일반석" seat-code="1B09">9</a>
-                                            <a class="p0 grNum7" data-seat="B10" seat-statuscode="0" block-code="p0" seat-group="grNum7" style="left: 276px; top: 27px;" title="좌석 번호:B10 - 일반석" seat-code="1B10">10</a>
-                                            <a class="p0 grNum8" data-seat="B11" seat-statuscode="0" block-code="p0" seat-group="grNum8" style="left: 316px; top: 27px;" title="좌석 번호:B11 - 일반석" seat-code="1B11">11</a>
-                                            <a class="p0 grNum8" data-seat="B12" seat-statuscode="0" block-code="p0" seat-group="grNum8" style="left: 343px; top: 27px;" title="좌석 번호:B12 - 일반석" seat-code="1B12">12</a>
-                                            <span class="seat_tit" style="left: -30px; top: 54px;">C</span>
-                                            <a class="p0 grNum9" data-seat="C1" seat-statuscode="0" block-code="p0" seat-group="grNum9" style="left: 22px; top: 54px;" title="좌석 번호:C1 - 일반석" seat-code="1C01">1</a>
-                                            <a class="p0 grNum9" data-seat="C2" seat-statuscode="0" block-code="p0" seat-group="grNum9" style="left: 48px; top: 54px;" title="좌석 번호:C2 - 일반석" seat-code="1C02">2</a>
-                                            <a class="p0 grNum10" data-seat="C3" seat-statuscode="0" block-code="p0" seat-group="grNum10" style="left: 89px; top: 54px;" title="좌석 번호:C3 - 일반석" seat-code="1C03">3</a>
-                                            <a class="p0 grNum10" data-seat="C4" seat-statuscode="0" block-code="p0" seat-group="grNum10" style="left: 115px; top: 54px;" title="좌석 번호:C4 - 일반석" seat-code="1C04">4</a>
-                                            <a class="p0 grNum10" data-seat="C5" seat-statuscode="0" block-code="p0" seat-group="grNum10" style="left: 142px; top: 54px;" title="좌석 번호:C5 - 일반석" seat-code="1C05">5</a>
-                                            <a class="p0 grNum10" data-seat="C6" seat-statuscode="0" block-code="p0" seat-group="grNum10" style="left: 169px; top: 54px;" title="좌석 번호:C6 - 일반석" seat-code="1C06">6</a>
-                                            <a class="p0 grNum10" data-seat="C7" seat-statuscode="0" block-code="p0" seat-group="grNum10" style="left: 196px; top: 54px;" title="좌석 번호:C7 - 일반석" seat-code="1C07">7</a>
-                                            <a class="p0 grNum10" data-seat="C8" seat-statuscode="0" block-code="p0" seat-group="grNum10" style="left: 222px; top: 54px;" title="좌석 번호:C8 - 일반석" seat-code="1C08">8</a>
-                                            <a class="p0 grNum10" data-seat="C9" seat-statuscode="0" block-code="p0" seat-group="grNum10" style="left: 249px; top: 54px;" title="좌석 번호:C9 - 일반석" seat-code="1C09">9</a>
-                                            <a class="p0 grNum10" data-seat="C10" seat-statuscode="0" block-code="p0" seat-group="grNum10" style="left: 276px; top: 54px;" title="좌석 번호:C10 - 일반석" seat-code="1C10">10</a>
-                                            <a class="p0 grNum11" data-seat="C11" seat-statuscode="0" block-code="p0" seat-group="grNum11" style="left: 316px; top: 54px;" title="좌석 번호:C11 - 일반석" seat-code="1C11">11</a>
-                                            <a class="p0 grNum11" data-seat="C12" seat-statuscode="0" block-code="p0" seat-group="grNum11" style="left: 343px; top: 54px;" title="좌석 번호:C12 - 일반석" seat-code="1C12">12</a>
-                                            <span class="seat_tit" style="left: -30px; top: 82px;">D</span>
-                                            <a class="p0 grNum12" data-seat="D1" seat-statuscode="0" block-code="p0" seat-group="grNum12" style="left: 22px; top: 82px;" title="좌석 번호:D1 - 일반석" seat-code="1D01">1</a>
-                                            <a class="p0 grNum12" data-seat="D2" seat-statuscode="0" block-code="p0" seat-group="grNum12" style="left: 48px; top: 82px;" title="좌석 번호:D2 - 일반석" seat-code="1D02">2</a>
-                                            <a class="p0 grNum13" data-seat="D3" seat-statuscode="0" block-code="p0" seat-group="grNum13" style="left: 89px; top: 82px;" title="좌석 번호:D3 - 일반석" seat-code="1D03">3</a>
-                                            <a class="p0 grNum13" data-seat="D4" seat-statuscode="0" block-code="p0" seat-group="grNum13" style="left: 115px; top: 82px;" title="좌석 번호:D4 - 일반석" seat-code="1D04">4</a>
-                                            <a class="p0 grNum13" data-seat="D5" seat-statuscode="0" block-code="p0" seat-group="grNum13" style="left: 142px; top: 82px;" title="좌석 번호:D5 - 일반석" seat-code="1D05">5</a>
-                                            <a class="p0 grNum13" data-seat="D6" seat-statuscode="0" block-code="p0" seat-group="grNum13" style="left: 169px; top: 82px;" title="좌석 번호:D6 - 일반석" seat-code="1D06">6</a>
-                                            <a class="p0 grNum13" data-seat="D7" seat-statuscode="0" block-code="p0" seat-group="grNum13" style="left: 196px; top: 82px;" title="좌석 번호:D7 - 일반석" seat-code="1D07">7</a>
-                                            <a class="p0 grNum13" data-seat="D8" seat-statuscode="0" block-code="p0" seat-group="grNum13" style="left: 222px; top: 82px;" title="좌석 번호:D8 - 일반석" seat-code="1D08">8</a>
-                                            <a class="p0 grNum13" data-seat="D9" seat-statuscode="0" block-code="p0" seat-group="grNum13" style="left: 249px; top: 82px;" title="좌석 번호:D9 - 일반석" seat-code="1D09">9</a>
-                                            <a class="p0 grNum13" data-seat="D10" seat-statuscode="0" block-code="p0" seat-group="grNum13" style="left: 276px; top: 82px;" title="좌석 번호:D10 - 일반석" seat-code="1D10">10</a>
-                                            <a class="p0 grNum14" data-seat="D11" seat-statuscode="0" block-code="p0" seat-group="grNum14" style="left: 316px; top: 82px;" title="좌석 번호:D11 - 일반석" seat-code="1D11">11</a>
-                                            <a class="p0 grNum14" data-seat="D12" seat-statuscode="0" block-code="p0" seat-group="grNum14" style="left: 343px; top: 82px;" title="좌석 번호:D12 - 일반석" seat-code="1D12">12</a>
-                                            <span class="seat_tit" style="left: -30px; top: 109px;">E</span>
-                                            <a class="p0 grNum15" data-seat="E1" seat-statuscode="0" block-code="p0" seat-group="grNum15" style="left: 22px; top: 109px;" title="좌석 번호:E1 - 일반석" seat-code="1E01">1</a>
-                                            <a class="p0 grNum15" data-seat="E2" seat-statuscode="0" block-code="p0" seat-group="grNum15" style="left: 48px; top: 109px;" title="좌석 번호:E2 - 일반석" seat-code="1E02">2</a>
-                                            <a class="p0 grNum16" data-seat="E3" seat-statuscode="0" block-code="p0" seat-group="grNum16" style="left: 89px; top: 109px;" title="좌석 번호:E3 - 일반석" seat-code="1E03">3</a>
-                                            <a class="p0 grNum16" data-seat="E4" seat-statuscode="0" block-code="p0" seat-group="grNum16" style="left: 115px; top: 109px;" title="좌석 번호:E4 - 일반석" seat-code="1E04">4</a>
-                                            <a class="p0 completed grNum17" data-seat="E5" seat-statuscode="50" block-code="p0" seat-group="grNum17" style="left: 142px; top: 109px;" title="좌석 번호:E5 - 일반석" seat-code="1E05">5</a>
-                                            <a class="p0 completed grNum17" data-seat="E6" seat-statuscode="50" block-code="p0" seat-group="grNum17" style="left: 169px; top: 109px;" title="좌석 번호:E6 - 일반석" seat-code="1E06">6</a>
-                                            <a class="p0 grNum18" data-seat="E7" seat-statuscode="0" block-code="p0" seat-group="grNum18" style="left: 196px; top: 109px;" title="좌석 번호:E7 - 일반석" seat-code="1E07">7</a>
-                                            <a class="p0 grNum18" data-seat="E8" seat-statuscode="0" block-code="p0" seat-group="grNum18" style="left: 222px; top: 109px;" title="좌석 번호:E8 - 일반석" seat-code="1E08">8</a>
-                                            <a class="p0 grNum18" data-seat="E9" seat-statuscode="0" block-code="p0" seat-group="grNum18" style="left: 249px; top: 109px;" title="좌석 번호:E9 - 일반석" seat-code="1E09">9</a>
-                                            <a class="p0 grNum18" data-seat="E10" seat-statuscode="0" block-code="p0" seat-group="grNum18" style="left: 276px; top: 109px;" title="좌석 번호:E10 - 일반석" seat-code="1E10">10</a>
-                                            <a class="p0 grNum19" data-seat="E11" seat-statuscode="0" block-code="p0" seat-group="grNum19" style="left: 316px; top: 109px;" title="좌석 번호:E11 - 일반석" seat-code="1E11">11</a>
-                                            <a class="p0 grNum19" data-seat="E12" seat-statuscode="0" block-code="p0" seat-group="grNum19" style="left: 343px; top: 109px;" title="좌석 번호:E12 - 일반석" seat-code="1E12">12</a>
-                                            <span class="seat_tit" style="left: -30px; top: 136px;">F</span>
-                                            <a class="p0 grNum20 no_select" data-seat="F1" seat-statuscode="0" block-code="p0" seat-group="grNum20" style="left: 22px; top: 136px;" title="좌석 번호:F1 - 일반석" seat-code="1F01">1</a>
-                                            <a class="p0 grNum20" data-seat="F2" seat-statuscode="0" block-code="p0" seat-group="grNum20" style="left: 48px; top: 136px;" title="좌석 번호:F2 - 일반석" seat-code="1F02">2</a>
-                                            <a class="p0 grNum21" data-seat="F3" seat-statuscode="0" block-code="p0" seat-group="grNum21" style="left: 89px; top: 136px;" title="좌석 번호:F3 - 일반석" seat-code="1F03">3</a>
-                                            <a class="p0 grNum21" data-seat="F4" seat-statuscode="0" block-code="p0" seat-group="grNum21" style="left: 115px; top: 136px;" title="좌석 번호:F4 - 일반석" seat-code="1F04">4</a>
-                                            <a class="p0 completed grNum22" data-seat="F5" seat-statuscode="50" block-code="p0" seat-group="grNum22" style="left: 142px; top: 136px;" title="좌석 번호:F5 - 일반석" seat-code="1F05">5</a>
-                                            <a class="p0 completed grNum22" data-seat="F6" seat-statuscode="50" block-code="p0" seat-group="grNum22" style="left: 169px; top: 136px;" title="좌석 번호:F6 - 일반석" seat-code="1F06">6</a>
-                                            <a class="p0 grNum23" data-seat="F7" seat-statuscode="0" block-code="p0" seat-group="grNum23" style="left: 196px; top: 136px;" title="좌석 번호:F7 - 일반석" seat-code="1F07">7</a>
-                                            <a class="p0 grNum23" data-seat="F8" seat-statuscode="0" block-code="p0" seat-group="grNum23" style="left: 222px; top: 136px;" title="좌석 번호:F8 - 일반석" seat-code="1F08">8</a>
-                                            <a class="p0 completed grNum24" data-seat="F9" seat-statuscode="50" block-code="p0" seat-group="grNum24" style="left: 249px; top: 136px;" title="좌석 번호:F9 - 일반석" seat-code="1F09">9</a>
-                                            <a class="p0 completed grNum24" data-seat="F10" seat-statuscode="50" block-code="p0" seat-group="grNum24" style="left: 276px; top: 136px;" title="좌석 번호:F10 - 일반석" seat-code="1F10">10</a>
-                                            <a class="p0 completed grNum25" data-seat="F11" seat-statuscode="28" block-code="p0" seat-group="grNum25" style="left: 316px; top: 136px;" title="좌석 번호:F11 - 일반석" seat-code="1F11">11</a>
-                                            <a class="p0 completed grNum25" data-seat="F12" seat-statuscode="28" block-code="p0" seat-group="grNum25" style="left: 343px; top: 136px;" title="좌석 번호:F12 - 일반석" seat-code="1F12">12</a>
-                                            <span class="seat_tit" style="left: -30px; top: 164px;">G</span>
-                                            <a class="p0 completed grNum26" data-seat="G1" seat-statuscode="50" block-code="p0" seat-group="grNum26" style="left: 22px; top: 164px;" title="좌석 번호:G1 - 일반석" seat-code="1G01">1</a>
-                                            <a class="p0 completed grNum26" data-seat="G2" seat-statuscode="50" block-code="p0" seat-group="grNum26" style="left: 48px; top: 164px;" title="좌석 번호:G2 - 일반석" seat-code="1G02">2</a>
-                                            <a class="p0 completed grNum27" data-seat="G3" seat-statuscode="80" block-code="p0" seat-group="grNum27" style="left: 89px; top: 164px;" title="좌석 번호:G3 - 일반석" seat-code="1G03">3</a>
-                                            <a class="p0 completed grNum27" data-seat="G4" seat-statuscode="80" block-code="p0" seat-group="grNum27" style="left: 115px; top: 164px;" title="좌석 번호:G4 - 일반석" seat-code="1G04">4</a>
-                                            <a class="p0 completed grNum27" data-seat="G5" seat-statuscode="50" block-code="p0" seat-group="grNum27" style="left: 142px; top: 164px;" title="좌석 번호:G5 - 일반석" seat-code="1G05">5</a>
-                                            <a class="p0 completed grNum27" data-seat="G6" seat-statuscode="50" block-code="p0" seat-group="grNum27" style="left: 169px; top: 164px;" title="좌석 번호:G6 - 일반석" seat-code="1G06">6</a>
-                                            <a class="handicapped p0 grNum29 no_select" data-seat="G8" seat-statuscode="0" block-code="p0" seat-group="grNum29" style="left: 222px; top: 164px;" title="좌석 번호:G8 - 장애인석" seat-code="1G08">8<span class="blind">선택불가</span></a>
-                                            <a class="handicapped p0 grNum29 no_select" data-seat="G9" seat-statuscode="0" block-code="p0" seat-group="grNum29" style="left: 249px; top: 164px;" title="좌석 번호:G9 - 장애인석" seat-code="1G09">9<span class="blind">선택불가</span></a>
-                                            <a class="handicapped p0 grNum29 no_select" data-seat="G10" seat-statuscode="0" block-code="p0" seat-group="grNum29" style="left: 276px; top: 164px;" title="좌석 번호:G10 - 장애인석" seat-code="1G10">10<span class="blind">선택불가</span></a>
-                                            <a class="p0 completed grNum30" data-seat="G11" seat-statuscode="50" block-code="p0" seat-group="grNum30" style="left: 316px; top: 164px;" title="좌석 번호:G11 - 일반석" seat-code="1G11">11</a>
-                                            <a class="p0 completed grNum30" data-seat="G12" seat-statuscode="50" block-code="p0" seat-group="grNum30" style="left: 343px; top: 164px;" title="좌석 번호:G12 - 일반석" seat-code="1G12">12</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
+                                    <span class = "cine-time">
+                                        14:20
+                                        <span> ~ 15:50 </span>
+                                    </span>
+                                    <span class = "cine-seat">
+                                        <em class = "seat-text" title = "좌석 확인">44</em>
+                                        석 / 50석
+                                    </span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="cine-place">
+                                        1관
+                                    </span>
+                                    <span class = "cine-time">
+                                        16:20
+                                        <span> ~ 17:50 </span>
+                                    </span>
+                                    <span class = "cine-seat">
+                                        <em class = "seat-text" title = "좌석 확인">21</em>
+                                        석 / 50석
+                                    </span>
+                                </a></li>
+                                <li><a href="#">
+                                    <span class="cine-place">
+                                        2관
+                                    </span>
+                                    <span class = "cine-time">
+                                        12:30
+                                        <span> ~ 14:00 </span>
+                                    </span>
+                                    <span class = "cine-seat">
+                                        <em class = "seat-text" title = "좌석 확인">43</em>
+                                        석 / 50석
+                                    </span>
+                                    </a></li>
+                                <li><a href="#">
+                                    <span class="cine-place">
+                                        4관
+                                    </span>
+                                    <span class = "cine-time">
+                                        02:20
+                                        <span> ~ 03:50 </span>
+                                    </span>
+                                    <span class = "cine-seat">
+                                        <em class = "seat-text" title = "좌석 확인">48</em>
+                                        석 / 50석
+                                    </span>
+                                    </a></li>
+                            </ul>
                         </div>
                     </div>
+
                 </div>
-                <!-- mseat-wrap end -->
-                <div class="ticketing-wrap">
-                    <p>※ 성인 요금 8000원 / 청소년 요금 7000원 </p>
-                    <div class="ticketing-inner">
-                        <h2>결제 금액</h2>
-                        <span>- 성인 2매 16,000 </span>
+                <div class="seat-container">
+                    <div class="screen_box">
+                        <strong class="screen_tit">Screen</strong>                  
+                                <div class="seat_Barea">
+                                    <div class="seat_area" style="height: 184px; margin-left: 308.5px;">
+                                        <span class="seat_tit" style="left: -30px; top: 0px;">A</span>
+                                        <a class="p0 grNum3" data-seat="A1" seat-group="grNum3" style="left : 22px; top:0px;" title="좌석 번호: A1 - 일반석" seat-code="1A01">1</a>
+                                        <a class="p0 grNum3" data-seat="A2" seat-group="grNum3" style="left : 48px; top:0px;" title="좌석 번호: A2 - 일반석" seat-code="1A02">2</a>
+                                        <a class="p0 grNum4" data-seat="A3" seat-group="grNum4" style="left : 89px; top:0px;" title="좌석 번호: A3 - 일반석" seat-code="1A03">3</a>
+                                        <a class="p0 grNum4" data-seat="A4" seat-group="grNum4" style="left : 115px; top:0px;" title="좌석 번호: A4 - 일반석" seat-code="1A04">4</a>
+
+                                        <a class="p0 grNum4" data-seat="A6" seat-group="grNum4" style="left : 169px; top:0px;" title="좌석 번호: A6 - 일반석" seat-code="1A06">6</a>
+                                        <a class="p0 grNum4" data-seat="A7" seat-group="grNum4" style="left : 196px; top:0px;" title="좌석 번호: A7 - 일반석" seat-code="1A07">7</a>
+                                        <a class="p0 grNum4" data-seat="A9" seat-group="grNum4" style="left : 249px; top:0px;" title="좌석 번호: A9 - 일반석" seat-code="1A09">9</a>
+                                        <a class="p0 grNum4" data-seat="A10" seat-group="grNum4" style="left : 276px; top:0px;" title="좌석 번호: A10 - 일반석" seat-code="1A10">10</a>
+                                        <a class="p0 grNum5" data-seat="A11" seat-group="grNum5" style="left : 316px; top:0px;" title="좌석 번호: A11 - 일반석" seat-code="1A11">11</a>
+                                        <a class="p0 grNum5" data-seat="A12" seat-group="grNum5" style="left : 343px; top:0px;" title="좌석 번호: A12 - 일반석" seat-code="1A12">12</a>
+                                        <span class="seat_tit" style="left: -30px; top: 27px;">B</span>
+                                        <a class="p0 grNum6" data-seat="B1" seat-statuscode="0" block-code="p0" seat-group="grNum6" style="left: 22px; top: 27px;" title="좌석 번호:B1 - 일반석" seat-code="1B01">1</a>
+                                        <a class="p0 grNum6" data-seat="B2" seat-statuscode="0" block-code="p0" seat-group="grNum6" style="left: 48px; top: 27px;" title="좌석 번호:B2 - 일반석" seat-code="1B02">2</a>
+                                        <a class="p0 grNum7" data-seat="B3" seat-statuscode="0" block-code="p0" seat-group="grNum7" style="left: 89px; top: 27px;" title="좌석 번호:B3 - 일반석" seat-code="1B03">3</a>
+                                        <a class="p0 grNum7" data-seat="B4" seat-statuscode="0" block-code="p0" seat-group="grNum7" style="left: 115px; top: 27px;" title="좌석 번호:B4 - 일반석" seat-code="1B04">4</a>
+
+                                        <a class="p0 grNum7" data-seat="B6" seat-statuscode="0" block-code="p0" seat-group="grNum7" style="left: 169px; top: 27px;" title="좌석 번호:B6 - 일반석" seat-code="1B06">6</a>
+
+                                        <a class="p0 grNum7" data-seat="B7" seat-statuscode="0" block-code="p0" seat-group="grNum7" style="left: 196px; top: 27px;" title="좌석 번호:B7 - 일반석" seat-code="1B07">7</a>
+
+                                        <a class="p0 grNum7" data-seat="B9" seat-statuscode="0" block-code="p0" seat-group="grNum7" style="left: 249px; top: 27px;" title="좌석 번호:B9 - 일반석" seat-code="1B09">9</a>
+                                        <a class="p0 grNum7" data-seat="B10" seat-statuscode="0" block-code="p0" seat-group="grNum7" style="left: 276px; top: 27px;" title="좌석 번호:B10 - 일반석" seat-code="1B10">10</a>
+                                        <a class="p0 grNum8" data-seat="B11" seat-statuscode="0" block-code="p0" seat-group="grNum8" style="left: 316px; top: 27px;" title="좌석 번호:B11 - 일반석" seat-code="1B11">11</a>
+                                        <a class="p0 grNum8" data-seat="B12" seat-statuscode="0" block-code="p0" seat-group="grNum8" style="left: 343px; top: 27px;" title="좌석 번호:B12 - 일반석" seat-code="1B12">12</a>
+                                        <span class="seat_tit" style="left: -30px; top: 54px;">C</span>
+                                        <a class="p0 grNum9" data-seat="C1" seat-statuscode="0" block-code="p0" seat-group="grNum9" style="left: 22px; top: 54px;" title="좌석 번호:C1 - 일반석" seat-code="1C01">1</a>
+                                        <a class="p0 grNum9" data-seat="C2" seat-statuscode="0" block-code="p0" seat-group="grNum9" style="left: 48px; top: 54px;" title="좌석 번호:C2 - 일반석" seat-code="1C02">2</a>
+                                        <a class="p0 grNum10" data-seat="C3" seat-statuscode="0" block-code="p0" seat-group="grNum10" style="left: 89px; top: 54px;" title="좌석 번호:C3 - 일반석" seat-code="1C03">3</a>
+                                        <a class="p0 grNum10" data-seat="C4" seat-statuscode="0" block-code="p0" seat-group="grNum10" style="left: 115px; top: 54px;" title="좌석 번호:C4 - 일반석" seat-code="1C04">4</a>
+
+                                        <a class="p0 grNum10" data-seat="C6" seat-statuscode="0" block-code="p0" seat-group="grNum10" style="left: 169px; top: 54px;" title="좌석 번호:C6 - 일반석" seat-code="1C06">6</a>
+                                        <a class="p0 grNum10" data-seat="C7" seat-statuscode="0" block-code="p0" seat-group="grNum10" style="left: 196px; top: 54px;" title="좌석 번호:C7 - 일반석" seat-code="1C07">7</a>
+
+                                        <a class="p0 grNum10" data-seat="C9" seat-statuscode="0" block-code="p0" seat-group="grNum10" style="left: 249px; top: 54px;" title="좌석 번호:C9 - 일반석" seat-code="1C09">9</a>
+                                        <a class="p0 grNum10" data-seat="C10" seat-statuscode="0" block-code="p0" seat-group="grNum10" style="left: 276px; top: 54px;" title="좌석 번호:C10 - 일반석" seat-code="1C10">10</a>
+                                        <a class="p0 grNum11" data-seat="C11" seat-statuscode="0" block-code="p0" seat-group="grNum11" style="left: 316px; top: 54px;" title="좌석 번호:C11 - 일반석" seat-code="1C11">11</a>
+                                        <a class="p0 grNum11" data-seat="C12" seat-statuscode="0" block-code="p0" seat-group="grNum11" style="left: 343px; top: 54px;" title="좌석 번호:C12 - 일반석" seat-code="1C12">12</a>
+                                        <span class="seat_tit" style="left: -30px; top: 82px;">D</span>
+                                        <a class="p0 grNum12" data-seat="D1" seat-statuscode="0" block-code="p0" seat-group="grNum12" style="left: 22px; top: 82px;" title="좌석 번호:D1 - 일반석" seat-code="1D01">1</a>
+                                        <a class="p0 grNum12" data-seat="D2" seat-statuscode="0" block-code="p0" seat-group="grNum12" style="left: 48px; top: 82px;" title="좌석 번호:D2 - 일반석" seat-code="1D02">2</a>
+                                        <a class="p0 grNum13" data-seat="D3" seat-statuscode="0" block-code="p0" seat-group="grNum13" style="left: 89px; top: 82px;" title="좌석 번호:D3 - 일반석" seat-code="1D03">3</a>
+                                        <a class="p0 grNum13" data-seat="D4" seat-statuscode="0" block-code="p0" seat-group="grNum13" style="left: 115px; top: 82px;" title="좌석 번호:D4 - 일반석" seat-code="1D04">4</a>
+
+                                        <a class="p0 grNum13" data-seat="D6" seat-statuscode="0" block-code="p0" seat-group="grNum13" style="left: 169px; top: 82px;" title="좌석 번호:D6 - 일반석" seat-code="1D06">6</a>
+                                        <a class="p0 grNum13" data-seat="D7" seat-statuscode="0" block-code="p0" seat-group="grNum13" style="left: 196px; top: 82px;" title="좌석 번호:D7 - 일반석" seat-code="1D07">7</a>
+
+                                        <a class="p0 grNum13" data-seat="D9" seat-statuscode="0" block-code="p0" seat-group="grNum13" style="left: 249px; top: 82px;" title="좌석 번호:D9 - 일반석" seat-code="1D09">9</a>
+                                        <a class="p0 grNum13" data-seat="D10" seat-statuscode="0" block-code="p0" seat-group="grNum13" style="left: 276px; top: 82px;" title="좌석 번호:D10 - 일반석" seat-code="1D10">10</a>
+                                        <a class="p0 grNum14" data-seat="D11" seat-statuscode="0" block-code="p0" seat-group="grNum14" style="left: 316px; top: 82px;" title="좌석 번호:D11 - 일반석" seat-code="1D11">11</a>
+                                        <a class="p0 grNum14" data-seat="D12" seat-statuscode="0" block-code="p0" seat-group="grNum14" style="left: 343px; top: 82px;" title="좌석 번호:D12 - 일반석" seat-code="1D12">12</a>
+                                        <span class="seat_tit" style="left: -30px; top: 109px;">E</span>
+
+                                        <a class="p0 grNum16" data-seat="E3" seat-statuscode="0" block-code="p0" seat-group="grNum16" style="left: 89px; top: 109px;" title="좌석 번호:E3 - 일반석" seat-code="1E03">3</a>
+                                        <a class="p0 grNum16" data-seat="E4" seat-statuscode="0" block-code="p0" seat-group="grNum16" style="left: 115px; top: 109px;" title="좌석 번호:E4 - 일반석" seat-code="1E04">4</a>
+
+
+                                        <a class="p0 grNum18" data-seat="E7" seat-statuscode="0" block-code="p0" seat-group="grNum18" style="left: 196px; top: 109px;" title="좌석 번호:E7 - 일반석" seat-code="1E07">7</a>
+
+                                        <a class="p0 grNum18" data-seat="E9" seat-statuscode="0" block-code="p0" seat-group="grNum18" style="left: 249px; top: 109px;" title="좌석 번호:E9 - 일반석" seat-code="1E09">9</a>
+                                        <a class="p0 grNum18" data-seat="E10" seat-statuscode="0" block-code="p0" seat-group="grNum18" style="left: 276px; top: 109px;" title="좌석 번호:E10 - 일반석" seat-code="1E10">10</a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
             </div>
-        </div>
         <div class="footer">
             <p class="copyright">&copy;copyright reserved larl</p>
         </div>
+        <script>
+            $(".calendar").zInput();
+        </script>
+        <script src="bootstrap/js/jquery-1.12.4.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
     </div>
-
-    <script src="bootstrap/js/jquery-1.12.4.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
+
 
 </html>
