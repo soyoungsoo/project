@@ -1,3 +1,6 @@
+drop sequence mno_seq;
+drop sequence memno_seq;
+
 /* 영화 쿼리*/
 CREATE SEQUENCE mno_seq
 START WITH 1 INCREMENT BY 1;
@@ -21,7 +24,7 @@ SELECT * FROM MEMBER;
 
 /* 회원 타입 추가*/
 insert into user_info_type(memno,user_info_type_id) values (1,1);
-insert into user_info_type(memno,user_info_type_id) values (3,2);
+insert into user_info_type(memno,user_info_type_id) values (1,2);
 
 /* 상영관 추가(관, 좌석 수) */
 INSERT INTO theater VALUES(1,45);

@@ -1,6 +1,14 @@
-DROP TABLE MEMBER CASCADE CONSTRAINTS;
-SELECT * FROM MEMBER;
-SELECT * FROM MOVIE;
+DROP TABLE Movie CASCADE CONSTRAINTS;
+DROP TABLE Member CASCADE CONSTRAINTS;
+DROP TABLE Ticket CASCADE CONSTRAINTS;
+DROP TABLE user_type CASCADE CONSTRAINTS;
+DROP TABLE user_info_type CASCADE CONSTRAINTS;
+DROP TABLE Actors CASCADE CONSTRAINTS;
+DROP TABLE Schedule CASCADE CONSTRAINTS;
+DROP TABLE theater CASCADE CONSTRAINTS;
+DROP TABLE seat CASCADE CONSTRAINTS;
+DROP TABLE reservation CASCADE CONSTRAINTS;
+DROP TABLE movie_coment CASCADE CONSTRAINTS;
 
 /* 영화 */
 CREATE TABLE Movie (
@@ -15,6 +23,7 @@ CREATE TABLE Movie (
 	post VARCHAR2(300), /* 영화포스터 */
 	CONSTRAINT pk_Movie PRIMARY KEY (Mno)
 );
+
 /* 회원 */
 CREATE TABLE Member (
 	MemNo NUMBER NOT NULL, /* 회원번호 */
@@ -25,16 +34,6 @@ CREATE TABLE Member (
 	email VARCHAR2(320) NOT NULL, /* 이메일 */
 	CONSTRAINT pk_Member PRIMARY KEY (MemNo),
 	CONSTRAINT pk_Member1 UNIQUE (id)
-);
-
-/* 티켓 */
-CREATE TABLE Ticket (
-	Mno NUMBER,  /* 영화번호 */
-	Tno NUMBER,  /* 티켓번호 */
-	rno NUMBER, /* 예매번호 */
-	CONSTRAINT pk_Ticket PRIMARY KEY (Tno),
-	CONSTRAINT fk_Movie_T FOREIGN KEY (Mno) REFERENCES Movie (Mno),
-	CONSTRAINT fk_reservation FOREIGN KEY (rno) REFERENCES reservation (rno)
 );
 
 /* 계정타입 */
@@ -113,4 +112,13 @@ CREATE TABLE movie_coment (
 	CONSTRAINT pk_movie_coment PRIMARY KEY (cno),
 	CONSTRAINT fk_Movie1 FOREIGN KEY (Mno) REFERENCES Movie(Mno),
 	CONSTRAINT fk_Member1 FOREIGN KEY (MemNo) REFERENCES Member(MemNo)	
+);
+/* 티켓 */
+CREATE TABLE Ticket (
+	Mno NUMBER,  /* 영화번호 */
+	Tno NUMBER,  /* 티켓번호 */
+	rno NUMBER, /* 예매번호 */
+	CONSTRAINT pk_Ticket PRIMARY KEY (Tno),
+	CONSTRAINT fk_Movie_T FOREIGN KEY (Mno) REFERENCES Movie (Mno),
+	CONSTRAINT fk_reservation FOREIGN KEY (rno) REFERENCES reservation (rno)
 );
