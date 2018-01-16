@@ -55,13 +55,11 @@
 		<c:choose>
 	       <c:when test="${list.type == 'ADMIN'}">
 	         <a href="/special/movie/modify.do?mno=${item.mno}">수정하기</a>
-	         <%-- 팝업창 띄우기 --%>
-<%-- 	         <a href="/special/movie/remove.do?mno=${item.mno}">삭제하기</a>					 --%>
 			<a href="javascript:deleteCheck();">삭제하기</a>
 	       </c:when>	      
 	   </c:choose>	
 	</c:forEach>	
-	<a href="/special/movie/ticket">예매하러가기</a>
+	<a href="/special/movie/ticket?mno=${item.mno}">예매하러가기</a>
 	<a href="/special/movie/list.do">메인으로 돌아가기</a>
 </body>
 </html>
