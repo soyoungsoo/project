@@ -69,9 +69,11 @@ select * from actors;
 /* 상영일정 */
 CREATE TABLE Schedule (
 	rdate DATE NOT NULL, /* 상영일자 */
+	Scount NUMBER, /* 상영회차*/
 	Mno NUMBER, /* 영화번호 */
 	CONSTRAINT pk_Schedule PRIMARY KEY (rdate)
 );
+drop table schedule cascade constraints;
 select * from schedule;
 /* 상영관 */
 CREATE TABLE theater (
@@ -86,7 +88,9 @@ CREATE TABLE seat (
 	tno NUMBER NOT NULL, /* 상영관번호 */
 	seatno VARCHAR2(10) NOT NULL, /* 좌석번호 */
 	issue NUMBER,/* 예약여부 */	
-	CONSTRAINT fk_theater FOREIGN KEY (tno) REFERENCES theater(tno)
+	Scount NUMBER, /* 상영회차*/
+	CONSTRAINT fk_theater FOREIGN KEY (tno) REFERENCES theater(tno),
+	CONSTRAINT fk_Schedule FOREIGN KEY (Scount) REFERENCES theater(tno)
 );
 drop table seat cascade constraints;
 select * from seat;

@@ -55,60 +55,62 @@ INSERT INTO theater VALUES(3,45);
 INSERT INTO theater VALUES(4,45);
 INSERT INTO theater VALUES(5,45);
 
-INSERT INTO seat VALUES (1,'A-1',0);
-INSERT INTO seat VALUES (1,'A-2',0);
-INSERT INTO seat VALUES (1,'A-3',0);
-INSERT INTO seat VALUES (1,'A-4',0);
-INSERT INTO seat VALUES (1,'A-5',0);
-
-INSERT INTO seat VALUES (1,'A-6',0);
-INSERT INTO seat VALUES (1,'A-7',0);
-INSERT INTO seat VALUES (1,'A-8',0);
-INSERT INTO seat VALUES (1,'A-9',0);
-INSERT INTO seat VALUES (1,'A-10',0);
-
-INSERT INTO seat VALUES (1,'A-11',0);
-INSERT INTO seat VALUES (1,'A-12',0);
-INSERT INTO seat VALUES (1,'A-13',0);
-INSERT INTO seat VALUES (1,'A-14',0);
-INSERT INTO seat VALUES (1,'A-15',0);
-
-INSERT INTO seat VALUES (1,'B-1',0);
-INSERT INTO seat VALUES (1,'B-2',0);
-INSERT INTO seat VALUES (1,'B-3',0);
-INSERT INTO seat VALUES (1,'B-4',0);
-INSERT INTO seat VALUES (1,'B-5',0);
-
-INSERT INTO seat VALUES (1,'B-6',0);
-INSERT INTO seat VALUES (1,'B-7',0);
-INSERT INTO seat VALUES (1,'B-8',0);
-INSERT INTO seat VALUES (1,'B-9',0);
-INSERT INTO seat VALUES (1,'B-10',0);
-
-INSERT INTO seat VALUES (1,'B-11',0);
-INSERT INTO seat VALUES (1,'B-12',0);
-INSERT INTO seat VALUES (1,'B-13',0);
-INSERT INTO seat VALUES (1,'B-14',0);
-INSERT INTO seat VALUES (1,'B-15',0);
 
 
-INSERT INTO seat VALUES (1,'C-1',0);
-INSERT INTO seat VALUES (1,'C-2',0);
-INSERT INTO seat VALUES (1,'C-3',0);
-INSERT INTO seat VALUES (1,'C-4',0);
-INSERT INTO seat VALUES (1,'C-5',0);
+INSERT INTO seat VALUES (1,'A-1',0,e);
+INSERT INTO seat VALUES (1,'A-2',0,e);
+INSERT INTO seat VALUES (1,'A-3',0,e);
+INSERT INTO seat VALUES (1,'A-4',0,e);
+INSERT INTO seat VALUES (1,'A-5',0,e);
 
-INSERT INTO seat VALUES (1,'C-6',0);
-INSERT INTO seat VALUES (1,'C-7',0);
-INSERT INTO seat VALUES (1,'C-8',0);
-INSERT INTO seat VALUES (1,'C-9',0);
-INSERT INTO seat VALUES (1,'C-10',0);
+INSERT INTO seat VALUES (1,'A-6',0,e);
+INSERT INTO seat VALUES (1,'A-7',0,e);
+INSERT INTO seat VALUES (1,'A-8',0,e);
+INSERT INTO seat VALUES (1,'A-9',0,e);
+INSERT INTO seat VALUES (1,'A-10',0,e);
 
-INSERT INTO seat VALUES (1,'C-11',0);
-INSERT INTO seat VALUES (1,'C-12',0);
-INSERT INTO seat VALUES (1,'C-13',0);
-INSERT INTO seat VALUES (1,'C-14',0);
-INSERT INTO seat VALUES (1,'C-15',0);
+INSERT INTO seat VALUES (1,'A-11',0,e);
+INSERT INTO seat VALUES (1,'A-12',0,e);
+INSERT INTO seat VALUES (1,'A-13',0,e);
+INSERT INTO seat VALUES (1,'A-14',0,e);
+INSERT INTO seat VALUES (1,'A-15',0,e);
+
+INSERT INTO seat VALUES (1,'B-1',0,e);
+INSERT INTO seat VALUES (1,'B-2',0,e);
+INSERT INTO seat VALUES (1,'B-3',0,e);
+INSERT INTO seat VALUES (1,'B-4',0,e);
+INSERT INTO seat VALUES (1,'B-5',0,e);
+
+INSERT INTO seat VALUES (1,'B-6',0,e);
+INSERT INTO seat VALUES (1,'B-7',0,e);
+INSERT INTO seat VALUES (1,'B-8',0,e);
+INSERT INTO seat VALUES (1,'B-9',0,e);
+INSERT INTO seat VALUES (1,'B-10',0,e);
+
+INSERT INTO seat VALUES (1,'B-11',0,e);
+INSERT INTO seat VALUES (1,'B-12',0,e);
+INSERT INTO seat VALUES (1,'B-13',0,e);
+INSERT INTO seat VALUES (1,'B-14',0,e);
+INSERT INTO seat VALUES (1,'B-15',0,e);
+
+
+INSERT INTO seat VALUES (1,'C-1',0,e);
+INSERT INTO seat VALUES (1,'C-2',0,e);
+INSERT INTO seat VALUES (1,'C-3',0,e);
+INSERT INTO seat VALUES (1,'C-4',0,e);
+INSERT INTO seat VALUES (1,'C-5',0,e);
+
+INSERT INTO seat VALUES (1,'C-6',0,e);
+INSERT INTO seat VALUES (1,'C-7',0,e);
+INSERT INTO seat VALUES (1,'C-8',0,e);
+INSERT INTO seat VALUES (1,'C-9',0,e);
+INSERT INTO seat VALUES (1,'C-10',0,e);
+
+INSERT INTO seat VALUES (1,'C-11',0,e);
+INSERT INTO seat VALUES (1,'C-12',0,e);
+INSERT INTO seat VALUES (1,'C-13',0,e);
+INSERT INTO seat VALUES (1,'C-14',0,e);
+INSERT INTO seat VALUES (1,'C-15',0,e);
 
 CREATE SEQUENCE SEQ_bNO
 START WITH 1 INCREMENT BY 1;
@@ -128,13 +130,42 @@ WHERE s.mno = r.mno;
 
 
 
-
 drop sequence seq_bno;
 DELETE FROM RESERVATION WHERE RNO = 3;
 INSERT INTO reservation VALUES (seq_rno.nextval,82,81,1,'A-1',sysdate);
 select * from reservation;
 
 SELECT * FROM RESERVATION WHERE MemNo = 1;
-select * from reservation;
-insert into schedule values (to_date('2002-09-05-14-11-12', 'yyyy-mm-dd-hh24-mi-ss'),81);
+select * from schedule;
+select * from movie;
+select * from seat;
+select * from theater;
+create sequence seq_scount
+START WITH 1 INCREMENT BY 1;
+/* 영화 스케줄 표*/
+insert into schedule values (to_date('2018-01-02', 'yyyy-mm-dd'),seq_scount.nextval,81);
+
+select * from schedule where to_date('2018-01-02','yyyy-mm-dd');
+
+select * from schedule where to_date(rdate, 'YY-MM-DD') = '18-01-02';
+/* 초기*/
+select  s.tno, s.seatno, s.issue ,s.Scount,sc.rdate 
+from seat s, (select * from schedule) sc ;
+
+select * from schedule;
+select * from seat;
+delete  from seat where scount =1;
+/* 영화, 날짜 선택시 출력 값*/
+select  s.tno, s.seatno, s.issue ,s.Scount,sc.rdate 
+from seat s, (select * from schedule) sc 
+where mno = 81 and s.issue = 0  and  to_date(sc.rdate, 'YY-MM-DD') = '18-01-01' 
+order by  sc.rdate asc;
+
+
+declare
+ x number;
+begin
+x :=100;
+end;
+/
 

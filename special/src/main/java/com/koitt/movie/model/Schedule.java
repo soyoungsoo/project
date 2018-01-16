@@ -4,19 +4,17 @@ import java.util.Date;
 
 public class Schedule {
 
-	private Date rdate;
-	private Integer mno;
-	private Date sdate;
-	private String stime;
+	private Date rdate; /* 상영일자 */
+	private Integer Scount; /* 상영회차*/
+	private Integer Mno; /* 영화번호 */
 	
 	public Schedule() {}
 
-	public Schedule(Date rdate, Integer mno, Date sdate, String stime) {
+	public Schedule(Date rdate, Integer scount, Integer mno) {
 		super();
 		this.rdate = rdate;
-		this.mno = mno;
-		this.sdate = sdate;
-		this.stime = stime;
+		Scount = scount;
+		Mno = mno;
 	}
 
 	public Date getRdate() {
@@ -27,38 +25,29 @@ public class Schedule {
 		this.rdate = rdate;
 	}
 
+	public Integer getScount() {
+		return Scount;
+	}
+
+	public void setScount(Integer scount) {
+		Scount = scount;
+	}
+
 	public Integer getMno() {
-		return mno;
+		return Mno;
 	}
 
 	public void setMno(Integer mno) {
-		this.mno = mno;
-	}
-
-	public Date getSdate() {
-		return sdate;
-	}
-
-	public void setSdate(Date sdate) {
-		this.sdate = sdate;
-	}
-
-	public String getStime() {
-		return stime;
-	}
-
-	public void setStime(String stime) {
-		this.stime = stime;
+		Mno = mno;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((mno == null) ? 0 : mno.hashCode());
+		result = prime * result + ((Mno == null) ? 0 : Mno.hashCode());
+		result = prime * result + ((Scount == null) ? 0 : Scount.hashCode());
 		result = prime * result + ((rdate == null) ? 0 : rdate.hashCode());
-		result = prime * result + ((sdate == null) ? 0 : sdate.hashCode());
-		result = prime * result + ((stime == null) ? 0 : stime.hashCode());
 		return result;
 	}
 
@@ -71,25 +60,20 @@ public class Schedule {
 		if (getClass() != obj.getClass())
 			return false;
 		Schedule other = (Schedule) obj;
-		if (mno == null) {
-			if (other.mno != null)
+		if (Mno == null) {
+			if (other.Mno != null)
 				return false;
-		} else if (!mno.equals(other.mno))
+		} else if (!Mno.equals(other.Mno))
+			return false;
+		if (Scount == null) {
+			if (other.Scount != null)
+				return false;
+		} else if (!Scount.equals(other.Scount))
 			return false;
 		if (rdate == null) {
 			if (other.rdate != null)
 				return false;
 		} else if (!rdate.equals(other.rdate))
-			return false;
-		if (sdate == null) {
-			if (other.sdate != null)
-				return false;
-		} else if (!sdate.equals(other.sdate))
-			return false;
-		if (stime == null) {
-			if (other.stime != null)
-				return false;
-		} else if (!stime.equals(other.stime))
 			return false;
 		return true;
 	}
@@ -99,15 +83,14 @@ public class Schedule {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Schedule [rdate=");
 		builder.append(rdate);
-		builder.append(", mno=");
-		builder.append(mno);
-		builder.append(", sdate=");
-		builder.append(sdate);
-		builder.append(", stime=");
-		builder.append(stime);
+		builder.append(", Scount=");
+		builder.append(Scount);
+		builder.append(", Mno=");
+		builder.append(Mno);
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
+
 	
 }

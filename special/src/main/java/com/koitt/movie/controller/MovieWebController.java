@@ -10,12 +10,16 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-
+import org.apache.commons.codec.binary.Base64;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,6 +31,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponentsBuilder;
+
 import javax.servlet.http.HttpSession;
 
 import com.koitt.movie.model.CommonException;
@@ -254,21 +260,23 @@ public class MovieWebController {
 			return "redirect:list.do";
 		}
 		@RequestMapping(value="/ticket", method=RequestMethod.GET)
-		public String reserve() {			
+		public String reserve(Model model, @RequestParam(value = "mno", required = true)Integer mno) {
+			model.addAttribute("mno",mno);
 			return "reservation";
 		}
-		
+
+			
 		@RequestMapping(value = "/ticket", method = RequestMethod.POST)
-		public String reserve(HttpSession session, @RequestParam(value = "mno", required = true)Integer mno, Integer tno, String seatno)
+		public void reserve(HttpSession session, @RequestParam(value = "mno", required = true)Integer mno, Integer tno, String seatno)
 			throws CommonException, UnsupportedEncodingException{
-				Member member = (Member)session.getAttribute("member");				
-				Integer memberno = member.getMemno();
-				Reservation reservation = new Reservation();
-				reservation.setMemNo(memberno);
-				reservation.setMno(mno);
-				reservation.setTno(tno);
-				reservation.setSeatno(seatno);				
-				ticketService.ticketing(reservation);
-			return "redirect:list.do";			
+//				Member member = (Member)session.getAttribute("member");				
+//				Integer memberno = member.getMemno();
+//				Reservation reservation = new Reservation();
+//				reservation.setMemNo(memberno);
+//				reservation.setMno(mno);
+//				reservation.setTno(tno);
+//				reservation.setSeatno(seatno);				
+//				ticketService.ticketing(reservation);
+//			return "redirect:list.do";			
 		}
 }
