@@ -99,7 +99,7 @@ INSERT INTO seat VALUES (1,'C-13',0,1);
 INSERT INTO seat VALUES (1,'C-14',0,1);
 INSERT INTO seat VALUES (1,'C-15',0,1);
 
-/* 좌석 조회*/
+
 SELECT * FROM SEAT;
 
 /*
