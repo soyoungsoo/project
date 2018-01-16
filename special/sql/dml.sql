@@ -1,20 +1,10 @@
 /* 영화 쿼리*/
 CREATE SEQUENCE mno_seq
 START WITH 1 INCREMENT BY 1;
-/* 검색 */
-SELECT * FROM MOVIE;
-/* 삭제*/
-DELETE FROM MOVIE WHERE Mno=28;
-/* 수정*/
-UPDATE movie 
-SET title = '1987', content = '내용', genre = '한국 드라마', grade = '15세 이용가', mrun = '117분', sdate = '2017-12-27', edate = '2017-12-29', post = null 
-WHERE mno = 11;
 /* 추가 */
 INSERT INTO
 Movie(Mno,title,content,genre,grade,mrun,sdate,edate,post)
 VALUES (mno_seq.nextval,'강철비','dd','한국드라마','15','117','2017-10-21','2017-12-21',null);
-select* from MOVIE;
-
 /* 타입 추가*/
 INSERT INTO user_type(id,type) 
 VALUES (1,'ADMIN');
@@ -31,9 +21,8 @@ SELECT * FROM MEMBER;
 
 /* 회원 타입 추가*/
 insert into user_info_type(memno,user_info_type_id) values (1,1);
-insert into user_info_type(memno,user_info_type_id) values (1,2);
+insert into user_info_type(memno,user_info_type_id) values (3,2);
 
-		
 /* 상영관 추가(관, 좌석 수) */
 INSERT INTO theater VALUES(1,45);
 INSERT INTO theater VALUES(2,45);
