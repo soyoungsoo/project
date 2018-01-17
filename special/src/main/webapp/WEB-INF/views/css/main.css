@@ -1,0 +1,188 @@
+        body {
+            font: 14px/1.8 나눔바른펜, 나눔바른펜, 나눔바른펜;
+        }
+
+        .frame {
+            position: relative;
+            width: 1000px;
+            margin: 0 auto;
+            border: 1px solid lightgray;
+        }
+
+        .header {
+            width: 998px;
+            padding: 40px 10px;
+            text-align: center;
+            background: aliceblue;
+            border-bottom: 1px solid lightgray;
+        }
+
+        .logo {
+            font-size: 2em;
+            font-weight: bold;
+            background: #f7cac9;
+            color: #fff;
+            display: inline-block;
+            padding: 0 8px;
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .container {
+            padding-left: 0;
+            overflow: hidden;
+        }
+        .container-fluid {
+            padding-left: 0;
+        }
+        .nav {
+            display: inline-block;
+            width: 998px;
+            height: 50px;
+            background: aliceblue;
+            color: #f7cac9;
+        }
+
+        .nav-list {
+            width: 800px;
+            list-style: none;
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .nav_right {
+            position: absolute;
+            left: 102%;
+            width: 140px;
+            height: 290px;
+            background: #f7cac9;
+            margin-top: 20px;
+        }
+
+        .nav_right-link {
+            color: #b163a3;
+            padding: 4px 10px;
+            text-decoration: none;
+        }
+
+        .nav_right-item:hover {
+            color: #f7cac9;
+            background-color: #ebebe9;
+        }
+
+        .nav_right-list {
+            list-style: none;
+            padding: 0 5px;
+            list-style: none;
+        }
+
+        .nav_right-item {
+            margin: 20px 0;
+        }
+
+
+        .nav-item {
+            display: inline-block;
+            margin: 4px 0;
+        }
+
+        .nav-link {
+            text-align: center;
+            margin-left: 8px;
+            display: inline-block;
+            text-decoration: none;
+            padding: 4px 10px;
+            color: #f7cac9;
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
+            background: skyblue;
+        }
+
+        .inner-content {
+            width: 1000px;
+            margin: 0 auto;
+            border-bottom: 1px solid gray;
+        }
+        
+        .inner-content-imgs {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .view {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: center;
+            background-color: black;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .view a {
+            display: inline-block;
+            width: 150px;
+            height: 50px;
+            text-decoration: none;
+            line-height: 50px; 
+            margin-top: 10px;
+            text-align: center;
+            color: white;
+            border: 1px solid white;
+        }
+        
+        .view a:nth-child(1) {
+            margin-top: 100px;
+        }
+
+        .content {
+            float: left;
+            color: black;
+        }
+        
+        .content ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .content ul li {
+            position: relative;
+            float: left;
+            margin-top: 30px;
+            margin-right: 20px;
+            width: 230px;
+            height: 330px;
+        }
+        
+        .content ul li:hover .view {
+            opacity: 0.5;
+            transition: 0.7s;
+        }
+        
+        .content ul li:nth-child(4n) {
+            margin-right: 0;
+        }
+        
+        .content ul li:nth-child(1) {
+            margin-left: 10px;
+        }
+        
+        .content ul li:nth-child(4n+1) {
+            margin-left: 10px;
+        }
+
+        .footer {
+            clear: both;
+            text-align: center;
+            border-top: 1px solid #aaa;
+            margin: 20px 20px 0;
+            font-size: 12px;
+        }
+        

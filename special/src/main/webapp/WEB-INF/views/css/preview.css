@@ -1,0 +1,105 @@
+ .prev {
+     margin-top: 40px;
+     margin-left: 15px;
+ }
+
+ .prev-top {
+     margin-top: 70px;
+     margin-left: 70px;
+ }
+
+ .thumb {
+     float: left;
+     width: 220px;
+ }
+
+ .thumb img {
+     width: 175px;
+     height: 230px;
+ }
+
+ .top-ex {
+     position: relative;
+     width: 700px;
+ }
+
+ .ranking li {
+     list-style: none;
+     display: inline;
+ }
+
+ .prev-text {
+     clear: both;
+     margin-left: 70px;
+ }
+
+ .ticketing-btn {
+     margin-top: 2px;
+     display: inline-block;
+     width: 175px;
+     height: 44px;
+     line-height: 44px;
+     margin-bottom: 40px;
+     box-sizing: border-box;
+     text-decoration: none;
+     -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+     text-align: center;
+     font-size: 16px;
+     color: #cdc197;
+     background: #231f20;
+     font-weight: bold;
+ }
+
+.ticketing-btn:hover {
+    text-decoration: none;
+    color: #cdc197;
+}
+
+
+ .mov-grade li {
+     list-style: none;
+ }
+
+ .mov-grade li:nth-child(3) h4 {
+     display: inline;
+ }
+
+ #img-slider {
+     list-style: none;
+ }
+
+ #img-slider li img {
+     display: inline-block;
+     width: 160px;
+     height: 160px;
+ }
+
+ ul {
+     list-style: none outside none;
+     padding-left: 0;
+     margin: 0;
+ }
+
+ .demo .item {
+     margin-bottom: 60px;
+ }
+
+ .content-slider li {
+     background-color: #ed3020;
+     text-align: center;
+     color: #FFF;
+ }
+
+ .content-slider h3 {
+     margin: 0;
+     padding: 70px 0;
+ }
+
+ .demo {
+     width: 800px;
+ }
+
+ .video {
+     margin-top: 5px;
+ }

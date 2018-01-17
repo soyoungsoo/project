@@ -23,9 +23,6 @@
 				<c:if test="${ param.action == 'error' }">
 					<p>이메일 혹은 비밀번호를 잘못 입력하였습니다.</p>
 				</c:if>
-				<c:if test="${ param.action == 'logout' }">
-					<p>로그아웃 하였습니다.</p>
-				</c:if>
 		
 				<input type="text" name="id" placeholder="아이디 입력" required>
 				<input type="password" name="pwd" placeholder="비밀번호 입력" required>

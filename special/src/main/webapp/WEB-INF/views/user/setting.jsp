@@ -1,15 +1,51 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/register.css">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>회원 정보 수정</h1>
-	<a href="<c:url value='/user/modify'/>">회원 수정</a>
-	<a href="<c:url value='/user/delete'/>">회원 탈퇴</a>
-	<a href="<c:url value='/'/>">홈으로</a>
+	<div class="frame">
+		<div class="container">
+			<div class="header">
+				<div class="logo">
+					<a href="<c:url value='/'/>"> Movie Theater </a>
+				</div>
+			</div>
+			<div class="content">
+				<table class="table-join">
+					<tr>
+						<th colspan="2" class="text-center"><h3>회원 정보 수정</h3></th>
+					</tr>
+					<tr>
+						<th><a href="<c:url value='/user/modify'/>" class="reg-btn">회원
+								수정</a></th>
+					</tr>
+					<tr>
+						<th><a href="<c:url value='/user/delete'/>" class="reg-btn">회원
+								탈퇴</a></th>
+					</tr>
+					<tr>
+						<th><a href="<c:url value='/'/>" class="reg-btn">홈으로</a></th>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="footer">
+			<p class="copyright">&copy;copyright reserved larl</p>
+		</div>
+	</div>
+	<script src="bootstrap/js/jquery-1.12.4.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
