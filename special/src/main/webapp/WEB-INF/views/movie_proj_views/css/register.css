@@ -57,3 +57,8 @@ li {
     -moz-appearance: none;
     appearance: none;
 }
+.synop {
+    width: 350px;
+    height: 500px;
+    resize: none;
+}
