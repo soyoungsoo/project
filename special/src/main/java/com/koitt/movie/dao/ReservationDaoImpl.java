@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Reservation;
-import com.koitt.movie.model.seat;
+import com.koitt.movie.model.Seat;
 
 @Repository
 public class ReservationDaoImpl implements ReservationDao {
@@ -68,8 +68,8 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
-	public List<seat> SeatAll(seat seat) throws CommonException {
-			List<seat> list = null;
+	public List<Seat> SeatAll(Seat seat) throws CommonException {
+			List<Seat> list = null;
 		try {
 			list = sqlSession.selectList(MAPPER_NAMESPACE + ".seatSelect", seat);
 		} catch (Exception e) {

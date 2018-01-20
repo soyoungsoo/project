@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.koitt.movie.dao.ReservationDao;
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Reservation;
-import com.koitt.movie.model.seat;
+import com.koitt.movie.model.Seat;
 
 @Service
 public class TicketServiceImpl implements TicketService {
@@ -16,7 +16,7 @@ public class TicketServiceImpl implements TicketService {
 	@Autowired
 	private ReservationDao reservationDao;
 	@Override
-	public List<seat> SeatAll(seat seat) throws CommonException {		
+	public List<Seat> SeatAll(Seat seat) throws CommonException {		
 		return reservationDao.SeatAll(seat);		
 	}
 

@@ -27,9 +27,7 @@ public class MovieDaoImpl implements MovieDao{
 	public void insert(Movie movie) throws CommonException {
 		try {			
 			
-			sqlSession.insert(MAPPER_NAMESPACE + ".insert", movie);
-			logger.debug("dddddddddddddddddddddddddd");
-			logger.debug(movie);
+			sqlSession.insert(MAPPER_NAMESPACE + ".insert", movie);		
 		}catch (Exception e) {
 			logger.debug(e.getMessage());
 			throw new CommonException("E01: 영화등록 실패");
@@ -62,8 +60,7 @@ public class MovieDaoImpl implements MovieDao{
 	public Movie select(String no) throws CommonException {
 			Movie movie = null; 
 			try {				
-				movie = sqlSession.selectOne(MAPPER_NAMESPACE + ".select", no);
-				logger.debug(movie);
+				movie = sqlSession.selectOne(MAPPER_NAMESPACE + ".select", no);			
 			} catch (Exception e) {
 				logger.debug(e.getMessage());				
 				logger.debug(movie);

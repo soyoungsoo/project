@@ -48,8 +48,8 @@ CREATE TABLE user_info_type (
 	MemNo NUMBER NOT NULL, /* 회원번호 */
 	user_info_type_id NUMBER NOT NULL, /* 타입번호 */
 	
-	CONSTRAINT fk_member FOREIGN KEY (memno) REFERENCES member (MemNo),
-	CONSTRAINT fk_user_type FOREIGN KEY (user_info_type_id) REFERENCES user_type (id)
+	CONSTRAINT fk_member FOREIGN KEY (MemNo) REFERENCES Member (MemNo),
+	CONSTRAINT fk_user_info_type FOREIGN KEY (user_info_type_id) REFERENCES user_type (id)
 );
 
 /* 출연진 */
@@ -64,10 +64,10 @@ CREATE TABLE Actors (
 
 /* 상영일정 */
 CREATE TABLE Schedule (
-	rdate DATE NOT NULL, /* 상영일자 */
+	rdate VARCHAR2(150) NOT NULL, /* 상영일자 */
 	Scount NUMBER, /* 상영회차*/
 	Mno NUMBER, /* 영화번호 */
-	CONSTRAINT pk_Schedule PRIMARY KEY (rdate)
+	CONSTRAINT pk_Schedule PRIMARY KEY (Scount)
 );
 
 /* 상영관 */
@@ -84,9 +84,9 @@ CREATE TABLE seat (
 	issue NUMBER,/* 예약여부 */	
 	Scount NUMBER, /* 상영회차*/
 	CONSTRAINT fk_theater FOREIGN KEY (tno) REFERENCES theater(tno),
-	CONSTRAINT fk_Schedule FOREIGN KEY (Scount) REFERENCES theater(tno)
+	CONSTRAINT fk_Schedule1 FOREIGN KEY (Scount) REFERENCES Schedule(Scount)
 );
-
+select * from seat;
 /* 티켓예매 */
 CREATE TABLE reservation (
 	rno NUMBER NOT NULL, /* 예매번호 */
