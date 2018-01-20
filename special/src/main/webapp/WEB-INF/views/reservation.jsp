@@ -78,6 +78,7 @@
 <body>
 	<form action="/movie/ticket" method="post" id="ctrl">		
 		<div>		
+<<<<<<< HEAD
 			<dl>
 				<dt>날짜 선택</dt>
 					<dd>
@@ -91,6 +92,31 @@
 			</dl>							
 		</div>		
 		<div id="test">			 				
+=======
+		<dl>
+			<dt>날짜 선택</dt>
+				<dd>
+					<select id="select-key" onchange="searchGet()">
+						<option selected="selected">선택</option>
+						<option id="d" value="2018-01-16">16일</option>
+						<option id="d"value="2018-01-17">17일</option>
+						<option id="d"value="2018-01-18">18일</option>				
+					</select>
+				</dd>					
+		</dl>		
+			<table border="1">
+				<tr>
+					<th>상영관</th>				
+				</tr>					
+				<tr>
+					<th>시간</th>
+				</tr>					
+				<tr>
+					<th>좌석</th>				
+				</tr>					
+			
+			</table>
+>>>>>>> branch 'master' of https://github.com/soyoungsoo/project.git
 		</div>
 		<input id="mno" type="hidden" value="${mno}">		
 	</form>

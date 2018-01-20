@@ -5,40 +5,96 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/register.css">
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+	function submitTest() {
+		$('#joinForm').submit();
+	}
+	function Cancel() {
+		if (confirm("가입하지 않고 나가시겠습니까?")) {
+			location.href = "../special/movie/list.do";
+		}
+	}
+</script>
 <title>영화등록</title>
 </head>
 <body>
-	<h1>영화등록하기</h1>
-	<form action="<c:url value='/movie/new.do'/>" method="post"
-		enctype="multipart/form-data">
-		<div>영화번호</div>
-		<div>
-			<label>제목 <input type="text" name="title"></label>
+	<div class="frame">
+		<div class="container">
+			<div class="header">
+				<div class="logo">
+					<a href="<c:url value='/'/>"> Movie Theater </a>
+				</div>
+			</div>
+			<div class="content">
+				<form action="<c:url value='/movie/new.do'/>" method="post"
+					enctype="multipart/form-data" id="joinForm">
+					<table class="table-join">
+						<tr>
+							<th colspan="2" class="text-center"><h3>영화 등록</h3></th>
+						</tr>
+						<tr>
+							<th class="text-right">- 제목</th>
+							<td class="text-center"><input type="text" name="title"
+								id="sname"></td>
+						</tr>
+						<tr>
+							<th class="text-right">- 시놉시스</th>
+							<td class="text-center"><textarea name="content"></textarea></td>
+						</tr>
+						<tr>
+							<th class="text-right">- 장르</th>
+							<td class="text-center"><input type="text" name="genre"
+								id="sname"></td>
+						</tr>
+						<tr>
+							<th class="text-right">- 관람 등급</th>
+							<td class="text-center"><input type="text" name="grade"
+								id="sname"></td>
+						</tr>
+						<tr>
+							<th class="text-right">- 상영 시간</th>
+							<td class="text-center"><input type="text" name="mrun"
+								id="sname"></td>
+						</tr>
+						<tr>
+							<th class="text-right">- 개봉일</th>
+							<td class="text-center"><input type="date" name="sdate"
+								id="sname"></td>
+						</tr>
+						<tr>
+							<th class="text-right">- 종영일</th>
+							<td class="text-center"><input type="date" name="edate"
+								id="sname"></td>
+						</tr>
+						<tr>
+							<th class="text-right">- 첨부 파일</th>
+							<td class="text-center"><input type="file" name="post"
+								multiple="multiple" id="sname"></td>
+						</tr>
+						<tr>
+							<th><input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}"></th>
+							<th colspan="2" class="text-center"><a href="javascript:{}"
+								onclick="submitTest();" class="reg-btn">등록완료</a></th>
+							<th><a href="#" onclick="Cancel()" class="reg-btn">메인화면으로
+									이동</a></th>
+						</tr>
+					</table>
+				</form>
+			</div>
 		</div>
-		<div>
-			<label>시놉시스<textarea name="content"></textarea></label>
+		<div class="footer">
+			<p class="copyright">&copy;copyright reserved larl</p>
 		</div>
-		<div>
-			<label>장르 <input type="text" name="genre"></label>
-		</div>
-		<div>
-			<label>관람등급 <input type="text" name="grade"></label>
-		</div>
-		<div>
-			<label>상영시간 <input type="text" name="mrun"></label>
-		</div>
-		<div>
-			<label>개봉일 <input type="date" name="sdate"></label>
-		</div>
-		<div>
-			<label>종영일 <input type="date" name="edate"></label>
-		</div>
-		<div>
-			<label>첨부파일 <input type="file" name="post" multiple="multiple"></label>
-		</div>		
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-		<input type="submit">
-		<input type="reset">
-	</form>
+	</div>
+	<script src="bootstrap/js/jquery-1.12.4.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

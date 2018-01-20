@@ -1,5 +1,25 @@
-li {
-    list-style: none;
+.login-btn {
+    margin-top: 2px;
+    display: inline-block;
+    width: 175px;
+    height: 44px;
+    line-height: 44px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    box-sizing: border-box;
+    text-decoration: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    background: #92a8d1;
+    font-weight: bold;
+}
+
+.reg-btn:hover {
+    text-decoration: none;
+    color: white;
 }
 
 .reg-btn {
@@ -8,8 +28,8 @@ li {
     width: 175px;
     height: 44px;
     line-height: 44px;
-    margin-top: 40px;
     margin-bottom: 40px;
+    margin-top: 40px;
     box-sizing: border-box;
     text-decoration: none;
     -webkit-box-sizing: border-box;
@@ -21,7 +41,7 @@ li {
     font-weight: bold;
 }
 
-.reg-btn:hover {
+.login-btn:hover {
     text-decoration: none;
     color: white;
 }
@@ -31,7 +51,7 @@ li {
     margin-bottom: 20px;
 }
 
-.table-join {
+.table-login {
     width: 500px;
     margin-top: 60px;
     margin-bottom: 60px;
@@ -39,12 +59,12 @@ li {
     margin-right: 50%;
 }
 
-.table-join tr th {
+.table-login tr th {
     margin-top: 30px;
     padding-bottom: 15px;
 }
 
-.table-join tr td input {
+.table-login tr td input {
     line-height: normal;
     padding: .8em .5em;
     margin-top: 30px;
@@ -56,9 +76,4 @@ li {
     /* 브라우저별 기본 스타일링 제거 */
     -moz-appearance: none;
     appearance: none;
-}
-.synop {
-    width: 350px;
-    height: 500px;
-    resize: none;
 }
