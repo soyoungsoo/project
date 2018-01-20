@@ -26,30 +26,13 @@
 					<c:forEach var="list" items="${ member.userTypes }">
 						<c:choose>
 							<c:when test="${list.type == 'ADMIN'}">
-								<li><a href="/special/movie/new.do" class = "nav-link">영화 등록 하기</a></li>
+								<li><a href="/special/movie/new.do" class="nav-link">영화
+										등록 하기</a></li>
 							</c:when>
 						</c:choose>
 					</c:forEach>
-					<li class="nav-item"><a href="" class="nav-link"> Menu - 1
-					</a></li>
-					<li class="nav-item"><a href="" class="nav-link"> Menu - 2
-					</a></li>
-					<li class="nav-item"><a href="" class="nav-link"> Menu - 3
-					</a></li>
-					<li class="nav-item"><a href="" class="nav-link"> Menu - 4
-					</a></li>
-					<li class="nav-item"><a href="" class="nav-link"> Menu - 5
-					</a></li>
-					<li class="nav-item"><a href="" class="nav-link"> Menu - 6
-					</a></li>
-					<li class="nav-item"><a href="" class="nav-link"> Menu - 7
-					</a></li>
-					<li class="nav-item"><a href="" class="nav-link"> Menu - 8
-					</a></li>
-					<li class="nav-item"><a href="" class="nav-link"> Menu - 9
-					</a></li>
-					<li class="nav-item"><a href="" class="nav-link"> Menu -
-							10 </a></li>
+					<li class="nav-item"><a href="" class="nav-link"> 로그인 </a></li>
+					<li class="nav-item"><a href="" class="nav-link"> 회원가입 </a></li>
 				</ul>
 			</div>
 			<div class="nav_right">
@@ -71,14 +54,15 @@
 			<div class="content">
 				<ul>
 					<c:forEach items="${ list }" var="item">
-					<li><img class="inner-content-imgs" src="${item.post}">
-						<div class="view">
-							<div>
-								<a href="#">예매 하기</a> 
-								<a href="<c:url value='/movie/detail.do?mno=${ item.mno }'/>">상세 보기
-								<input type="hidden" name="id" value="${item.mno}"></a>
-							</div>
-						</div></li>
+						<li><img class="inner-content-imgs" src="${item.post}">
+							<div class="view">
+								<div>
+									<a href="#">예매 하기</a> <a
+										href="<c:url value='/movie/detail.do?mno=${ item.mno }'/>">상세
+										보기 <input type="hidden" name="id" value="${item.mno}">
+									</a>
+								</div>
+							</div></li>
 					</c:forEach>
 				</ul>
 			</div>

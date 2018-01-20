@@ -27,6 +27,19 @@
 		setInterval("howMuch()", 100);
 	});
 
+	function submitTest() {
+		if ($('.total-price').text() == "0") {
+			alert("표를 예매해주세요!");
+		} else {
+			$('#reserv-form').submit();
+		}
+
+	}
+
+	function showSeat() {
+		$(".screen_box").show();
+	}
+
 	function searchGet() {
 
 		var selectElement = $("#select-key")[0].value;
@@ -51,19 +64,6 @@
 				alert(JSON.stringify(error));
 			}
 		});
-	}
-
-	function submitTest() {
-		if ($('.total-price').text() == "0") {
-			alert("표를 예매해주세요!");
-		} else {
-			$('#reserv-form').submit();
-		}
-
-	}
-
-	function showSeat() {
-		$(".screen_box").show();
 	}
 
 	function howMuch() {
@@ -93,6 +93,9 @@
 			$(target).removeClass("adult-seat-selected");
 			$(target).removeClass("teen-seat-selected");
 			$(target).addClass(attachClass);
+		} else if ($(target).hasClass("already-selected")) {
+			$(target).removeClass("adult-seat-selected");
+			$(target).removeClass("teen-seat-selected");
 		} else {
 			$(target).addClass(attachClass);
 		}
