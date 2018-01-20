@@ -100,6 +100,11 @@
 			$(target).addClass(attachClass);
 		}
 	}
+
+	function removeAll() {
+        $(".p0").removeClass("adult-seat-selected");
+        $(".p0").removeClass("teen-seat-selected");
+    }
 </script>
 </head>
 
@@ -385,6 +390,7 @@
 											</h4> <input type="hidden" name="${_csrf.parameterName}"
 											value="${_csrf.token}"> <a href="javascript:{}"
 											onclick="submitTest();" class="reg-btn">예매 하기</a>
+											 <a href="javascript:{}" onclick="removeAll();" class="reg-btn">리셋</a>
 										</li>
 									</ul>
 								</div>
