@@ -2,64 +2,23 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="time">
+<mapper namespace="com.koitt.dao.SelectMovieDaoImpl">
+		
 
-	<insert id="insert" parameterType="Member">		
-		<selectKey keyProperty="memno" resultType="Integer" order="BEFORE">
-			SELECT memno_seq.NEXTVAL memno FROM DUAL
-		</selectKey>
-			INSERT INTO Member(memno,id,pwd,name,birth,email) 
-			VALUES (#{memno}, #{id}, #{pwd}, #{name}, #{birth},#{email})
-	</insert>
-	
-	<insert id="insertUserTypes" parameterType="Member">
-		INSERT ALL
-		<foreach collection="userTypes"  item="item">
-			INTO user_info_type(memno, user_info_type_id)
-			VALUES (#{memno}, #{item.id})
-		</foreach>
-		SELECT * FROM DUAL
-	</insert>
-	
-	<resultMap type="Seat" id="seatResultMap">
-		<id property="tno" column="tno" />
-		<result property="seatno" column="seatno" />
-		<result property="issue" column="issue" />
-		<result property="scount" column="scount" />		
-		<collection property="Schedule" ofType="Schedule">
-			<id property="rdate" column="rdate" />
-			<result property="Scount" column="Scount"/>
-			<result property="Mno" column="Mno"/>
-		</collection>
-	</resultMap>
-	
-	<select id="select" parameterType="String" resultMap="seatResultMap">
-		SELECT m.memno, m.id, m.pwd, m.name, m.birth, m.email, ut.id, ut.type
-	FROM member m,
-	(SELECT user_info_type.memno, user_type.id, user_type.type
-	FROM user_info_type, user_type
-	WHERE user_type.id = user_info_type_id) ut
-	WHERE m.memno = ut.memno AND m.id = #{id}
-	</select>
-	
-	<select id="selectDate" parameterType="String" resultMap="seatResultMap">	
-	select  s.tno, s.seatno, s.issue ,sc.Scount,sc.rdate 
-	from seat s, (select * from schedule) sc 
-	where mno = #{mno} and s.issue = 0  and  to_date(sc.rdate, 'YYYY-MM-DD') = #{sc.rdate} 
-	order by  sc.rdate asc;
-	</select>
-	
-	<delete id= "delete" parameterType = "Integer">		
-		DELETE FROM MEMBER WHERE memno = #{memno}
-	</delete>	
-	
-	<delete id= "deleteUserTypes" parameterType = "Integer">
-		DELETE FROM USER_INFO_TYPE WHERE MEMNO = #{memno};
-	</delete>
-	
-	<update id="update" parameterType="Member">
-		update member
-		set pwd = #{pwd}, name = #{name} , birth = #{birth}, email= #{email}
-		where id = #{id}
-	</update>
-</mapper>
+		<select id="selectDate" parameterType="Schedule" resultType="Seat">	
+			select distinct rdate, tno, d,f from (
+			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0) d,(select count(*) from SEAT)f
+			from seat s, (select * from schedule) sc 
+			where mno = #{mno} and Sc.RDATE LIKE  '%'||#{rdate}||'%'
+			order by  sc.rdate asc
+			)
+		</select>
+
+			<select id="select" parameterType="Seat" resultType="Seat">
+				select rdate, tno, seatno, issue from (
+				select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0) d,(select count(*) from SEAT)f
+				from seat s, (select * from schedule) sc 
+				where mno = #{mno} and tno = #{tno} and Sc.RDATE =#{rdate}
+				order by s.seatno asc)
+			</select>
+	</mapper>

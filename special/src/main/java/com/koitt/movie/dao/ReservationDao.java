@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Reservation;
-import com.koitt.movie.model.seat;
+import com.koitt.movie.model.Seat;
 
 public interface ReservationDao {
 
 	//상영관 좌석 상태
-	public List<seat> SeatAll(seat seat) throws CommonException;
+	public List<Seat> SeatAll(Seat seat) throws CommonException;
 	//예매좌석 상태변경
 	public void stateChange(String seatno) throws CommonException;
 	// 티켓예매

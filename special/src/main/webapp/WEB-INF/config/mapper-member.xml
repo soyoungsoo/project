@@ -58,7 +58,7 @@
 	</delete>	
 	
 	<delete id= "deleteUserTypes" parameterType = "Integer">
-		DELETE FROM USER_INFO_TYPE WHERE MEMNO = #{memno};
+		DELETE FROM USER_INFO_TYPE WHERE MEMNO = #{memno}
 	</delete>
 	
 	<update id="update" parameterType="Member">
