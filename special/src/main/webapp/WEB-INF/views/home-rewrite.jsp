@@ -31,24 +31,15 @@
 							</c:when>
 						</c:choose>
 					</c:forEach>
-					<li class="nav-item"><a href="" class="nav-link"> 로그인 </a></li>
-					<li class="nav-item"><a href="" class="nav-link"> 회원가입 </a></li>
-				</ul>
-			</div>
-			<div class="nav_right">
-				<ul class="nav_right-list">
-					<li class="nav_right-item"><a href="" class="nav_right-link">
-							Hello World </a></li>
-					<li class="nav_right-item"><a href="" class="nav_right-link">
-							Hello JAVA </a></li>
-					<li class="nav_right-item"><a href="" class="nav_right-link">
-							Hello HTML </a></li>
-					<li class="nav_right-item"><a href="" class="nav_right-link">
-							Hello C Language </a></li>
-					<li class="nav_right-item"><a href="" class="nav_right-link">
-							Hello JavaScript </a></li>
-					<li class="nav_right-item"><a href="" class="nav_right-link">
-							Hello Chicken </a></li>
+					<c:if test="${member.id ne null}">
+						<li class ="nav-item">${member.id}</li>
+						<li class ="nav-item"><a class="nav-link" href="../logout">로그아웃</a></li>
+						<li class ="nav-item"><a class="nav-link" href="../user/setting">회원정보수정</a></li>
+					</c:if>
+					<c:if test="${member.id eq null }">
+						<li class="nav-item"><a href="" class="nav-link"> 로그인 </a></li>
+						<li class="nav-item"><a href="" class="nav-link"> 회원가입 </a></li>
+					</c:if>
 				</ul>
 			</div>
 			<div class="content">
