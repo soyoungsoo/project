@@ -13,7 +13,7 @@
     color: #2b2e33
 }
 
-.p0{
+.p0 {
     position: absolute;
     display: block;
     width: 22px;
@@ -31,6 +31,7 @@
 .adult-seat-selected {
     background: #f7cac9;
 }
+
 .teen-seat-selected {
     background: #92a8d1;
 }
@@ -38,6 +39,7 @@
 .already-selected {
     background-image: url(../image/bg_disabled.gif);
 }
+
 .seat_Barea {
     overflow: auto;
     position: relative;
@@ -241,3 +243,222 @@
     width: 100%;
     height: auto;
 }
+
+.a1 {
+    left:22px;
+    top:0px;
+}
+
+.a2 {
+    left:48px;
+    top:0px;
+}
+
+.a3 {
+    left:89px;
+    top:0px;
+}
+
+.a4 {
+    left:115px;
+    top:0px;
+}
+
+.a5 {
+    left:169px;
+    top:0px;
+}
+
+.a6 {
+    left:196px;
+    top:0px;
+}
+
+.a7 {
+    left:249px;
+    top:0px;
+}
+
+.a8 {
+    left:276px;
+    top:0px;
+}
+
+.a9 {
+    left:316px;
+    top:0px;
+}
+
+.a10 {
+    left:343px;
+    top:0px;
+}
+
+.b1 {
+    left:22px;
+    top:27px;
+}
+
+.b2 {
+    left:48px;
+    top:27px;
+}
+
+.b3 {
+    left:89px;
+    top:27px;
+}
+
+.b4 {
+    left:115px;
+    top:27px;
+}
+
+.b5 {
+    left:169px;
+    top:27px;
+}
+
+.b6 {
+    left:196px;
+    top:27px;
+}
+
+.b7 {
+    left:249px;
+    top:27px;
+}
+
+.b8 {
+    left:276px;
+    top:27px;
+}
+
+.b9 {
+    left:316px;
+    top:27px;
+}
+
+.b10 {
+    left:343px;
+    top:27px;
+}
+
+.c1 {
+    left:22px;
+    top:54px;
+}
+
+.c2 {
+    left:48px;
+    top:54px;
+}
+
+.c3 {
+    left:89px;
+    top:54px;
+}
+
+.c4 {
+    left:115px;
+    top:54px;
+}
+
+.c5 {
+    left:169px;
+    top:54px;
+}
+
+.c6 {
+    left:196px;
+    top:54px;
+}
+
+.c7 {
+    left:249px;
+    top:54px;
+}
+
+.c8 {
+    left:276px;
+    top:54px;
+}
+
+.c9 {
+    left:316px;
+    top:54px;
+}
+
+.c10 {
+    left:343px;
+    top:54px;
+}
+
+.d1 {
+    left:22px;
+    top:82px;
+}
+
+.d2 {
+    left:48px;
+    top:82px;
+}
+.d3 {
+    left:89px;
+    top:82px;
+}
+.d4 {
+    left:115px;
+    top:82px;
+}
+.d5 {
+    left:169px;
+    top:82px;
+}
+.d6 {
+    left:196px;
+    top:82px;
+}
+.d7 {
+    left:249px;
+    top:82px;
+}
+.d8 {
+    left:276px;
+    top:82px;
+}
+.d9 {
+    left:316px;
+    top:82px;
+}
+.d10 {
+    left:343px;
+    top:82px;
+}
+.e1 {
+    left:89px;
+    top:109px;
+}
+.e2 {
+    left:115px;
+    top:109px;
+}
+.e3 {
+    left:196px;
+    top:109px;
+}
+.e4 {
+    left:249px;
+    top:109px;
+}
+.e5 {
+    left:276px;
+    top:109px;
+}
+
+
+
+
+
+
+

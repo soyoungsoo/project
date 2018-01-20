@@ -14,8 +14,10 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<link rel="stylesheet" type="text/css" href="css/preview.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
+    <link rel="stylesheet" type="text/css" href="css/preview.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- <script src="../lightslider-master/src/js/lightslider.js"></script>-->
 <title>Untitled Document</title>
 <script>
@@ -27,6 +29,9 @@
 			return;
 		}
 	}
+	function submitTest() {
+        $('#starForm').submit();
+    }
 </script>
 </head>
 
@@ -139,28 +144,84 @@
 						<h2>시놉시스</h2>
 						<p>${fn:replace(item.content,crcn,"<br/>") }</p>
 					</div>
+					 <hr>
+                </div>
 
+            </div>
+            <div class="star-box">
+                <form action="#" method="post" id="starForm">
+                    <span class="star-input">
+	                    <span class="input">
+                            <input type="radio" name="star-input" value="1" id="p1">
+                            <label for="p1">1</label>
+                            <input type="radio" name="star-input" value="2" id="p2">
+                            <label for="p2">2</label>
+                            <input type="radio" name="star-input" value="3" id="p3">
+                            <label for="p3">3</label>
+                            <input type="radio" name="star-input" value="4" id="p4">
+                            <label for="p4">4</label>
+                            <input type="radio" name="star-input" value="5" id="p5">
+                            <label for="p5">5</label>
+  	                    </span>
+                    </span>
+                    <div class="input-area">
+                        <h4 class="user-name">user</h4>
+                        <textarea name="write-area" style="resize: none" class="reply-box" id="repl" placeholder=" ex) 재미있어요!"> </textarea>
+                        <a href="javascript:{}" onclick="submitTest();" class="reg-btn" id="repl-btn">댓글 입력</a>
+                    </div>
+                    <hr style="position: relative; top: 20px;">
+
+                    <div class="repl-box text-center">
+                        <ul class="repl-list">
+                            <li>
+                                <p class="star_rating">
+                                    <a href="#" class="on">★</a>
+                                    <a href="#" class="on">★</a>
+                                    <a href="#" class="on">★</a>
+                                    <a href="#" class="on">★</a>
+                                    <a href="#">★</a>
+                                </p>
+
+                                <p><strong class="rep-user-name">aaaa2222</strong>진짜 재밌어요!</p>
+
+                            </li>
+                            <li>
+                                <p class="star_rating">
+                                    <a href="#" class="on">★</a>
+                                    <a href="#" class="on">★</a>
+                                    <a href="#" class="on">★</a>
+                                    <a href="#">★</a>
+                                    <a href="#">★</a>
+                                </p>
+
+                                <p><strong class="rep-user-name">a3332</strong>진짜 감동적임..</p>
+
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+				</div>
 					<div class="admin-menu">
 						<ul>
 							<c:forEach var="list" items="${ member.userTypes }">
 								<c:choose>
 									<c:when test="${list.type == 'ADMIN'}">
-										<li><a href="/special/movie/modify.do?mno=${item.mno}">수정하기</a></li>
-										<li><a href="javascript:deleteCheck();">삭제하기</a></li>
+										<li><a class = "reg-btn" href="/special/movie/modify.do?mno=${item.mno}">수정하기</a></li>
+										<li><a class = "reg-btn" href="javascript:deleteCheck();">삭제하기</a></li>
 									</c:when>
 								</c:choose>
 							</c:forEach>
 						</ul>
 					</div>
 				</div>
-
-			</div>
-		</div>
 		<div class="footer">
 			<p class="copyright">&copy;copyright reserved larl</p>
 		</div>
 	</div>
-	<script src="bootstrap/js/jquery-1.12.4.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
+	
+    <script src="bootstrap/js/jquery-1.12.4.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/star.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
