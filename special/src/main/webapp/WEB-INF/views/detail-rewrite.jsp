@@ -119,6 +119,8 @@
 								<li>
 									<h4>감독 :</h4> 배리 젠킨스
 								</li>
+								<li>출연진 : <strong class="actors">홍진호</strong>,<strong
+									class="actors">홍진호</strong>,<strong class="actors">홍진호</strong></li>
 								<c:if test="${ !empty post }">
 									<li>[첨부 파일] <a
 										href="<c:url value='/download.do?filename=${ item.post }'/>">${ post }</a></li>
@@ -138,16 +140,16 @@
 						<p>${fn:replace(item.content,crcn,"<br/>") }</p>
 					</div>
 
-					<div class = "admin-menu">
-					<ul>
-						<c:forEach var="list" items="${ member.userTypes }">
-							<c:choose>
-								<c:when test="${list.type == 'ADMIN'}">
-									<li><a href="/special/movie/modify.do?mno=${item.mno}">수정하기</a></li>
-									<li><a href="javascript:deleteCheck();">삭제하기</a></li>
-								</c:when>
-							</c:choose>
-						</c:forEach>
+					<div class="admin-menu">
+						<ul>
+							<c:forEach var="list" items="${ member.userTypes }">
+								<c:choose>
+									<c:when test="${list.type == 'ADMIN'}">
+										<li><a href="/special/movie/modify.do?mno=${item.mno}">수정하기</a></li>
+										<li><a href="javascript:deleteCheck();">삭제하기</a></li>
+									</c:when>
+								</c:choose>
+							</c:forEach>
 						</ul>
 					</div>
 				</div>
