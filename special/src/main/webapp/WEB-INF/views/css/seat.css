@@ -1,0 +1,464 @@
+.seat_area {
+    position: relative;
+}
+
+.seat_tit {
+    position: absolute;
+    display: inline-block;
+    width: 20px;
+    height: 22px;
+    text-align: left;
+    line-height: 22px;
+    font-size: 11px;
+    color: #2b2e33
+}
+
+.p0 {
+    position: absolute;
+    display: block;
+    width: 22px;
+    height: 22px;
+    background: #848484;
+    text-align: center;
+    color: #fff;
+    font-size: 11px;
+    line-height: 23px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box
+}
+
+.adult-seat-selected {
+    background: #f7cac9;
+}
+
+.teen-seat-selected {
+    background: #92a8d1;
+}
+
+.already-selected {
+    background-image: url(../image/bg_disabled.gif);
+}
+
+.seat_Barea {
+    overflow: auto;
+    position: relative;
+    padding: 20px 0;
+    padding-top: 50px;
+    align-content: background:#f9f8f3;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box
+}
+
+.screen_box {
+    position: relative
+}
+
+.screen_box .screen_tit {
+    display: block;
+    margin-top: 50px;
+    background: lightgray;
+    line-height: 25px;
+    font-size: 20px;
+    color: #231f20;
+    text-align: center;
+    font-weight: normal;
+    font-style: italic
+}
+
+.cal-radio {
+    display: none;
+}
+
+.calendar {
+    width: 994px;
+}
+
+.select-age {
+    width: 994px;
+    margin-top: 30px;
+}
+
+
+.age-radio:last-child {
+    margin-left: 40px;
+}
+
+.calendar .zInputWrapper {
+    background-color: #9197B5;
+    padding: 4px;
+    max-width: 100%;
+    margin: 2px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.select-age .zInputWrapper {
+    background-color: white;
+    padding: 4px;
+    max-width: 100%;
+    margin: 2px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.age-radio: {
+    display: none;
+    background: white;
+}
+
+.calendar .zInput {
+    display: inline-block;
+    width: 85px;
+    height: 80px;
+    background-color: white;
+    margin: 4px;
+    padding: 12px;
+    display: inline-block;
+    text-align: center;
+    cursor: default;
+    color: black;
+    border: #f7cac9 1px solid;
+    border-radius: 10px;
+    font-size: 18px;
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.select-age .zInput {
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    background-color: white;
+    margin: 4px;
+    padding: 12px;
+    display: inline-block;
+    text-align: center;
+    cursor: default;
+    color: black;
+    border: #f7cac9 1px solid;
+    border-radius: 10px;
+    font-size: 18px;
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.zCheckbox {
+    color: #e74c3c;
+    border: #e74c3c 1px solid;
+}
+
+.calendar .zSelected {
+    color: white;
+    background-color: #88B04B;
+}
+
+.select-age .zSelected {
+    color: white;
+    background-color: #88B04B;
+}
+
+.zSelected.zCheckbox {
+    background-color: #e74c3c;
+}
+
+.theater-container h2 {
+    margin-left: 60px;
+    margin-top: 40px;
+}
+
+.theater-container h4 {
+    margin-left: 90px;
+}
+
+.movie-title {
+    display: inline;
+}
+
+.hr {
+    margin-top: 40px;
+    border: 0.3px solid lightgray;
+}
+
+.preserv-time {
+    position: relative;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preserv-time ul li {
+    display: inline-block;
+    background-color: #9197B5;
+    text-align: center;
+    width: 200px;
+    height: 100px;
+    border: 0.1px solid black;
+}
+
+.preserv-time ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.cine-place {
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    border-bottom: 0.1px solid black;
+
+}
+
+.cine-time {
+    display: block;
+    font-size: 1.5em;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 0.1px solid black;
+}
+
+.cine-seat {
+    display: block;
+}
+
+.pay-container ul li {
+    display: block;
+    margin-top: 20px;
+    margin-left: 40px;
+    width: 100%;
+    height: auto;
+}
+
+.a1 {
+    left:22px;
+    top:0px;
+}
+
+.a2 {
+    left:48px;
+    top:0px;
+}
+
+.a3 {
+    left:89px;
+    top:0px;
+}
+
+.a4 {
+    left:115px;
+    top:0px;
+}
+
+.a5 {
+    left:169px;
+    top:0px;
+}
+
+.a6 {
+    left:196px;
+    top:0px;
+}
+
+.a7 {
+    left:249px;
+    top:0px;
+}
+
+.a8 {
+    left:276px;
+    top:0px;
+}
+
+.a9 {
+    left:316px;
+    top:0px;
+}
+
+.a10 {
+    left:343px;
+    top:0px;
+}
+
+.b1 {
+    left:22px;
+    top:27px;
+}
+
+.b2 {
+    left:48px;
+    top:27px;
+}
+
+.b3 {
+    left:89px;
+    top:27px;
+}
+
+.b4 {
+    left:115px;
+    top:27px;
+}
+
+.b5 {
+    left:169px;
+    top:27px;
+}
+
+.b6 {
+    left:196px;
+    top:27px;
+}
+
+.b7 {
+    left:249px;
+    top:27px;
+}
+
+.b8 {
+    left:276px;
+    top:27px;
+}
+
+.b9 {
+    left:316px;
+    top:27px;
+}
+
+.b10 {
+    left:343px;
+    top:27px;
+}
+
+.c1 {
+    left:22px;
+    top:54px;
+}
+
+.c2 {
+    left:48px;
+    top:54px;
+}
+
+.c3 {
+    left:89px;
+    top:54px;
+}
+
+.c4 {
+    left:115px;
+    top:54px;
+}
+
+.c5 {
+    left:169px;
+    top:54px;
+}
+
+.c6 {
+    left:196px;
+    top:54px;
+}
+
+.c7 {
+    left:249px;
+    top:54px;
+}
+
+.c8 {
+    left:276px;
+    top:54px;
+}
+
+.c9 {
+    left:316px;
+    top:54px;
+}
+
+.c10 {
+    left:343px;
+    top:54px;
+}
+
+.d1 {
+    left:22px;
+    top:82px;
+}
+
+.d2 {
+    left:48px;
+    top:82px;
+}
+.d3 {
+    left:89px;
+    top:82px;
+}
+.d4 {
+    left:115px;
+    top:82px;
+}
+.d5 {
+    left:169px;
+    top:82px;
+}
+.d6 {
+    left:196px;
+    top:82px;
+}
+.d7 {
+    left:249px;
+    top:82px;
+}
+.d8 {
+    left:276px;
+    top:82px;
+}
+.d9 {
+    left:316px;
+    top:82px;
+}
+.d10 {
+    left:343px;
+    top:82px;
+}
+.e1 {
+    left:89px;
+    top:109px;
+}
+.e2 {
+    left:115px;
+    top:109px;
+}
+.e3 {
+    left:196px;
+    top:109px;
+}
+.e4 {
+    left:249px;
+    top:109px;
+}
+.e5 {
+    left:276px;
+    top:109px;
+}
+
+
+
+
+
+
+

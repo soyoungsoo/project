@@ -46,7 +46,7 @@
 						</tr>
 						<tr>
 							<th class="text-right">- 시놉시스</th>
-							<td class="text-center"><textarea name="content"></textarea></td>
+							<td class="text-center"><textarea name="content" class = "synop"></textarea></td>
 						</tr>
 						<tr>
 							<th class="text-right">- 장르</th>
