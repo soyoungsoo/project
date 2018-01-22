@@ -41,8 +41,7 @@ public class MovieRestController {
 			Schedule schedule = new Schedule();
 																		
 			schedule.setMno(mno);					
-			schedule.setRdate(date);			
-			schedule.setScount(1);
+			schedule.setRdate(date);						
 			list = smService.selectDate(schedule);										
 			
 			return new ResponseEntity<List<Seat>>(list,HttpStatus.OK);

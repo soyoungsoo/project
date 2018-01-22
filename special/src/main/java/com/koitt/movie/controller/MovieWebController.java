@@ -97,7 +97,7 @@ public class MovieWebController {
 		List<Movie> list = null;
 		list = movieService.list();		
 		model.addAttribute("list", list);
-		return "home";
+		return "home-rewrite";
 	}
 
 	// 글 상세 화면
@@ -118,7 +118,7 @@ public class MovieWebController {
 		model.addAttribute("filename", filename);
 		
 		
-		return "detail";	// /WEB-INF/views/detail.jsp 페이지로 이동
+		return "detail-rewrite";	// /WEB-INF/views/detail.jsp 페이지로 이동
 	}
 
 	// 글 작성 화면
@@ -253,9 +253,13 @@ public class MovieWebController {
 			return "redirect:list.do";
 		}
 		@RequestMapping(value="/ticket", method=RequestMethod.GET)
-		public String reserve(Model model, @RequestParam(value = "mno", required = true)Integer mno) {
-			model.addAttribute("mno",mno);
-			return "reservation";
+		public String reserve(HttpSession session,Model model, @RequestParam(value = "mno", required = true)Integer mno) {			
+			
+			if (session.getAttribute("member")!=null) {
+				model.addAttribute("mno",mno);
+				return "reservation";
+			}
+			return "login";
 		}
 
 			

@@ -171,26 +171,48 @@ public class Seat {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Seat [tno=");
-		builder.append(tno);
-		builder.append(", seatno=");
-		builder.append(seatno);
-		builder.append(", issue=");
-		builder.append(issue);
-		builder.append(", Scount=");
-		builder.append(Scount);
-		builder.append(", rdate=");
-		builder.append(rdate);
-		builder.append(", mno=");
-		builder.append(mno);
-		builder.append(", d=");
-		builder.append(d);
-		builder.append(", f=");
-		builder.append(f);
+			
+		builder.append("Seat [ ");
+		if (tno !=null) {
+			builder.append("tno=");
+			builder.append(tno);			
+		}
+		if (seatno !=null) {			
+			builder.append(", seatno=");
+			builder.append(seatno);
+		}
+		if (issue !=null) {			
+			builder.append(", issue=");
+			builder.append(issue);
+		}
+		if (Scount !=null) {			
+			builder.append(", Scount=");
+			builder.append(Scount);
+		}
+		if (rdate !=null) {			
+			builder.append(", rdate=");
+			builder.append(rdate);
+		}
+		if (mno !=null) {			
+			builder.append(", mno=");
+			builder.append(mno);
+		}
+		if (d !=null) {			
+			builder.append(", d=");
+			builder.append(d);
+		}
+		if (f !=null) {			
+			builder.append(", f=");
+			builder.append(f);
+		}
+		
+	
+		
 		builder.append("]");
 		return builder.toString();
 	}
 
+	
 
 	
 	

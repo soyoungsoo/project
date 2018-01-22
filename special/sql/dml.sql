@@ -7,7 +7,7 @@ START WITH 1 INCREMENT BY 1;
 /* 추가 */
 INSERT INTO
 Movie(Mno,title,content,genre,grade,mrun,sdate,edate,post)
-VALUES (mno_seq.nextval,'강철비','dd','한국드라마','15','117','2017-10-21','2017-12-21',null);
+VALUES (mno_seq.nextval,'1강철비','dd','한국드라마','15','117','2017-10-21','2017-12-21',null);
 /* 타입 추가*/
 INSERT INTO user_type(id,type) 
 VALUES (1,'ADMIN');
@@ -43,53 +43,51 @@ INSERT INTO theater VALUES(5,45);
 SELECT * FROM THEATER;
 
 /*좌석 (상영관,좌석이름, 좌석 상태, 상영회차)*/
-INSERT INTO seat VALUES (1,'A-1',0,2);
-INSERT INTO seat VALUES (1,'A-2',0,2);
-INSERT INTO seat VALUES (1,'A-3',0,2);
-INSERT INTO seat VALUES (1,'A-4',0,2);
-INSERT INTO seat VALUES (1,'A-5',0,2);
-
-INSERT INTO seat VALUES (1,'A-6',0,2);
-INSERT INTO seat VALUES (1,'A-7',0,2);
-INSERT INTO seat VALUES (1,'A-8',0,2);
-INSERT INTO seat VALUES (1,'A-9',0,2);
-INSERT INTO seat VALUES (1,'A-10',0,2);
-INSERT INTO seat VALUES (1,'A-11',0,2);
-INSERT INTO seat VALUES (1,'A-12',0,2);
-INSERT INTO seat VALUES (1,'A-13',0,2);
-INSERT INTO seat VALUES (1,'A-14',0,2);
-INSERT INTO seat VALUES (1,'A-15',0,2);
-INSERT INTO seat VALUES (1,'B-1',0,2);
-INSERT INTO seat VALUES (1,'B-2',0,2);
-INSERT INTO seat VALUES (1,'B-3',0,2);
-INSERT INTO seat VALUES (1,'B-4',0,2);
-INSERT INTO seat VALUES (1,'B-5',0,2);
-INSERT INTO seat VALUES (1,'B-6',0,2);
-INSERT INTO seat VALUES (1,'B-7',0,2);
-INSERT INTO seat VALUES (1,'B-8',0,2);
-INSERT INTO seat VALUES (1,'B-9',0,2);
-INSERT INTO seat VALUES (1,'B-10',0,2);
-INSERT INTO seat VALUES (1,'B-11',0,2);
-INSERT INTO seat VALUES (1,'B-12',0,2);
-INSERT INTO seat VALUES (1,'B-13',0,2);
-INSERT INTO seat VALUES (1,'B-14',0,2);
-INSERT INTO seat VALUES (1,'B-15',0,2);
-INSERT INTO seat VALUES (1,'C-1',0,2);
-INSERT INTO seat VALUES (1,'C-2',0,2);
-INSERT INTO seat VALUES (1,'C-3',0,2);
-INSERT INTO seat VALUES (1,'C-4',0,2);
-INSERT INTO seat VALUES (1,'C-5',0,2);
-INSERT INTO seat VALUES (1,'C-6',0,2);
-INSERT INTO seat VALUES (1,'C-7',0,2);
-INSERT INTO seat VALUES (1,'C-8',0,2);
-INSERT INTO seat VALUES (1,'C-9',0,2);
-INSERT INTO seat VALUES (1,'C-10',0,2);
-INSERT INTO seat VALUES (1,'C-11',0,2);
-INSERT INTO seat VALUES (1,'C-12',0,2);
-INSERT INTO seat VALUES (1,'C-13',0,2);
-INSERT INTO seat VALUES (1,'C-14',0,2);
-INSERT INTO seat VALUES (1,'C-15',0,2);
-
+INSERT INTO seat VALUES (1,'A-1',0,1);
+INSERT INTO seat VALUES (1,'A-2',0,1);
+INSERT INTO seat VALUES (1,'A-3',0,1);
+INSERT INTO seat VALUES (1,'A-4',0,1);
+INSERT INTO seat VALUES (1,'A-5',0,1);
+INSERT INTO seat VALUES (1,'A-6',0,1);
+INSERT INTO seat VALUES (1,'A-7',0,1);
+INSERT INTO seat VALUES (1,'A-8',0,1);
+INSERT INTO seat VALUES (1,'A-9',0,1);
+INSERT INTO seat VALUES (1,'A-10',0,1);
+INSERT INTO seat VALUES (1,'B-1',0,1);
+INSERT INTO seat VALUES (1,'B-2',0,1);
+INSERT INTO seat VALUES (1,'B-3',0,1);
+INSERT INTO seat VALUES (1,'B-4',0,1);
+INSERT INTO seat VALUES (1,'B-5',0,1);
+INSERT INTO seat VALUES (1,'B-6',0,1);
+INSERT INTO seat VALUES (1,'B-7',0,1);
+INSERT INTO seat VALUES (1,'B-8',0,1);
+INSERT INTO seat VALUES (1,'B-9',0,1);
+INSERT INTO seat VALUES (1,'B-10',0,1);
+INSERT INTO seat VALUES (1,'C-1',0,1);
+INSERT INTO seat VALUES (1,'C-2',0,1);
+INSERT INTO seat VALUES (1,'C-3',0,1);
+INSERT INTO seat VALUES (1,'C-4',0,1);
+INSERT INTO seat VALUES (1,'C-5',0,1);
+INSERT INTO seat VALUES (1,'C-6',0,1);
+INSERT INTO seat VALUES (1,'C-7',0,1);
+INSERT INTO seat VALUES (1,'C-8',0,1);
+INSERT INTO seat VALUES (1,'C-9',0,1);
+INSERT INTO seat VALUES (1,'C-10',0,1);
+INSERT INTO seat VALUES (1,'D-1',0,1);
+INSERT INTO seat VALUES (1,'D-2',0,1);
+INSERT INTO seat VALUES (1,'D-3',0,1);
+INSERT INTO seat VALUES (1,'D-4',0,1);
+INSERT INTO seat VALUES (1,'D-5',0,1);
+INSERT INTO seat VALUES (1,'D-6',0,1);
+INSERT INTO seat VALUES (1,'D-7',0,1);
+INSERT INTO seat VALUES (1,'D-8',0,1);
+INSERT INTO seat VALUES (1,'D-9',0,1);
+INSERT INTO seat VALUES (1,'D-10',0,1);
+INSERT INTO seat VALUES (1,'E-1',0,1);
+INSERT INTO seat VALUES (1,'E-2',0,1);
+INSERT INTO seat VALUES (1,'E-3',0,1);
+INSERT INTO seat VALUES (1,'E-4',0,1);
+INSERT INTO seat VALUES (1,'E-5',0,1);
 
 SELECT * FROM SEAT;
 
@@ -168,7 +166,7 @@ select * from movie;
 	where mno = 1 and Sc.RDATE LIKE  '2018-01-17 %'
 	order by  sc.rdate asc
 	), movie m; 
-	
+	select* from movie;
 SELECT * FROM SCHEDULE where rdate =  to_DAte('2017-01-18 17:00', 'yyyy-mm-dd hh24:mi');
 SELECT count(*)  from  SEAT where issue = 0;	122		19:02
 to_char(rdate, 'yyyy-mm-dd hh24:mi')
@@ -192,12 +190,10 @@ where
 		where mno = 1 and  Sc.RDATE LIKE  '2018-01-17 17:00'
 		order by  sc.rdate asc;
 
-
-				select rdate, tno, seatno, issue from (
-				select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno
+	select rdate, tno, seatno, issue from (
+				select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0) d,(select count(*) from SEAT)f
 				from seat s, (select * from schedule) sc 
-				where mno = 1 and tno = 1 and Sc.RDATE = '2018-01-17 17:00 '
-				order by s.seatno asc
+				where mno = 1 and tno = 1 and Sc.RDATE = '2018-01-17 17:00'
 				)
 				
 select rdate, tno, seatno, issue from (
@@ -206,6 +202,13 @@ select rdate, tno, seatno, issue from (
 				where mno = 1 and tno = 1 and Sc.RDATE = '2018-01-17'
 				order by s.seatno asc)
 
+				
+					select rdate, tno, seatno, issue from (
+				select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0) d,(select count(*) from SEAT)f
+				from seat s, (select * from schedule) sc 
+				where mno = 1 and tno =1 and Sc.RDATE = '2018-01-17 17:00'
+				)
+				
 DECLARE
  X NUMBER
 BEGIN
