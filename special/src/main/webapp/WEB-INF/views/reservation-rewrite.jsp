@@ -89,21 +89,29 @@
 		var attachClass = age + "-seat-selected";
 		var bookedLen = $(".adult-seat-selected").length
 				+ $(".teen-seat-selected").length;
+		if ($(target).hasClass("adult-seat-selected")
+				|| $(target).hasClass("teen-seat-selected")) {
+			$(target).removeClass("adult-seat-selected");
+			$(target).removeClass("teen-seat-selected");
+			$("input[title=" + $(target).attr("title") + "]").remove();
+			$(target).addClass(attachClass);
+
+		}
 		if (bookedLen < 4) {
-			if ($(target).hasClass("adult-seat-selected")
-					|| $(target).hasClass("teen-seat-selected")) {
+			if ($(target).hasClass("already-selected")) {
 				$(target).removeClass("adult-seat-selected");
 				$(target).removeClass("teen-seat-selected");
-				$(target).addClass(attachClass);
-			} else if ($(target).hasClass("already-selected")) {
-				$(target).removeClass("adult-seat-selected");
-				$(target).removeClass("teen-seat-selected");
+				$("input[title=" + $(target).attr("title") + "]").remove();
 			} else {
 				$(target).addClass(attachClass);
+				$(".seat_area").append(
+						'<input type = "hidden" class = "select-seat" name = "select-seat" value = '
+								+ $(target).attr("title") + ' >');
 			}
 		} else {
 			alert("최대 4개의 표 까지만 예매가 가능합니다!");
 		}
+
 	}
 
 	function removeAll() {
