@@ -14,7 +14,27 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
 	function submitTest() {
-		$('#joinForm').submit();
+		if ($(".title").val() === "") {
+			alert("제목을 입력해주세요!");
+			return false;
+		} else if ($(".genre").val() === "") {
+			alert("장르를 입력해주세요!");
+			return false;
+		} else if ($(".grade").val() === "") {
+			alert("시청 등급을 입력해주세요!");
+			return false;
+		} else if ($(".mrun").val() === "") {
+			alert("상영 시간을 입력해주세요!");
+			return false;
+		} else if ($(".sdate").val() === "") {
+			alert("개봉일을 입력해주세요!");
+			return false;
+		} else if ($(".edate").val() === "") {
+			alert("종영일을 입력해주세요!");
+			return false;
+		} else {
+			$('#joinForm').submit();
+		}
 	}
 	function Cancel() {
 		if (confirm("가입하지 않고 나가시겠습니까?")) {
@@ -42,51 +62,55 @@
 						<tr>
 							<th class="text-right">- 제목</th>
 							<td class="text-center"><input type="text" name="title"
-								id="sname"></td>
+								id="sname" value = "" class = "title"></td>
 						</tr>
 						<tr>
 							<th class="text-right">- 시놉시스</th>
-							<td class="text-center"><textarea name="content" class = "synop"></textarea></td>
+							<td class="text-center"><textarea name="content"
+									class="synop"></textarea></td>
 						</tr>
 						<tr>
 							<th class="text-right">- 장르</th>
 							<td class="text-center"><input type="text" name="genre"
-								id="sname"></td>
+								id="sname" value = "" class = "genre"></td>
 						</tr>
 						<tr>
 							<th class="text-right">- 관람 등급</th>
 							<td class="text-center"><input type="text" name="grade"
-								id="sname"></td>
+								id="sname" value = "" class = "grade"></td>
 						</tr>
 						<tr>
 							<th class="text-right">- 상영 시간</th>
 							<td class="text-center"><input type="text" name="mrun"
-								id="sname"></td>
+								id="sname" value = "" class = "mrun"></td>
 						</tr>
 						<tr>
 							<th class="text-right">- 개봉일</th>
 							<td class="text-center"><input type="date" name="sdate"
-								id="sname"></td>
+								id="sname" value = "" class = "sdate"></td>
 						</tr>
 						<tr>
 							<th class="text-right">- 종영일</th>
-							<td class="text-center"><input type="date" name="edate"
-								id="sname"></td>
+							<td class="text-center" ><input type="date" name="edate"
+								id="sname" value = "" class = "edate"></td>
 						</tr>
 						<tr>
 							<th class="text-right">- 첨부 파일</th>
 							<td class="text-center"><input type="file" name="post"
-								multiple="multiple" id="sname"></td>
+								multiple="multiple" id="sname" class="poster-insert"></td>
 						</tr>
 						<tr>
 							<th><input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}"></th>
-							<th colspan="2" class="text-center"><a href="javascript:{}"
-								onclick="submitTest();" class="reg-btn">등록완료</a></th>
-							<th><a href="#" onclick="Cancel()" class="reg-btn">메인화면으로
-									이동</a></th>
+							<!--<td class = "main-btn"><a href="#"
+								onclick="submitTest();" class="reg-btn">등록완료</a></td>
+							<td class = "main-btn"><a href="#" onclick="Cancel()" class="reg-btn">메인화면으로
+									이동</a></td>-->
 						</tr>
 					</table>
+					<a href="#" onclick="submitTest();" class="reg-btn main-btn">등록완료</a>
+					<a href="#" onclick="Cancel()" class="reg-btn main-btn">메인화면으로
+						이동</a>
 				</form>
 			</div>
 		</div>
