@@ -114,7 +114,13 @@
 							<ul class="ranking">
 								<li><strong>예매율</strong> <span> <em>1</em> 위 (42.1%)
 								</span></li>
-								<li>평점 ★★★★★ (10/10)</li>
+								<li><p class="star_rating">
+                                        <a class="on">★</a>
+                                        <a class="on">★</a>
+                                        <a class="on">★</a>
+                                        <a class="on">★</a>
+                                        <a>★</a>
+                                    </p></li>
 								<li>(총 9,888,000 명)</li>
 							</ul>
 							<ul class="mov-grade">
