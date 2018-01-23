@@ -58,7 +58,19 @@ li {
     appearance: none;
 }
 .synop {
-    width: 350px;
+    width: 280px;
     height: 500px;
     resize: none;
+}
+
+.poster-insert {
+    width: 200px;
+    margin-left: 110px;
+}
+.main-btn {
+    position: relative;
+    bottom: 50px;
+    margin-right: 20px;
+    left: 320px;
+    
 }

@@ -30,7 +30,13 @@
 		}
 	}
 	function submitTest() {
-        $('#starForm').submit();
+		 if ($("#star-count").text() === "0" || $(".reply-box").val() === "") {
+             alert("댓글과 별점을 입력해주세요!");
+             return false;
+         } else {
+            $('#starForm').submit();
+         }
+     }
     }
 </script>
 </head>
@@ -108,7 +114,13 @@
 							<ul class="ranking">
 								<li><strong>예매율</strong> <span> <em>1</em> 위 (42.1%)
 								</span></li>
-								<li>평점 ★★★★★ (10/10)</li>
+								<li><p class="star_rating">
+                                        <a class="on">★</a>
+                                        <a class="on">★</a>
+                                        <a class="on">★</a>
+                                        <a class="on">★</a>
+                                        <a>★</a>
+                                    </p></li>
 								<li>(총 9,888,000 명)</li>
 							</ul>
 							<ul class="mov-grade">
@@ -163,6 +175,7 @@
                             <input type="radio" name="star-input" value="5" id="p5">
                             <label for="p5">5</label>
   	                    </span>
+  	                      <output for="star-input" id="star-output"><b id = "star-count">0</b>점</output>
                     </span>
                     <div class="input-area">
                         <h4 class="user-name">user</h4>

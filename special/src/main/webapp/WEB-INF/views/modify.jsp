@@ -15,10 +15,30 @@
 <title>Untitled Document</title>
 <script>
 	function submitTest() {
-		$('#joinForm').submit();
+		if ($(".title").val() === "") {
+			alert("제목을 입력해주세요!");
+			return false;
+		} else if ($(".genre").val() === "") {
+			alert("장르를 입력해주세요!");
+			return false;
+		} else if ($(".grade").val() === "") {
+			alert("시청 등급을 입력해주세요!");
+			return false;
+		} else if ($(".mrun").val() === "") {
+			alert("상영 시간을 입력해주세요!");
+			return false;
+		} else if ($(".sdate").val() === "") {
+			alert("개봉일을 입력해주세요!");
+			return false;
+		} else if ($(".edate").val() === "") {
+			alert("종영일을 입력해주세요!");
+			return false;
+		} else {
+			$('#joinForm').submit();
+		}
 	}
 	function Cancel() {
-		if (confirm("가입하지 않고 나가시겠습니까?")) {
+		if (confirm("진행중인것을 그만두고 나가시겠습니까?")) {
 			location.href = "../special/movie/list.do";
 		}
 	}
@@ -29,7 +49,7 @@
 		<div class="container">
 			<div class="header">
 				<div class="logo">
-					<a href="<c:url value='/'/>"> Movie Theater </a>
+					<a href="<c:url value='/'/>" onclick="Cancel();"> Movie Theater </a>
 				</div>
 			</div>
 			<div class="content">
@@ -46,7 +66,8 @@
 						</tr>
 						<tr>
 							<th class="text-right">- 시놉시스</th>
-							<td class="text-center"><textarea name="content" class = "synop">${item.content}</textarea></td>
+							<td class="text-center"><textarea name="content"
+									class="synop">${item.content}</textarea></td>
 						</tr>
 						<tr>
 							<th class="text-right">- 장르</th>
@@ -74,20 +95,19 @@
 								value="${item.edate}" id="sname"></td>
 						</tr>
 						<tr>
-							<th class="text-right">- 영화 포스터</th>
+							<th class="text-right">- 첨부파일</th>
 							<td class="text-center"><input type="file" name="post"
-								multiple="multiple"></td>
+								multiple="multiple" class="poster-insert"></td>
 						</tr>
 						<tr>
 							<th><input type="hidden" name="mno" value="${item.mno}"></th>
-							<th colspan="2" class="text-center"><a href="javascript:{}"
-								onclick="submitTest();" class="reg-btn">수정완료</a></th>
-							<th><a href="#" onclick="Cancel()" class="reg-btn">메인화면으로
-									이동</a></th>
 							<th><input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}"></th>
 						</tr>
 					</table>
+					<a href="#" onclick="submitTest();" class="reg-btn main-btn">등록완료</a>
+					<a href="#" onclick="Cancel()" class="reg-btn main-btn">메인화면으로
+						이동</a>
 				</form>
 			</div>
 		</div>

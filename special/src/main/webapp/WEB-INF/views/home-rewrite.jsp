@@ -26,7 +26,7 @@
 					<c:forEach var="list" items="${ member.userTypes }">
 						<c:choose>
 							<c:when test="${list.type == 'ADMIN'}">
-								<li><a href="/special/movie/new.do" class="nav-link">영화
+								<li class ="nav-item"><a href="/special/movie/new.do" class="nav-link">영화
 										등록 하기</a></li>
 							</c:when>
 						</c:choose>
