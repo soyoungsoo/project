@@ -21,8 +21,8 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public void stateChange(String seatno) throws CommonException {
-		reservationDao.stateChange(seatno);		
+	public void stateChange(Seat seat) throws CommonException {
+		reservationDao.stateChange(seat);		
 	}
 
 	@Override
@@ -30,10 +30,6 @@ public class TicketServiceImpl implements TicketService {
 		reservationDao.ticketing(reservation);		
 	}
 
-	@Override
-	public void time() throws CommonException {
-		reservationDao.time();
-	}
 
 	@Override
 	public void Cancel(Integer rno) throws CommonException {

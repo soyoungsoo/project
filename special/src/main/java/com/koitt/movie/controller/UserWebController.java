@@ -47,7 +47,7 @@ public class UserWebController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage() {
-		return "redirect:/movie/list.do";
+		return "login";
 	}
 	
 	@RequestMapping(value = "/logout" , method = RequestMethod.GET)
@@ -63,7 +63,7 @@ public class UserWebController {
 	
 	@RequestMapping(value="/join", method=RequestMethod.GET)
 	public String JoinPage() {
-		return "user/join";
+		return "user/join-rewrite";
 	}
 	@RequestMapping(value="/newUser", method=RequestMethod.POST)
 	public String Join(HttpServletRequest request,

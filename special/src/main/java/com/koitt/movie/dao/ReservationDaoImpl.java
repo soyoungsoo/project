@@ -27,23 +27,15 @@ public class ReservationDaoImpl implements ReservationDao {
 	@Override
 	public void ticketing(Reservation reservation) throws CommonException {
 		try {		
+			System.out.println("reservation " + reservation);
 			sqlSession.insert(MAPPER_NAMESPACE + ".insert", reservation);			
 		} catch (Exception e) {
 			logger.debug(e.getMessage());
 			logger.debug(new CommonException("ticketing 실패"));
+			e.printStackTrace();
 		}		
 	}
-	
-	@Override
-	public void time() throws CommonException {
-		try {		
-			sqlSession.insert(MAPPER_NAMESPACE + ".timeInsert" );			
-		} catch (Exception e) {
-			logger.debug(e.getMessage());
-			logger.debug(new CommonException("time 실패"));
-		}		
-	}
-	
+
 	@Override
 	public void Cancel(Integer rno) throws CommonException {
 		try {
@@ -51,6 +43,7 @@ public class ReservationDaoImpl implements ReservationDao {
 		} catch (Exception e) {
 			logger.debug(e.getMessage());
 			logger.debug(new CommonException("취소 실패"));
+			e.printStackTrace();
 		}
 		
 	}
@@ -80,12 +73,12 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
-	public void stateChange(String seatno) throws CommonException {
-		try {
-			sqlSession.update(MAPPER_NAMESPACE + ".seatUpdate", seatno);
+	public void stateChange(Seat seat) throws CommonException {
+		try {			
+			sqlSession.update(MAPPER_NAMESPACE + ".seatUpdate", seat);
 		} catch (Exception e) {
 			logger.debug(e.getMessage());
-			logger.debug(new CommonException("좌석 상태 변경 실패"));
+			logger.debug(new CommonException("좌석 상태 변경 실패"));			
 		}		
 		
 	}

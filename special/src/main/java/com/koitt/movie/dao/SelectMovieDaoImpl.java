@@ -25,10 +25,8 @@ public class SelectMovieDaoImpl implements SelectMovieDao{
 	@Override
 	public List<Seat> selectDate(Schedule schedule) throws CommonException {
 			List<Seat> list = null;
-			try {				
-				System.out.println(schedule);
-				list = sqlSesison.selectList(MAPPER_NAMESPACE + ".selectDate",schedule);
-				System.out.println(list);
+			try {								
+				list = sqlSesison.selectList(MAPPER_NAMESPACE + ".selectDate",schedule);				
 			} catch (Exception e) {
 				e.printStackTrace();					
 				logger.debug("검색 오류");				
@@ -39,10 +37,8 @@ public class SelectMovieDaoImpl implements SelectMovieDao{
 	@Override
 	public List<Seat> select(Seat seat) throws CommonException {
 		List<Seat> list = null;
-		try {			
-			System.out.println("Dao "+seat);
-			list = sqlSesison.selectList(MAPPER_NAMESPACE + ".select",seat);
-			System.out.println("Dao "+list);
+		try {					
+			list = sqlSesison.selectList(MAPPER_NAMESPACE + ".select",seat);			
 		} catch (Exception e) {
 			e.printStackTrace();					
 			logger.debug("좌석 검색 오류");				

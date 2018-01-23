@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,6 +33,8 @@ import javax.servlet.http.HttpSession;
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Member;
 import com.koitt.movie.model.Movie;
+import com.koitt.movie.model.Reservation;
+import com.koitt.movie.model.Seat;
 import com.koitt.movie.service.FileService;
 import com.koitt.movie.service.MemberService;
 import com.koitt.movie.service.MovieService;
@@ -262,18 +265,30 @@ public class MovieWebController {
 			return "login";
 		}
 
-			
 		@RequestMapping(value = "/ticket", method = RequestMethod.POST)
-		public void reserve(HttpSession session, @RequestParam(value = "mno", required = true)Integer mno, Integer tno, String seatno)
-			throws CommonException, UnsupportedEncodingException{
-//				Member member = (Member)session.getAttribute("member");				
-//				Integer memberno = member.getMemno();
-//				Reservation reservation = new Reservation();
-//				reservation.setMemNo(memberno);
-//				reservation.setMno(mno);
-//				reservation.setTno(tno);
-//				reservation.setSeatno(seatno);				
-//				ticketService.ticketing(reservation);
-//			return "redirect:list.do";			
+		public String reserve(HttpSession session,HttpServletRequest request, Integer mno, Integer tno, String seatno, Integer scount)
+			throws CommonException, UnsupportedEncodingException{				
+					
+			Reservation reservation = new Reservation();
+			Seat seat = new Seat();
+			
+			Member member = (Member) session.getAttribute("member");
+			Integer memNo = member.getMemno();
+			
+			reservation.setMemNo(memNo);
+			reservation.setMno(mno);
+			reservation.setTno(tno);
+			reservation.setSeatno(seatno);
+	
+			seat.setTno(tno);
+			seat.setSeatno(seatno);
+			seat.setIssue(1);
+			seat.setScount(scount);
+			System.out.println("controller "+ seat);
+			ticketService.ticketing(reservation);
+			ticketService.stateChange(seat);
+			
+			return "redirect:list.do";			
 		}
-}
+		
+	}

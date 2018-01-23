@@ -86,7 +86,6 @@ CREATE TABLE seat (
 	CONSTRAINT fk_theater FOREIGN KEY (tno) REFERENCES theater(tno),
 	CONSTRAINT fk_Schedule1 FOREIGN KEY (Scount) REFERENCES Schedule(Scount)
 );
-select * from seat;
 /* 티켓예매 */
 CREATE TABLE reservation (
 	rno NUMBER NOT NULL, /* 예매번호 */
@@ -101,6 +100,7 @@ CREATE TABLE reservation (
 	CONSTRAINT fk_theater12 FOREIGN KEY (tno) REFERENCES theater(tno)	
 );
 
+insert into reservation values();
 /* 평점 */
 CREATE TABLE movie_coment (
 	cno NUMBER NOT NULL, /* 댓글번호 */

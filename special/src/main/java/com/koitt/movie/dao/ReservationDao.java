@@ -11,10 +11,10 @@ public interface ReservationDao {
 	//상영관 좌석 상태
 	public List<Seat> SeatAll(Seat seat) throws CommonException;
 	//예매좌석 상태변경
-	public void stateChange(String seatno) throws CommonException;
+	public void stateChange(Seat seat) throws CommonException;
 	// 티켓예매
 	public void ticketing(Reservation reservation) throws CommonException;
-	public void time() throws CommonException;
+	
 	// 티켓 취소
 	public void Cancel(Integer rno) throws CommonException;
 	// 회원 번호로 예매 조회 

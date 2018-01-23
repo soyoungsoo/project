@@ -40,7 +40,7 @@ function Cancel(){
 </script>
 </head>
 <body>
-	<h1>로그인 화면</h1>
+	<h1>회원가입 화면</h1>
 	<form action="/special/newUser" method="post" name="userInfo" onsubmit="return ValueCheck()">		
 		<div>
 			<label>아이디 <input type="text" name="id"></label>

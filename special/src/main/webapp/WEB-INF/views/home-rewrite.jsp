@@ -37,18 +37,18 @@
 						<li class ="nav-item"><a class="nav-link" href="../user/setting">회원정보수정</a></li>
 					</c:if>
 					<c:if test="${member.id eq null }">
-						<li class="nav-item"><a href="" class="nav-link"> 로그인 </a></li>
-						<li class="nav-item"><a href="" class="nav-link"> 회원가입 </a></li>
+						<li class="nav-item"><a href="../login" class="nav-link"> 로그인 </a></li>
+						<li class="nav-item"><a href="../join" class="nav-link"> 회원가입 </a></li>
 					</c:if>
 				</ul>
 			</div>
 			<div class="content">
 				<ul>
 					<c:forEach items="${ list }" var="item">
-						<li><img class="inner-content-imgs" src="${item.post}">
+						<li><img class="inner-content-imgs" src="C:\evening_spring_new\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\special\movieImage/${item.post}">
 							<div class="view">
 								<div>
-									<a href="#">예매 하기</a> <a
+									<a href="/special/movie/ticket?mno=${item.mno}">예매 하기</a> <a
 										href="<c:url value='/movie/detail.do?mno=${ item.mno }'/>">상세
 										보기 <input type="hidden" name="id" value="${item.mno}">
 									</a>

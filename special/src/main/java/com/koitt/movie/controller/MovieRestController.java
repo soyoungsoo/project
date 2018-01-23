@@ -1,10 +1,14 @@
 package com.koitt.movie.controller;
 
 
+import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Schedule;
 import com.koitt.movie.model.Seat;
 import com.koitt.movie.service.SelectMovieService;
@@ -52,16 +57,13 @@ public class MovieRestController {
 			List<Seat> list = null;			
 			Seat seat = new Seat();
 						
-			System.out.println("tno " + tno);
-			System.out.println("mno " + mno);
-			System.out.println("date " + date);
 			seat.setMno(mno);
 			seat.setTno(tno);				
 			seat.setRdate(date);
 						
-			list = smService.select(seat);				
-			System.out.println(list);			
-			
+			list = smService.select(seat);											
 			return new ResponseEntity<List<Seat>>(list,HttpStatus.OK);
-	}	
+	}
+	
+
 }

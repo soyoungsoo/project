@@ -12,13 +12,6 @@
 		VALUES (#{rno},#{memno}, #{mno},#{tno},#{seatno},sysdate)
 	</insert>
 
-	<insert id="timeInsert">	
-		<selectKey keyProperty="bno" resultType="Integer" order="BEFORE">
-			SELECT seq_bno.NEXTVAL bno FROM DUAL			
-		</selectKey>	
-		INSERT INTO BUY 
-		VALUES (#{bno}, SYSDATE)	
-	</insert>
 	<select id="select" parameterType="Integer" resultType="Reservation">
 		SELECT r.rno, r.memno, r.mno, r.tno, r.seatno, r.btime,s.rdate
 		FROM reservation r,(SELECT * FROM Schedule) s
@@ -39,9 +32,9 @@
 		where id = #{id}
 	</update>
 	
-	<update id="seatUpdate" parameterType="String">
+	<update id="seatUpdate" parameterType="Seat">
 		UPDATE SEAT
-		SET ISSUE = #{ISSUE}
-		WHERE TNO = #{TNO} AND SEATNO = #{SEATNO};
+		SET ISSUE = #{issue}
+		WHERE TNO = #{tno} AND SCOUNT = #{Scount} AND SEATNO= #{seatno}
 	</update>
 </mapper>

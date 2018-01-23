@@ -3,8 +3,8 @@ package com.koitt.movie.model;
 public class Reservation {
 
 	private Integer rno; /* 예매번호 */
-	private Integer MemNo;  /* 회원번호 */
-	private Integer Mno; /* 영화번호 */
+	private Integer memno;  /* 회원번호 */
+	private Integer mno; /* 영화번호 */
 	private Integer tno; /* 상영관번호 */
 	private String seatno; /* 좌석번호 */
 	private String btime; /* 티켓팅코드 */
@@ -14,8 +14,8 @@ public class Reservation {
 	public Reservation(Integer rno, Integer memNo, Integer mno, Integer tno, String seatno, String bno) {
 
 		this.rno = rno;
-		this.MemNo = memNo;
-		this.Mno = mno;
+		this.memno = memNo;
+		this.mno = mno;
 		this.tno = tno;
 		this.seatno = seatno;
 		this.btime = bno;
@@ -30,19 +30,19 @@ public class Reservation {
 	}
 
 	public Integer getMemNo() {
-		return MemNo;
+		return memno;
 	}
 
 	public void setMemNo(Integer memNo) {
-		MemNo = memNo;
+		this.memno = memNo;
 	}
 
 	public Integer getMno() {
-		return Mno;
+		return mno;
 	}
 
 	public void setMno(Integer mno) {
-		Mno = mno;
+		this.mno = mno;
 	}
 
 	public Integer getTno() {
@@ -73,8 +73,8 @@ public class Reservation {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((MemNo == null) ? 0 : MemNo.hashCode());
-		result = prime * result + ((Mno == null) ? 0 : Mno.hashCode());
+		result = prime * result + ((memno == null) ? 0 : memno.hashCode());
+		result = prime * result + ((mno == null) ? 0 : mno.hashCode());
 		result = prime * result + ((btime == null) ? 0 : btime.hashCode());
 		result = prime * result + ((rno == null) ? 0 : rno.hashCode());
 		result = prime * result + ((seatno == null) ? 0 : seatno.hashCode());
@@ -91,15 +91,15 @@ public class Reservation {
 		if (getClass() != obj.getClass())
 			return false;
 		Reservation other = (Reservation) obj;
-		if (MemNo == null) {
-			if (other.MemNo != null)
+		if (memno == null) {
+			if (other.memno != null)
 				return false;
-		} else if (!MemNo.equals(other.MemNo))
+		} else if (!memno.equals(other.memno))
 			return false;
-		if (Mno == null) {
-			if (other.Mno != null)
+		if (mno == null) {
+			if (other.mno != null)
 				return false;
-		} else if (!Mno.equals(other.Mno))
+		} else if (!mno.equals(other.mno))
 			return false;
 		if (btime == null) {
 			if (other.btime != null)
@@ -129,10 +129,10 @@ public class Reservation {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Reservation [rno=");
 		builder.append(rno);
-		builder.append(", MemNo=");
-		builder.append(MemNo);
-		builder.append(", Mno=");
-		builder.append(Mno);
+		builder.append(", memno=");
+		builder.append(memno);
+		builder.append(", mno=");
+		builder.append(mno);
 		builder.append(", tno=");
 		builder.append(tno);
 		builder.append(", seatno=");
