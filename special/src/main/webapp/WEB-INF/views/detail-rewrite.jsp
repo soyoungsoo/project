@@ -30,7 +30,13 @@
 		}
 	}
 	function submitTest() {
-        $('#starForm').submit();
+		 if ($("#star-count").text() === "0" || $(".reply-box").val() === "") {
+             alert("댓글과 별점을 입력해주세요!");
+             return false;
+         } else {
+            $('#starForm').submit();
+         }
+     }
     }
 </script>
 </head>
@@ -163,6 +169,7 @@
                             <input type="radio" name="star-input" value="5" id="p5">
                             <label for="p5">5</label>
   	                    </span>
+  	                      <output for="star-input" id="star-output"><b id = "star-count">0</b>점</output>
                     </span>
                     <div class="input-area">
                         <h4 class="user-name">user</h4>

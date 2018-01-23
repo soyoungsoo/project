@@ -15,7 +15,7 @@
 <title>사용자 정보 수정</title>
 <script type="text/javascript">
 	function Cancel(){
-			if(confirm("수정하지 않고 나가시겠습니까?")){
+			if(confirm("진행중인것을 그만두고 나가시겠습니까?")){
 				location.href="../movie/list.do";
 			}
 		}
@@ -81,7 +81,7 @@
 		<div class="container">
 			<div class="header">
 				<div class="logo">
-					<a href="<c:url value='/'/>"> Movie Theater </a>
+					<a href="<c:url value='/'/>" onclick="Cancel();"> Movie Theater </a>
 				</div>
 			</div>
 			<div class="content">

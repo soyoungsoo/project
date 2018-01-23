@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 function Cancel(){
-			if(confirm("가입하지 않고 나가시겠습니까?")){
+			if(confirm("진행중인것을 그만두고 나가시겠습니까?")){
 				location.href="../special/movie/list.do";
 			}
 		}
