@@ -269,24 +269,25 @@ public class MovieWebController {
 		public String reserve(HttpSession session,HttpServletRequest request, Integer mno, Integer tno, String seatno, Integer scount)
 			throws CommonException, UnsupportedEncodingException{				
 					
-			Reservation reservation = new Reservation();
+			Reservation reservation = new Reservation();			
 			Seat seat = new Seat();
-			
 			Member member = (Member) session.getAttribute("member");
 			Integer memNo = member.getMemno();
+			String seatno_cut[] = seatno.split(",");
 			
-			reservation.setMemNo(memNo);
-			reservation.setMno(mno);
-			reservation.setTno(tno);
-			reservation.setSeatno(seatno);
-	
-			seat.setTno(tno);
-			seat.setSeatno(seatno);
-			seat.setIssue(1);
-			seat.setScount(scount);
-			System.out.println("controller "+ seat);
-			ticketService.ticketing(reservation);
-			ticketService.stateChange(seat);
+			for (String string : seatno_cut) {
+				reservation.setMemNo(memNo);
+				reservation.setMno(mno);
+				reservation.setTno(tno);
+				reservation.setSeatno(string);
+				seat.setTno(tno);
+				seat.setSeatno(string);
+				seat.setIssue(1);
+				seat.setScount(scount);
+				ticketService.ticketing(reservation);
+				ticketService.stateChange(seat);
+				System.out.println();
+			}
 			
 			return "redirect:list.do";			
 		}
