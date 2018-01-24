@@ -31,5 +31,6 @@
 	</bean>
 	<mvc:resources location="/" mapping="/**" />
 	<mvc:annotation-driven conversion-service="conversionService"/>
+	<mvc:default-servlet-handler/>
 
 </beans>

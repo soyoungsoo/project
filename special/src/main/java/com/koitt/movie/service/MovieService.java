@@ -20,4 +20,5 @@ public interface MovieService {
 	public List<Movie> list() throws CommonException;
 	// 영화 상영회차 등록
 	public void runCount(Schedule schedule) throws CommonException;
+	// 영화 좌석 등록	
 }

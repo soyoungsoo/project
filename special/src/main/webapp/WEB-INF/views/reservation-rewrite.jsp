@@ -7,16 +7,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-<link rel="stylesheet"
-	href="jQuery-Radiobtn/css/zInput_default_stylesheet.css">
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<link rel="stylesheet" type="text/css" href="css/seat.css">
-<link rel="stylesheet" type="text/css" href="css/register.css">
+<link rel="stylesheet" href="<c:url value='/resources/bootstrap/css/bootstrap.min.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/bootstrap/css/bootstrap-theme.min.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/jQuery-Radiobtn/css/zInput_default_stylesheet.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/main.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/seat.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/register.css'/>">
+
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="jQuery-Radiobtn/zInput.js"></script>
+<script src="<c:url value='/resources/jQuery-Radiobtn/zInput.js'/>"></script>
 
 <meta charset="UTF-8">
 <title>Untitled Document</title>
@@ -390,8 +390,8 @@
 		$(".calendar").zInput();
 		$(".select-age").zInput();
 	</script>
-	<script src="bootstrap/js/jquery-1.12.4.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="<c:url value='/resources/bootstrap/js/jquery-1.12.4.min.js'/>"></script>
+	<script src="<c:url value='/resources/bootstrap/js/bootstrap.min.js'/>"></script>
 </body>
 
 
