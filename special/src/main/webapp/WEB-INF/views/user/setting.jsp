@@ -6,10 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<link rel="stylesheet" type="text/css" href="css/register.css">
+<link rel="stylesheet" href="<c:url value='/resources/bootstrap/css/bootstrap.min.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/bootstrap/css/bootstrap-theme.min.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/main.css'/>">
+<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/register.css'/>">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <title>Insert title here</title>
@@ -45,7 +45,7 @@
 			<p class="copyright">&copy;copyright reserved larl</p>
 		</div>
 	</div>
-	<script src="bootstrap/js/jquery-1.12.4.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="<c:url value='/resources/bootstrap/js/jquery-1.12.4.min.js'/>"></script>
+	<script src="<c:url value='/resources/bootstrap/js/bootstrap.min.js'/>"></script>
 </body>
 </html>
