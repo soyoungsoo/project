@@ -220,6 +220,7 @@
 								<c:choose>
 									<c:when test="${list.type == 'ADMIN'}">
 										<li><a class = "reg-btn" href="/special/movie/modify.do?mno=${item.mno}">수정하기</a></li>
+										<li><a class = "reg-btn" href="/special/movie/schedule.do?mno=${item.mno}">상영시간 추가하기</a></li>
 										<li><a class = "reg-btn" href="javascript:deleteCheck();">삭제하기</a></li>
 									</c:when>
 								</c:choose>

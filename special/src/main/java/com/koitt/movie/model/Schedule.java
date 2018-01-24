@@ -1,8 +1,7 @@
 package com.koitt.movie.model;
 
 public class Schedule {
-	
-//	@DateTimeFormat(pattern="yyyy-MM-dd")
+		
 	private String rdate; /* 상영일자 */
 	private Integer Scount; /* 상영회차*/
 	private Integer mno; /* 영화번호 */

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Movie;
+import com.koitt.movie.model.Schedule;
+import com.koitt.movie.model.Seat;
 
 @Repository
 public class MovieDaoImpl implements MovieDao{
@@ -79,6 +81,27 @@ public class MovieDaoImpl implements MovieDao{
 				throw new CommonException("E05: 영화 전체보기 실패");
 			}		
 		return list;
+	}
+
+	@Override
+	public void movie_schedule(Schedule schedule) throws CommonException {	
+		try {							
+				sqlSession.insert(MAPPER_NAMESPACE + ".insert-schedule", schedule);		
+			}catch (Exception e) {
+				logger.debug(e.getMessage());
+				throw new CommonException("E06: 상영회차 등록 실패");
+			}	
+		}
+
+	@Override
+	public void movie_seat(Seat seat) throws CommonException {
+		try {							
+			sqlSession.insert(MAPPER_NAMESPACE + ".insert-seat", seat);		
+		}catch (Exception e) {
+			logger.debug(e.getMessage());
+			throw new CommonException("E07: 좌석 등록 실패");
+		}	
+		
 	}
 
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Movie;
+import com.koitt.movie.model.Schedule;
+import com.koitt.movie.model.Seat;
 
 public interface MovieDao {
 
@@ -17,4 +19,8 @@ public interface MovieDao {
 	public Movie select(String no) throws CommonException;
 	// 영화 전체 가져오기
 	public List<Movie> selectAll() throws CommonException;
+	// 영화 상영회차 등록
+	public void movie_schedule(Schedule schedule) throws CommonException;
+	// 영화관 좌석 등록
+	public void movie_seat(Seat seat)throws CommonException;
 }

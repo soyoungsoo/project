@@ -18,10 +18,6 @@
 		WHERE s.mno = r.mno AND MEMNO = #{memno};
 	</select>
 	
-
-	<select id="seatSelect" parameterType="Integer" resultType="seat">
-		SELECT * FROM SEAT WHERE tno = #{tno}
-	</select>
 	<delete id= "delete" parameterType = "Integer">
 		DELETE FROM RESERVATION WHERE rno = #{rno}
 	</delete>	

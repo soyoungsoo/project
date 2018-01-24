@@ -33,8 +33,8 @@ VALUES (memno_seq.nextval,'admin','1234','관리자','2018-01-06','admin@koitt.c
 	WHERE m.memno = ut.memno;
 
 /* 회원 타입 추가*/
-insert into user_info_type(memno,user_info_type_id) values (21,1);
-insert into user_info_type(memno,user_info_type_id) values (21,2);
+insert into user_info_type(memno,user_info_type_id) values (1,1);
+insert into user_info_type(memno,user_info_type_id) values (1,2);
 
 
 /* 상영관 추가(관, 좌석 수) */
@@ -46,7 +46,7 @@ INSERT INTO theater VALUES(5,45);
 /* 상영관 조회*/
 SELECT * FROM THEATER;
 
-/*좌석 (상영관,좌석이름, 좌석 상태, 상영회차)*/
+/*좌석 (상영관, 좌석이름, 좌석 상태, 상영회차)*/
 INSERT INTO seat VALUES (1,'A-1',0,1);
 INSERT INTO seat VALUES (1,'A-2',0,1);
 INSERT INTO seat VALUES (1,'A-3',0,1);
@@ -93,31 +93,13 @@ INSERT INTO seat VALUES (1,'E-3',0,1);
 INSERT INTO seat VALUES (1,'E-4',0,1);
 INSERT INTO seat VALUES (1,'E-5',0,1);
 
-
-/* 좌석 상태 변경*/
-UPDATE SEAT
-SET ISSUE = 1
-WHERE TNO = 1 AND SEATNO = 'A-1';
-
 /* 영화 스케줄 표*/
-INSERT INTO SCHEDULE VALUES (to_date('18/01/17 17:00','DD/MM/RR HH24:MI'),SEQ_SCOUNT.NEXTVAL,1);
-INSERT INTO SCHEDULE VALUES (to_date('18/01/17 19:00','DD/MM/RR HH24:MI'),SEQ_SCOUNT.NEXTVAL,1);
-
 INSERT INTO SCHEDULE VALUES ('2018/01/17 17:00',SEQ_SCOUNT.NEXTVAL,1);
 INSERT INTO SCHEDULE VALUES ('2018/01/17 19:00',SEQ_SCOUNT.NEXTVAL,1);
 
-
-
+select * from schedule;
 select * from seat;
-update seat
-set issue = 0
-where tno=1;
 select * from reservation;
 delete RESERVATION where memno ='21';
-DELETE FROM RESERVATION WHERE rno = '2';
-/* 좌석 상태변경*/
-update SEAT
-set issue=0
-where tno = 1 and scount = 1 and seatno='A-1';
-s
+
 

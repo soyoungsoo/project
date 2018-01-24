@@ -149,7 +149,7 @@ public class UserWebController {
 			out.println("<script>alert('회원정보를 변경하였습니다.'); location.href='/special/movie/list.do';</script>");
 			out.flush();
 			
-			return null;						
+			return "error";						
 		}
 		
 		@RequestMapping(value = "/user/setting" , method = RequestMethod.GET)

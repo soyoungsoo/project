@@ -142,7 +142,7 @@
 		<div class="container">
 			<div class="header">
 				<div class="logo text-center">
-					<a href="Movies_Main.html">Movie Theater</a>
+					<a href="/">Movie Theater</a>
 				</div>
 			</div>
 			<div class="content ">
@@ -168,11 +168,7 @@
 							id="jan-22" title="월<br> 22">
 					</div>
 					<div class="theater-container">
-						<h2>- 상영관</h2>
-						<h4>
-							현재 영화 :
-							<p class="movie-title">문 라이트</p>
-						</h4>
+						<h2>- 상영관</h2>						
 						<div class="preserv-folded">
 							<hr class="hr">
 							<div class="preserv-time">

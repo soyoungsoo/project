@@ -1,6 +1,7 @@
 package com.koitt.movie.controller;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -9,13 +10,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,12 +30,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpSession;
-
+import com.koitt.movie.dao.MovieDao;
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Member;
 import com.koitt.movie.model.Movie;
 import com.koitt.movie.model.Reservation;
+import com.koitt.movie.model.Schedule;
 import com.koitt.movie.model.Seat;
 import com.koitt.movie.service.FileService;
 import com.koitt.movie.service.MemberService;
@@ -60,7 +62,7 @@ public class MovieWebController {
 	private FileService fileService;	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String homePage(Model model) {
+	public String homePage() {
 		return "redirect:list.do";
 	}
 
@@ -127,8 +129,6 @@ public class MovieWebController {
 	// 글 작성 화면
 	@RequestMapping(value = "/new.do", method = RequestMethod.GET)
 	public String newBoard() {
-
-
 		return "movieInsert";
 	}
 
@@ -266,15 +266,15 @@ public class MovieWebController {
 		}
 
 		@RequestMapping(value = "/ticket", method = RequestMethod.POST)
-		public String reserve(HttpSession session,HttpServletRequest request, Integer mno, Integer tno, String seatno, Integer scount)
-			throws CommonException, UnsupportedEncodingException{				
+		public String reserve(HttpSession session, HttpServletRequest request, HttpServletResponse response, Integer mno, Integer tno, String seatno, Integer scount)
+			throws CommonException, Exception{				
 					
 			Reservation reservation = new Reservation();			
 			Seat seat = new Seat();
 			Member member = (Member) session.getAttribute("member");
 			Integer memNo = member.getMemno();
 			String seatno_cut[] = seatno.split(",");
-			
+			System.out.println("scount "+ scount);
 			for (String string : seatno_cut) {
 				reservation.setMemNo(memNo);
 				reservation.setMno(mno);
@@ -286,10 +286,38 @@ public class MovieWebController {
 				seat.setScount(scount);
 				ticketService.ticketing(reservation);
 				ticketService.stateChange(seat);
-				System.out.println();
-			}
+				System.out.println(seat);
+			}	
+			return "redirect:list.do";		
+//			response.setContentType("text/html; charset=UTF-8");
+//			PrintWriter out = response.getWriter();
+//			out.println("<script>alert('예매 완료되셨습니다.'); location.href='/special/movie/list.do';</script>");
+//			out.flush();
+			// 예매목록으로 가시겠습니까?
 			
-			return "redirect:list.do";			
 		}
 		
+		@RequestMapping(value = "/schedule.do", method = RequestMethod.GET)
+		public String schedule(Model model,Integer mno)
+			throws CommonException, UnsupportedEncodingException{				
+				model.addAttribute("mno",mno);
+			return "movie-schedule";			
+		}
+		
+		@RequestMapping(value = "/schedule", method = RequestMethod.POST)
+		public String schedule(HttpServletRequest request,Integer mno, String runTime, String runDay)
+			throws CommonException, UnsupportedEncodingException{				
+			
+			Schedule sc = new Schedule();
+			StringBuilder sb = new StringBuilder();
+			sb.append(runDay);
+			sb.append(" ");
+			sb.append(runTime);						
+			sc.setMno(mno);
+			sc.setRdate(sb.toString());			
+			movieService.runCount(sc);
+			Integer scount = sc.getScount();
+			System.out.println("scount "+ sc.getScount());
+			return "redirect:list.do";			
+		}
 	}

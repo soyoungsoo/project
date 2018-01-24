@@ -15,7 +15,6 @@
 	href="../jQuery-Radiobtn/css/zInput_default_stylesheet.css">
 <link rel="stylesheet" type="text/css" href="../css/main.css">
 <link rel="stylesheet" type="text/css" href="../css/seat.css">
-<link rel="stylesheet" type="text/css" href="css/seat.css">
 <link rel="stylesheet" type="text/css" href="../css/register.css">
 
 <script
@@ -33,14 +32,15 @@
 		function selectedSeat(target) {
 				
 			var cs = $(target).attr("class");			
-			//var sub_cs = cs.substring(7,8);							
-			var sub_cs = cs.substring(4,5);
-			alert(sub_cs);
+			var sub_cs = cs.substring(7,8);							
+			//var sub_cs = cs.substring(4,5);
+
 			var title = $(target).attr("title");							   	 
 		    var sub_tno = title.substring(6,7);
 		    var sub_seatno = title.substring(15,18);						    		   		
-			var sub_scount = cs.substring(9,10);	
-				
+			var sub_scount = cs.substring(9,10);			
+			//var sub_scount = cs.substring(6,7);
+			
 			if(sub_cs == 0){							
 				var t_class = $(target).attr("class", 'p0 '+sub_seatno + ' ' +'1');								    			
 				var str ="";
@@ -81,7 +81,7 @@
 				processData: false,
 				contentType: false ,
 				cache: false,
-				success: function(data, textStatus, xhr) {					
+				success: function(data, textStatus, xhr) {
 					//alert(JSON.stringify(data));				
 					$.each(data, function (key, value) {														
 					    var eachrow ='<ul class="ajax-button'+ key +'" id="'+ value.rdate +'">' +
@@ -122,7 +122,7 @@
 																
 										var htmlrow = 
 											//  p0 
-											'<a class="'+ value.seatno +' 0 '+ value.tno +'" value="'+ value.issue +'" data-seat="' + (key+1) +'" seat-group="grNum3"' + 
+											'<a class="p0 '+ value.seatno +' 0 '+ value.scount +'" value="'+ value.issue +'" data-seat="' + (key+1) +'" seat-group="grNum3"' + 
 											'title="상영관 : ' + value.tno + ' 좌석 번호: '+ value.seatno + ' - 일반석"'+
 											'seat-code="1A01" onclick="selectedSeat(this);">'+ (key+1) +'</a>'
 											

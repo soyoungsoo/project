@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.koitt.movie.dao.MovieDao;
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Movie;
+import com.koitt.movie.model.Schedule;
 
 @Service
 public class MovieServiceImpl implements MovieService{
@@ -36,7 +37,6 @@ public class MovieServiceImpl implements MovieService{
 
 		return filename;
 	}
-
 	@Transactional
 	@Override
 	public String modify(Movie movie) throws CommonException {
@@ -49,10 +49,8 @@ public class MovieServiceImpl implements MovieService{
 		String oldFilename = item.getPost();
 		dao.update(movie);
 
-		return oldFilename;
-		
+		return oldFilename;		
 	}
-
 	@Override
 	public Movie detail(String no) throws CommonException {		
 		return dao.select(no);
@@ -62,5 +60,10 @@ public class MovieServiceImpl implements MovieService{
 	public List<Movie> list() throws CommonException {				
 		return dao.selectAll();
 	}
-
+	
+	@Transactional
+	@Override
+	public void runCount(Schedule schedule) throws CommonException {
+		dao.movie_schedule(schedule);		
+	}
 }
