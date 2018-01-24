@@ -19,6 +19,9 @@
 			alert("제목을 입력해주세요!");
 			return false;
 		} else if ($(".genre").val() === "") {
+			alert("시놉시스를 입력해주세요!");
+			return false;
+		} else if ($(".genre").val() === "") {
 			alert("장르를 입력해주세요!");
 			return false;
 		} else if ($(".grade").val() === "") {
