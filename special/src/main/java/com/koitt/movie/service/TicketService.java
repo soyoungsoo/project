@@ -19,4 +19,5 @@ public interface TicketService {
 		public void Cancel(Integer rno) throws CommonException;
 		// 회원 번호로 예매 조회 
 		public List<Reservation> Lookup(Integer memno) throws CommonException;
+		
 }
