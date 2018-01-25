@@ -122,8 +122,16 @@ public class UserWebController {
 				String email)
 						throws CommonException,Exception {
 			
-			Member sessionmember = (Member)session.getAttribute("member");
+			Member sessionmember = (Member)session.getAttribute("member");			
 			String id = sessionmember.getId();
+			System.out.println("id " +id);
+			if(id == null) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('로그인 후 이용해주세요'); location.href='/special/user/modify';</script>");
+				out.flush();
+				return "redirect:list.do";
+			}
 			// 기존 비밀번호 검사 후 수정할지 결정
 			boolean isMatched = MemberService.isPasswordMatched(id, oldPassword);			
 			System.out.println(oldPassword);			
@@ -131,7 +139,7 @@ public class UserWebController {
 			if (!isMatched) {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('비밀번호를 잘못 입력하셨습니다.'); location.href='/special//user/modify';</script>");
+				out.println("<script>alert('비밀번호를 잘못 입력하셨습니다.'); location.href='/special/user/modify';</script>");
 				out.flush();
 			}
 
