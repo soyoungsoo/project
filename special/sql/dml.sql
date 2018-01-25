@@ -36,7 +36,6 @@ VALUES (memno_seq.nextval,'admin','1234','관리자','2018-01-06','admin@koitt.c
 insert into user_info_type(memno,user_info_type_id) values (1,1);
 insert into user_info_type(memno,user_info_type_id) values (1,2);
 
-
 /* 상영관 추가(관, 좌석 수) */
 INSERT INTO theater VALUES(1,45);
 INSERT INTO theater VALUES(2,45);
