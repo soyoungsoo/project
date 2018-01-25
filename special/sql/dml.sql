@@ -45,12 +45,14 @@ INSERT INTO theater VALUES(4,45);
 INSERT INTO theater VALUES(5,45);
 /* 상영관 조회*/
 SELECT * FROM THEATER;
-
+select * from seat;
+select * from schedule;
+delete from seat where seatno = 'A-1';
 /*좌석 (상영관, 좌석이름, 좌석 상태, 상영회차)*/
-INSERT INTO seat VALUES (1,'A-1',0,1);
-INSERT INTO seat VALUES (1,'A-2',0,1);
-INSERT INTO seat VALUES (1,'A-3',0,1);
-INSERT INTO seat VALUES (1,'A-4',0,1);
+INSERT INTO seat VALUES (1,'A-1',0,2);
+INSERT INTO seat VALUES (1,'A-2',0,2);
+INSERT INTO seat VALUES (1,'A-3',0,2);
+INSERT INTO seat VALUES (1,'A-4',0,2);
 INSERT INTO seat VALUES (1,'A-5',0,1);
 INSERT INTO seat VALUES (1,'A-6',0,1);
 INSERT INTO seat VALUES (1,'A-7',0,1);
@@ -91,15 +93,66 @@ INSERT INTO seat VALUES (1,'E-1',0,1);
 INSERT INTO seat VALUES (1,'E-2',0,1);
 INSERT INTO seat VALUES (1,'E-3',0,1);
 INSERT INTO seat VALUES (1,'E-4',0,1);
-INSERT INTO seat VALUES (1,'E-5',0,1);
+INSERT INTO seat VALUES (1,'E-5',0,2);
 
 /* 영화 스케줄 표*/
-INSERT INTO SCHEDULE VALUES ('2018/01/17 17:00',SEQ_SCOUNT.NEXTVAL,1);
-INSERT INTO SCHEDULE VALUES ('2018/01/17 19:00',SEQ_SCOUNT.NEXTVAL,1);
+INSERT INTO SCHEDULE VALUES ('2018-01-17 17:00',SEQ_SCOUNT.NEXTVAL,1);
+INSERT INTO SCHEDULE VALUES ('2018-01-17 19:00',SEQ_SCOUNT.NEXTVAL,1);
 
-select * from schedule;
-select * from seat;
+
 select * from reservation;
 delete RESERVATION where memno ='21';
 
+delete from seat where scount = 2;
+select distinct rdate, tno, d,f from (
+			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0) d,(select count(*) from SEAT)f
+			from seat s, (select * from schedule) sc 
+			where mno =1 and sc.scount=s.scount and Sc.RDATE LIKE  '2018-01-17%'
+			order by  sc.rdate asc
+			)
+			select distinct scount from seat;
+			
+			select * from seat;
+			select * from schedule;
+			select count(*) 
+			from (select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno 
+			from seat s, (select * from schedule) sc where issue=0 and s.scount = sc.scount) 
+			where scount =1;
+			
+			select distinct rdate, tno from (
+			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno
+			from seat s, (select * from schedule) sc 
+			where mno = 1 and sc.scount=  s.scount and Sc.RDATE LIKE '2018-01-17%'
+			order by  sc.rdate asc
+			)
+			
+			
+			select count(*) from SEAT s, (select * from schedule) sc where  mno =1 and sc.scount = 2 ;
+			
+			select *
+			from  SEAT s, (select * from schedule) sc 
+			where sc.scount = s.scount; 
+			
+			
+			select * from schedule;
+			select * from seat;
 
+			select distinct rdate, tno, d,f from (
+			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0 and scount =2) d,(select count(*) from SEAT where scount = 2 )f
+			from seat s, (select * from schedule) sc 
+			where mno = 1 and sc.scount= s.scount and Sc.RDATE LIKE  '2018-01-17%'
+			order by  sc.rdate asc
+			)
+			
+									      
+			select rdate, tno, d, f
+			from (select count(*) as d from seat where issue=0) ,
+			(select count(*) as f from SEAT ),(
+			select distinct rdate, tno from (
+			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno
+			from seat s, (select * from schedule) sc 
+			where mno = 1 and sc.scount= s.scount and Sc.RDATE LIKE  '2018-01-17%'
+			order by  sc.rdate asc
+			))
+			
+			

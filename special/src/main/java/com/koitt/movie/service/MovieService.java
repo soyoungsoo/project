@@ -5,6 +5,7 @@ import java.util.List;
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Movie;
 import com.koitt.movie.model.Schedule;
+import com.koitt.movie.model.Seat;
 
 public interface MovieService {
 
@@ -20,5 +21,6 @@ public interface MovieService {
 	public List<Movie> list() throws CommonException;
 	// 영화 상영회차 등록
 	public void runCount(Schedule schedule) throws CommonException;
-	// 영화 좌석 등록	
+	// 영화 좌석 등록
+	public void seatEnrollment(Seat seat) throws CommonException;
 }

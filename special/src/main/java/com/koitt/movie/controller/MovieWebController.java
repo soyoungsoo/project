@@ -288,13 +288,14 @@ public class MovieWebController {
 				ticketService.stateChange(seat);
 				System.out.println(seat);
 			}	
-			return "redirect:list.do";		
-//			response.setContentType("text/html; charset=UTF-8");
-//			PrintWriter out = response.getWriter();
-//			out.println("<script>alert('예매 완료되셨습니다.'); location.href='/special/movie/list.do';</script>");
-//			out.flush();
+				
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('예매 완료되셨습니다.'); location.href='/special/movie/list.do';</script>");
+			out.flush();
 			// 예매목록으로 가시겠습니까?
-			
+			//return "redirect:list.do";
+			return null;
 		}
 		
 		@RequestMapping(value = "/schedule.do", method = RequestMethod.GET)
@@ -305,19 +306,24 @@ public class MovieWebController {
 		}
 		
 		@RequestMapping(value = "/schedule", method = RequestMethod.POST)
-		public String schedule(HttpServletRequest request,Integer mno, String runTime, String runDay)
+		public String schedule(HttpServletRequest request,Integer mno,Integer tno, String runTime, String runDay)
 			throws CommonException, UnsupportedEncodingException{				
 			
 			Schedule sc = new Schedule();
+			Seat seat = new Seat();
 			StringBuilder sb = new StringBuilder();
 			sb.append(runDay);
 			sb.append(" ");
 			sb.append(runTime);						
 			sc.setMno(mno);
-			sc.setRdate(sb.toString());			
+			sc.setRdate(sb.toString());		
 			movieService.runCount(sc);
+			
 			Integer scount = sc.getScount();
-			System.out.println("scount "+ sc.getScount());
+			seat.setTno(tno);
+			seat.setScount(scount);			
+			System.out.println(seat);
+			movieService.seatEnrollment(seat);			
 			return "redirect:list.do";			
 		}
 	}

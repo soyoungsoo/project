@@ -13,6 +13,7 @@ import com.koitt.movie.dao.MovieDao;
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Movie;
 import com.koitt.movie.model.Schedule;
+import com.koitt.movie.model.Seat;
 
 @Service
 public class MovieServiceImpl implements MovieService{
@@ -65,5 +66,10 @@ public class MovieServiceImpl implements MovieService{
 	@Override
 	public void runCount(Schedule schedule) throws CommonException {
 		dao.movie_schedule(schedule);		
+	}
+	@Transactional
+	@Override
+	public void seatEnrollment(Seat seat) throws CommonException {
+		dao.movie_seat(seat);		
 	}
 }

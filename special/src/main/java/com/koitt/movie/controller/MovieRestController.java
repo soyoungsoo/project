@@ -61,7 +61,8 @@ public class MovieRestController {
 			seat.setTno(tno);				
 			seat.setRdate(date);
 						
-			list = smService.select(seat);											
+			list = smService.select(seat);	
+			
 			return new ResponseEntity<List<Seat>>(list,HttpStatus.OK);
 	}
 	

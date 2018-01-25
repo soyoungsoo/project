@@ -11,16 +11,7 @@
 	<h1>영화 상영시간 추가</h1>
 	<form action="schedule" method="post">
 		<label>상영관</label> 		
-		<input id="tnoNum" type="number" name="tno" list="defaultNumbers">
-		<span class="validity"></span>
-
-		<datalist id="defaultNumbers">
-		  <option value="10045678">
-		  <option value="103421">
-		  <option value="11111111">
-		  <option value="12345678">
-		  <option value="12999922">
-		</datalist>
+		<input id="tnoNum" type="number" name="tno">
 		
 		<input type="date" name="runDay">
 		<input type="time" name="runTime">

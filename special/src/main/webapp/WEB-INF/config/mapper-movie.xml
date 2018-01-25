@@ -19,10 +19,10 @@
 		INSERT INTO SCHEDULE VALUES (#{rdate}, #{Scount}, #{mno})
 	</insert>
 		
-	<insert id="insert-seat" parameterType="Seat">		
-		INSERT INTO seat VALUES (#{tno}, #{seatno}, 0, #{Scount});
+	<insert id="insert-seat" parameterType="Seat" statementType="CALLABLE">		
+		 { CALL insert_seat(#{tno},#{Scount}) }
 	</insert>
-	
+		
 	<select id="select" parameterType="String" resultType="Movie">
 		SELECT * FROM Movie	WHERE mno = #{mno}
 	</select>
@@ -40,5 +40,6 @@
 		SET title = #{title}, content = #{content}, genre = #{genre}, grade = #{grade}, mrun = #{mrun}, sdate = #{sdate}, edate = #{edate}, post = #{post} 
 		WHERE mno = #{mno}
 	</update>
+		
 		
 </mapper>

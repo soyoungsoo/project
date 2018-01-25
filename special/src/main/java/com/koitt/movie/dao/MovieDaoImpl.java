@@ -99,7 +99,9 @@ public class MovieDaoImpl implements MovieDao{
 			sqlSession.insert(MAPPER_NAMESPACE + ".insert-seat", seat);		
 		}catch (Exception e) {
 			logger.debug(e.getMessage());
+			e.printStackTrace();
 			throw new CommonException("E07: 좌석 등록 실패");
+			
 		}	
 		
 	}
