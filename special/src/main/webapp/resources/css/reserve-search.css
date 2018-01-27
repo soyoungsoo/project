@@ -1,0 +1,47 @@
+.content h3 {
+            width: 980px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            width: 970px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        #select-key {
+            display: inline-block;
+            width: 50%;
+        }
+        
+        .my-reserve {
+            display: inline-block;
+            background: white;
+            text-align: center;
+            width: 240px;
+            border: 1px solid gray;
+        }
+        .content ul li:nth-child(4n+1) {
+            margin-left: 0;
+            margin-bottom: 40px;
+        }
+        .reserve-place {
+            font-size: 16px;
+        }
+
+        .content ul li {
+            height: 20px;
+            clear: both;
+            float: none;
+        }
+        #test-div {
+            width: 1000px;
+            text-align: center;
+            background: aliceblue;
+            margin-top: 20px;
+        }
+        .select-cover {
+            width: 970px;
+            text-align: center;
+        }
