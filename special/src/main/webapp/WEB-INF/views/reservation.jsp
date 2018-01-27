@@ -195,6 +195,7 @@
 	
 			</div>
 		</div>
+<<<<<<< HEAD
 	</div>
 	
 	
@@ -202,6 +203,15 @@
             <p class="copyright">&copy;copyright reserved larl</p>
         </div>
         	<script>
+=======
+	<div class="footer">
+		<p class="copyright">&copy;copyright reserved larl</p>
+	</div>
+	</div>
+
+
+	<script>
+>>>>>>> branch 'master' of https://github.com/soyoungsoo/project.git
 		$(".calendar").zInput();
 		$(".select-age").zInput();
 	</script>

@@ -44,7 +44,7 @@
 						<li class="nav-item"><a href="../join" class="nav-link"> 회원가입 </a></li>
 					</c:if>
 				</ul>
-			</div>
+			</dv>
 			<div class="content">
 				<ul>							
 					<c:forEach items="${ list }" var="item">

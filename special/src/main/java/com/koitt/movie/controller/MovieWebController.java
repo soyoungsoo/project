@@ -341,7 +341,7 @@ public class MovieWebController {
 		        		        	
 		     
 		        byte[] imageData =  post;
-		        System.out.println(imageData.toString());
+		        System.out.println();
 		        response.setContentType("image/jpeg");
 		        response.getOutputStream().write(imageData);
 		        		   		  		        
