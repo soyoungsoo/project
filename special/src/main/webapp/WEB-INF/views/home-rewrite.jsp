@@ -34,7 +34,7 @@
 						</c:choose>
 					</c:forEach>
 					<c:if test="${member.id ne null}">
-						<li class ="nav-item">${member.id}</li>
+						<li class ="nav-item">${member.id} 님</li>
 						<li class ="nav-item"><a class="nav-link" href="../logout">로그아웃</a></li>
 						<li class ="nav-item"><a class="nav-link" href="../user/setting">회원정보수정</a></li>
 						<li class ="nav-item"><a class="nav-link" href="../user/reserve">내 예매 내역 보기</a></li>
@@ -62,6 +62,7 @@
 					</c:forEach>
 				</ul>									
 			</div>
+		</div>
 		</div>
 		<div class="footer">
 			<p class="copyright">&copy;copyright reserved larl</p>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html>
 
@@ -148,6 +149,15 @@
 					<a href="/">Movie Theater</a>
 				</div>
 			</div>
+			<div class ="nav">
+                <ul class = "nav-list">
+                    <c:if test="${member.id ne null}">
+						<li class ="nav-item">${member.id} 님</li>
+						<li class ="nav-item"><a class="nav-link" href="../logout">로그아웃</a></li>
+						<li class ="nav-item"><a class="nav-link" href="../user/setting">회원정보수정</a></li>
+					</c:if>
+                </ul>
+            </div>
 			<div class="content ">
 				<form action="/movie/ticket" method="post" id="reserv-form">
 					<div class="calendar text-center">

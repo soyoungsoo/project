@@ -55,6 +55,15 @@
 					<a href="<c:url value='/'/>" onclick="Cancel();"> Movie Theater </a>
 				</div>
 			</div>
+			<div class ="nav">
+                <ul class = "nav-list">
+                    <c:if test="${member.id ne null}">
+						<li class ="nav-item">${member.id} 님</li>
+						<li class ="nav-item"><a class="nav-link" href="../logout">로그아웃</a></li>
+						<li class ="nav-item"><a class="nav-link" href="../user/setting">회원정보수정</a></li>
+					</c:if>
+                </ul>
+            </div>
 			<div class="content">
 				<form action="<c:url value='/movie/new.do'/>" method="post"
 					enctype="multipart/form-data" id="joinForm">

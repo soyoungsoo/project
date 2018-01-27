@@ -42,7 +42,7 @@
 
         .nav {
             display: inline-block;
-            text-align: center;
+            text-align: right;
             width: 998px;
             margin: 0;
             padding: 0;
@@ -52,9 +52,8 @@
         }
 
         .nav-list {
-            width: 800px;
             list-style: none;
-            margin-left: 180px;
+            margin-right: 30px;
             padding: 5px 0;
         }
 
@@ -90,16 +89,17 @@
 
         .nav-item {
             display: inline;
-            margin: 4px 0;
+            margin-left: 8px;
+            line-height:38px;
         }
 
         .nav-link {
             text-align: center;
-            margin-left: 8px;
             display: inline-block;
             text-decoration: none;
             padding: 4px 10px;
             color: #f7cac9;
+            line-height:30px;
         }
 
         .nav-link:hover {
