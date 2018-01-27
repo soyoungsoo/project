@@ -93,11 +93,13 @@ CREATE TABLE reservation (
 	Mno NUMBER, /* 영화번호 */
 	tno NUMBER, /* 상영관번호 */
 	seatno VARCHAR2(10), /* 좌석번호 */
-	btime TIMESTAMP, /* 티켓팅코드 */
+	btime TIMESTAMP, /* 티켓팅코드 */	
+	Scount NUMBER, /*상영회차*/
 	CONSTRAINT pk_reservation21 PRIMARY KEY (rno),
 	CONSTRAINT fk_Member3 FOREIGN KEY (MemNo) REFERENCES Member(MemNo),
 	CONSTRAINT fk_Movie12 FOREIGN KEY (Mno) REFERENCES Movie(Mno),
-	CONSTRAINT fk_theater12 FOREIGN KEY (tno) REFERENCES theater(tno)	
+	CONSTRAINT fk_theater12 FOREIGN KEY (tno) REFERENCES theater(tno),
+	CONSTRAINT fk_Schedule_r FOREIGN KEY (Scount) REFERENCES Schedule(Scount)
 );
 
 insert into reservation values();

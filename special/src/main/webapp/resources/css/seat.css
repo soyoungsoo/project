@@ -36,12 +36,29 @@
     background: #92a8d1;
 }
 
-.already-selected {
+.seat-broken {
     background-image: url(../image/bg_disabled.gif);
+}
+
+.already-selected {
+    background-color: whitesmoke;
+    color: gray;
 }
 
 .seat_Barea {
     overflow: auto;
+    position: relative;
+    padding: 20px 0;
+    padding-top: 50px;
+    align-content: background:#f9f8f3;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box
+}
+
+.seat_Barea_another {
+	
+	margin-top: 40px;
     position: relative;
     padding: 20px 0;
     padding-top: 50px;

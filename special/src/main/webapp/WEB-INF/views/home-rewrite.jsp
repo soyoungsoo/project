@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="<c:url value='/resources/bootstrap/css/bootstrap-theme.min.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/main.css'/>">
 <title>메인화면</title>
+<script>	
+</script>
 </head>
 
 <body>
@@ -35,6 +37,7 @@
 						<li class ="nav-item">${member.id}</li>
 						<li class ="nav-item"><a class="nav-link" href="../logout">로그아웃</a></li>
 						<li class ="nav-item"><a class="nav-link" href="../user/setting">회원정보수정</a></li>
+						<li class ="nav-item"><a class="nav-link" href="../user/reserve">내 예매 내역 보기</a></li>
 					</c:if>
 					<c:if test="${member.id eq null }">
 						<li class="nav-item"><a href="../login" class="nav-link"> 로그인 </a></li>
@@ -43,9 +46,10 @@
 				</ul>
 			</div>
 			<div class="content">
-				<ul>
+				<ul>							
 					<c:forEach items="${ list }" var="item">
-						<li><img class="inner-content-imgs" src="C:\evening_spring_new\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\special\movieImage/${item.post}">
+						<li><img class="inner-content-imgs" src="<c:url value="/img/${item.post}"/>"/>
+						
 							<div class="view">
 								<div>
 									<a href="/special/movie/ticket?mno=${item.mno}">예매 하기</a> <a
@@ -53,8 +57,9 @@
 										보기 <input type="hidden" name="id" value="${item.mno}">
 									</a>
 								</div>
-							</div></li>
-					</c:forEach>
+							</div>
+						</li>
+					</c:forEach>					
 				</ul>
 			</div>
 		</div>

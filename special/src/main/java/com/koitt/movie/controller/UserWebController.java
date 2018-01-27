@@ -196,5 +196,9 @@ public class UserWebController {
 				logger.debug(e.getMessage());
 			}
 			return null;
-		}			
+		}				
+		@RequestMapping(value = "/user/reserve" , method = RequestMethod.GET)
+		public String reserve() {
+			return "user/reserve";
+		}
 }

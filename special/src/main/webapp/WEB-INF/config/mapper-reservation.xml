@@ -3,21 +3,30 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.koitt.movie.dao.ReservationDaoImpl">
-
+	
 	<insert id="insert" parameterType="Reservation">	
 		<selectKey keyProperty="rno" resultType="Integer" order="BEFORE">
 			SELECT seq_rno.NEXTVAL rno FROM DUAL			
 		</selectKey>	
 		INSERT INTO reservation 
-		VALUES (#{rno},#{memno}, #{mno},#{tno},#{seatno},sysdate)
+		VALUES (#{rno},#{memno}, #{mno},#{tno},#{seatno},sysdate, #{Scount})
 	</insert>
-
-	<select id="select" parameterType="Integer" resultType="Reservation">
+	
+	<select id="select" parameterType="Integer" resultType="Reservation" >
 		SELECT r.rno, r.memno, r.mno, r.tno, r.seatno, r.btime,s.rdate
 		FROM reservation r,(SELECT * FROM Schedule) s
-		WHERE s.mno = r.mno AND MEMNO = #{memno};
+		WHERE s.mno = r.mno AND MEMNO = #{memno}
 	</select>
 	
+	<select id="select-Day" parameterType="Reservation" resultType="Reservation">
+			SELECT * 
+			FROM (SELECT r.rno, m.title, r.tno, r.seatno, r.btime,s.rdate
+			FROM reservation r,(SELECT * FROM Schedule) s, movie m
+			WHERE MEMNO = #{memno} and m.mno = r.mno and r.scount = s.scount)
+			<![CDATA[
+			WHERE to_char(add_months(sysdate, #{title}),'YYYY-MM-dd') <= btime
+			]]>	
+	</select>
 	<delete id= "delete" parameterType = "Integer">
 		DELETE FROM RESERVATION WHERE rno = #{rno}
 	</delete>	

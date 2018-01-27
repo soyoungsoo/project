@@ -49,13 +49,13 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
-	public List<Reservation> Lookup(Integer memno) throws CommonException {
+	public List<Reservation> Lookup(Reservation rs) throws CommonException {
 			List<Reservation> list = null;
 		try {
-			list  = sqlSession.selectList(MAPPER_NAMESPACE + ".select", memno);
+			list  = sqlSession.selectList(MAPPER_NAMESPACE + ".select-Day", rs);
 		} catch (Exception e) {
 			logger.debug(e.getMessage());
-			logger.debug(new CommonException("취소 실패"));
+			logger.debug(new CommonException("조회 실패"));
 		}
 		return list;				
 	}

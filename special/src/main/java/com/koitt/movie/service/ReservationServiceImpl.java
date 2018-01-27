@@ -11,7 +11,7 @@ import com.koitt.movie.model.Reservation;
 import com.koitt.movie.model.Seat;
 
 @Service
-public class TicketServiceImpl implements TicketService {
+public class ReservationServiceImpl implements ReservationService {
 
 	@Autowired
 	private ReservationDao reservationDao;
@@ -37,8 +37,8 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public List<Reservation> Lookup(Integer memno) throws CommonException {	
-		return reservationDao.Lookup(memno);
+	public List<Reservation> Lookup(Reservation rs) throws CommonException {	
+		return reservationDao.Lookup(rs);
 	}
 
 }

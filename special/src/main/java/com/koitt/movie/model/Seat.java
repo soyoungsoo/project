@@ -6,9 +6,9 @@ public class Seat {
 	private Integer tno;
 	private String seatno;
 	private Integer issue;
-	private Integer	Scount; /* 상영회차*/	
+	private Integer	Scount;
 	private String rdate;
-	private Integer mno; /* 영화번호 */
+	private Integer mno;	
 	private Integer d;
 	private Integer f;
 	

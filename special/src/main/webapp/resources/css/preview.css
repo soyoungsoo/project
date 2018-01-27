@@ -264,3 +264,11 @@
 .rep-user-name {
     margin-right: 30px;
 }
+
+.admin-menu ul {
+	text-align: center;
+}
+
+.admin-menu ul li {
+	display: inline-block;
+}

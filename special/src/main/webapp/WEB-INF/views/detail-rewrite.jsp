@@ -111,7 +111,6 @@
 					</div>
 					<hr>
 				</div>
-<<<<<<< HEAD
 					<div class="admin-menu">
 						<ul>
 							<c:forEach var="list" items="${ member.userTypes }">
@@ -123,7 +122,6 @@
 									</c:when>
 								</c:choose>
 							</c:forEach>
-=======
 			</div>
 			<div class="star-box">
 				<form action="#" method="post" id="starForm">
@@ -174,7 +172,6 @@
 								</p>
 
 							</li>
->>>>>>> branch 'master' of https://github.com/soyoungsoo/project.git
 						</ul>
 					</div>
 				</form>

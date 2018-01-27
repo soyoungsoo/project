@@ -1,6 +1,10 @@
 package com.koitt.movie.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -30,7 +34,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.koitt.movie.dao.MovieDao;
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Member;
 import com.koitt.movie.model.Movie;
@@ -40,7 +43,7 @@ import com.koitt.movie.model.Seat;
 import com.koitt.movie.service.FileService;
 import com.koitt.movie.service.MemberService;
 import com.koitt.movie.service.MovieService;
-import com.koitt.movie.service.TicketService;
+import com.koitt.movie.service.ReservationService;
 
 @Controller
 @RequestMapping("/movie")
@@ -51,7 +54,7 @@ public class MovieWebController {
 	@Autowired
 	private MemberService MemberService;
 	@Autowired
-	private TicketService ticketService;
+	private ReservationService ticketService;
 	
 	private Logger logger = LogManager.getLogger(this.getClass());
 
@@ -157,10 +160,10 @@ public class MovieWebController {
 		movie.setEdate(edate);
 		// 최상위 경로 밑에 upload 폴더의 경로를 가져온다.
 		String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);
-
+		System.out.println("PAth "+ path);
 		// MultipartFile 객체에서 파일명을 가져온다.
 		String originalName = post.getOriginalFilename();
-
+		System.out.println("origin "+originalName);
 		// upload 폴더가 없다면, upload 폴더 생성
 		File directory = new File(path);
 		if (!directory.exists()) {
@@ -276,10 +279,11 @@ public class MovieWebController {
 			String seatno_cut[] = seatno.split(",");
 			System.out.println("scount "+ scount);
 			for (String string : seatno_cut) {
-				reservation.setMemNo(memNo);
+				reservation.setMemno(memNo);
 				reservation.setMno(mno);
 				reservation.setTno(tno);
 				reservation.setSeatno(string);
+				reservation.setScount(scount);
 				seat.setTno(tno);
 				seat.setSeatno(string);
 				seat.setIssue(1);
@@ -326,4 +330,20 @@ public class MovieWebController {
 			movieService.seatEnrollment(seat);			
 			return "redirect:list.do";			
 		}
+		
+		   @RequestMapping(value = "/getPic", method = RequestMethod.GET)
+		    public void getPic(Model model,byte[] post, HttpServletRequest request,HttpServletResponse response) throws IOException {
+			   
+			   String path2 = "C:/evening_spring_new/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/special/" + post;
+			   System.out.println(path2);		      
+		        request.setAttribute("path", path2);
+		        model.addAttribute("path2",path2);
+		        		        	
+		     
+		        byte[] imageData =  post;
+		        System.out.println(imageData.toString());
+		        response.setContentType("image/jpeg");
+		        response.getOutputStream().write(imageData);
+		        		   		  		        
+		    }
 	}

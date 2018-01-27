@@ -36,7 +36,6 @@ VALUES (memno_seq.nextval,'admin','1234','관리자','2018-01-06','admin@koitt.c
 insert into user_info_type(memno,user_info_type_id) values (1,1);
 insert into user_info_type(memno,user_info_type_id) values (1,2);
 
-
 /* 상영관 추가(관, 좌석 수) */
 INSERT INTO theater VALUES(1,45);
 INSERT INTO theater VALUES(2,45);
@@ -102,8 +101,8 @@ INSERT INTO SCHEDULE VALUES ('2018-01-17 19:00',SEQ_SCOUNT.NEXTVAL,1);
 
 select * from reservation;
 delete RESERVATION where memno ='21';
-
 delete from seat where scount = 2;
+
 select distinct rdate, tno, d,f from (
 			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0) d,(select count(*) from SEAT)f
 			from seat s, (select * from schedule) sc 
@@ -129,10 +128,12 @@ select distinct rdate, tno, d,f from (
 			
 			select count(*) from SEAT s, (select * from schedule) sc where  mno =1 and sc.scount = 2 ;
 			
-			select *
-			from  SEAT s, (select * from schedule) sc 
-			where sc.scount = s.scount; 
-			
+			select distinct rdate, tno, d,f from (
+			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0) d,(select count(*) from SEAT)f
+			from seat s, (select * from schedule) sc 
+			where mno = 1 and sc.scount=s.scount and Sc.RDATE LIKE  '2018-01-17 17:00'
+			order by  sc.rdate asc
+			)
 			
 			select * from schedule;
 			select * from seat;
@@ -156,3 +157,53 @@ select distinct rdate, tno, d,f from (
 			))
 			
 			
+
+			select * from schedule;
+			select * from reservation;
+			
+			
+select to_date(add_months(sysdate,-1),'YYYY-MM-dd') from dual;
+select to_char(sysdate,'YYYY-MM-dd') from dual;
+
+/* 한달 전 */
+SELECT * 
+FROM (SELECT r.rno, r.memno, m.title, r.tno, r.seatno, r.btime,s.rdate
+		FROM reservation r,(SELECT * FROM Schedule) s, movie m
+		WHERE MEMNO = 21 and m.mno = r.mno and r.scount = s.scount)
+where to_char(add_months(sysdate, -1),'YYYY-MM-dd') <= btime and memno = 21;
+
+/*3개월 전*/
+SELECT * 
+FROM reservation 
+where to_char(add_months(sysdate, -3),'YYYY-MM-dd') <=  btime and memno = 21;
+
+/*6개월 전*/
+SELECT * 
+FROM reservation 
+where to_char(add_months(sysdate,-6),'YYYY-MM-dd') <=  btime and memno = 21;
+
+
+select to_date(sysdate,'YYYY-MM-dd HH:24:MI') from dual; 
+
+select * from movie;
+
+select to_char(add_months(sysdate,-1),'YYYY-MM-dd')from dual;
+	select * from movie;
+		
+		SELECT r.rno, r.memno, m.title, r.tno, r.seatno, r.btime,s.rdate
+		FROM reservation r,(SELECT * FROM Schedule) s, movie m
+		WHERE MEMNO = 21 and m.mno = r.mno and r.scount = s.scount;
+
+		SELECT * 
+			FROM (SELECT r.rno, r.memno, m.title, r.tno, r.seatno, r.btime,s.rdate
+			FROM reservation r,(SELECT * FROM Schedule) s, movie m
+			WHERE MEMNO = 21 and m.mno = r.mno and r.scount = s.scount)
+			WHERE to_char(add_months(sysdate, #{d),'YYYY-MM-dd') <= btime and memno = #{memno}
+		select rdate from schedule where scount = 1;
+select * from reservation;
+
+			SELECT * 
+			FROM (SELECT r.rno, m.title, r.tno, r.seatno, r.btime,s.rdate
+			FROM reservation r,(SELECT * FROM Schedule) s, movie m
+			WHERE MEMNO = 21 and m.mno = r.mno and r.scount = s.scount)			
+			WHERE to_char(add_months(sysdate, -1),'YYYY-MM-dd') <= btime;

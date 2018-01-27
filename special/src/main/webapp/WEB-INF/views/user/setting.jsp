@@ -23,9 +23,9 @@
 				</div>
 			</div>
 			<div class="content">
-				<table class="table-join">
+				<table class="table-join" id = "table-setting">
 					<tr>
-						<th colspan="2" class="text-center"><h3>회원 정보 수정</h3></th>
+						<th><h3>회원 정보 수정</h3></th>
 					</tr>
 					<tr>
 						<th><a href="<c:url value='/user/modify'/>" class="reg-btn">회원

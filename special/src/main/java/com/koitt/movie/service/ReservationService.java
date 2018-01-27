@@ -6,7 +6,7 @@ import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Reservation;
 import com.koitt.movie.model.Seat;
 
-public interface TicketService {
+public interface ReservationService {
 
 		//상영관 좌석 상태
 		public List<Seat> SeatAll(Seat seat) throws CommonException;
@@ -18,6 +18,6 @@ public interface TicketService {
 		// 티켓 취소
 		public void Cancel(Integer rno) throws CommonException;
 		// 회원 번호로 예매 조회 
-		public List<Reservation> Lookup(Integer memno) throws CommonException;
+		public List<Reservation> Lookup(Reservation rs) throws CommonException;
 		
 }

@@ -130,6 +130,9 @@
 			if ($(index[value = "1"])) {
 				$(index).addClass("already-selected");
 			}
+			else if ($(index[value= "2"])) {
+				$(index).addClass("seat-broken");
+			}
 
 		}
 
@@ -218,140 +221,141 @@
 								<div class="seat_area"
 									style="height: 184px; margin-left: 308.5px;">
 									<span class="seat_tit" style="left: -30px; top: 0px;">A</span>
-									<a class="p0 grNum3 a1" data-seat="A1" seat-group="grNum3"
+									<a class="p0 grNum3 A-1" data-seat="A1" seat-group="grNum3"
 										title="좌석 번호: A-1 - 일반석" seat-code="1A01"
-										onclick="selectedSeat(this);">1</a> <a class="p0 grNum3 a2"
+										onclick="selectedSeat(this);" value="">1</a> 
+										<a class="p0 grNum3 A-2"
 										data-seat="A2" seat-group="grNum3" title="좌석 번호: A-2 - 일반석"
-										seat-code="1A02 " onclick="selectedSeat(this);">2</a> <a
-										class="p0 grNum4 a3" data-seat="A3" seat-group="grNum4"
+										seat-code="1A02 " onclick="selectedSeat(this);" value="">2</a> 
+										<a class="p0 grNum4 A-3" data-seat="A3" seat-group="grNum4"
 										title="좌석 번호: A-3 - 일반석" seat-code="1A03"
-										onclick="selectedSeat(this);">3</a> <a class="p0 grNum4 a4"
+										onclick="selectedSeat(this);" value="">3</a> <a class="p0 grNum4 A-4"
 										data-seat="A4" seat-group="grNum4" title="좌석 번호: A-4 - 일반석"
-										seat-code="1A04" onclick="selectedSeat(this);">4</a> <a
-										class="p0 grNum4 a5" data-seat="A5" seat-group="grNum4"
+										seat-code="1A04" onclick="selectedSeat(this);" value="">4</a> <a
+										class="p0 grNum4 A-5" data-seat="A5" seat-group="grNum4"
 										title="좌석 번호: A-5 - 일반석" seat-code="1A05 "
-										onclick="selectedSeat(this);">5</a> <a class="p0 grNum4 a6"
+										onclick="selectedSeat(this);" value="">5</a> <a class="p0 grNum4 A-6"
 										data-seat="A6" seat-group="grNum4" title="좌석 번호: A-6 - 일반석"
-										seat-code="1A06 " onclick="selectedSeat(this);">6</a> <a
-										class="p0 grNum4 a7" data-seat="A7" seat-group="grNum4"
+										seat-code="1A06 " onclick="selectedSeat(this);" value="">6</a> <a
+										class="p0 grNum4 A-7" data-seat="A7" seat-group="grNum4"
 										title="좌석 번호: A-7 - 일반석" seat-code="1A07"
-										onclick="selectedSeat(this);">7</a> <a class="p0 grNum4 a8"
+										onclick="selectedSeat(this);" value="">7</a> <a class="p0 grNum4 A-8"
 										data-seat="A8" seat-group="grNum4" title="좌석 번호: A-8 - 일반석"
-										seat-code="1A08" onclick="selectedSeat(this);">8</a> <a
-										class="p0 grNum4 a9" data-seat="A9" seat-group="grNum4"
+										seat-code="1A08" onclick="selectedSeat(this);" value="">8</a> <a
+										class="p0 grNum4 A-9" data-seat="A9" seat-group="grNum4"
 										title="좌석 번호: A-9 - 일반석" seat-code="1A09"
-										onclick="selectedSeat(this);">9</a> <a class="p0 grNum5 a10"
+										onclick="selectedSeat(this);" value="">9</a> <a class="p0 grNum5 A-10"
 										data-seat="A10" seat-group="grNum5" title="좌석 번호: A-10 - 일반석"
-										seat-code="1A10" onclick="selectedSeat(this);">10</a> <span
+										seat-code="1A10" onclick="selectedSeat(this);" value="">10</a> <span
 										class="seat_tit" style="left: -30px; top: 27px;">B</span> <a
-										class="p0 grNum6 b1" data-seat="B1" seat-statuscode="0"
+										class="p0 grNum6 B-1" data-seat="B1" seat-statuscode="0"
 										block-code="p0" seat-group="grNum6" title="좌석 번호:B-1 - 일반석"
-										seat-code="1B01" onclick="selectedSeat(this);">1</a> <a
-										class="p0 grNum6 b2" data-seat="B2" seat-statuscode="0"
+										seat-code="1B01" onclick="selectedSeat(this);" value="">1</a> <a
+										class="p0 grNum6 B-2" data-seat="B2" seat-statuscode="0"
 										block-code="p0" seat-group="grNum6" title="좌석 번호:B-2 - 일반석"
-										seat-code="1B02" onclick="selectedSeat(this);">2</a> <a
-										class="p0 grNum7 b3" data-seat="B3" seat-statuscode="0"
+										seat-code="1B02" onclick="selectedSeat(this);" value="">2</a> <a
+										class="p0 grNum7 B-3" data-seat="B3" seat-statuscode="0"
 										block-code="p0" seat-group="grNum7" title="좌석 번호:B-3 - 일반석"
-										seat-code="1B03" onclick="selectedSeat(this);">3</a> <a
-										class="p0 grNum7 b4" data-seat="B4" seat-statuscode="0"
+										seat-code="1B03" onclick="selectedSeat(this);" value="">3</a> <a
+										class="p0 grNum7 B-4" data-seat="B4" seat-statuscode="0"
 										block-code="p0" seat-group="grNum7" title="좌석 번호:B-4 - 일반석"
-										seat-code="1B04" onclick="selectedSeat(this);">4</a> <a
-										class="p0 grNum7 b5" data-seat="B5" seat-statuscode="0"
+										seat-code="1B04" onclick="selectedSeat(this);" value="">4</a> <a
+										class="p0 grNum7 B-5" data-seat="B5" seat-statuscode="0"
 										block-code="p0" seat-group="grNum7" title="좌석 번호:B-5 - 일반석"
-										seat-code="1B05" onclick="selectedSeat(this);">5</a> <a
-										class="p0 grNum7 b6" data-seat="B6" seat-statuscode="0"
+										seat-code="1B05" onclick="selectedSeat(this);" value="">5</a> <a
+										class="p0 grNum7 B-6" data-seat="B6" seat-statuscode="0"
 										block-code="p0" seat-group="grNum7" title="좌석 번호:B-6 - 일반석"
-										seat-code="1B06" onclick="selectedSeat(this);">6</a> <a
-										class="p0 grNum7 b7" data-seat="B7" seat-statuscode="0"
+										seat-code="1B06" onclick="selectedSeat(this);" value="">6</a> <a
+										class="p0 grNum7 B-7" data-seat="B7" seat-statuscode="0"
 										block-code="p0" seat-group="grNum7" title="좌석 번호:B-7 - 일반석"
-										seat-code="1B07" onclick="selectedSeat(this);">7</a> <a
-										class="p0 grNum7 b8" data-seat="B8" seat-statuscode="0"
+										seat-code="1B07" onclick="selectedSeat(this);" value="">7</a> <a
+										class="p0 grNum7 B-8" data-seat="B8" seat-statuscode="0"
 										block-code="p0" seat-group="grNum7" title="좌석 번호:B-8 - 일반석"
-										seat-code="1B08" onclick="selectedSeat(this);">8</a> <a
-										class="p0 grNum7 b9" data-seat="B9" seat-statuscode="0"
+										seat-code="1B08" onclick="selectedSeat(this);" value="">8</a> <a
+										class="p0 grNum7 B-9" data-seat="B9" seat-statuscode="0"
 										block-code="p0" seat-group="grNum7" title="좌석 번호:B-9 - 일반석"
-										seat-code="1B09" onclick="selectedSeat(this);">9</a> <a
-										class="p0 grNum8 b10" data-seat="B10" seat-statuscode="0"
+										seat-code="1B09" onclick="selectedSeat(this);" value="">9</a> <a
+										class="p0 grNum8 B-10" data-seat="B10" seat-statuscode="0"
 										block-code="p0" seat-group="grNum8" title="좌석 번호:B-10 - 일반석"
-										seat-code="1B10" onclick="selectedSeat(this);">10</a> <span
+										seat-code="1B10" onclick="selectedSeat(this);" value="">10</a> <span
 										class="seat_tit" style="left: -30px; top: 54px;">C</span> <a
-										class="p0 grNum9 c1" data-seat="C1" seat-statuscode="0"
+										class="p0 grNum9 C-1" data-seat="C1" seat-statuscode="0"
 										block-code="p0" seat-group="grNum9" title="좌석 번호:C-1 - 일반석"
-										seat-code="1C01" onclick="selectedSeat(this);">1</a> <a
-										class="p0 grNum9 c2" data-seat="C2" seat-statuscode="0"
+										seat-code="1C01" onclick="selectedSeat(this);" value="">1</a> <a
+										class="p0 grNum9 C-2" data-seat="C2" seat-statuscode="0"
 										block-code="p0" seat-group="grNum9" title="좌석 번호:C-2 - 일반석"
-										seat-code="1C02" onclick="selectedSeat(this);">2</a> <a
-										class="p0 grNum10 c3" data-seat="C3" seat-statuscode="0"
+										seat-code="1C02" onclick="selectedSeat(this);" value="">2</a> <a
+										class="p0 grNum10 C-3" data-seat="C3" seat-statuscode="0"
 										block-code="p0" seat-group="grNum10" title="좌석 번호:C-3 - 일반석"
-										seat-code="1C03" onclick="selectedSeat(this);">3</a> <a
-										class="p0 grNum10 c4" data-seat="C4" seat-statuscode="0"
+										seat-code="1C03" onclick="selectedSeat(this);" value="">3</a> <a
+										class="p0 grNum10 C-4" data-seat="C4" seat-statuscode="0"
 										block-code="p0" seat-group="grNum10" title="좌석 번호:C-4 - 일반석"
-										seat-code="1C04" onclick="selectedSeat(this);">4</a> <a
-										class="p0 grNum10 c5" data-seat="C5" seat-statuscode="0"
+										seat-code="1C04" onclick="selectedSeat(this);" value="">4</a> <a
+										class="p0 grNum10 C-5" data-seat="C5" seat-statuscode="0"
 										block-code="p0" seat-group="grNum10" title="좌석 번호:C-5 - 일반석"
-										seat-code="1C05" onclick="selectedSeat(this);">5</a> <a
-										class="p0 grNum10 c6" data-seat="C6" seat-statuscode="0"
+										seat-code="1C05" onclick="selectedSeat(this);" value="">5</a> <a
+										class="p0 grNum10 C-6" data-seat="C6" seat-statuscode="0"
 										block-code="p0" seat-group="grNum10" title="좌석 번호:C-6 - 일반석"
-										seat-code="1C06" onclick="selectedSeat(this);">6</a> <a
-										class="p0 grNum10 c7" data-seat="C7" seat-statuscode="0"
+										seat-code="1C06" onclick="selectedSeat(this);" value="">6</a> <a
+										class="p0 grNum10 C-7" data-seat="C7" seat-statuscode="0"
 										block-code="p0" seat-group="grNum10" title="좌석 번호:C-7 - 일반석"
-										seat-code="1C07" onclick="selectedSeat(this);">7</a> <a
-										class="p0 grNum10 c8" data-seat="C8" seat-statuscode="0"
+										seat-code="1C07" onclick="selectedSeat(this);" value="">7</a> <a
+										class="p0 grNum10 C-8" data-seat="C8" seat-statuscode="0"
 										block-code="p0" seat-group="grNum10" title="좌석 번호:C-8 - 일반석"
-										seat-code="1C08" onclick="selectedSeat(this);">8</a> <a
-										class="p0 grNum11 c9" data-seat="C9" seat-statuscode="0"
+										seat-code="1C08" onclick="selectedSeat(this);" value="">8</a> <a
+										class="p0 grNum11 C-9" data-seat="C9" seat-statuscode="0"
 										block-code="p0" seat-group="grNum11" title="좌석 번호:C-9 - 일반석"
-										seat-code="1C09" onclick="selectedSeat(this);">9</a> <a
-										class="p0 grNum11 c10" data-seat="C10" seat-statuscode="0"
+										seat-code="1C09" onclick="selectedSeat(this);" value="">9</a> <a
+										class="p0 grNum11 C-10" data-seat="C10" seat-statuscode="0"
 										block-code="p0" seat-group="grNum11" title="좌석 번호:C-10 - 일반석"
-										seat-code="1C10" onclick="selectedSeat(this);">10</a> <span
+										seat-code="1C10" onclick="selectedSeat(this);" value="">10</a> <span
 										class="seat_tit" style="left: -30px; top: 82px;">D</span> <a
-										class="p0 grNum12 d1" data-seat="D1" seat-statuscode="0"
+										class="p0 grNum12 D-1" data-seat="D1" seat-statuscode="0"
 										block-code="p0" seat-group="grNum12" title="좌석 번호:D-1 - 일반석"
-										seat-code="1D01" onclick="selectedSeat(this);">1</a> <a
-										class="p0 grNum12 d2" data-seat="D2" seat-statuscode="0"
+										seat-code="1D01" onclick="selectedSeat(this);" value="">1</a> <a
+										class="p0 grNum12 D-2" data-seat="D2" seat-statuscode="0"
 										block-code="p0" seat-group="grNum12" title="좌석 번호:D-2 - 일반석"
-										seat-code="1D02" onclick="selectedSeat(this);">2</a> <a
-										class="p0 grNum13 d3" data-seat="D3" seat-statuscode="0"
+										seat-code="1D02" onclick="selectedSeat(this);" value="">2</a> <a
+										class="p0 grNum13 D-3" data-seat="D3" seat-statuscode="0"
 										block-code="p0" seat-group="grNum13" title="좌석 번호:D-3 - 일반석"
-										seat-code="1D03" onclick="selectedSeat(this);">3</a> <a
-										class="p0 grNum13 d4" data-seat="D4" seat-statuscode="0"
+										seat-code="1D03" onclick="selectedSeat(this);" value="">3</a> <a
+										class="p0 grNum13 D-4" data-seat="D4" seat-statuscode="0"
 										block-code="p0" seat-group="grNum13" title="좌석 번호:D-4 - 일반석"
-										seat-code="1D04" onclick="selectedSeat(this);">4</a> <a
-										class="p0 grNum13 d5" data-seat="D5" seat-statuscode="0"
+										seat-code="1D04" onclick="selectedSeat(this);" value="">4</a> <a
+										class="p0 grNum13 D-5" data-seat="D5" seat-statuscode="0"
 										block-code="p0" seat-group="grNum13" title="좌석 번호:D-5 - 일반석"
-										seat-code="1D05" onclick="selectedSeat(this);">5</a> <a
-										class="p0 grNum13 d6" data-seat="D6" seat-statuscode="0"
+										seat-code="1D05" onclick="selectedSeat(this);" value="">5</a> <a
+										class="p0 grNum13 D-6" data-seat="D6" seat-statuscode="0"
 										block-code="p0" seat-group="grNum13" title="좌석 번호:D-6 - 일반석"
-										seat-code="1D06" onclick="selectedSeat(this);">6</a> <a
-										class="p0 grNum13 d7" data-seat="D7" seat-statuscode="0"
+										seat-code="1D06" onclick="selectedSeat(this);" value="">6</a> <a
+										class="p0 grNum13 D-7" data-seat="D7" seat-statuscode="0"
 										block-code="p0" seat-group="grNum13" title="좌석 번호:D-7 - 일반석"
-										seat-code="1D07" onclick="selectedSeat(this);">7</a> <a
-										class="p0 grNum13 d8" data-seat="D8" seat-statuscode="0"
+										seat-code="1D07" onclick="selectedSeat(this);" value="">7</a> <a
+										class="p0 grNum13 D-8" data-seat="D8" seat-statuscode="0"
 										block-code="p0" seat-group="grNum13" title="좌석 번호:D-8 - 일반석"
-										seat-code="1D08" onclick="selectedSeat(this);">8</a> <a
-										class="p0 grNum14 d9" data-seat="D9" seat-statuscode="0"
+										seat-code="1D08" onclick="selectedSeat(this);" value="">8</a> <a
+										class="p0 grNum14 D-9" data-seat="D9" seat-statuscode="0"
 										block-code="p0" seat-group="grNum14" title="좌석 번호:D-9 - 일반석"
-										seat-code="1D09" onclick="selectedSeat(this);">9</a> <a
-										class="p0 grNum14 d10" data-seat="D10" seat-statuscode="0"
+										seat-code="1D09" onclick="selectedSeat(this);" value="">9</a> <a
+										class="p0 grNum14 D-10" data-seat="D10" seat-statuscode="0"
 										block-code="p0" seat-group="grNum14" title="좌석 번호:D-10 - 일반석"
-										seat-code="1D10" onclick="selectedSeat(this);">10</a> <span
+										seat-code="1D10" onclick="selectedSeat(this);" value="">10</a> <span
 										class="seat_tit" style="left: -30px; top: 109px;">E</span> <a
-										class="p0 grNum16 e1" data-seat="E1" seat-statuscode="0"
+										class="p0 grNum16 E-1" data-seat="E1" seat-statuscode="0"
 										block-code="p0" seat-group="grNum16" title="좌석 번호:E-1 - 일반석"
-										seat-code="1E01" onclick="selectedSeat(this);">1</a> <a
-										class="p0 grNum16 e2" data-seat="E2" seat-statuscode="0"
+										seat-code="1E01" onclick="selectedSeat(this);" value="">1</a> <a
+										class="p0 grNum16 E-2" data-seat="E2" seat-statuscode="0"
 										block-code="p0" seat-group="grNum16" title="좌석 번호:E-2 - 일반석"
-										seat-code="1E02" onclick="selectedSeat(this);">2</a> <a
-										class="p0 grNum18 e3" data-seat="E3" seat-statuscode="0"
+										seat-code="1E02" onclick="selectedSeat(this);" value="">2</a> <a
+										class="p0 grNum18 E-3" data-seat="E3" seat-statuscode="0"
 										block-code="p0" seat-group="grNum18" title="좌석 번호:E-3 - 일반석"
-										seat-code="1E03" onclick="selectedSeat(this);">3</a> <a
-										class="p0 grNum18 e4" data-seat="E4" seat-statuscode="0"
+										seat-code="1E03" onclick="selectedSeat(this);" value="">3</a> <a
+										class="p0 grNum18 E-4" data-seat="E4" seat-statuscode="0"
 										block-code="p0" seat-group="grNum18" title="좌석 번호:E-4 - 일반석"
-										seat-code="1E04" onclick="selectedSeat(this);">4</a> <a
-										class="p0 grNum18 e5" data-seat="E5" seat-statuscode="0"
+										seat-code="1E04" onclick="selectedSeat(this);" value="">4</a> <a
+										class="p0 grNum18 E-5" data-seat="E5" seat-statuscode="0"
 										block-code="p0" seat-group="grNum18" title="좌석 번호:E-5 - 일반석"
-										seat-code="1E05" onclick="selectedSeat(this);">5</a>
+										seat-code="1E05" onclick="selectedSeat(this);" value="">5</a>
 
 								</div>
 								<div class="pay-container">
