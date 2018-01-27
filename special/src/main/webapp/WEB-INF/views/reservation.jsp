@@ -13,17 +13,28 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/main.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/seat.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/register.css'/>">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="<c:url value='/resources/jQuery-Radiobtn/zInput.js'/>"></script>
 <title>예매하기</title>
+<style type="text/css">
+.screen_tit ul li a { margin: 0px; display: block; width: 100%; height: 100%; }
+</style>
 <script>
 		$(function(){
 			$('.screen_tit').hide();
 			$('.select-age').hide();
 			setInterval("howMuch()", 100);
 
+			$(".zInput").click(function(){
+				var target = $(this).children().children().text();
+				if (!(target == "성인" || target == "청소년")) {
+					SerachGet();
+				}
+				});
+				
+
 		});
-		function submitTest() {
+		function submitTest() {			
 		    if($('.total-price').text() == "0") {
 		        alert("표를 예매해주세요!");
 		    }
@@ -32,17 +43,15 @@
 		    }		    
 		}
 		function selectedSeat(target) {
-				
+				alert("성공");
 			var cs = $(target).attr("class");			
-			var sub_cs = cs.substring(7,8);							
-			//var sub_cs = cs.substring(4,5);
-
-			var title = $(target).attr("title");							   	 
-		    var sub_tno = title.substring(6,7);
-		    var sub_seatno = title.substring(15,18);						    		   		
+			var sub_cs = cs.substring(7,8);						
+		
+			var title = $(target).attr("title");										   	
+		    var sub_tno = title.substring(6,7);		    
+		    var sub_seatno = title.substring(15,18);			     		   		
 			var sub_scount = cs.substring(9,10);			
-			//var sub_scount = cs.substring(6,7);
-			
+						
 			if(sub_cs == 0){							
 				var t_class = $(target).attr("class", 'p0 '+sub_seatno + ' ' +'1');								    			
 				var str ="";
@@ -58,7 +67,7 @@
 				$("#i_seatno").remove();			
 			}
 							
-		    var age = $("input:radio[name=age]:checked").val();			
+		    var age = $("input:radio[name=age]:checked").val();					    	
 		    var attachClass = age + "-seat-selected";
 			
 		    if ($(target).hasClass("adult-seat-selected") || $(target).hasClass("teen-seat-selected")) {
@@ -69,13 +78,16 @@
 		        $(target).addClass(attachClass);
 		    }
 		}
-
-
-		function searchGet() {			
-			
-			var selectElement = $("#select-key")[0].value;
+	
+		function SerachGet() {									
+			var selectElement = $("input:radio[name=day]:checked").val();								
 			var inputVal = $("#i_mno").val();			
-								
+// 			var dd = document.getElementById("ajax-cover");										
+// 			if(dd.hasChildNodes()){			
+// 				while(dd.hasChildNodes()){																		
+// 					dd.removeChild(dd.firstChild);
+// 				}
+// 			}			
 			$.ajax({
 				type: 'get',				
 				url: 'http://localhost:8082/special/rest' + '/select?selectElement=' +selectElement +'&inputVal=' +inputVal,
@@ -83,61 +95,61 @@
 				processData: false,
 				contentType: false ,
 				cache: false,
-				success: function(data, textStatus, xhr) {
-					//alert(JSON.stringify(data));				
-					$.each(data, function (key, value) {														
+				success: function(data, textStatus, xhr) {					
+					
+					$.each(data, function (key, value) {												// + key + '">'		
 					    var eachrow ='<ul class="ajax-button'+ key +'" id="'+ value.rdate +'">' +
-						    		  '<li class="ajax-button' + key +'">' + '<span id="tno">'+  value.tno +  '</span>'+ 
-						    		 '<span id="rdate">'+ '<em>' + value.rdate + ' ' + '</em>' + '</span>' +
+						    		  '<li class="ajax-button' + key +'"><a onclick="chk();" id="ajax-buttona">' + '<span id="tno">'+  value.tno +  '</span><br/>'+ 
+						    		 '<span id="rdate">'+ '<em>' + value.rdate + ' ' + '</em>' + '</span><br/>' +
 						    		  '<span>'+ '<em>' +  value.d + '/'+ value.f + '</em>' + '</span>' +
-					                  '</li>' + '</ul>' + '<input type="button" id="ajax-button'+ key +'" value="좌석보기">';
+					                  '</a></li>' + '</ul>';
 								                  			                  					                   	               						          
-					         $('.screen_tit').append(eachrow).trigger("create");	
+					         $('.ajax-cover').append(eachrow).trigger("create");	
+					         $('.screen_tit').show();							 
 // 					         var str = '<input type="hidden" value="'+value.tno + '"/>'
 // 							 $('.seat_Barea').append(str);
 
-					         $("input[id='ajax-button']").unbind('click');
-							 $("input[id='ajax-button"+ key + "']").click(function(e) {
-// 								 var str = '<input type="hidden" value="'+value.tno + '"/>'
-// 								 $('.seat_Barea').append(str);
-								var dd = document.getElementById("Barea");										
-								if(dd.hasChildNodes()){			
-									while(dd.hasChildNodes()){																		
-										dd.removeChild(dd.firstChild);
-									}
-								}
+					         //$("#a ajax-button").unbind('click');
+// 							 $("#a ajax-button"+ key).on('click',function(e) {
+// // 								 var str = '<input type="hidden" value="'+value.tno + '"/>'
+// // 								 $('.seat_Barea').append(str);
+// 								var dd = document.getElementById("area");										
+// 								if(dd.hasChildNodes()){			
+// 									while(dd.hasChildNodes()){																		
+// 										dd.removeChild(dd.firstChild);
+// 									}
+// 								}
 																					 																								
-								var tno = $("#tno").text();
-								var before_date = $("#rdate").text();								 															
-								var rdate = before_date.substring(0,16);								
+// 								var tno = $("#tno").text();
+// 								var before_date = $("#rdate").text();								 															
+// 								var rdate = before_date.substring(0,16);								
 																
-		 			 			$.ajax({
-		 			 				type: 'get',
-		 			 				url: 'http://localhost:8082/special/rest' + '/seat?rdate='+rdate+'&mno='+inputVal +'&tno='+tno,						
-		 			 				data: false,
-		 			 				processData: false,
-		 			 				contentType: false,
-		 			 				cache: false,				
-		 			 				success: function(data) {				 
-																	
-									$.each(data , function(key, value) {
+// 		 			 			$.ajax({
+// 		 			 				type: 'get',
+// 		 			 				url: 'http://localhost:8082/special/rest' + '/seat?rdate='+rdate+'&mno='+inputVal +'&tno='+tno,						
+// 		 			 				data: false,
+// 		 			 				processData: false,
+// 		 			 				contentType: false,
+// 		 			 				cache: false,				
+// 		 			 				success: function(data) {				 		 			 											
+// 									$.each(data , function(key, value) {
 																
-										var htmlrow = 
-											//  p0 
-											'<a class="p0 '+ value.seatno +' 0 '+ value.scount +'" value="'+ value.issue +'" data-seat="' + (key+1) +'" seat-group="grNum3"' + 
-											'title="상영관 : ' + value.tno + ' 좌석 번호: '+ value.seatno + ' - 일반석"'+
-											'seat-code="1A01" onclick="selectedSeat(this);">'+ (key+1) +'</a>'
+// 										var htmlrow = 
+// 											//  p0 
+// 											'<a class="p0 '+ value.seatno +' 0 '+ value.scount +'" value="'+ value.issue +'" data-seat="' + (key+1) +'" seat-group="grNum3"' + 
+// 											'title="상영관 : ' + value.tno + ' 좌석 번호: '+ value.seatno + ' - 일반석"'+
+// 											'seat-code="1A01" onclick="selectedSeat(this);">'+ (key+1) +'</a>'
 										 
-										  $('.seat_area').append(htmlrow).trigger("create");		
-										  $('.screen_tit').show();
-										  $('.select-age').show();																					
-									});																										 			 						 			 						 			 			 			 						 			 					 			 			
-		 			 			}, // 2 success
-		 			 			error: function(jqXHR, textStatus, errorThrown) {
-		 			 				alert("실패");		 			 											
-	 			 				} //error
-							}); 	// 2 ajax			
-					   }); // function
+// 										  $('.seat_area').append(htmlrow).trigger("create");		
+// 										  $('.screen_tit').show();
+// 										  $('.select-age').show();																					
+// 									});																										 			 						 			 						 			 			 			 						 			 					 			 			
+// 		 			 			}, // 2 success
+// 		 			 			error: function(jqXHR, textStatus, errorThrown) {
+// 		 			 				alert("실패");		 			 											
+// 	 			 				} //error
+// 							}); 	// 2 ajax			
+// 					   }); // function
 															 											  								
 					}); // each				
 			}, // success
@@ -148,6 +160,51 @@
 		});	// ajax
 	} //시작
 
+	
+	function chk() {		 
+		var inputVal = $("#i_mno").val();
+		var dd = document.getElementById("area");										
+		if(dd.hasChildNodes()){			
+			while(dd.hasChildNodes()){																		
+				dd.removeChild(dd.firstChild);
+			}
+		}
+															 																								
+		var tno = $("#tno").text();
+		var before_date = $("#rdate").text();								 															
+		var rdate = before_date.substring(0,16);								
+										
+			$.ajax({
+				type: 'get',
+				url: 'http://localhost:8082/special/rest' + '/seat?rdate='+rdate+'&mno='+inputVal +'&tno='+tno,						
+				data: false,
+				processData: false,
+				contentType: false,
+				cache: false,				
+				success: function(data) {				 		 			 											
+			$.each(data , function(key, value) {
+										
+				var htmlrow = 
+					//  p0 
+					'<a class="p0 '+ value.seatno +' 0 '+ value.scount +'" value="'+ value.issue +'" data-seat="' + (key+1) +'" seat-group="grNum3"' + 
+					'title="상영관 : ' + value.tno + ' 좌석 번호: '+ value.seatno + ' - 일반석"'+
+					'seat-code="1A01" onclick="selectedSeat(this);">'+ (key+1) +'</a>'
+				 
+				  $('.seat_area').append(htmlrow).trigger("create");		
+				  $('.screen_tit').show();
+				  $('.select-age').show();																					
+			});																										 			 						 			 						 			 			 			 						 			 					 			 			
+			}, // 2 success
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert("실패");		 			 											
+			} //error
+	}); 	// 2 ajax			
+} // function
+					
+
+
+	
+	
 	function removeAll() {
 		$(".p0").removeClass("adult-seat-selected");
 		$(".p0").removeClass("teen-seat-selected");
@@ -191,18 +248,7 @@
 	
 </script>
 </head>
-<body onload="isBooked();">
-				<!-- <dl>
-					<dt>날짜 선택</dt>
-					<dd>
-						<select id="select-key" onchange="searchGet()">
-							<option selected="selected">선택</option>
-							<option id="d" value="2018-01-16">16일</option>
-							<option id="d" value="2018-01-17">17일</option>
-							<option id="d" value="2018-01-18">18일</option>
-						</select>
-					</dd>
-				</dl>				 -->
+<body onload="isBooked();">				 	
 	  <div class="frame">
         <div class="container">
             <div class="header">
@@ -210,17 +256,32 @@
             </div>
             <div class="content ">           
                    <div class="calendar text-center">
-						<input type="radio" class="cal-radio" name="day" value="2018-01-13" id="jan-13" title="토<br> 13" onclick="searchGet();"> 
-						<input type="radio" class="cal-radio" name="day" value="2018-01-14" id="jan-14" title="일<br> 14" onclick="searchGet();"> 
-						<input type="radio" class="cal-radio" name="day" value="2018-01-15" id="jan-15" title="월<br> 15" onclick="searchGet();"> 
-						<input type="radio" class="cal-radio" name="day" value="2018-01-16" id="jan-16" title="화<br> 16" onclick="searchGet();">
-						<input type="radio" class="cal-radio" name="day" value="2018-01-17" id="jan-17" title="수<br> 17" onclick="searchGet();"> 
-						<input type="radio" class="cal-radio" name="day" value="2018-01-18" id="jan-18" title="목<br> 18" onclick="searchGet();"> 
-						<input type="radio" class="cal-radio" name="day" value="2018-01-19" id="jan-19" title="금<br> 19" onclick="searchGet();"> 
-						<input type="radio" class="cal-radio" name="day" value="2018-01-20" id="jan-20" title="토<br> 20" onclick="searchGet();">
-						<input type="radio" class="cal-radio" name="day" value="2018-01-21" id="jan-21" title="일<br> 21" onclick="searchGet();"> 
-						<input type="radio" class="cal-radio" name="day" value="2018-01-22" id="jan-22" title="월<br> 22" onclick="searchGet();">
+						<input type="radio" class="cal-radio" name="day" value="2018-01-13" id="jan-13" title="토<br> 13"> 
+						<input type="radio" class="cal-radio" name="day" value="2018-01-14" id="jan-14" title="일<br> 14"> 
+						<input type="radio" class="cal-radio" name="day" value="2018-01-15" id="jan-15" title="월<br> 15"> 
+						<input type="radio" class="cal-radio" name="day" value="2018-01-16" id="jan-16" title="화<br> 16">
+						<input type="radio" class="cal-radio" name="day" value="2018-01-17" id="jan-17" title="수<br> 17"> 
+						<input type="radio" class="cal-radio" name="day" value="2018-01-18" id="jan-18" title="목<br> 18"> 
+						<input type="radio" class="cal-radio" name="day" value="2018-01-19" id="jan-19" title="금<br> 19"> 
+						<input type="radio" class="cal-radio" name="day" value="2018-01-20" id="jan-20" title="토<br> 20">
+						<input type="radio" class="cal-radio" name="day" value="2018-01-21" id="jan-21" title="일<br> 21"> 
+						<input type="radio" class="cal-radio" name="day" value="2018-01-22" id="jan-22" title="월<br> 22">
 					</div>
+<!-- 					<div class="calendar select-cover"> -->
+<!--                     	<select id="select-key" class="form-control" onchange="SerachGet()"> -->
+<!-- 								<option selected="selected">선택</option> -->
+<!-- 								<option id="o1" value="2018-01-13">13 토</option> -->
+<!-- 								<option id="o2" value="2018-01-14">14 일</option> -->
+<!-- 								<option id="o3" value="2018-01-15">15 월</option> -->
+<!-- 								<option id="o4" value="2018-01-16">16 화</option> -->
+<!-- 								<option id="o5" value="2018-01-17">17 수</option> -->
+<!-- 								<option id="o6" value="2018-01-18">18 목</option> -->
+<!-- 								<option id="o7" value="2018-01-19">19 금</option> -->
+<!-- 								<option id="o8" value="2018-01-20">20 토</option> -->
+<!-- 								<option id="o9" value="2018-01-21">21 일</option> -->
+<!-- 								<option id="o10" value="2018-01-22">22 월</option> -->
+<!-- 						</select> -->
+<!--                 	</div> -->
                 <form action="/special/movie/ticket" method="post" id="reserv-form">
             	<div class="theater-container">
 					<h2>- 상영관</h2>		
@@ -233,7 +294,14 @@
 								class="age-radio" name="age" value="teen" id="teen" title="청소년">
 						</div>
 						<strong class="screen_tit">Screen</strong>
-					<div class="seat_Barea" id="Barea"><div class = "seat_area" style="height: 184px; margin-left: 308.5px;"></div></div>
+						<div class = "ajax-cover">
+						
+						
+						</div>
+						<div class="seat_Barea" id="Barea">
+							<div class = "seat_area" style="height: 184px; margin-left: 308.5px;" id = "area">
+							</div>
+						</div>
 						<div class="pay-container">
 									<hr style="border: 0.5px solid gray;">
 									<ul>
@@ -257,15 +325,13 @@
 										<li id = "request"></li>
 									</ul>
 								</div>
-					<%-- <div id="request">
-						<input id="i_mno" name="mno" type="hidden" value="${mno}">																						
-						<a href="javascript:{}" onclick="submitTest();" class="reg-btn">예매 하기</a>
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">						
-					</div> --%>	
-					</div>
+							<div id="request">
+								<input id="i_mno" name="mno" type="hidden" value="${mno}">																												
+		<%-- 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">						 --%>
+							</div> 
+						</div>
 					</div>	
-				</form>
-	
+				</form>	
 	
 			</div>
 		</div>

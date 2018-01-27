@@ -109,8 +109,17 @@ delete from seat where scount = 2;
 update seat
 set issue=0;
 			
-select * from seat;
+update movie
+set mno = 1
+where mno =6;
+select * from schedule;
 select * from movie;
 select * from movie_coment;
 insert into MOVIE_COMENT values (SEQ_CNO.NEXTVAL, 1, 'test', '1빠다', 2, 0);
 
+select distinct rdate, tno, d,f from (
+			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0) d,(select count(*) from SEAT)f
+			from seat s, (select * from schedule) sc 
+			where mno = 1and Sc.RDATE LIKE  '2018-01-17 %'
+			order by  sc.rdate asc
+			)

@@ -33,17 +33,11 @@ $.fn.zInput = function () {
 
     $zRadio.click(function () {
         $theClickedButton = $(this);
-
+        
         //move up the DOM to the .zRadioWrapper and then select children. Remove .zSelected from all .zRadio
         $theClickedButton.parent().children().removeClass("zSelected");
         $theClickedButton.addClass("zSelected");
         $theClickedButton.find(":radio").prop("checked", true).change();
-        
-        if ($(".zInput").hasClass("zSelected")) {
-            $(".preserv-folded").show();
-        } else if ($(".zInput").hasClass("zSelected") == false) {
-            $(".preserv-folded").hide();
-        }
     });
 
     $zCheckbox.click(function () {
@@ -60,7 +54,6 @@ $.fn.zInput = function () {
 
     $.each($inputs, function (k, v) {
         if ($(v).attr('checked')) {
-
             $(v).parent().click();
 
         }
