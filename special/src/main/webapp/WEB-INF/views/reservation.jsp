@@ -278,12 +278,12 @@
 
 			</div>
 		</div>
-	</div>
-
-
 	<div class="footer">
 		<p class="copyright">&copy;copyright reserved larl</p>
 	</div>
+	</div>
+
+
 	<script>
 		$(".calendar").zInput();
 		$(".select-age").zInput();
