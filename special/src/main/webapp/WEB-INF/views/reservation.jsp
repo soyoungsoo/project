@@ -13,11 +13,16 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/main.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/seat.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/register.css'/>">
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>	
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="<c:url value='/resources/jQuery-Radiobtn/zInput.js'/>"></script>
 <title>예매하기</title>
 <script>
+		$(function(){
+			$('.screen_tit').hide();
+			$('.select-age').hide();
+			setInterval("howMuch()", 100);
+
+		});
 		function submitTest() {
 		    if($('.total-price').text() == "0") {
 		        alert("표를 예매해주세요!");
@@ -122,8 +127,10 @@
 											'<a class="p0 '+ value.seatno +' 0 '+ value.scount +'" value="'+ value.issue +'" data-seat="' + (key+1) +'" seat-group="grNum3"' + 
 											'title="상영관 : ' + value.tno + ' 좌석 번호: '+ value.seatno + ' - 일반석"'+
 											'seat-code="1A01" onclick="selectedSeat(this);">'+ (key+1) +'</a>'
-											
-										  $('.seat_Barea').append(htmlrow).trigger("create");																							
+										 
+										  $('.seat_area').append(htmlrow).trigger("create");		
+										  $('.screen_tit').show();
+										  $('.select-age').show();																					
 									});																										 			 						 			 						 			 			 			 						 			 					 			 			
 		 			 			}, // 2 success
 		 			 			error: function(jqXHR, textStatus, errorThrown) {
@@ -140,16 +147,52 @@
 			} // eeror
 		});	// ajax
 	} //시작
+
+	function removeAll() {
+		$(".p0").removeClass("adult-seat-selected");
+		$(".p0").removeClass("teen-seat-selected");
+	}
+
+	function isBooked() {
+
+		var index;
+
+		for (var i = 0; i < 45; i++) {
+
+			var index = $(".seat_area").children().eq(i);
+
+			if ($(index[value = "1"])) {
+				$(index).addClass("already-selected");
+			}
+			else if ($(index[value= "2"])) {
+				$(index).addClass("seat-broken");
+			}
+
+		}
+
+	}
+
+	function howMuch() {
+		var adprice;
+		var tenprice;
+
+		var adult_index = $(".adult-seat-selected").length;
+		var teen_index = $(".teen-seat-selected").length;
+		$(".adult-count").text(adult_index);
+		adprice = adult_index * 8000;
+		$(".adult-price").text(adprice);
+
+		$(".teen-count").text(teen_index);
+		tenprice = teen_index * 6000;
+		$(".teen-price").text(tenprice);
+
+		$(".total-price").text(tenprice + adprice);
+	}
 	
 </script>
-<style>
-#test table {
-	display: inline-block;
-}
-</style>
 </head>
-<body>
-				<dl>
+<body onload="isBooked();">
+				<!-- <dl>
 					<dt>날짜 선택</dt>
 					<dd>
 						<select id="select-key" onchange="searchGet()">
@@ -159,59 +202,78 @@
 							<option id="d" value="2018-01-18">18일</option>
 						</select>
 					</dd>
-				</dl>				
+				</dl>				 -->
 	  <div class="frame">
         <div class="container">
             <div class="header">
                 <div class="logo text-center"> <a href="<c:url value='/'/>">Movie Theater</a> </div>
             </div>
             <div class="content ">           
+                   <div class="calendar text-center">
+						<input type="radio" class="cal-radio" name="day" value="2018-01-13" id="jan-13" title="토<br> 13" onclick="searchGet();"> 
+						<input type="radio" class="cal-radio" name="day" value="2018-01-14" id="jan-14" title="일<br> 14" onclick="searchGet();"> 
+						<input type="radio" class="cal-radio" name="day" value="2018-01-15" id="jan-15" title="월<br> 15" onclick="searchGet();"> 
+						<input type="radio" class="cal-radio" name="day" value="2018-01-16" id="jan-16" title="화<br> 16" onclick="searchGet();">
+						<input type="radio" class="cal-radio" name="day" value="2018-01-17" id="jan-17" title="수<br> 17" onclick="searchGet();"> 
+						<input type="radio" class="cal-radio" name="day" value="2018-01-18" id="jan-18" title="목<br> 18" onclick="searchGet();"> 
+						<input type="radio" class="cal-radio" name="day" value="2018-01-19" id="jan-19" title="금<br> 19" onclick="searchGet();"> 
+						<input type="radio" class="cal-radio" name="day" value="2018-01-20" id="jan-20" title="토<br> 20" onclick="searchGet();">
+						<input type="radio" class="cal-radio" name="day" value="2018-01-21" id="jan-21" title="일<br> 21" onclick="searchGet();"> 
+						<input type="radio" class="cal-radio" name="day" value="2018-01-22" id="jan-22" title="월<br> 22" onclick="searchGet();">
+					</div>
                 <form action="/special/movie/ticket" method="post" id="reserv-form">
-<!--                     <div class="calendar text-center"> -->
-<%--                         <input type="radio" class="cal-radio" name="day" value="2018-01-13" id="jan-13" title="토<br> 13"> --%>
-<%--                         <input type="radio" class="cal-radio" name="day" value="2018-01-14" id="jan-14" title="일<br> 14"> --%>
-<%--                         <input type="radio" class="cal-radio" name="day" value="2018-01-15" id="jan-15" title="월<br> 15"> --%>
-<%--                         <input type="radio" class="cal-radio" name="day" value="2018-01-16" id="jan-16" title="화<br> 16"> --%>
-<%--                         <input type="radio" class="cal-radio" name="day" value="2018-01-17" id="jan-17" title="수<br> 17"> --%>
-<%--                         <input type="radio" class="cal-radio" name="day" value="2018-01-18" id="jan-18" title="목<br> 18"> --%>
-<%--                         <input type="radio" class="cal-radio" name="day" value="2018-01-19" id="jan-19" title="금<br> 19"> --%>
-<%--                         <input type="radio" class="cal-radio" name="day" value="2018-01-20" id="jan-20" title="토<br> 20"> --%>
-<%--                         <input type="radio" class="cal-radio" name="day" value="2018-01-21" id="jan-21" title="일<br> 21"> --%>
-<%--                         <input type="radio" class="cal-radio" name="day" value="2018-01-22" id="jan-22" title="월<br> 22"> --%>
-<!--                     </div> -->
-               
-            <div class="theater-container">
-                 <h2>- 상영관</h2>										
-			</div>		
-					<strong class="screen_tit">Screen</strong>
-					<div class="seat_Barea" id="Barea"></div>
-					<div id="request">
+            	<div class="theater-container">
+					<h2>- 상영관</h2>		
+				</div>
+				<div class="seat-container">
+					<div class="screen_box">
+						<div class="select-age text-center">
+							<input type="radio" class="age-radio" name="age" value="adult"
+								id="adult" title="성인"> <input type="radio"
+								class="age-radio" name="age" value="teen" id="teen" title="청소년">
+						</div>
+						<strong class="screen_tit">Screen</strong>
+					<div class="seat_Barea" id="Barea"><div class = "seat_area" style="height: 184px; margin-left: 308.5px;"></div></div>
+						<div class="pay-container">
+									<hr style="border: 0.5px solid gray;">
+									<ul>
+										<li>
+											<h3>- 요금</h3>
+										</li>
+										<li>성인 : <strong class="adult-count">0</strong> 매 / <strong
+											class="adult-price">0</strong> 원
+										</li>
+										<li>청소년 : <strong class="teen-count">0</strong> 매 / <strong
+											class="teen-price">0</strong> 원
+										</li>
+										<li>
+											<h4>
+												총 금액 : <strong class="total-price">0</strong> 원
+											</h4> <input type="hidden" name="${_csrf.parameterName}"
+											value="${_csrf.token}"> <a href="javascript:{}"
+											onclick="submitTest();" class="reg-btn">예매 하기</a> <a
+											href="javascript:{}" onclick="removeAll();" class="reg-btn">리셋</a>
+										</li>
+										<li id = "request"></li>
+									</ul>
+								</div>
+					<%-- <div id="request">
 						<input id="i_mno" name="mno" type="hidden" value="${mno}">																						
 						<a href="javascript:{}" onclick="submitTest();" class="reg-btn">예매 하기</a>
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">						
-					</div>		
+					</div> --%>	
+					</div>
+					</div>	
 				</form>
 	
 	
 			</div>
 		</div>
-<<<<<<< HEAD
-	</div>
-	
-	
-		 <div class="footer">
+		<div class="footer">
             <p class="copyright">&copy;copyright reserved larl</p>
         </div>
-        	<script>
-=======
-	<div class="footer">
-		<p class="copyright">&copy;copyright reserved larl</p>
 	</div>
-	</div>
-
-
-	<script>
->>>>>>> branch 'master' of https://github.com/soyoungsoo/project.git
+     <script>
 		$(".calendar").zInput();
 		$(".select-age").zInput();
 	</script>
