@@ -1,10 +1,9 @@
 package com.koitt.movie.controller;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -29,6 +28,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -332,18 +332,34 @@ public class MovieWebController {
 		}
 		
 		   @RequestMapping(value = "/getPic", method = RequestMethod.GET)
-		    public void getPic(Model model,byte[] post, HttpServletRequest request,HttpServletResponse response) throws IOException {
-			   
-			   String path2 = "C:/evening_spring_new/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/special/" + post;
-			   System.out.println(path2);		      
-		        request.setAttribute("path", path2);
-		        model.addAttribute("path2",path2);
-		        		        	
-		     
-		        byte[] imageData =  post;
-		        System.out.println();
-		        response.setContentType("image/jpeg");
-		        response.getOutputStream().write(imageData);
-		        		   		  		        
-		    }
+		   public void getImage(String post,HttpServletRequest req, HttpSession session, HttpServletResponse res) throws Exception {
+
+				String realFile = "C:\\evening_spring_new\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\special\\movieImage\\";
+				String fileNm = post;
+				String ext = "jpg";
+				PrintWriter out2 = res.getWriter();
+				BufferedOutputStream out = null;
+				InputStream in = null;
+
+				try {
+					res.setContentType("image/" + ext);
+					res.setHeader("Content-Disposition", "inline;filename=" + realFile+fileNm);
+					File file = new File(realFile+fileNm);
+					System.out.println(file);
+					if(file.exists()){
+						in = new FileInputStream(file);
+						out = new BufferedOutputStream(res.getOutputStream());
+						int len;
+						byte[] buf = new byte[1024];
+						while ((len = in.read(buf)) > 0) {
+							out.write(buf, 0, len);
+						}
+					}
+				} catch (Exception e) {					
+				} finally {
+					if(out != null){ out.flush(); }
+					if(out != null){ out.close(); }
+					if(in != null){ in.close(); }
+				}
+		   }
 	}

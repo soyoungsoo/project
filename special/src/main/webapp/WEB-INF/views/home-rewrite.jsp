@@ -44,12 +44,11 @@
 						<li class="nav-item"><a href="../join" class="nav-link"> 회원가입 </a></li>
 					</c:if>
 				</ul>
-			</dv>
+			</div>
 			<div class="content">
 				<ul>							
 					<c:forEach items="${ list }" var="item">
-						<li><img class="inner-content-imgs" src="<c:url value="/img/${item.post}"/>"/>
-						
+						<li><img class="inner-content-imgs" src="<c:url value="../../img/${item.post}"/>"/>											
 							<div class="view">
 								<div>
 									<a href="/special/movie/ticket?mno=${item.mno}">예매 하기</a> <a
