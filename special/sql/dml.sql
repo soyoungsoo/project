@@ -105,7 +105,7 @@ INSERT INTO SCHEDULE VALUES ('2018-01-17 19:00',SEQ_SCOUNT.NEXTVAL,1);
 select * from reservation;
 delete RESERVATION where memno ='21';
 delete from seat where scount = 2;
-
+select * from seat;
 update seat
 set issue=0;
 			

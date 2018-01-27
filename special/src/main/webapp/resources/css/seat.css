@@ -473,6 +473,10 @@
     top:109px;
 }
 
+.content ul li {
+	height: 100px;
+}
+
 .ajax-cover ul {
 	display: inline-block;
 }

@@ -38,6 +38,7 @@ $.fn.zInput = function () {
         $theClickedButton.parent().children().removeClass("zSelected");
         $theClickedButton.addClass("zSelected");
         $theClickedButton.find(":radio").prop("checked", true).change();
+       
     });
 
     $zCheckbox.click(function () {
