@@ -49,8 +49,8 @@ import com.koitt.movie.service.ReservationService;
 @RequestMapping("/movie")
 public class MovieWebController {
 
-	private static final String UPLOAD_FOLDER ="/movieImage";
-
+	//private static final String UPLOAD_FOLDER ="/movieImage";
+	private static final String UPLOAD_FOLDER ="/resources/image";
 	@Autowired
 	private MemberService MemberService;
 	@Autowired
@@ -158,6 +158,7 @@ public class MovieWebController {
 		movie.setMrun(mrun);
 		movie.setSdate(sdate);
 		movie.setEdate(edate);
+			
 		// 최상위 경로 밑에 upload 폴더의 경로를 가져온다.
 		String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);
 		System.out.println("PAth "+ path);

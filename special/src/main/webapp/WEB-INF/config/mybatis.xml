@@ -15,5 +15,6 @@
 		<typeAlias type="com.koitt.movie.model.UserType" alias="UserType"/>
 		<typeAlias type="com.koitt.movie.model.Seat" alias="Seat"/>
 		<typeAlias type="com.koitt.movie.model.Schedule" alias="Schedule"/>		
+		<typeAlias type="com.koitt.movie.model.Comment" alias="Comment"/>
 	</typeAliases>
 </configuration>

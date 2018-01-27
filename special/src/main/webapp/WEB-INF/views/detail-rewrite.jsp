@@ -65,7 +65,7 @@
 				<div class="prev">
 					<div class="prev-top">
 						<div class="thumb">
-							<img src="<c:url value='/resources/image/black.JPG'/>"> <a class="ticketing-btn"
+							<img src="<c:url value='../../img/${item.post}'/>"> <a class="ticketing-btn"
 								href="/special/movie/ticket?mno=${item.mno}">예매하기</a>
 						</div>
 						<div class="top-ex">
@@ -82,7 +82,7 @@
 							<ul class="mov-grade">
 								<li>[장르] ${ item.genre }</li>
 								<li>[국내] ${ item.grade }</li>
-								<li>[상영 시간] ${ item.mrun }</li>
+								<li>[상영 시간] ${ item.mrun } 분</li>
 								<li>[상영일] <fmt:formatDate value="${ item.sdate }"
 										pattern="yyyy-MM-dd" />
 								</li>
@@ -122,6 +122,7 @@
 									</c:when>
 								</c:choose>
 							</c:forEach>
+					</ul>				
 			</div>
 			<div class="star-box">
 				<form action="#" method="post" id="starForm">

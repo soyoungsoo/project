@@ -48,7 +48,8 @@
 			<div class="content">
 				<ul>							
 					<c:forEach items="${ list }" var="item">
-						<li><img class="inner-content-imgs" src="<c:url value="../../img/${item.post}"/>"/>											
+						<li><img class="inner-content-imgs" src="<c:url value="../../img/${item.post}"/>"/>
+						<li><img class="inner-content-imgs" src="<c:url value="${item.post}"/>"/>											
 							<div class="view">
 								<div>
 									<a href="/special/movie/ticket?mno=${item.mno}">예매 하기</a> <a
@@ -58,8 +59,8 @@
 								</div>
 							</div>
 						</li>
-					</c:forEach>					
-				</ul>
+					</c:forEach>
+				</ul>									
 			</div>
 		</div>
 		<div class="footer">

@@ -107,13 +107,13 @@ insert into reservation values();
 CREATE TABLE movie_coment (
 	cno NUMBER NOT NULL, /* 댓글번호 */
 	Mno NUMBER NOT NULL, /* 영화번호 */
-	MemNo NUMBER, /* 회원번호 */
-	coment VARCHAR2(255), /* 댓글 */
+	id VARCHAR2(20), /* 회원번호 */
+	comment VARCHAR2(255), /* 댓글 */
 	score NUMBER, /* 평점 */
 	vcount NUMBER, /* 추천수 */
 	CONSTRAINT pk_movie_coment PRIMARY KEY (cno),
 	CONSTRAINT fk_Movie1 FOREIGN KEY (Mno) REFERENCES Movie(Mno),
-	CONSTRAINT fk_Member1 FOREIGN KEY (MemNo) REFERENCES Member(MemNo)	
+	CONSTRAINT fk_Member_i FOREIGN KEY (id) REFERENCES Member(id)	
 );
 /* 티켓 */
 CREATE TABLE Ticket (
