@@ -56,7 +56,7 @@ $.fn.zInput = function () {
             $(this).change()
         });
     });
-
+    
 
     $.each($inputs, function (k, v) {
         if ($(v).attr('checked')) {
