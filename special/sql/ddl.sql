@@ -8,7 +8,7 @@ DROP TABLE Schedule CASCADE CONSTRAINTS;
 DROP TABLE theater CASCADE CONSTRAINTS;
 DROP TABLE seat CASCADE CONSTRAINTS;
 DROP TABLE reservation CASCADE CONSTRAINTS;
-DROP TABLE movie_coment CASCADE CONSTRAINTS;
+DROP TABLE movie_comment CASCADE CONSTRAINTS;
 
 /* 영화 */
 CREATE TABLE Movie (
@@ -102,18 +102,18 @@ CREATE TABLE reservation (
 	CONSTRAINT fk_Schedule_r FOREIGN KEY (Scount) REFERENCES Schedule(Scount)
 );
 
-insert into reservation values();
 /* 평점 */
-CREATE TABLE movie_coment (
+CREATE TABLE movie_comment (
 	cno NUMBER NOT NULL, /* 댓글번호 */
 	Mno NUMBER NOT NULL, /* 영화번호 */
-	id VARCHAR2(20), /* 회원번호 */
-	comment VARCHAR2(255), /* 댓글 */
+	id VARCHAR2(20), /* 회원아아디 */
+	mcomment VARCHAR2(255), /* 댓글 */
 	score NUMBER, /* 평점 */
 	vcount NUMBER, /* 추천수 */
-	CONSTRAINT pk_movie_coment PRIMARY KEY (cno),
-	CONSTRAINT fk_Movie1 FOREIGN KEY (Mno) REFERENCES Movie(Mno),
-	CONSTRAINT fk_Member_i FOREIGN KEY (id) REFERENCES Member(id)	
+	ctime TIMESTAMP,
+	CONSTRAINT pk_coment PRIMARY KEY (cno),
+	CONSTRAINT fk_coment_movie FOREIGN KEY (Mno) REFERENCES Movie(Mno),
+	CONSTRAINT fk_coment_member FOREIGN KEY (id) REFERENCES Member(id)	
 );
 /* 티켓 */
 CREATE TABLE Ticket (

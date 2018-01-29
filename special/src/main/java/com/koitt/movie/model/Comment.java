@@ -8,17 +8,20 @@ public class Comment {
 	private String comment;
 	private Integer score;
 	private Integer viewcount;
+	private String ctime;
 	
 	public Comment() {}
 
-	public Comment(Integer cno, Integer mno, String id, String coment, Integer score, Integer viewcount) {
+	public Comment(Integer cno, Integer mno, String id, String comment, Integer score, Integer viewcount,
+			String ctime) {
 		super();
 		this.cno = cno;
 		this.mno = mno;
 		this.id = id;
-		this.comment = coment;
+		this.comment = comment;
 		this.score = score;
 		this.viewcount = viewcount;
+		this.ctime = ctime;
 	}
 
 	public Integer getCno() {
@@ -45,12 +48,12 @@ public class Comment {
 		this.id = id;
 	}
 
-	public String getComent() {
+	public String getComment() {
 		return comment;
 	}
 
-	public void setComent(String coment) {
-		this.comment = coment;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	public Integer getScore() {
@@ -69,12 +72,21 @@ public class Comment {
 		this.viewcount = viewcount;
 	}
 
+	public String getCtime() {
+		return ctime;
+	}
+
+	public void setCtime(String ctime) {
+		this.ctime = ctime;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cno == null) ? 0 : cno.hashCode());
 		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
+		result = prime * result + ((ctime == null) ? 0 : ctime.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((mno == null) ? 0 : mno.hashCode());
 		result = prime * result + ((score == null) ? 0 : score.hashCode());
@@ -100,6 +112,11 @@ public class Comment {
 			if (other.comment != null)
 				return false;
 		} else if (!comment.equals(other.comment))
+			return false;
+		if (ctime == null) {
+			if (other.ctime != null)
+				return false;
+		} else if (!ctime.equals(other.ctime))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -127,18 +144,20 @@ public class Comment {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Coment [cno=");
+		builder.append("Comment [cno=");
 		builder.append(cno);
 		builder.append(", mno=");
 		builder.append(mno);
 		builder.append(", id=");
 		builder.append(id);
-		builder.append(", coment=");
+		builder.append(", comment=");
 		builder.append(comment);
 		builder.append(", score=");
 		builder.append(score);
 		builder.append(", viewcount=");
 		builder.append(viewcount);
+		builder.append(", ctime=");
+		builder.append(ctime);
 		builder.append("]");
 		return builder.toString();
 	}

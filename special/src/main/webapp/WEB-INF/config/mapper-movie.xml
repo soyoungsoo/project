@@ -36,7 +36,11 @@
 	<select id="selectAll" resultType="Movie">
 		SELECT * FROM MOVIE
 	</select>
-
+	
+	<select id="commentAll" parameterType="Integer" resultType="Comment">
+		SELECT *FROM MOVIE_COMMENT WHERE mno = #{mno}
+	</select>
+	
 	<delete id="delete" parameterType="String">
 		DELETE FROM MOVIE WHERE	mno= #{mno}
 	</delete>
