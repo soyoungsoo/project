@@ -28,4 +28,12 @@ public interface MovieDao {
 	public void movie_comment(Comment c) throws CommonException;
 	// 영화 댓글 조회
 	public List<Comment> commentSelect(Integer mno) throws CommonException;
+	// 댓글 삭제
+	public void commentDelete(Integer cno) throws CommonException;
+	// 댓글 수정
+	public void commentUpdate(Comment comment) throws CommonException;
+	// 영화 댓글 전체 수
+	public void CountComent() throws CommonException;
+	// 댓글 추천 증가
+	public void VcountUp(Comment comment) throws CommonException;
 }

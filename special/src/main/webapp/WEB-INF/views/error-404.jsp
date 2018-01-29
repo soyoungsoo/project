@@ -21,7 +21,8 @@
 					</div>
 				</div>
 				<div class="content">
-					<h1>ERROR</h1>
+					<h1>404 Error</h1>
+					<h2>페이지를 찾을 수 없습니다.</h2>
 				</div>
 			</div>
 		<div class="footer">

@@ -43,6 +43,37 @@
 			$('#starForm').submit();
 		}
 	}
+	function evalCheck(target) {
+		if(${member.id == null}){
+			alert("로그인 후 이용해주세요!");
+			return false;
+		}else{
+        var counts = $(target).children().text();
+        var mno = ${item.mno};
+        var cno = $(target).attr("title");        
+        if($(target).hasClass("clicked")) {
+            alert("이미 공감하셨습니다.");
+        }
+        if(!($(target).hasClass("clicked"))) {
+            $(target).addClass("clicked");           
+            $.ajax({
+				type: 'get',				
+				url: 'http://localhost:8082/special/rest' + '/vcount?mno=' +mno +'&cno=' +cno,
+				data: false,
+				processData: false,
+				contentType: false ,
+				cache: false,
+				success: function(data, textStatus, xhr) {	
+					 var index = parseInt(counts)+1;
+			            $(target).html("♥" + "<strong class = 'count'>"+index+"</strong>");																					
+				}, // success
+			error: function(error) {
+				  alert("이미 공감하셨습니다.");
+			} // eeror
+		});	// ajax
+        }
+    }
+}	
 </script>
 </head>
 
@@ -145,7 +176,7 @@
 							<b id="star-count">0</b>점
 						</output>
 					</span>
-					<div class="input-area">
+					<div class="input-area">		
 						<c:set var="member_id" value="${member.id}" />											
 							<c:choose>
 								<c:when test="${member.id eq null}">
@@ -158,34 +189,66 @@
 								<c:when test="${member.id ne null}">
 									<h4 class="user-name">${member.id}</h4>
 									<textarea name="write_area" style="resize: none" class="reply-box"
-							id="repl" placeholder=" ex) 재미있어요!"></textarea>
+							id="repl" placeholder=" ex) 재미있어요!"></textarea>							
 						<a href="javascript:{}" onclick="submitTest();" class="reg-btn"
 							id="repl-btn">댓글 입력</a>
 								</c:when>
-							</c:choose>
-							
+							</c:choose>							
 					</div>
 					<hr style="position: relative; top: 20px;">
 
 					<div class="repl-box text-center">
-						<ul class="repl-list">
+						<ul class="repl-list">		
 							<c:forEach var="cm" items="${comment}">
 								<c:choose>
 									<c:when test="${cm eq null}">
 										<p class="star_rating">
 											<strong class="rep-user-name"></strong>첫 댓글을 달아보세요!										
 									</c:when>
-									<c:when test="${cm ne null}">
+									<c:when test="${cm ne null}">									
 										<li>
-											<p class="star_rating">
-												<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
-												   href="#" class="on">★</a> <a href="#" class="on">★</a> <a
-												   href="#">★</a>
-											</p>
+										<c:choose>
+												<c:when test="${cm.score eq 1 }">
+												<p class="star_rating">
+													<a href="#" class="on">★</a>
+												</p>
+											</c:when>
+											<c:when test="${cm.score eq 2 }">
+												<p class="star_rating">
+													<a href="#" class="on">★</a> <a href="#" class="on">★</a>
+												</p>
+											</c:when>
+											<c:when test="${cm.score eq 3 }">
+												<p class="star_rating">
+													<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
+													   href="#" class="on">★</a>
+												</p>
+											</c:when>
+											<c:when test="${cm.score eq 4 }">
+												<p class="star_rating">
+													<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
+													   href="#" class="on">★</a> <a href="#" class="on">★</a> 
+												</p>
+											</c:when>
+											<c:when test="${cm.score eq 5 }">
+												<p class="star_rating">
+													<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
+													   href="#" class="on">★</a> <a href="#" class="on">★</a> <a
+													   href="#" class="on">★</a>
+												</p>
+											</c:when>
+										</c:choose>
 											<p>
-												<strong class="rep-user-name">${member.id}</strong>${cm.comment}
+												<strong class="rep-user-name">${cm.id}</strong>${cm.mcomment}
 											</p>
-										</li>										
+												<a title="${cm.cno}" class = "good-btn" onclick="evalCheck(this);" style="cursor: pointer">♡ <strong class = "count">${cm.vcount}</strong></a>
+												<c:choose>
+													<c:when test="${cm.id eq member.id}">
+														<a onclick="/special/rest/modify">수정하기</a>
+														<a href="/special/movie/delete?cno=${cm.cno}&mno=${item.mno}">삭제하기</a>
+													</c:when>
+												</c:choose>																							
+										</li>																			
 									</c:when>									
 								</c:choose>
 							</c:forEach>					

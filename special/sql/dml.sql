@@ -114,5 +114,8 @@ set mno = 1
 where mno =6;
 select * from schedule;
 select * from movie;
-select * from MOVIE_COMMENT where mno = 1;
+select * from MOVIE_COMMENT where mno = 1 order by ctime desc;
+
+select count(*) from movie_comment where mno = 1; 
+
 insert into MOVIE_COMMENT values (SEQ_CNO.NEXTVAL, 1, 'test', '1빠다', 2, 0, sysdate);

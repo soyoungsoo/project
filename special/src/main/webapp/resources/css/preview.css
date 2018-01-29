@@ -272,3 +272,32 @@
 .admin-menu ul li {
 	display: inline-block;
 }
+
+.reply-content {
+    display: inline-block;
+}
+
+.good-btn {
+    display: inline-block;
+    width: 50px;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    text-decoration: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    text-align: center;
+    font-size: 16px;
+    color: black;
+    background: whitesmoke;
+    float: right;
+}
+.good-btn:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.count {
+    margin-left: 4px;
+}

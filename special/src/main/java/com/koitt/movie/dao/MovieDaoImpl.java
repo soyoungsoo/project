@@ -109,7 +109,7 @@ public class MovieDaoImpl implements MovieDao{
 	@Override
 	public void movie_comment(Comment c) throws CommonException {
 		try {							
-			sqlSession.insert(MAPPER_NAMESPACE + ".comment-eroll-seat", c);		
+			sqlSession.insert(MAPPER_NAMESPACE + ".comment-eroll", c);		
 		}catch (Exception e) {
 			logger.debug(e.getMessage());			
 			throw new CommonException("E08: 댓글 등록 실패");
@@ -128,5 +128,43 @@ public class MovieDaoImpl implements MovieDao{
 			throw new CommonException("E09: 댓글 전체 조회 실패");			
 		}			
 		return list; 
+	}
+
+	@Override
+	public void commentDelete(Integer cno) throws CommonException {		
+		try {			
+			sqlSession.delete(MAPPER_NAMESPACE + ".comment_delete", cno);				
+		}catch (Exception e) {
+			logger.debug(e.getMessage());			
+			throw new CommonException("E10: 댓글 삭제 실패");			
+		}				 
+	}
+	@Override
+	public void commentUpdate(Comment comment) throws CommonException {
+		try {			
+			sqlSession.update(MAPPER_NAMESPACE + ".comment_modify", comment);			
+		}catch (Exception e) {
+			logger.debug(e.getMessage());			
+			throw new CommonException("E11: 댓글 수정 실패");			
+		}				
+	}
+	@Override
+	public void CountComent() throws CommonException {
+		try {			
+			sqlSession.update(MAPPER_NAMESPACE + ".PageCount");			
+		}catch (Exception e) {
+			logger.debug(e.getMessage());			
+			throw new CommonException("E12: 댓글 수 가져오기 실패");			
+		}				
+	}
+
+	@Override
+	public void VcountUp(Comment comment) throws CommonException {	
+		try {			
+			sqlSession.update(MAPPER_NAMESPACE + ".Vcountup",comment);			
+		}catch (Exception e) {
+			logger.debug(e.getMessage());			
+			throw new CommonException("E13: 추천 수 증가 실패");			
+		}		
 	}
 }
