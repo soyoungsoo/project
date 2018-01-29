@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import com.koitt.movie.dao.MovieDao;
+import com.koitt.movie.model.Comment;
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Movie;
 import com.koitt.movie.model.Schedule;
@@ -71,5 +72,13 @@ public class MovieServiceImpl implements MovieService{
 	@Override
 	public void seatEnrollment(Seat seat) throws CommonException {
 		dao.movie_seat(seat);		
+	}
+	@Override
+	public void comment(Comment c) throws CommonException {
+		dao.movie_comment(c);		
+	}
+	@Override
+	public List<Comment> commentAll(Integer mno) throws CommonException {			
+		return dao.commentSelect(mno);
 	}
 }

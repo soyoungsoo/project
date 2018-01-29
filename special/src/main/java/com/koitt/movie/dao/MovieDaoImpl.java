@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.koitt.movie.model.Comment;
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Movie;
 import com.koitt.movie.model.Schedule;
@@ -98,12 +99,34 @@ public class MovieDaoImpl implements MovieDao{
 		try {							
 			sqlSession.insert(MAPPER_NAMESPACE + ".insert-seat", seat);		
 		}catch (Exception e) {
-			logger.debug(e.getMessage());
-			e.printStackTrace();
+			logger.debug(e.getMessage());			
 			throw new CommonException("E07: 좌석 등록 실패");
 			
 		}	
 		
 	}
 
+	@Override
+	public void movie_comment(Comment c) throws CommonException {
+		try {							
+			sqlSession.insert(MAPPER_NAMESPACE + ".comment-eroll-seat", c);		
+		}catch (Exception e) {
+			logger.debug(e.getMessage());			
+			throw new CommonException("E08: 댓글 등록 실패");
+			
+		}	
+		
+	}
+
+	@Override
+	public List<Comment> commentSelect(Integer mno) throws CommonException {
+			List<Comment> list = null;
+		try {			
+			list = sqlSession.selectList(MAPPER_NAMESPACE + ".commentAll", mno);				
+		}catch (Exception e) {
+			logger.debug(e.getMessage());			
+			throw new CommonException("E09: 댓글 전체 조회 실패");			
+		}			
+		return list; 
+	}
 }

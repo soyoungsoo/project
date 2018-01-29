@@ -2,6 +2,7 @@ package com.koitt.movie.service;
 
 import java.util.List;
 
+import com.koitt.movie.model.Comment;
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Movie;
 import com.koitt.movie.model.Schedule;
@@ -23,4 +24,8 @@ public interface MovieService {
 	public void runCount(Schedule schedule) throws CommonException;
 	// 영화 좌석 등록
 	public void seatEnrollment(Seat seat) throws CommonException;
+	// 영화 댓글 등록
+	public void comment(Comment c) throws CommonException;
+	// 영화 전체 댓글 조회
+	public List<Comment> commentAll(Integer mno) throws CommonException;
 }

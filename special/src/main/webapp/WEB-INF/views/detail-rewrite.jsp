@@ -34,8 +34,12 @@
 	function submitTest() {
 		if ($("#star-count").text() === "0" || $(".reply-box").val() === "") {
 			alert("댓글과 별점을 입력해주세요!");
+			return false;			
+		} else if(${member.id == null}){			
+			alert("로그인 후 이용해주세요!");
 			return false;
-		} else {
+		}
+		 else {
 			$('#starForm').submit();
 		}
 	}
@@ -73,7 +77,7 @@
 				<div class="prev">
 					<div class="prev-top">
 						<div class="thumb">
-							<img src="<c:url value='/resources/image/black.JPG'/>"> <a class="ticketing-btn"
+							<img src="<c:url value='../../img/${item.post}'/>"> <a class="ticketing-btn"
 								href="/special/movie/ticket?mno=${item.mno}">예매하기</a>
 						</div>
 						<div class="top-ex">
@@ -90,7 +94,7 @@
 							<ul class="mov-grade">
 								<li>[장르] ${ item.genre }</li>
 								<li>[국내] ${ item.grade }</li>
-								<li>[상영 시간] ${ item.mrun }</li>
+								<li>[상영 시간] ${ item.mrun } 분</li>
 								<li>[상영일] <fmt:formatDate value="${ item.sdate }"
 										pattern="yyyy-MM-dd" />
 								</li>
@@ -130,33 +134,55 @@
 									</c:when>
 								</c:choose>
 							</c:forEach>
+					</ul>				
 			</div>
 			<div class="star-box">
-				<form action="#" method="post" id="starForm">
+				<form action="/special/movie/comment" method="post" id="starForm">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+					<input type="hidden" name="mno_i" value="${item.mno}">
 					<span class="star-input"> <span class="input"> <input
-							type="radio" name="star-input" value="1" id="p1"> <label
-							for="p1">1</label> <input type="radio" name="star-input"
+							type="radio" name="star_input" value="1" id="p1"> <label
+							for="p1">1</label> <input type="radio" name="star_input"
 							value="2" id="p2"> <label for="p2">2</label> <input
-							type="radio" name="star-input" value="3" id="p3"> <label
-							for="p3">3</label> <input type="radio" name="star-input"
+							type="radio" name="star_input" value="3" id="p3"> <label
+							for="p3">3</label> <input type="radio" name="star_input"
 							value="4" id="p4"> <label for="p4">4</label> <input
-							type="radio" name="star-input" value="5" id="p5"> <label
+							type="radio" name="star_input" value="5" id="p5"> <label
 							for="p5">5</label>
 					</span> <output for="star-input" id="star-output">
 							<b id="star-count">0</b>점
 						</output>
 					</span>
 					<div class="input-area">
+<<<<<<< HEAD
 						<h4 class="user-name">user</h4>
 						<textarea name="write_area" style="resize: none" class="reply-box"
+=======
+						<c:set var="member_id" value="${member.id}" />											
+							<c:choose>
+								<c:when test="${member.id eq null}">
+									<h4 class="user-name">user</h4>
+									<textarea name="write_area" style="resize: none" class="reply-box"
+							id="repl" placeholder="로그인 후 댓글을 남겨보세요!"></textarea>
+						<a href="javascript:{}" onclick="submitTest();" class="reg-btn"
+							id="repl-btn">댓글 입력</a>
+								</c:when>														
+								<c:when test="${member.id ne null}">
+									<h4 class="user-name">${member.id}</h4>
+									<textarea name="write_area" style="resize: none" class="reply-box"
+>>>>>>> branch 'master' of https://github.com/soyoungsoo/project
 							id="repl" placeholder=" ex) 재미있어요!"> </textarea>
 						<a href="javascript:{}" onclick="submitTest();" class="reg-btn"
 							id="repl-btn">댓글 입력</a>
+								</c:when>
+							</c:choose>
+							
 					</div>
 					<hr style="position: relative; top: 20px;">
 
 					<div class="repl-box text-center">
 						<ul class="repl-list">
+<<<<<<< HEAD
 							<li>
 								<p class="star_rating">
 									<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
@@ -182,6 +208,26 @@
 								<a class = "good-btn" onclick="evalCheck(this);">♡ <strong class = "count">0</strong></a>
 
 							</li>
+=======
+							<c:forEach var="cm" items="${comment}">
+								<c:choose>
+									<c:when test="${cm eq null}">
+										<p class="star_rating">
+											<strong class="rep-user-name"></strong>첫 댓글을 달아보세요!
+										<li>
+											<p class="star_rating">
+												<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
+												   href="#" class="on">★</a> <a href="#" class="on">★</a> <a
+												   href="#">★</a>
+											</p>
+											<p>
+												<strong class="rep-user-name">aaaa2222</strong>진짜 재밌어요!
+											</p>
+										</li>
+									</c:when>
+								</c:choose>
+							</c:forEach>					
+>>>>>>> branch 'master' of https://github.com/soyoungsoo/project
 						</ul>
 					</div>
 				</form>
@@ -201,7 +247,7 @@
 			</div>
 		</div>
 		<div class="footer">
-			<p class="copyright">&copy;copyright reserved larl</p>
+			<p class="copyright">&copy;copyright reserved larl</p>			
 		</div>
 	</div>
 	<script src="<c:url value='/resources/bootstrap/js/jquery-1.12.4.min.js'/>"></script>

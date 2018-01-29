@@ -2,6 +2,7 @@ package com.koitt.movie.dao;
 
 import java.util.List;
 
+import com.koitt.movie.model.Comment;
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Movie;
 import com.koitt.movie.model.Schedule;
@@ -23,4 +24,8 @@ public interface MovieDao {
 	public void movie_schedule(Schedule schedule) throws CommonException;
 	// 영화관 좌석 등록
 	public void movie_seat(Seat seat)throws CommonException;
+	// 영화 댓글 등록
+	public void movie_comment(Comment c) throws CommonException;
+	// 영화 댓글 조회
+	public List<Comment> commentSelect(Integer mno) throws CommonException;
 }

@@ -21,8 +21,14 @@
 		
 	<insert id="insert-seat" parameterType="Seat" statementType="CALLABLE">		
 		 { CALL insert_seat(#{tno},#{Scount}) }
-	</insert>
-		
+	</insert>											
+														
+	<insert id="comment-eroll" parameterType="Comment">	
+		<selectKey keyProperty="cno" resultType="Integer" order="BEFORE">
+			SELECT seq_cno.NEXTVAL cno FROM DUAL		
+		</selectKey>									
+		INSERT INTO MOVIE_COMENT VALUES (SEQ_CNO.NEXTVAL, #{mno}, #{id}, #{comment}, #{score}, #{viewcount});
+	</insert>											
 	<select id="select" parameterType="String" resultType="Movie">
 		SELECT * FROM Movie	WHERE mno = #{mno}
 	</select>
@@ -30,7 +36,11 @@
 	<select id="selectAll" resultType="Movie">
 		SELECT * FROM MOVIE
 	</select>
-
+	
+	<select id="commentAll" parameterType="Integer" resultType="Comment">
+		SELECT *FROM MOVIE_COMMENT WHERE mno = #{mno}
+	</select>
+	
 	<delete id="delete" parameterType="String">
 		DELETE FROM MOVIE WHERE	mno= #{mno}
 	</delete>

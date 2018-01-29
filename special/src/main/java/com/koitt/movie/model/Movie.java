@@ -1,9 +1,7 @@
 package com.koitt.movie.model;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
 
 public class Movie {
 	
@@ -12,11 +10,8 @@ public class Movie {
 	private String content;
 	private String genre;
 	private String grade;
-	private String mrun;
-
-	@DateTimeFormat(pattern = "yyyy-dd-MM")		
-	private Date sdate;
-	@DateTimeFormat(pattern = "yyyy-dd-MM")
+	private String mrun;		
+	private Date sdate;	
 	private Date edate;
 	private String post; 
 

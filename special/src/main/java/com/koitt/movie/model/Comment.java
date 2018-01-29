@@ -1,24 +1,27 @@
 package com.koitt.movie.model;
 
-public class Coment {
+public class Comment {
 
 	private Integer cno;
 	private Integer mno;
-	private Integer memberno;
-	private String coment;
+	private String id;
+	private String comment;
 	private Integer score;
 	private Integer viewcount;
+	private String ctime;
 	
-	public Coment() {}
+	public Comment() {}
 
-	public Coment(Integer cno, Integer mno, Integer memberno, String coment, Integer score, Integer viewcount) {
+	public Comment(Integer cno, Integer mno, String id, String comment, Integer score, Integer viewcount,
+			String ctime) {
 		super();
 		this.cno = cno;
 		this.mno = mno;
-		this.memberno = memberno;
-		this.coment = coment;
+		this.id = id;
+		this.comment = comment;
 		this.score = score;
 		this.viewcount = viewcount;
+		this.ctime = ctime;
 	}
 
 	public Integer getCno() {
@@ -37,20 +40,20 @@ public class Coment {
 		this.mno = mno;
 	}
 
-	public Integer getMemberno() {
-		return memberno;
+	public String getId() {
+		return id;
 	}
 
-	public void setMemberno(Integer memberno) {
-		this.memberno = memberno;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getComent() {
-		return coment;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setComent(String coment) {
-		this.coment = coment;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	public Integer getScore() {
@@ -69,13 +72,22 @@ public class Coment {
 		this.viewcount = viewcount;
 	}
 
+	public String getCtime() {
+		return ctime;
+	}
+
+	public void setCtime(String ctime) {
+		this.ctime = ctime;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((cno == null) ? 0 : cno.hashCode());
-		result = prime * result + ((coment == null) ? 0 : coment.hashCode());
-		result = prime * result + ((memberno == null) ? 0 : memberno.hashCode());
+		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
+		result = prime * result + ((ctime == null) ? 0 : ctime.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((mno == null) ? 0 : mno.hashCode());
 		result = prime * result + ((score == null) ? 0 : score.hashCode());
 		result = prime * result + ((viewcount == null) ? 0 : viewcount.hashCode());
@@ -90,21 +102,26 @@ public class Coment {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Coment other = (Coment) obj;
+		Comment other = (Comment) obj;
 		if (cno == null) {
 			if (other.cno != null)
 				return false;
 		} else if (!cno.equals(other.cno))
 			return false;
-		if (coment == null) {
-			if (other.coment != null)
+		if (comment == null) {
+			if (other.comment != null)
 				return false;
-		} else if (!coment.equals(other.coment))
+		} else if (!comment.equals(other.comment))
 			return false;
-		if (memberno == null) {
-			if (other.memberno != null)
+		if (ctime == null) {
+			if (other.ctime != null)
 				return false;
-		} else if (!memberno.equals(other.memberno))
+		} else if (!ctime.equals(other.ctime))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (mno == null) {
 			if (other.mno != null)
@@ -127,21 +144,23 @@ public class Coment {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Movie_coment [cno=");
+		builder.append("Comment [cno=");
 		builder.append(cno);
 		builder.append(", mno=");
 		builder.append(mno);
-		builder.append(", memberno=");
-		builder.append(memberno);
-		builder.append(", coment=");
-		builder.append(coment);
+		builder.append(", id=");
+		builder.append(id);
+		builder.append(", comment=");
+		builder.append(comment);
 		builder.append(", score=");
 		builder.append(score);
 		builder.append(", viewcount=");
 		builder.append(viewcount);
+		builder.append(", ctime=");
+		builder.append(ctime);
 		builder.append("]");
 		return builder.toString();
 	}
-	
+
 	
 }

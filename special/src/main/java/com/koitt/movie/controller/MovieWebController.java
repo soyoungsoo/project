@@ -1,9 +1,7 @@
 package com.koitt.movie.controller;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -34,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.koitt.movie.model.Comment;
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Member;
 import com.koitt.movie.model.Movie;
@@ -49,8 +48,8 @@ import com.koitt.movie.service.ReservationService;
 @RequestMapping("/movie")
 public class MovieWebController {
 
-	private static final String UPLOAD_FOLDER ="/movieImage";
-
+	//private static final String UPLOAD_FOLDER ="/movieImage";
+	private static final String UPLOAD_FOLDER ="/resources/image";		
 	@Autowired
 	private MemberService MemberService;
 	@Autowired
@@ -115,17 +114,17 @@ public class MovieWebController {
 					throws CommonException, Exception {
 		Movie movie = null;
 		String filename = null;
-
+		List<Comment> list = null;
+		
 		movie = movieService.detail(mno);
 		filename = movie.getPost();
 		if (filename != null && !filename.trim().isEmpty()) {
 			filename = URLDecoder.decode(filename, "UTF-8");
-		}
-
+		}		
+		list = movieService.commentAll(Integer.parseInt(mno));
+		model.addAttribute("comment", list);
 		model.addAttribute("item", movie);
-		model.addAttribute("filename", filename);
-		
-		
+		model.addAttribute("filename", filename);				
 		return "detail-rewrite";	// /WEB-INF/views/detail.jsp 페이지로 이동
 	}
 
@@ -158,9 +157,13 @@ public class MovieWebController {
 		movie.setMrun(mrun);
 		movie.setSdate(sdate);
 		movie.setEdate(edate);
+		
 		// 최상위 경로 밑에 upload 폴더의 경로를 가져온다.
 		String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);
 		System.out.println("PAth "+ path);
+		String path2 = request.getServletContext().getRealPath("/");
+		System.out.println("PAth2 "+ path2);
+		
 		// MultipartFile 객체에서 파일명을 가져온다.
 		String originalName = post.getOriginalFilename();
 		System.out.println("origin "+originalName);
@@ -330,36 +333,17 @@ public class MovieWebController {
 			movieService.seatEnrollment(seat);			
 			return "redirect:list.do";			
 		}
-		
-		   @RequestMapping(value = "/getPic", method = RequestMethod.GET)
-		   public void getImage(String post,HttpServletRequest req, HttpSession session, HttpServletResponse res) throws Exception {
-
-				String realFile = "C:\\evening_spring_new\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\special\\movieImage\\";
-				String fileNm = post;
-				String ext = "jpg";
-				PrintWriter out2 = res.getWriter();
-				BufferedOutputStream out = null;
-				InputStream in = null;
-
-				try {
-					res.setContentType("image/" + ext);
-					res.setHeader("Content-Disposition", "inline;filename=" + realFile+fileNm);
-					File file = new File(realFile+fileNm);
-					System.out.println(file);
-					if(file.exists()){
-						in = new FileInputStream(file);
-						out = new BufferedOutputStream(res.getOutputStream());
-						int len;
-						byte[] buf = new byte[1024];
-						while ((len = in.read(buf)) > 0) {
-							out.write(buf, 0, len);
-						}
-					}
-				} catch (Exception e) {					
-				} finally {
-					if(out != null){ out.flush(); }
-					if(out != null){ out.close(); }
-					if(in != null){ in.close(); }
-				}
-		   }
+		@RequestMapping(value = "/comment", method = RequestMethod.POST)
+		public String comment(HttpSession session,Integer mno_i,String write_area,Integer star_input)
+			throws CommonException{			
+				Comment comment = new Comment();
+				Member member = (Member)session.getAttribute("member");
+				comment.setMno(mno_i);
+				comment.setId(member.getId());
+				comment.setComment(write_area);
+				comment.setScore(star_input);
+				comment.setViewcount(0);
+				//comment.setViewcount(viewcount);
+			return "redirect:detail.do?mno="+mno_i;			
+		}
 	}
