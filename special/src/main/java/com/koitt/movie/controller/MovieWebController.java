@@ -344,6 +344,9 @@ public class MovieWebController {
 				comment.setScore(star_input);
 				comment.setViewcount(0);
 				//comment.setViewcount(viewcount);
+				System.out.println(mno_i);
+				System.out.println(write_area);
+				System.out.println(star_input);
 			return "redirect:detail.do?mno="+mno_i;			
 		}
 	}

@@ -158,7 +158,7 @@
 								<c:when test="${member.id ne null}">
 									<h4 class="user-name">${member.id}</h4>
 									<textarea name="write_area" style="resize: none" class="reply-box"
-							id="repl" placeholder=" ex) 재미있어요!"> </textarea>
+							id="repl" placeholder=" ex) 재미있어요!"></textarea>
 						<a href="javascript:{}" onclick="submitTest();" class="reg-btn"
 							id="repl-btn">댓글 입력</a>
 								</c:when>
@@ -173,7 +173,9 @@
 								<c:choose>
 									<c:when test="${cm eq null}">
 										<p class="star_rating">
-											<strong class="rep-user-name"></strong>첫 댓글을 달아보세요!
+											<strong class="rep-user-name"></strong>첫 댓글을 달아보세요!										
+									</c:when>
+									<c:when test="${cm ne null}">
 										<li>
 											<p class="star_rating">
 												<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
@@ -181,29 +183,16 @@
 												   href="#">★</a>
 											</p>
 											<p>
-												<strong class="rep-user-name">aaaa2222</strong>진짜 재밌어요!
+												<strong class="rep-user-name">${member.id}</strong>${cm.comment}
 											</p>
-										</li>
-									</c:when>
+										</li>										
+									</c:when>									
 								</c:choose>
 							</c:forEach>					
 						</ul>
 					</div>
 				</form>
-			</div>
-			<div class="admin-menu">
-				<ul>
-					<c:forEach var="list" items="${ member.userTypes }">
-						<c:choose>
-							<c:when test="${list.type == 'ADMIN'}">
-								<li><a class="reg-btn"
-									href="/special/movie/modify.do?mno=${item.mno}">수정하기</a></li>
-								<li><a class="reg-btn" href="javascript:deleteCheck();">삭제하기</a></li>
-							</c:when>
-						</c:choose>
-					</c:forEach>
-				</ul>
-			</div>
+			</div>			
 		</div>
 		<div class="footer">
 			<p class="copyright">&copy;copyright reserved larl</p>			
