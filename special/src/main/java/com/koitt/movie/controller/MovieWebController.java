@@ -19,6 +19,8 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -340,10 +342,16 @@ public class MovieWebController {
 				Member member = (Member)session.getAttribute("member");
 				comment.setMno(mno_i);
 				comment.setId(member.getId());
-				comment.setComment(write_area);
-				comment.setScore(star_input);
-				comment.setViewcount(0);
-				//comment.setViewcount(viewcount);
+				comment.setMcomment(write_area);
+				comment.setScore(star_input);		
+				comment.setVcount(0);
+				movieService.comment(comment);
 			return "redirect:detail.do?mno="+mno_i;			
+		}	
+		@RequestMapping(value = "/delete", method = RequestMethod.GET)
+		public String delete(Integer mno, Integer cno)
+			throws CommonException{
+				movieService.commentDel(cno);						
+			return "redirect:detail.do?mno="+mno;			
 		}
 	}

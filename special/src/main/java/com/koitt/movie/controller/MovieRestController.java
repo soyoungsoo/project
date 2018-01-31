@@ -18,11 +18,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.koitt.movie.model.Comment;
+import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Member;
 import com.koitt.movie.model.Reservation;
 import com.koitt.movie.model.Schedule;
 import com.koitt.movie.model.Seat;
 import com.koitt.movie.service.SelectMovieService;
+import com.koitt.movie.service.MovieService;
 import com.koitt.movie.service.ReservationService;
 
 @RestController
@@ -35,7 +38,8 @@ public class MovieRestController {
 	private ReservationService tkService;
 	@Autowired				
 	private SelectMovieService smService;							
-	
+	@Autowired
+	private MovieService mService; 
 		
 	@RequestMapping(value = "/select", method = RequestMethod.GET,produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
 			 MediaType.APPLICATION_XML_VALUE })
@@ -75,5 +79,41 @@ public class MovieRestController {
 			list = tkService.Lookup(rs);			
 		return new ResponseEntity<List<Reservation>>(list,HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/vcount", method = RequestMethod.GET)
+	public ResponseEntity<Comment> vcount(HttpSession session,Integer mno, Integer cno)
+		throws CommonException{
+		Member member = (Member)session.getAttribute("member");
+		String id = member.getId();
+		int status = (int)session.getAttribute(cno+id);
+		if (status != 1) {
+			Comment c = new Comment();
+			c.setMno(mno);
+			c.setCno(cno);
+			mService.VcountUp(c);		
+			session.setAttribute(cno + id, 1);
+			
+			return new ResponseEntity<Comment>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<Comment>(HttpStatus.NO_CONTENT);			
+	}
 
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public ResponseEntity<Comment> update(HttpSession session,Integer mno, Integer cno)
+		throws CommonException{
+		Member member = (Member)session.getAttribute("member");
+		String id = member.getId();
+		int status = (int)session.getAttribute(cno+id);
+		if (status != 1) {
+			Comment c = new Comment();
+			c.setMno(mno);
+			c.setCno(cno);
+			mService.VcountUp(c);		
+			session.setAttribute(cno + id, 1);
+			
+			return new ResponseEntity<Comment>(HttpStatus.OK);
+		}		
+		return new ResponseEntity<Comment>(HttpStatus.NO_CONTENT);			
+	}
 }

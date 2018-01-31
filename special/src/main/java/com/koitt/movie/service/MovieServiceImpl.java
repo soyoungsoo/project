@@ -81,4 +81,20 @@ public class MovieServiceImpl implements MovieService{
 	public List<Comment> commentAll(Integer mno) throws CommonException {			
 		return dao.commentSelect(mno);
 	}
+	@Override
+	public void commentDel(Integer cno) throws CommonException {		
+		dao.commentDelete(cno);
+	}
+	@Override
+	public void commentUpdate(Comment comment) throws CommonException {
+		dao.commentUpdate(comment);
+	}
+	@Override
+	public void CountComent() throws CommonException { 
+		dao.CountComent();
+	}
+	@Override
+	public void VcountUp(Comment comment) throws CommonException {
+		dao.VcountUp(comment);
+	}
 }
