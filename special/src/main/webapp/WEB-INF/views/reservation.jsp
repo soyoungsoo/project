@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/main.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/seat.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/register.css'/>">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="<c:url value='/resources/jQuery-Radiobtn/zInput.js'/>"></script>
 <title>예매하기</title>
 <style type="text/css">
@@ -100,8 +100,7 @@
 						    		  '<span>'+ '<em>' +  value.d + '/'+ value.f + '</em>' + '</span>' +
 					                  '</a></li>' + '</ul>';
 								                  			                  					                   	               						          
-					         $('.ajax-cover').append(eachrow).trigger("create");	
-					         $('.screen_tit').show();							 					     	 	 											  							
+					         $('.ajax-cover').append(eachrow).trigger("create");						 					     	 	 											  							
 					}); // each								 
 			}, // success
 			error: function(error) {
@@ -137,15 +136,22 @@
 										
 				var htmlrow = 
 					//  p0 
-					'<a style="cursor:pointer" class="p0 '+ value.seatno +' 0 '+ value.scount +'" value="'+ value.issue +'" data-seat="' + (key+1) +'" seat-group="grNum3"' + 
+					'<a style="cursor:pointer" class="p0 '+ value.seatno +' 0 '+ value.scount +'" value="'+value.issue+'" data-seat="' + (key+1) +'" seat-group="grNum3"' + 
 					'title="상영관 : ' + value.tno + ' 좌석 번호: '+ value.seatno + ' - 일반석"'+
 					'seat-code="1A01" onclick="selectedSeat(this);">'+ (key+1) +'</a>'
 				 
-				  $('.seat_area').append(htmlrow).trigger("create");		
+				  $('.seat_area').append(htmlrow).trigger("create");
+					var index = $('.seat_area a').attr("value");		
+					if (index === "1") {
+						$('.seat_area a').addClass("already-selected");	
+					}
+					else if (index === "2") {
+						$('.seat_area a').addClass("seat-broken");
+					}
 				  $('.screen_tit').show();
 				  $('.select-age').show();																					
-			});																										 			 						 			 						 			 			 			 						 			 					 			 			
-			}, // 2 success
+			});
+			}, // 2 success																										 			 						 			 						 			 			 			 						 			 					 			 			
 			error: function(jqXHR, textStatus, errorThrown) {
 				alert("실패");		 			 											
 			} //error
@@ -159,23 +165,6 @@
 	function removeAll() {
 		$(".p0").removeClass("adult-seat-selected");
 		$(".p0").removeClass("teen-seat-selected");
-	}
-
-	function isBooked() {
-
-		var index;
-
-		for (var i = 0; i < 45; i++) {
-
-			var index = $(".seat_area").children().eq(i);
-
-			if ($(index[value = "1"])) {
-				$(index).addClass("already-selected");
-			}
-			else if ($(index[value= "2"])) {
-				$(index).addClass("seat-broken");
-			}
-		}
 	}
 
 	function howMuch() {
@@ -197,7 +186,7 @@
 	
 </script>
 </head>
-<body onload="isBooked();">				 	
+<body>				 	
 	  <div class="frame">
         <div class="container">
             <div class="header">

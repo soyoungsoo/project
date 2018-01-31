@@ -154,10 +154,6 @@
 						</output>
 					</span>
 					<div class="input-area">
-<<<<<<< HEAD
-						<h4 class="user-name">user</h4>
-						<textarea name="write_area" style="resize: none" class="reply-box"
-=======
 						<c:set var="member_id" value="${member.id}" />											
 							<c:choose>
 								<c:when test="${member.id eq null}">
@@ -170,19 +166,16 @@
 								<c:when test="${member.id ne null}">
 									<h4 class="user-name">${member.id}</h4>
 									<textarea name="write_area" style="resize: none" class="reply-box"
->>>>>>> branch 'master' of https://github.com/soyoungsoo/project
 							id="repl" placeholder=" ex) 재미있어요!"> </textarea>
 						<a href="javascript:{}" onclick="submitTest();" class="reg-btn"
 							id="repl-btn">댓글 입력</a>
 								</c:when>
-							</c:choose>
-							
+							</c:choose>						
 					</div>
 					<hr style="position: relative; top: 20px;">
 
 					<div class="repl-box text-center">
 						<ul class="repl-list">
-<<<<<<< HEAD
 							<li>
 								<p class="star_rating">
 									<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
