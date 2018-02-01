@@ -244,11 +244,7 @@
 					</span> <output for="star-input" id="star-output">
 							<b id="star-count">0</b>점
 						</output>
-<<<<<<< HEAD
-					</span>					
-=======
-					</span>
->>>>>>> branch 'master' of https://github.com/soyoungsoo/project.git
+					</span>										
 					<div class="input-area">		
 						<c:set var="member_id" value="${member.id}" />											
 							<c:choose>
@@ -266,37 +262,10 @@
 							id="repl-btn">댓글 입력</a>
 								</c:when>
 							</c:choose>												
-
 					</div>
 					<hr style="position: relative; top: 20px;">
 
-					<div class="repl-box text-center">
-						<ul class="repl-list">
-							<li>
-								<p class="star_rating">
-									<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
-										href="#" class="on">★</a> <a href="#" class="on">★</a> <a
-										href="#">★</a>
-								</p>
-
-								<p>
-									<strong class="rep-user-name">aaaa2222</strong>진짜 재밌어요!
-								</p>
-								<a class = "good-btn" onclick="evalCheck(this);">♡ <strong class = "count">0</strong></a>
-
-							</li>
-							<li>
-								<p class="star_rating">
-									<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
-										href="#" class="on">★</a> <a href="#">★</a> <a href="#">★</a>
-								</p>
-
-								<p>
-									<strong class="rep-user-name">a3332</strong>진짜 감동적임..
-								</p>
-								<a class = "good-btn" onclick="evalCheck(this);">♡ <strong class = "count">0</strong></a>
-
-							</li>
+					<div class="repl-box text-center">																			
 						<ul class="repl-list">		
 							<c:forEach var="cm" items="${comment}">
 								<c:choose>

@@ -33,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.koitt.movie.model.Actors;
 import com.koitt.movie.model.Comment;
 import com.koitt.movie.model.CommonException;
+import com.koitt.movie.model.Intro;
 import com.koitt.movie.model.Member;
 import com.koitt.movie.model.Movie;
 import com.koitt.movie.model.Reservation;
@@ -403,8 +404,38 @@ public class MovieWebController {
 			return "Intro-insert";
 		}
 		@RequestMapping(value = "/insert_Intro", method = RequestMethod.POST)
-		public String Intro(Integer mno, MultipartFile[] image) throws Exception {		
+		public String Intro(HttpServletRequest request, Integer mno, MultipartFile[] image, String video) throws Exception {
+			Intro intro = new Intro();
+			intro.setVideo(video);
+			for (MultipartFile file : image) {				
+					// 최상위 경로 밑에 upload 폴더의 경로를 가져온다.
+					String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);					
+					intro.setMno(mno);									
+					// MultipartFile 객체에서 파일명을 가져온다.
+					String originalName = file.getOriginalFilename();
+					System.out.println("origin "+originalName);
+					// upload 폴더가 없다면, upload 폴더 생성
+					File directory = new File(path);
+					if (!directory.exists()) {
+						directory.mkdir();
+					}
+	
+					// attachment 객체를 이용하여, 파일을 서버에 전송
+					if (file != null && !file.isEmpty()) {
+						int idx = originalName.lastIndexOf(".");
+						String filename = originalName.substring(0, idx);
+						String ext = originalName.substring(idx, originalName.length());
+						String uploadFilename = filename
+								+ Long.toHexString(System.currentTimeMillis())
+								+ ext;
+						file.transferTo(new File(path, uploadFilename));
+						uploadFilename = URLEncoder.encode(uploadFilename, "UTF-8");
+						
+						intro.setImage(uploadFilename);
+					}	
+				}	
+				movieService.insert_Intro_S(intro);
 			
-			return "Intro-insert";
+			return "redirect:list.do";
 		}
 	}

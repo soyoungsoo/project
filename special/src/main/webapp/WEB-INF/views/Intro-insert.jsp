@@ -12,15 +12,15 @@
 <script type="text/javascript">
     function add() {             
         $('#Introview').append(
-                '<tr><td>'+            
-				'<label>사진</label><input type="file" name="photo">'+                
+                '<tr><td>'+                           
+				'<label>사진</label><input type="file" name="photo">'+                				
                 '</td></tr>');      
 }
 </script>
 <body>
 	<h3>출연진 추가하기</h3>	
 	<input type="button" id="addFile" value="add more" onclick="add();">
-	<form method="post" action="/special/movie/insert_actors" enctype="multipart/form-data">
+	<form method="post" action="/special/movie/insert_Intro" enctype="multipart/form-data">
 		<table id="Introview">
 			<tr>			
 				<td>
