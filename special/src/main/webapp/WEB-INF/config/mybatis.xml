@@ -16,5 +16,8 @@
 		<typeAlias type="com.koitt.movie.model.Seat" alias="Seat"/>
 		<typeAlias type="com.koitt.movie.model.Schedule" alias="Schedule"/>		
 		<typeAlias type="com.koitt.movie.model.Comment" alias="Comment"/>
+		<typeAlias type="com.koitt.movie.model.Comment" alias="Paging"/>
+		<typeAlias type="com.koitt.movie.model.Actors" alias="Actors"/>
+		<typeAlias type="com.koitt.movie.model.Intro" alias="Intro"/>
 	</typeAliases>
 </configuration>

@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.koitt.movie.dao.MovieDaoImpl">
-
+<mapper namespace="com.koitt.movie.dao.MovieDaoImpl">		
+		
 	<insert id="insert" parameterType="Movie">
 		<selectKey keyProperty="mno" resultType="Integer" order="BEFORE">
 			SELECT mno_seq.NEXTVAL mno FROM DUAL			
@@ -29,7 +29,29 @@
 		</selectKey>									
 		INSERT INTO MOVIE_COMMENT VALUES (SEQ_CNO.NEXTVAL, #{mno}, #{id}, #{mcomment}, #{score},#{vcount}, sysdate)
 	</insert>		
-										
+		
+	<insert id="insert-actors" parameterType="Actors">
+		<selectKey keyProperty="ano" resultType="Integer" order="BEFORE">
+			SELECT SEQ_ANo.NEXTVAL ano FROM DUAL			
+		</selectKey>	
+		INSERT INTO Actors VALUES(#{ano},#{mno},#{name},#{job},#{photo})
+	</insert>
+	
+	<insert id="insert-Intro" parameterType="Intro">
+		<selectKey keyProperty="Ino" resultType="Integer" order="BEFORE">
+			SELECT SEQ_INO.NEXTVAL Ino FROM DUAL			
+		</selectKey>	
+		INSERT INTO MOVIE_INTRO VALUES(#{Ino},#{mno},#{image},#{video})
+	</insert>	
+	
+	<select id="select-Intro" parameterType="Integer" resultType="Intro">
+		SELECT * FROM MOVIE_INTRO WHERE mno = #{mno};
+	</select>
+	
+	<select id="select-actors" parameterType="Integer" resultType="Actors">
+		SELECT * FROM Actors WHERE mno = #{mno}
+	</select>
+							
 	<select id="select" parameterType="String" resultType="Movie">
 		SELECT * FROM Movie	WHERE mno = #{mno}
 	</select>
@@ -42,9 +64,20 @@
 		SELECT *FROM MOVIE_COMMENT WHERE mno = #{mno} order by ctime desc
 	</select>
 	
-	<select id="PageCount">		
-		SELECT COUNT(*) FROM MOVIE_COMMENT WHERE MNO = #{mno}
+	<select id="commentSelect" parameterType="Integer" resultType="Comment">		
+		SELECT * FROM MOVIE_COMMENT WHERE CNO = #{cno}
 	</select>
+	
+	<select id="PageCount" parameterType="Integer" resultType="Integer">		
+		SELECT CEIL(COUNT(*)/5) allpages FROM movie_comment WHERE mno = #{mno}
+	</select>	
+	
+	<select id="PagingCount" parameterType="Paging" resultType="Comment">
+		SELECT * FROM 
+		(SELECT ROWNUM R,movie_comment.* FROM movie_comment ORDER BY ctime DESC)
+		WHERE r BETWEEN ((#{curPage}-1)*5)+1 AND (#{curPage}*5) AND mno = #{mno}
+	</select>
+
 	
 	<delete id="delete" parameterType="String">
 		DELETE FROM MOVIE WHERE	mno= #{mno}
@@ -60,12 +93,6 @@
 		UPDATE MOVIE_COMMENT
 		SET VCOUNT = VCOUNT+1
 		WHERE MNO = #{mno} AND CNO = #{cno}
-	</update>	
-	
-	<update id="comment_modify" parameterType="Comment">			
-		UPDATE MOVIE_COMMENT
-		SET MCOMMENT = #{mcommnet}, CTIME = SYSDATE
-		WHERE MNO = #{mno} AND CNO = #{cno}		
 	</update>	
 	
 	<delete id="comment_delete" parameterType="Integer">	

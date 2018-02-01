@@ -1,19 +1,25 @@
 package com.koitt.movie.model;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class Actors {
 
 	private Integer ano;
 	private Integer mno;
 	private String name;
 	private String job;
+	private String photo;
 	
 	public Actors() {}
 
-	public Actors(Integer ano, Integer mno, String name, String job) {		
+	public Actors(Integer ano, Integer mno, String name, String job, String photo) {		
 		this.ano = ano;
 		this.mno = mno;
 		this.name = name;
 		this.job = job;
+		this.photo = photo;
 	}
 
 	public Integer getAno() {
@@ -48,6 +54,14 @@ public class Actors {
 		this.job = job;
 	}
 
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -56,6 +70,7 @@ public class Actors {
 		result = prime * result + ((job == null) ? 0 : job.hashCode());
 		result = prime * result + ((mno == null) ? 0 : mno.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((photo == null) ? 0 : photo.hashCode());
 		return result;
 	}
 
@@ -88,6 +103,11 @@ public class Actors {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
+		if (photo == null) {
+			if (other.photo != null)
+				return false;
+		} else if (!photo.equals(other.photo))
+			return false;
 		return true;
 	}
 
@@ -102,10 +122,11 @@ public class Actors {
 		builder.append(name);
 		builder.append(", job=");
 		builder.append(job);
+		builder.append(", photo=");
+		builder.append(photo);
 		builder.append("]");
 		return builder.toString();
 	}
 
-	
-	
+
 }

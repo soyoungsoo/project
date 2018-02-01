@@ -10,9 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import com.koitt.movie.dao.MovieDao;
+import com.koitt.movie.model.Actors;
 import com.koitt.movie.model.Comment;
 import com.koitt.movie.model.CommonException;
+import com.koitt.movie.model.Intro;
 import com.koitt.movie.model.Movie;
+import com.koitt.movie.model.Paging;
 import com.koitt.movie.model.Schedule;
 import com.koitt.movie.model.Seat;
 
@@ -84,11 +87,7 @@ public class MovieServiceImpl implements MovieService{
 	@Override
 	public void commentDel(Integer cno) throws CommonException {		
 		dao.commentDelete(cno);
-	}
-	@Override
-	public void commentUpdate(Comment comment) throws CommonException {
-		dao.commentUpdate(comment);
-	}
+	}	
 	@Override
 	public void CountComent() throws CommonException { 
 		dao.CountComent();
@@ -96,5 +95,33 @@ public class MovieServiceImpl implements MovieService{
 	@Override
 	public void VcountUp(Comment comment) throws CommonException {
 		dao.VcountUp(comment);
+	}
+	@Override
+	public Comment cSelect(Integer cno) throws CommonException {
+		return dao.cSelect(cno);		
+	}
+	@Override
+	public Integer AllPage(Integer mno) throws CommonException {		
+		return dao.AllPage(mno);
+	}
+	@Override
+	public List<Paging> curPage(Paging page) throws CommonException {
+		return dao.curPage(page);
+	}
+	@Override
+	public List<Actors> select_Actors(Integer mno) throws CommonException {		
+		return dao.select_Actors(mno);
+	}
+	@Override
+	public void insert_Actors(Actors actors) throws CommonException { 
+		dao.insert_Actors(actors);
+	}
+	@Override
+	public void insert_Intro_S(Intro intro) throws CommonException {
+		dao.insert_Intro(intro);		
+	}
+	@Override
+	public List<Intro> select_Intro_S(Intro intro) throws CommonException {
+		return dao.select_Intro(intro);
 	}
 }

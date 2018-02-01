@@ -43,15 +43,14 @@
 		        $('#reserv-form').submit();    
 		    }		    
 		}
-		function selectedSeat(target) {				
+		function selectedSeat(target) {						
 			var cs = $(target).attr("class");			
 			var sub_cs = cs.substring(7,8);						
 		
 			var title = $(target).attr("title");										   	
 		    var sub_tno = title.substring(6,7);		    
 		    var sub_seatno = title.substring(15,18);			     		   		
-			var sub_scount = cs.substring(9,10);			
-						
+			var sub_scount = cs.substring(9,10);						
 			if(sub_cs == 0){							
 				var t_class = $(target).attr("class", 'p0 '+sub_seatno + ' ' +'1');								    			
 				var str ="";
@@ -93,16 +92,17 @@
 				cache: false,
 				success: function(data, textStatus, xhr) {					
 					
-					$.each(data, function (key, value) {												// + key + '">'		
-					    var eachrow ='<ul class="ajax-button'+ key +'" id="'+ value.rdate +'">' +
-						    		  '<li class="ajax-button' + key +'"><a onclick="chk();" id="ajax-buttona" style="text-decoration:none; cursor:pointer">' + '<span id="tno">'+  value.tno +  '</span><br/>'+ 
+					$.each(data, function (key, value) {												// + key + '">'							
+					    var eachrow = '<input type="hidden" id="ajax_scount" name="scount_a" value="'+ value.scount +'">' +
+						    		'<ul class="ajax-button'+ key +'" id="'+ value.rdate +'">' +					    		 	
+						    		  '<li class="ajax-button' + key +'"><a onclick="chk('+ value.scount+');" id="ajax-buttona" style="text-decoration:none; cursor:pointer">' + '<span id="tno">'+  value.tno +  '</span><br/>'+ 
 						    		 '<span id="rdate">'+ '<em>' + value.rdate + ' ' + '</em>' + '</span><br/>' +
 						    		  '<span>'+ '<em>' +  value.d + '/'+ value.f + '</em>' + '</span>' +
 					                  '</a></li>' + '</ul>';
 								                  			                  					                   	               						          
 					         $('.ajax-cover').append(eachrow).trigger("create");	
 					         $('.screen_tit').show();							 					     	 	 											  							
-					}); // each								 
+					}); // each	 
 			}, // success
 			error: function(error) {
 				alert('실패');
@@ -112,9 +112,11 @@
 	} //시작
 
 	
-	function chk() {		 
+	function chk(pam) {		 
+		
 		var inputVal = $("#i_mno").val();
-		var dd = document.getElementById("area");										
+		var dd = document.getElementById("area");					
+		var pa = pam;									
 		if(dd.hasChildNodes()){			
 			while(dd.hasChildNodes()){																		
 				dd.removeChild(dd.firstChild);
@@ -127,14 +129,13 @@
 										
 			$.ajax({
 				type: 'get',
-				url: 'http://localhost:8082/special/rest' + '/seat?rdate='+rdate+'&mno='+inputVal +'&tno='+tno,						
+				url: 'http://localhost:8082/special/rest' + '/seat?rdate='+rdate+'&mno='+inputVal +'&tno='+tno+'&scount='+pa,						
 				data: false,
 				processData: false,
 				contentType: false,
 				cache: false,				
 				success: function(data) {				 		 			 											
-			$.each(data , function(key, value) {
-										
+			$.each(data , function(key, value) {								
 				var htmlrow = 
 					//  p0 
 					'<a style="cursor:pointer" class="p0 '+ value.seatno +' 0 '+ value.scount +'" value="'+ value.issue +'" data-seat="' + (key+1) +'" seat-group="grNum3"' + 
@@ -144,7 +145,9 @@
 				  $('.seat_area').append(htmlrow).trigger("create");		
 				  $('.screen_tit').show();
 				  $('.select-age').show();																					
-			});																										 			 						 			 						 			 			 			 						 			 					 			 			
+			});			
+							
+/* 			 isBooked();		 */																					 			 						 			 						 			 			 			 						 			 					 			 			
 			}, // 2 success
 			error: function(jqXHR, textStatus, errorThrown) {
 				alert("실패");		 			 											
@@ -162,14 +165,13 @@
 	}
 
 	function isBooked() {
-
 		var index;
 
 		for (var i = 0; i < 45; i++) {
 
-			var index = $(".seat_area").children().eq(i);
-
-			if ($(index[value = "1"])) {
+			var index = $(".seat_area").children().eq(i).attr("value");
+			
+			if (index==1) {
 				$(index).addClass("already-selected");
 			}
 			else if ($(index[value= "2"])) {
@@ -197,7 +199,7 @@
 	
 </script>
 </head>
-<body onload="isBooked();">				 	
+<body>				 	
 	  <div class="frame">
         <div class="container">
             <div class="header">
@@ -236,7 +238,7 @@
 						</div>
 						<div class="pay-container">
 									<hr style="border: 0.5px solid gray;">
-									<ul>
+									<ul>									
 										<li>
 											<h3>- 요금</h3>
 										</li>

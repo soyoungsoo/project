@@ -21,12 +21,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.koitt.movie.model.Comment;
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Member;
+import com.koitt.movie.model.Paging;
 import com.koitt.movie.model.Reservation;
 import com.koitt.movie.model.Schedule;
 import com.koitt.movie.model.Seat;
-import com.koitt.movie.service.SelectMovieService;
 import com.koitt.movie.service.MovieService;
 import com.koitt.movie.service.ReservationService;
+import com.koitt.movie.service.SelectMovieService;
 
 @RestController
 @RequestMapping("/rest")	
@@ -50,19 +51,20 @@ public class MovieRestController {
 			schedule.setMno(mno);					
 			schedule.setRdate(date);						
 			list = smService.selectDate(schedule);										
-			
+			System.out.println(list);
 			return new ResponseEntity<List<Seat>>(list,HttpStatus.OK);
 	}	
 	@RequestMapping(value = "/seat", method = RequestMethod.GET,produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
 			 MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<List<Seat>> seat(@RequestParam("rdate")String date , @RequestParam("mno") Integer mno, @RequestParam("tno") Integer tno,UriComponentsBuilder ucBuilder) throws ParseException {
+	public ResponseEntity<List<Seat>> seat(@RequestParam("rdate")String date , @RequestParam("mno") Integer mno, @RequestParam("tno") Integer tno, Integer scount) throws ParseException {
 			List<Seat> list = null;			
 			Seat seat = new Seat();
 						
 			seat.setMno(mno);
 			seat.setTno(tno);				
 			seat.setRdate(date);
-						
+			seat.setScount(scount);
+			System.out.println(seat);
 			list = smService.select(seat);	
 			
 			return new ResponseEntity<List<Seat>>(list,HttpStatus.OK);
@@ -97,23 +99,35 @@ public class MovieRestController {
 		}
 		
 		return new ResponseEntity<Comment>(HttpStatus.NO_CONTENT);			
-	}
+	}	
+	@RequestMapping(value = "/page", method = RequestMethod.GET)
+	public ResponseEntity<List<Paging>> page(Integer curPage,Integer mno)
+		throws CommonException{					
+		  Paging page = new Paging();
+		  List<Paging> list = null;
+   		  // 페이지번호가 없는경우		
+		  Integer intpnum = (curPage == null) ? 1 : curPage;				
+		  page.setCurPage(intpnum);
+		  page.setMno(mno);		  
+		  
+		  // 현재 페이지 목록 출력
+		  list = mService.curPage(page);
+		  // 전체페이지
+		  Integer allpages = mService.AllPage(mno);
+		  page.setAllpages(allpages);
+		  // 페이지그룹개수
+		  double grouppage = 5;
+		  // 시작페이지번호
+		  int startgrouppage = ((int)Math.floor((intpnum-1)/grouppage))*(int)grouppage+1;
+		  page.setStartgrouppage(startgrouppage);
+		  // 종료페이지번호
+		  Integer endgrouppage = startgrouppage+((int)grouppage-1);
+		  endgrouppage = endgrouppage > allpages ? allpages :  endgrouppage;		  
+		  page.setEndgrouppage(endgrouppage);		
+		  
+		  list.add(page);
+		  System.out.println("list " +list);
+		return new ResponseEntity<List<Paging>>(list,HttpStatus.OK);			
+	}	
 
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public ResponseEntity<Comment> update(HttpSession session,Integer mno, Integer cno)
-		throws CommonException{
-		Member member = (Member)session.getAttribute("member");
-		String id = member.getId();
-		int status = (int)session.getAttribute(cno+id);
-		if (status != 1) {
-			Comment c = new Comment();
-			c.setMno(mno);
-			c.setCno(cno);
-			mService.VcountUp(c);		
-			session.setAttribute(cno + id, 1);
-			
-			return new ResponseEntity<Comment>(HttpStatus.OK);
-		}		
-		return new ResponseEntity<Comment>(HttpStatus.NO_CONTENT);			
-	}
 }

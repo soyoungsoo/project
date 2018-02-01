@@ -14,31 +14,31 @@ CREATE SEQUENCE SEQ_SCOUNT
 START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE SEQ_CNO
 START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE SEQ_ANO
+START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE SEQ_INO
+START WITH 1 INCREMENT BY 1;
 /* 추가 */
 INSERT INTO
 Movie(Mno,title,content,genre,grade,mrun,sdate,edate,post)
-VALUES (mno_seq.nextval,'강철비','dd','한국드라마','15','117','2017-10-21','2017-12-21',null);
+VALUES (mno_seq.nextval,'코코','dd','영원히 기억하고 싶은 황홀한 모험이 시작된다!
+
+뮤지션을 꿈꾸는 소년 미구엘은 전설적인 가수 에르네스토의 기타에 손을 댔다 ‘죽은 자들의 세상’에 들어가게 된다.
+그리고 그곳에서 만난 의문의 사나이 헥터와 함께 상상조차 못했던 모험을 시작하게 되는데…
+과연 ‘죽은 자들의 세상’에 숨겨진 비밀은? 그리고 미구엘은 무사히 현실로 돌아올 수 있을까?','애니메이션','전체이용가','120','2018-01-21','2018-05-20',null);
 /* 타입 추가*/
 INSERT INTO user_type(id,type) 
 VALUES (1,'ADMIN');
 INSERT INTO user_type(id,type) 
 VALUES (2,'USER');
 /* 회원 추가*/
-
 INSERT INTO Member
 VALUES (memno_seq.nextval,'admin','1234','관리자','2018-01-06','admin@koitt.com');
 
-	SELECT m.memno, m.id, m.pwd, m.name, m.birth, m.email, ut.id, ut.type
-	FROM member m,
-	(SELECT user_info_type.memno, user_type.id, user_type.type
-	FROM user_info_type, user_type
-	WHERE user_type.id = user_info_type_id) ut
-	WHERE m.memno = ut.memno;
 
 /* 회원 타입 추가*/
 insert into user_info_type(memno,user_info_type_id) values (1,1);
 insert into user_info_type(memno,user_info_type_id) values (1,2);
-
 /* 상영관 추가(관, 좌석 수) */
 INSERT INTO theater VALUES(1,45);
 INSERT INTO theater VALUES(2,45);
@@ -102,20 +102,9 @@ INSERT INTO SCHEDULE VALUES ('2018-01-17 17:00',SEQ_SCOUNT.NEXTVAL,1);
 INSERT INTO SCHEDULE VALUES ('2018-01-17 19:00',SEQ_SCOUNT.NEXTVAL,1);
 
 
-select * from reservation;
-delete RESERVATION where memno ='21';
-delete from seat where scount = 2;
-select * from seat;
-update seat
-set issue=0;
-			
-update movie
-set mno = 1
-where mno =6;
-select * from schedule;
-select * from movie;
-select * from MOVIE_COMMENT where mno = 1 order by ctime desc;
+INSERT INTO Actors VALUES(seq_ano.nextval,1,'하정우','배우');
+INSERT INTO Actors VALUES(seq_ano.nextval,1,'하정우','배우');
+INSERT INTO Actors VALUES(seq_ano.nextval,1,'하정우','배우');
 
-select count(*) from movie_comment where mno = 1; 
+select * from movie_intro
 
-insert into MOVIE_COMMENT values (SEQ_CNO.NEXTVAL, 1, 'test', '1빠다', 2, 0, sysdate);

@@ -1,20 +1,29 @@
 package com.koitt.movie.model;
-
-public class Comment {
-
-	private Integer cno;
+public class Paging {
+	
+	private Integer curPage;
 	private Integer mno;
+	private Integer allpages;
+	private Integer startgrouppage;
+	private Integer endgrouppage;
+	private Integer cno;	
 	private String id;
 	private String mcomment;
 	private Integer score;
 	private Integer vcount;
 	private String ctime;
 	
-	public Comment() {}
+	public Paging() {}
 
-	public Comment(Integer cno, Integer mno, String id, String mcomment, Integer score, Integer vcount, String ctime) {		
-		this.cno = cno;
+	public Paging(Integer curPage, Integer mno, Integer allpages, Integer startgrouppage, Integer endgrouppage,
+			Integer cno, String id, String mcomment, Integer score, Integer vcount, String ctime) {
+		super();
+		this.curPage = curPage;
 		this.mno = mno;
+		this.allpages = allpages;
+		this.startgrouppage = startgrouppage;
+		this.endgrouppage = endgrouppage;
+		this.cno = cno;
 		this.id = id;
 		this.mcomment = mcomment;
 		this.score = score;
@@ -22,12 +31,12 @@ public class Comment {
 		this.ctime = ctime;
 	}
 
-	public Integer getCno() {
-		return cno;
+	public Integer getCurPage() {
+		return curPage;
 	}
 
-	public void setCno(Integer cno) {
-		this.cno = cno;
+	public void setCurPage(Integer curPage) {
+		this.curPage = curPage;
 	}
 
 	public Integer getMno() {
@@ -36,6 +45,38 @@ public class Comment {
 
 	public void setMno(Integer mno) {
 		this.mno = mno;
+	}
+
+	public Integer getAllpages() {
+		return allpages;
+	}
+
+	public void setAllpages(Integer allpages) {
+		this.allpages = allpages;
+	}
+
+	public Integer getStartgrouppage() {
+		return startgrouppage;
+	}
+
+	public void setStartgrouppage(Integer startgrouppage) {
+		this.startgrouppage = startgrouppage;
+	}
+
+	public Integer getEndgrouppage() {
+		return endgrouppage;
+	}
+
+	public void setEndgrouppage(Integer endgrouppage) {
+		this.endgrouppage = endgrouppage;
+	}
+
+	public Integer getCno() {
+		return cno;
+	}
+
+	public void setCno(Integer cno) {
+		this.cno = cno;
 	}
 
 	public String getId() {
@@ -82,12 +123,16 @@ public class Comment {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((allpages == null) ? 0 : allpages.hashCode());
 		result = prime * result + ((cno == null) ? 0 : cno.hashCode());
 		result = prime * result + ((ctime == null) ? 0 : ctime.hashCode());
+		result = prime * result + ((curPage == null) ? 0 : curPage.hashCode());
+		result = prime * result + ((endgrouppage == null) ? 0 : endgrouppage.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((mcomment == null) ? 0 : mcomment.hashCode());
 		result = prime * result + ((mno == null) ? 0 : mno.hashCode());
 		result = prime * result + ((score == null) ? 0 : score.hashCode());
+		result = prime * result + ((startgrouppage == null) ? 0 : startgrouppage.hashCode());
 		result = prime * result + ((vcount == null) ? 0 : vcount.hashCode());
 		return result;
 	}
@@ -100,7 +145,12 @@ public class Comment {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Comment other = (Comment) obj;
+		Paging other = (Paging) obj;
+		if (allpages == null) {
+			if (other.allpages != null)
+				return false;
+		} else if (!allpages.equals(other.allpages))
+			return false;
 		if (cno == null) {
 			if (other.cno != null)
 				return false;
@@ -110,6 +160,16 @@ public class Comment {
 			if (other.ctime != null)
 				return false;
 		} else if (!ctime.equals(other.ctime))
+			return false;
+		if (curPage == null) {
+			if (other.curPage != null)
+				return false;
+		} else if (!curPage.equals(other.curPage))
+			return false;
+		if (endgrouppage == null) {
+			if (other.endgrouppage != null)
+				return false;
+		} else if (!endgrouppage.equals(other.endgrouppage))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -131,6 +191,11 @@ public class Comment {
 				return false;
 		} else if (!score.equals(other.score))
 			return false;
+		if (startgrouppage == null) {
+			if (other.startgrouppage != null)
+				return false;
+		} else if (!startgrouppage.equals(other.startgrouppage))
+			return false;
 		if (vcount == null) {
 			if (other.vcount != null)
 				return false;
@@ -142,10 +207,18 @@ public class Comment {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Comment [cno=");
-		builder.append(cno);
+		builder.append("Paging [curPage=");
+		builder.append(curPage);
 		builder.append(", mno=");
 		builder.append(mno);
+		builder.append(", allpages=");
+		builder.append(allpages);
+		builder.append(", startgrouppage=");
+		builder.append(startgrouppage);
+		builder.append(", endgrouppage=");
+		builder.append(endgrouppage);
+		builder.append(", cno=");
+		builder.append(cno);
 		builder.append(", id=");
 		builder.append(id);
 		builder.append(", mcomment=");
@@ -159,6 +232,6 @@ public class Comment {
 		builder.append("]");
 		return builder.toString();
 	}
-
+	
 	
 }

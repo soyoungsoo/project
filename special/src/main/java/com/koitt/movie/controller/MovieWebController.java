@@ -1,7 +1,6 @@
 package com.koitt.movie.controller;
 
 import java.io.File;
-
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -19,8 +18,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,12 +25,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.koitt.movie.model.Actors;
 import com.koitt.movie.model.Comment;
 import com.koitt.movie.model.CommonException;
 import com.koitt.movie.model.Member;
@@ -78,7 +75,6 @@ public class MovieWebController {
 		Object principal = auth.getPrincipal();
 
 		if (principal instanceof UserDetails) {
-			username = ((UserDetails) principal).getUsername();		
 		}
 		else {
 			username = principal.toString();			
@@ -117,13 +113,16 @@ public class MovieWebController {
 		Movie movie = null;
 		String filename = null;
 		List<Comment> list = null;
-		
+		List<Actors> actors = null;
 		movie = movieService.detail(mno);
 		filename = movie.getPost();
 		if (filename != null && !filename.trim().isEmpty()) {
 			filename = URLDecoder.decode(filename, "UTF-8");
 		}		
+		actors = movieService.select_Actors(Integer.parseInt(mno));
+		System.out.println("actors="+actors);
 		list = movieService.commentAll(Integer.parseInt(mno));
+		model.addAttribute("actors",actors);
 		model.addAttribute("comment", list);
 		model.addAttribute("item", movie);
 		model.addAttribute("filename", filename);				
@@ -161,10 +160,7 @@ public class MovieWebController {
 		movie.setEdate(edate);
 		
 		// 최상위 경로 밑에 upload 폴더의 경로를 가져온다.
-		String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);
-		System.out.println("PAth "+ path);
-		String path2 = request.getServletContext().getRealPath("/");
-		System.out.println("PAth2 "+ path2);
+		String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);					
 		
 		// MultipartFile 객체에서 파일명을 가져온다.
 		String originalName = post.getOriginalFilename();
@@ -353,5 +349,62 @@ public class MovieWebController {
 			throws CommonException{
 				movieService.commentDel(cno);						
 			return "redirect:detail.do?mno="+mno;			
+		}
+		@RequestMapping(value = "/insert_actors", method = RequestMethod.GET)
+		public String actors(Model model,Integer mno) throws Exception {		
+			model.addAttribute("item",mno);
+			return "actors-insert";
+		}
+		@RequestMapping(value = "/insert_actors", method = RequestMethod.POST)
+		public String save(HttpServletRequest request, MultipartFile[] photo,String name, String job,Integer mno)
+				throws Exception {			
+			Actors actors = new Actors();			
+			String[] names = name.split(",");
+			String[] jobs = job.split(",");
+			int length = names.length;					
+			for (MultipartFile file : photo) {
+				for(int i=0;i<length;i++) {
+					// 최상위 경로 밑에 upload 폴더의 경로를 가져온다.
+					String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);
+					System.out.println(mno);
+					actors.setMno(mno);
+					actors.setName(names[i]);
+					actors.setJob(jobs[i]);
+					// MultipartFile 객체에서 파일명을 가져온다.
+					String originalName = file.getOriginalFilename();
+					System.out.println("origin "+originalName);
+					// upload 폴더가 없다면, upload 폴더 생성
+					File directory = new File(path);
+					if (!directory.exists()) {
+						directory.mkdir();
+					}
+	
+					// attachment 객체를 이용하여, 파일을 서버에 전송
+					if (file != null && !file.isEmpty()) {
+						int idx = originalName.lastIndexOf(".");
+						String filename = originalName.substring(0, idx);
+						String ext = originalName.substring(idx, originalName.length());
+						String uploadFilename = filename
+								+ Long.toHexString(System.currentTimeMillis())
+								+ ext;
+						file.transferTo(new File(path, uploadFilename));
+						uploadFilename = URLEncoder.encode(uploadFilename, "UTF-8");
+						
+						actors.setPhoto(uploadFilename);
+					}	
+				}	
+				movieService.insert_Actors(actors);
+			}
+			return "redirect:list.do";
+		}
+		@RequestMapping(value = "/insert_Intro", method = RequestMethod.GET)
+		public String Intro(Model model,Integer mno) throws Exception {		
+			model.addAttribute("item",mno);
+			return "Intro-insert";
+		}
+		@RequestMapping(value = "/insert_Intro", method = RequestMethod.POST)
+		public String Intro(Integer mno, MultipartFile[] image) throws Exception {		
+			
+			return "Intro-insert";
 		}
 	}

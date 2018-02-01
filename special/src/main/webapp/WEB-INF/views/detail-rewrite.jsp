@@ -20,6 +20,24 @@
 <!-- <script src="../lightslider-master/src/js/lightslider.js"></script>-->
 <title>Untitled Document</title>
 <script>
+// 	$(document).ready(function(){
+// 		var mno = ${item.mno};			
+// 		 $.ajax({
+// 				type: 'get',				
+// 				url: 'http://localhost:8082/special/rest' + '/page?mno=' +mno,
+// 				data: false,
+// 				processData: false,
+// 				contentType: false ,
+// 				cache: false,
+// 				success: function(data, textStatus, xhr) {	
+																														
+// 				}, // success
+// 			error: function(error) {
+// 				  alert("이미 공감하셨습니다.");
+// 			} // eeror
+// 		});	// ajax
+
+// 	});
 	$(function() {
 		$("#star-output").hide();
 	});
@@ -74,6 +92,47 @@
         }
     }
 }	
+// 	function modify(target){		
+// 		var mn = ${item.mno};			
+// 		var cno = $(target).attr("title");		
+// 		 $.ajax({
+// 				type: 'get',				
+// 				url: 'http://localhost:8082/special/rest' + '/update',
+// 				data: 'cno=' +cno,
+// 				processData: false,
+// 				contentType: false,
+// 				dataType: 'json',
+// 				cache: false,
+// 				success: function(data) {						
+// 					 var d = $("."+cno);			
+// 					 $("#"+cno).remove();				 		
+// 					 //'<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">'+
+// 					 //'<input type="hidden" name="mno_i" value="${item.mno}">'+
+// 					 //'<form action="/special/movie/update" method="post" id="starForm_update">'+						
+// 					d.html('<span class="star-input"> <span class="input"> <input'+
+// 									' type="radio" name="star_input" value="1" id="p1"> <label'+
+// 									' for="p1">1</label> <input type="radio" name="star_input"'+
+// 									' value="2" id="p2"> <label for="p2">2</label> <input'+
+// 									' type="radio" name="star_input" value="3" id="p3"> <label'+
+// 									' for="p3">3</label> <input type="radio" name="star_input"'+
+// 									' value="4" id="p4"> <label for="p4">4</label> <input'+
+// 									' type="radio" name="star_input" value="5" id="p5"> <label'+
+// 									' for="p5">5</label>'+
+// 							'</span> <output for="star-input" id="star-output" style="display:none;">'+
+// 									'<b id="star-count_update">0</b>점'+
+// 								'</output>'+
+// 							'</span>'+
+// 							'<strong class="rep-user-name">'+data.id +'</strong>'+
+// 							'<textarea name="write_area" style="resize: none" class="reply-box_update"'+
+// 							' id="repl" placeholder="'+ data.mcomment+'">' + '</textarea>' +
+// 							'<a href="javascript:{}" onclick="submitTest_update();" class="reg-btn"'+
+// 								' id="repl-btn">댓글 수정</a>');
+// 				}, // success
+// 			error: function(error) {
+// 				  alert("이미 공감하셨습니다.");
+// 			} // eeror
+// 		});	// ajax
+// 	}	
 </script>
 </head>
 
@@ -124,8 +183,8 @@
 								<li>[종영일] <fmt:formatDate value="${ item.edate }"
 										pattern="yyyy-MM-dd" />
 								</li>
-								<!-- <li>출연진 : <strong class="actors">홍진호</strong>,<strong
-									class="actors">홍진호</strong>,<strong class="actors">홍진호</strong></li> -->
+<!-- 								 <li>출연진 : <strong class="actors">홍진호</strong>,<strong -->
+<!-- 									class="actors">홍진호</strong>,<strong class="actors">홍진호</strong></li>  -->
 								<c:if test="${ !empty post }">
 									<li>[첨부 파일] <a
 										href="<c:url value='/download.do?filename=${ item.post }'/>">${ post }</a></li>
@@ -154,11 +213,21 @@
 										<li><a class = "reg-btn" href="/special/movie/modify.do?mno=${item.mno}">수정하기</a></li>
 										<li><a class = "reg-btn" href="/special/movie/schedule.do?mno=${item.mno}">상영시간 추가하기</a></li>
 										<li><a class = "reg-btn" href="javascript:deleteCheck();">삭제하기</a></li>
+										<li><a class = "reg-btn" href="/special/movie/insert_actors?mno=${item.mno}">출연진 등록하기</a></li>
+										<li><a class = "reg-btn" href="/special/movie/insert_Intro?mno=${item.mno}">Intro 등록</a></li>
 									</c:when>
 								</c:choose>
 							</c:forEach>
 					</ul>				
 			</div>
+			<div class="actors-image">
+						<ul>
+							<li>감독 및 출연</li>
+							<c:forEach var="info" items="${actors}">
+							<li><img src="<c:url value='../../img/${info.photo}'/>"><strong>${info.name}</strong></br>${info.job}</li>
+							</c:forEach>
+						</ul>
+					</div>
 			<div class="star-box">
 				<form action="/special/movie/comment" method="post" id="starForm">
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
@@ -175,7 +244,7 @@
 					</span> <output for="star-input" id="star-output">
 							<b id="star-count">0</b>점
 						</output>
-					</span>
+					</span>					
 					<div class="input-area">		
 						<c:set var="member_id" value="${member.id}" />											
 							<c:choose>
@@ -209,49 +278,48 @@
 										<li>
 										<c:choose>
 												<c:when test="${cm.score eq 1 }">
-												<p class="star_rating">
+												<p class="star_rating" id="${cm.cno}">
 													<a href="#" class="on">★</a>
 												</p>
 											</c:when>
 											<c:when test="${cm.score eq 2 }">
-												<p class="star_rating">
+												<p class="star_rating" id="${cm.cno}">
 													<a href="#" class="on">★</a> <a href="#" class="on">★</a>
 												</p>
 											</c:when>
 											<c:when test="${cm.score eq 3 }">
-												<p class="star_rating">
+												<p class="star_rating" id="${cm.cno}">
 													<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
 													   href="#" class="on">★</a>
 												</p>
 											</c:when>
 											<c:when test="${cm.score eq 4 }">
-												<p class="star_rating">
+												<p class="star_rating" id="${cm.cno}">
 													<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
 													   href="#" class="on">★</a> <a href="#" class="on">★</a> 
 												</p>
 											</c:when>
 											<c:when test="${cm.score eq 5 }">
-												<p class="star_rating">
+												<p class="star_rating" id="${cm.cno}">
 													<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
 													   href="#" class="on">★</a> <a href="#" class="on">★</a> <a
 													   href="#" class="on">★</a>
 												</p>
 											</c:when>
 										</c:choose>
-											<p>
+											<p class="${cm.cno}">
 												<strong class="rep-user-name">${cm.id}</strong>${cm.mcomment}
 											</p>
 												<a title="${cm.cno}" class = "good-btn" onclick="evalCheck(this);" style="cursor: pointer">♡ <strong class = "count">${cm.vcount}</strong></a>
 												<c:choose>
-													<c:when test="${cm.id eq member.id}">
-														<a onclick="/special/rest/modify">수정하기</a>
+													<c:when test="${cm.id eq member.id}">														
 														<a href="/special/movie/delete?cno=${cm.cno}&mno=${item.mno}">삭제하기</a>
 													</c:when>
 												</c:choose>																							
 										</li>																			
 									</c:when>									
 								</c:choose>
-							</c:forEach>					
+									</c:forEach>				
 						</ul>
 					</div>
 				</form>

@@ -8,9 +8,12 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.koitt.movie.model.Actors;
 import com.koitt.movie.model.Comment;
 import com.koitt.movie.model.CommonException;
+import com.koitt.movie.model.Intro;
 import com.koitt.movie.model.Movie;
+import com.koitt.movie.model.Paging;
 import com.koitt.movie.model.Schedule;
 import com.koitt.movie.model.Seat;
 
@@ -138,16 +141,7 @@ public class MovieDaoImpl implements MovieDao{
 			logger.debug(e.getMessage());			
 			throw new CommonException("E10: 댓글 삭제 실패");			
 		}				 
-	}
-	@Override
-	public void commentUpdate(Comment comment) throws CommonException {
-		try {			
-			sqlSession.update(MAPPER_NAMESPACE + ".comment_modify", comment);			
-		}catch (Exception e) {
-			logger.debug(e.getMessage());			
-			throw new CommonException("E11: 댓글 수정 실패");			
-		}				
-	}
+	}	
 	@Override
 	public void CountComent() throws CommonException {
 		try {			
@@ -166,5 +160,85 @@ public class MovieDaoImpl implements MovieDao{
 			logger.debug(e.getMessage());			
 			throw new CommonException("E13: 추천 수 증가 실패");			
 		}		
+	}
+
+	@Override
+	public Comment cSelect(Integer cno) throws CommonException {
+		Comment comment = null;
+		try {			
+			 comment= sqlSession.selectOne(MAPPER_NAMESPACE + ".commentSelect",cno);			
+		}catch (Exception e) {
+			logger.debug(e.getMessage());			
+			throw new CommonException("E14: 댓글 가져오기 실패");			
+		}			
+		return comment;
+	}
+
+	@Override
+	public Integer AllPage(Integer mno) throws CommonException {
+		Integer page = 0;
+		try {			
+			page= sqlSession.selectOne(MAPPER_NAMESPACE + ".PageCount",mno);			
+		}catch (Exception e) {
+			logger.debug(e.getMessage());				
+			throw new CommonException("E15: 전체 페이지 가져오기");			
+		}			
+		return page;		
+	}
+
+	@Override
+	public List<Paging> curPage(Paging page) throws CommonException {
+			List<Paging> paging = null;
+		try {			
+			paging= sqlSession.selectList(MAPPER_NAMESPACE + ".PagingCount",page);			
+		}catch (Exception e) {
+			logger.debug(e.getMessage());			
+			throw new CommonException("E16: 현재 페이지 가져오기");			
+		}			
+		return paging;
+	}
+
+	@Override
+	public List<Actors> select_Actors(Integer mno) throws CommonException {	
+		List<Actors> actors = null;
+		try {			
+			actors= sqlSession.selectList(MAPPER_NAMESPACE + ".select-actors",mno);			
+		}catch (Exception e) {
+			logger.debug(e.getMessage());			
+			throw new CommonException("E17: 출연진 가져오기 실패");			
+		}			
+		return actors;
+	}
+
+	@Override
+	public void insert_Actors(Actors actors) throws CommonException {		
+		try {			
+			sqlSession.insert(MAPPER_NAMESPACE + ".insert-actors",actors);			
+		}catch (Exception e) {
+			logger.debug(e.getMessage());			
+			throw new CommonException("E18: 출연진 등록 실패");			
+		}					
+	}
+
+	@Override
+	public void insert_Intro(Intro intro) throws CommonException {
+		try {			
+			sqlSession.insert(MAPPER_NAMESPACE + ".insert-Intro",intro);			
+		}catch (Exception e) {
+			logger.debug(e.getMessage());			
+			throw new CommonException("E19: Intro 등록 실패");			
+		}		
+	}
+
+	@Override
+	public List<Intro> select_Intro(Intro intro) throws CommonException {
+		List<Intro> list = null;
+		try {			
+			list = sqlSession.selectList(MAPPER_NAMESPACE + ".select-Intro",intro);			
+		}catch (Exception e) {
+			logger.debug(e.getMessage());			
+			throw new CommonException("E20: Intro 가져오기 실패");			
+		}		
+		return list;
 	}
 }
