@@ -13,7 +13,7 @@
     function add() {             
         $('#Introview').append(
                 '<tr><td>'+                           
-				'<label>사진</label><input type="file" name="photo">'+                				
+				'<label>사진</label><input type="file" name="image">'+                				
                 '</td></tr>');      
 }
 </script>

@@ -76,6 +76,7 @@ public class MovieWebController {
 		Object principal = auth.getPrincipal();
 
 		if (principal instanceof UserDetails) {
+			username = ((UserDetails) principal).getUsername();	
 		}
 		else {
 			username = principal.toString();			
@@ -112,17 +113,25 @@ public class MovieWebController {
 			@RequestParam(value = "mno", required=true) String mno)
 					throws CommonException, Exception {
 		Movie movie = null;
-		String filename = null;
+		Intro intro = new Intro();
 		List<Comment> list = null;
 		List<Actors> actors = null;
+		List<Intro> i_list = null;
+		String filename = null;
+		intro.setMno(Integer.parseInt(mno));
+				
 		movie = movieService.detail(mno);
 		filename = movie.getPost();
+		
 		if (filename != null && !filename.trim().isEmpty()) {
 			filename = URLDecoder.decode(filename, "UTF-8");
-		}		
-		actors = movieService.select_Actors(Integer.parseInt(mno));
-		System.out.println("actors="+actors);
+		}
+		
+		i_list =movieService.select_Intro_S(intro);
+		actors = movieService.select_Actors(Integer.parseInt(mno));		
 		list = movieService.commentAll(Integer.parseInt(mno));
+		System.out.println(i_list);
+		model.addAttribute("Intro",i_list);
 		model.addAttribute("actors",actors);
 		model.addAttribute("comment", list);
 		model.addAttribute("item", movie);
@@ -362,18 +371,16 @@ public class MovieWebController {
 			Actors actors = new Actors();			
 			String[] names = name.split(",");
 			String[] jobs = job.split(",");
-			int length = names.length;					
+			int length = names.length;							
 			for (MultipartFile file : photo) {
 				for(int i=0;i<length;i++) {
 					// 최상위 경로 밑에 upload 폴더의 경로를 가져온다.
-					String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);
-					System.out.println(mno);
+					String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);					
 					actors.setMno(mno);
 					actors.setName(names[i]);
 					actors.setJob(jobs[i]);
 					// MultipartFile 객체에서 파일명을 가져온다.
-					String originalName = file.getOriginalFilename();
-					System.out.println("origin "+originalName);
+					String originalName = file.getOriginalFilename();				
 					// upload 폴더가 없다면, upload 폴더 생성
 					File directory = new File(path);
 					if (!directory.exists()) {
@@ -407,7 +414,10 @@ public class MovieWebController {
 		public String Intro(HttpServletRequest request, Integer mno, MultipartFile[] image, String video) throws Exception {
 			Intro intro = new Intro();
 			intro.setVideo(video);
-			for (MultipartFile file : image) {				
+			int length = image.length;
+			System.out.println("ddd " +length);
+			for (MultipartFile file : image) {	
+				System.out.println("file "+file.getOriginalFilename());
 					// 최상위 경로 밑에 upload 폴더의 경로를 가져온다.
 					String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);					
 					intro.setMno(mno);									
@@ -433,8 +443,9 @@ public class MovieWebController {
 						
 						intro.setImage(uploadFilename);
 					}	
+					movieService.insert_Intro_S(intro);
 				}	
-				movieService.insert_Intro_S(intro);
+			
 			
 			return "redirect:list.do";
 		}

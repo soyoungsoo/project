@@ -190,13 +190,14 @@
 										href="<c:url value='/download.do?filename=${ item.post }'/>">${ post }</a></li>
 								</c:if>
 							</ul>
-							<!-- <ul id="img-slider" class="cs-hidden">
-                                <li class="pic-1"><img src="image/black.JPG"></li>
-                                <li class="pic-2"><img src="image/2.jpg"></li>
-                                <li class="pic-3"><img src="image/2.jpg"></li>
-                                <li class="pic-4"><img src="image/2.jpg"></li>
-                                <li class="pic-5"><img src="image/2.jpg"></li>
-                            </ul>-->
+						 	<ul id="img-slider" class="cs-hidden">
+						 	<c:forEach var="intro" items="${Intro}">
+						 		<c:if test="${intro.video ne null }">
+                                <li class="pic-1"><iframe width="854" height="480" src="<c:url value='${intro.video}'/>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></li>
+                                </c:if>
+                                <li class="pic-2"><img src="<c:url value='../../img/${intro.image}'/>"></li>                                
+                            </c:forEach>
+                            </ul>
 						</div>
 					</div>
 					<div class="prev-text">

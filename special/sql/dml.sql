@@ -107,4 +107,5 @@ INSERT INTO Actors VALUES(seq_ano.nextval,1,'하정우','배우');
 INSERT INTO Actors VALUES(seq_ano.nextval,1,'하정우','배우');
 
 select * from movie_intro
+select * from actors;
 
