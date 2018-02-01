@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/main.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/seat.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/register.css'/>">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="<c:url value='/resources/jQuery-Radiobtn/zInput.js'/>"></script>
 <title>예매하기</title>
 <style type="text/css">
@@ -100,9 +100,14 @@
 						    		  '<span>'+ '<em>' +  value.d + '/'+ value.f + '</em>' + '</span>' +
 					                  '</a></li>' + '</ul>';
 								                  			                  					                   	               						          
+<<<<<<< HEAD
 					         $('.ajax-cover').append(eachrow).trigger("create");	
 					         $('.screen_tit').show();							 					     	 	 											  							
 					}); // each	 
+=======
+					         $('.ajax-cover').append(eachrow).trigger("create");						 					     	 	 											  							
+					}); // each								 
+>>>>>>> branch 'master' of https://github.com/soyoungsoo/project.git
 			}, // success
 			error: function(error) {
 				alert('실패');
@@ -138,17 +143,29 @@
 			$.each(data , function(key, value) {								
 				var htmlrow = 
 					//  p0 
-					'<a style="cursor:pointer" class="p0 '+ value.seatno +' 0 '+ value.scount +'" value="'+ value.issue +'" data-seat="' + (key+1) +'" seat-group="grNum3"' + 
+					'<a style="cursor:pointer" class="p0 '+ value.seatno +' 0 '+ value.scount +'" value="'+value.issue+'" data-seat="' + (key+1) +'" seat-group="grNum3"' + 
 					'title="상영관 : ' + value.tno + ' 좌석 번호: '+ value.seatno + ' - 일반석"'+
 					'seat-code="1A01" onclick="selectedSeat(this);">'+ (key+1) +'</a>'
 				 
-				  $('.seat_area').append(htmlrow).trigger("create");		
+				  $('.seat_area').append(htmlrow).trigger("create");
+					var index = $('.seat_area a').attr("value");		
+					if (index === "1") {
+						$('.seat_area a').addClass("already-selected");	
+					}
+					else if (index === "2") {
+						$('.seat_area a').addClass("seat-broken");
+					}
 				  $('.screen_tit').show();
 				  $('.select-age').show();																					
+<<<<<<< HEAD
 			});			
 							
 /* 			 isBooked();		 */																					 			 						 			 						 			 			 			 						 			 					 			 			
 			}, // 2 success
+=======
+			});
+			}, // 2 success																										 			 						 			 						 			 			 			 						 			 					 			 			
+>>>>>>> branch 'master' of https://github.com/soyoungsoo/project.git
 			error: function(jqXHR, textStatus, errorThrown) {
 				alert("실패");		 			 											
 			} //error
@@ -164,6 +181,7 @@
 		$(".p0").removeClass("teen-seat-selected");
 	}
 
+<<<<<<< HEAD
 	function isBooked() {
 		var index;
 
@@ -180,6 +198,8 @@
 		}
 	}
 
+=======
+>>>>>>> branch 'master' of https://github.com/soyoungsoo/project.git
 	function howMuch() {
 		var adprice;
 		var tenprice;

@@ -244,7 +244,11 @@
 					</span> <output for="star-input" id="star-output">
 							<b id="star-count">0</b>점
 						</output>
+<<<<<<< HEAD
 					</span>					
+=======
+					</span>
+>>>>>>> branch 'master' of https://github.com/soyoungsoo/project.git
 					<div class="input-area">		
 						<c:set var="member_id" value="${member.id}" />											
 							<c:choose>
@@ -257,16 +261,42 @@
 								</c:when>														
 								<c:when test="${member.id ne null}">
 									<h4 class="user-name">${member.id}</h4>
-									<textarea name="write_area" style="resize: none" class="reply-box"
-							id="repl" placeholder=" ex) 재미있어요!"></textarea>							
+									<textarea name="write_area" style="resize: none" class="reply-box" id="repl" placeholder=" ex) 재미있어요!"> </textarea>							
 						<a href="javascript:{}" onclick="submitTest();" class="reg-btn"
 							id="repl-btn">댓글 입력</a>
 								</c:when>
-							</c:choose>							
+							</c:choose>												
+
 					</div>
 					<hr style="position: relative; top: 20px;">
 
 					<div class="repl-box text-center">
+						<ul class="repl-list">
+							<li>
+								<p class="star_rating">
+									<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
+										href="#" class="on">★</a> <a href="#" class="on">★</a> <a
+										href="#">★</a>
+								</p>
+
+								<p>
+									<strong class="rep-user-name">aaaa2222</strong>진짜 재밌어요!
+								</p>
+								<a class = "good-btn" onclick="evalCheck(this);">♡ <strong class = "count">0</strong></a>
+
+							</li>
+							<li>
+								<p class="star_rating">
+									<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
+										href="#" class="on">★</a> <a href="#">★</a> <a href="#">★</a>
+								</p>
+
+								<p>
+									<strong class="rep-user-name">a3332</strong>진짜 감동적임..
+								</p>
+								<a class = "good-btn" onclick="evalCheck(this);">♡ <strong class = "count">0</strong></a>
+
+							</li>
 						<ul class="repl-list">		
 							<c:forEach var="cm" items="${comment}">
 								<c:choose>
