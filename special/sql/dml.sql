@@ -101,11 +101,40 @@ INSERT INTO seat VALUES (1,'E-5',0,2);
 INSERT INTO SCHEDULE VALUES ('2018-01-17 17:00',SEQ_SCOUNT.NEXTVAL,1);
 INSERT INTO SCHEDULE VALUES ('2018-01-17 19:00',SEQ_SCOUNT.NEXTVAL,1);
 
-
+select rdate, tno, seatno, issue, scount, d, f from (
+			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno,(select count(*) from seat where issue=0 and scount=1)d ,(select count(*) from SEAT)f
+			from seat s, (select * from schedule) sc 
+			where mno = 1 and tno = 1 and Sc.RDATE = '2018-01-17 19:00' and s.scount=sc.scount
+			)
 INSERT INTO Actors VALUES(seq_ano.nextval,1,'하정우','배우');
 INSERT INTO Actors VALUES(seq_ano.nextval,1,'하정우','배우');
-INSERT INTO Actors VALUES(seq_ano.nextval,1,'하정우','배우');
 
-select * from movie_intro
-select * from actors;
-
+select * from reservation;
+select * from movie_intro;
+delete from movie_intro where ino =3;
+delete from movie_intro where ino =4;
+delete from movie_intro where ino =5;
+delete from movie_intro where ino =6;
+select * from schedule where rdate = '2018-01-16 01:20';
+select * from seat where scount =66
+	select distinct rdate, tno, Scount, d,f from (
+			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0 ) d,(select count(*) from SEAT)f
+			from seat s, schedule sc 
+			where mno = 1 and Sc.RDATE = '2018-01-17 %'
+			order by rdate asc
+			)
+			
+				select distinct rdate, tno, Scount, d,f from (
+			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0) d,(select count(*) from SEAT)f
+			from seat s, (select * from schedule) sc 
+			where mno = 1 and Sc.RDATE LIKE  '2018-01-17 %'
+			
+			)	order by rdate asc
+			select count(*) from(
+			select distinct rdate, tno, Scount, d,f from (
+			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0) d,(select count(*) from SEAT)f
+			from seat s, (select * from schedule) sc 
+			where mno = 1 and Sc.RDATE LIKE  '2018-01-17 %'
+			order by  sc.rdate asc
+			))
+			select * from seat, schedule where issue=0 and RDATE = '2018-01-17 %'
