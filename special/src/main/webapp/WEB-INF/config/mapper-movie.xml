@@ -45,7 +45,7 @@
 	</insert>	
 	
 	<select id="select-Intro" parameterType="Integer" resultType="Intro">
-		SELECT * FROM MOVIE_INTRO WHERE mno = #{mno};
+		SELECT * FROM MOVIE_INTRO WHERE mno = #{mno}
 	</select>
 	
 	<select id="select-actors" parameterType="Integer" resultType="Actors">

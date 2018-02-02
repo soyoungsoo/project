@@ -189,7 +189,6 @@
 								<div class="carousel-caption"></div>
 							</div>
 						</div>
-
 						<!-- Controls -->
 						<a class="left carousel-control" href="#carousel-example-generic"
 							role="button" data-slide="prev"> <span
@@ -244,6 +243,43 @@
                                 <li class="pic-4"><img src="image/2.jpg"></li>
                                 <li class="pic-5"><img src="image/2.jpg"></li>
                             </ul>-->
+						<div class="top-ex">
+							<h2 class="mov-title">${ item.title }</h2>
+							<ul class="ranking">
+								<li><strong>예매율</strong> <span> <em>1</em> 위 (42.1%)
+								</span></li>
+								<li><p class="star_rating">
+										<a class="on">★</a> <a class="on">★</a> <a class="on">★</a> <a
+											class="on">★</a> <a>★</a>
+									</p></li>
+								<li>(총 9,888,000 명)</li>
+							</ul>
+							<ul class="mov-grade">
+								<li>[장르] ${ item.genre }</li>
+								<li>[국내] ${ item.grade }</li>
+								<li>[상영 시간] ${ item.mrun } 분</li>
+								<li>[상영일] <fmt:formatDate value="${ item.sdate }"
+										pattern="yyyy-MM-dd" />
+								</li>
+								<li>[종영일] <fmt:formatDate value="${ item.edate }"
+										pattern="yyyy-MM-dd" />
+								</li>
+<!-- 								 <li>출연진 : <strong class="actors">홍진호</strong>,<strong -->
+<!-- 									class="actors">홍진호</strong>,<strong class="actors">홍진호</strong></li>  -->
+								<c:if test="${ !empty post }">
+									<li>[첨부 파일] <a
+										href="<c:url value='/download.do?filename=${ item.post }'/>">${ post }</a></li>
+								</c:if>
+							</ul>
+						 	<ul id="img-slider" class="cs-hidden">
+						 	<c:forEach var="intro" items="${Intro}">
+						 		<c:if test="${intro.video ne null }">
+                                <li class="pic-1"><iframe width="854" height="480" src="<c:url value='${intro.video}'/>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></li>
+                                </c:if>
+                                <li class="pic-2"><img src="<c:url value='../../img/${intro.image}'/>"></li>                                
+                            </c:forEach>
+                            </ul>
+						</div>
 					</div>
 				</div>
 				<div class="prev-text">
@@ -295,31 +331,27 @@
 							value="5" id="p5"> <label for="p5">5</label>
 					</span> <output for="star-input" id="star-output">
 							<b id="star-count">0</b>점
-						</output> <<<<<<< HEAD
-					</span> ======= </span> >>>>>>> branch 'master' of
-					https://github.com/soyoungsoo/project.git
-					<div class="input-area">
-						<c:set var="member_id" value="${member.id}" />
-						<c:choose>
-							<c:when test="${member.id eq null}">
-								<h4 class="user-name">user</h4>
-								<textarea name="write_area" style="resize: none"
-									class="reply-box" id="repl" placeholder="로그인 후 댓글을 남겨보세요!"></textarea>
-								<a href="javascript:{}" onclick="submitTest();" class="reg-btn"
-									id="repl-btn">댓글 입력</a>
-							</c:when>
-							<c:when test="${member.id ne null}">
-								<h4 class="user-name">${member.id}</h4>
-								<textarea name="write_area" style="resize: none"
-									class="reply-box" id="repl" placeholder=" ex) 재미있어요!"> </textarea>
-								<a href="javascript:{}" onclick="submitTest();" class="reg-btn"
-									id="repl-btn">댓글 입력</a>
-							</c:when>
-						</c:choose>
-
+						</output>
+					</span>							
+					<div class="input-area">		
+						<c:set var="member_id" value="${member.id}" />											
+							<c:choose>
+								<c:when test="${member.id eq null}">
+									<h4 class="user-name">user</h4>
+									<textarea name="write_area" style="resize: none" class="reply-box"
+							id="repl" placeholder="로그인 후 댓글을 남겨보세요!"></textarea>
+						<a href="javascript:{}" onclick="submitTest();" class="reg-btn"
+							id="repl-btn">댓글 입력</a>
+								</c:when>														
+								<c:when test="${member.id ne null}">
+									<h4 class="user-name">${member.id}</h4>
+									<textarea name="write_area" style="resize: none" class="reply-box" id="repl" placeholder=" ex) 재미있어요!"> </textarea>							
+						<a href="javascript:{}" onclick="submitTest();" class="reg-btn"
+							id="repl-btn">댓글 입력</a>
+								</c:when>
+							</c:choose>												
 					</div>
 					<hr style="position: relative; top: 20px;">
-
 					<div class="repl-box text-center">
 						<ul class="repl-list">
 							<li>
@@ -347,19 +379,54 @@
 									class="count">0</strong></a>
 
 							</li>
-							<ul class="repl-list">
-								<c:forEach var="cm" items="${comment}">
-									<c:choose>
-										<c:when test="${cm eq null}">
-											<p class="star_rating">
-												<strong class="rep-user-name"></strong>첫 댓글을 달아보세요!
-										</c:when>
-										<c:when test="${cm ne null}">
-											<li><c:choose>
-													<c:when test="${cm.score eq 1 }">
-														<p class="star_rating" id="${cm.cno}">
-															<a href="#" class="on">★</a>
-														</p>
+					<div class="repl-box text-center">																			
+						<ul class="repl-list">		
+							<c:forEach var="cm" items="${comment}">
+								<c:choose>
+									<c:when test="${cm eq null}">
+										<p class="star_rating">
+											<strong class="rep-user-name"></strong>첫 댓글을 달아보세요!										
+									</c:when>
+									<c:when test="${cm ne null}">									
+										<li>
+										<c:choose>
+												<c:when test="${cm.score eq 1 }">
+												<p class="star_rating" id="${cm.cno}">
+													<a href="#" class="on">★</a>
+												</p>
+											</c:when>
+											<c:when test="${cm.score eq 2 }">
+												<p class="star_rating" id="${cm.cno}">
+													<a href="#" class="on">★</a> <a href="#" class="on">★</a>
+												</p>
+											</c:when>
+											<c:when test="${cm.score eq 3 }">
+												<p class="star_rating" id="${cm.cno}">
+													<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
+													   href="#" class="on">★</a>
+												</p>
+											</c:when>
+											<c:when test="${cm.score eq 4 }">
+												<p class="star_rating" id="${cm.cno}">
+													<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
+													   href="#" class="on">★</a> <a href="#" class="on">★</a> 
+												</p>
+											</c:when>
+											<c:when test="${cm.score eq 5 }">
+												<p class="star_rating" id="${cm.cno}">
+													<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
+													   href="#" class="on">★</a> <a href="#" class="on">★</a> <a
+													   href="#" class="on">★</a>
+												</p>
+											</c:when>
+										</c:choose>
+											<p class="${cm.cno}">
+												<strong class="rep-user-name">${cm.id}</strong>${cm.mcomment}
+											</p>
+												<a title="${cm.cno}" class = "good-btn" onclick="evalCheck(this);" style="cursor: pointer">♡ <strong class = "count">${cm.vcount}</strong></a>
+												<c:choose>
+													<c:when test="${cm.id eq member.id}">														
+														<a href="/special/movie/delete?cno=${cm.cno}&mno=${item.mno}">삭제하기</a>
 													</c:when>
 													<c:when test="${cm.score eq 2 }">
 														<p class="star_rating" id="${cm.cno}">
