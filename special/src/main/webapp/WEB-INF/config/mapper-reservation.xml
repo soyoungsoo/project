@@ -20,12 +20,12 @@
 	
 	<select id="select-Day" parameterType="Reservation" resultType="Reservation">
 			SELECT * 
-			FROM (SELECT r.rno, m.title, r.tno, r.seatno, r.btime,s.rdate
+			FROM (SELECT r.rno, m.title, r.tno, r.seatno, r.btime, s.rdate, s.scount
 			FROM reservation r,(SELECT * FROM Schedule) s, movie m
 			WHERE MEMNO = #{memno} and m.mno = r.mno and r.scount = s.scount)
 			<![CDATA[
 			WHERE to_char(add_months(sysdate, #{title}),'YYYY-MM-dd') <= btime
-			]]>	
+			]]>	order by btime desc
 	</select>
 	<delete id= "delete" parameterType = "Integer">
 		DELETE FROM RESERVATION WHERE rno = #{rno}

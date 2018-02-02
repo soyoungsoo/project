@@ -52,7 +52,7 @@
 		    var sub_seatno = title.substring(15,18);			     		   		
 			var sub_scount = cs.substring(9,10);						
 			if(sub_cs == 0){							
-				var t_class = $(target).attr("class", 'p0 '+sub_seatno + ' ' +'1');								    			
+				var t_class = $(target).attr("class", 'p0 '+sub_seatno + ' 0 ' +'1');								    			
 				var str ="";
 				 str += '<input id="i_tno" name="tno" type="hidden" value="'+ sub_tno +'"> <br/>';
 				 str += '<input id="i_seatno" name="seatno" type="hidden" value="'+ sub_seatno +'"> <br/>';
@@ -95,19 +95,14 @@
 					$.each(data, function (key, value) {												// + key + '">'							
 					    var eachrow = '<input type="hidden" id="ajax_scount" name="scount_a" value="'+ value.scount +'">' +
 						    		'<ul class="ajax-button'+ key +'" id="'+ value.rdate +'">' +					    		 	
-						    		  '<li class="ajax-button' + key +'"><a onclick="chk('+ value.scount+');" id="ajax-buttona" style="text-decoration:none; cursor:pointer">' + '<span id="tno">'+  value.tno +  '</span><br/>'+ 
+						    		  '<li class="ajax-button' + key +'"><a name="'+ value.scount +'"onclick="chk(this);" id="ajax-buttona" style="text-decoration:none; cursor:pointer">' + '<span id="tno">'+  value.tno +  '</span><br/>'+ 
 						    		 '<span id="rdate">'+ '<em>' + value.rdate + ' ' + '</em>' + '</span><br/>' +
 						    		  '<span>'+ '<em>' +  value.d + '/'+ value.f + '</em>' + '</span>' +
 					                  '</a></li>' + '</ul>';
 								                  			                  					                   	               						          
-<<<<<<< HEAD
-					         $('.ajax-cover').append(eachrow).trigger("create");	
+					        $('.ajax-cover').append(eachrow).trigger("create");	
 					         $('.screen_tit').show();							 					     	 	 											  							
-					}); // each	 
-=======
-					         $('.ajax-cover').append(eachrow).trigger("create");						 					     	 	 											  							
-					}); // each								 
->>>>>>> branch 'master' of https://github.com/soyoungsoo/project.git
+					}); // each	 					        						 					     	 	 											  																	
 			}, // success
 			error: function(error) {
 				alert('실패');
@@ -117,21 +112,21 @@
 	} //시작
 
 	
-	function chk(pam) {		 
+	function chk(target) {		 
 		
 		var inputVal = $("#i_mno").val();
 		var dd = document.getElementById("area");					
-		var pa = pam;									
+		var pa = $(target).attr("name");
+						
 		if(dd.hasChildNodes()){			
 			while(dd.hasChildNodes()){																		
 				dd.removeChild(dd.firstChild);
 			}
 		}
-															 																								
+
 		var tno = $("#tno").text();
-		var before_date = $("#rdate").text();								 															
-		var rdate = before_date.substring(0,16);								
-										
+		var before_date = $(target).parents("ul").attr("id");			
+		var rdate = before_date.substring(0,16);																 																								
 			$.ajax({
 				type: 'get',
 				url: 'http://localhost:8082/special/rest' + '/seat?rdate='+rdate+'&mno='+inputVal +'&tno='+tno+'&scount='+pa,						
@@ -148,26 +143,22 @@
 					'seat-code="1A01" onclick="selectedSeat(this);">'+ (key+1) +'</a>'
 				 
 				  $('.seat_area').append(htmlrow).trigger("create");
-					var index = $('.seat_area a').attr("value");		
-					if (index === "1") {
-						$('.seat_area a').addClass("already-selected");	
+					//var index = $('.seat_area a').attr("value");
+					var index = $(".seat_area").children().eq(key).attr("value");							
+					if (index == "1") {	
+						 $(".seat_area").children().eq(key).addClass("already-selected");												
 					}
-					else if (index === "2") {
-						$('.seat_area a').addClass("seat-broken");
+					else if (index == "2") {
+						$(".seat_area").children().eq(key).addClass("seat-broken");						
 					}
 				  $('.screen_tit').show();
 				  $('.select-age').show();																					
-<<<<<<< HEAD
-			});			
-							
-/* 			 isBooked();		 */																					 			 						 			 						 			 			 			 						 			 					 			 			
+
+			});		// each																													 			 						 			 						 			 			 			 						 			 					 			 		
 			}, // 2 success
-=======
-			});
-			}, // 2 success																										 			 						 			 						 			 			 			 						 			 					 			 			
->>>>>>> branch 'master' of https://github.com/soyoungsoo/project.git
-			error: function(jqXHR, textStatus, errorThrown) {
-				alert("실패");		 			 											
+			//}); // ajax
+			error: function(jqXHR, textStatus, errorThrown) {				 			 			
+				alert("실패");		 			 									 			 											
 			} //error
 	}); 	// 2 ajax			
 } // function
@@ -181,14 +172,13 @@
 		$(".p0").removeClass("teen-seat-selected");
 	}
 
-<<<<<<< HEAD
+
 	function isBooked() {
 		var index;
 
 		for (var i = 0; i < 45; i++) {
 
-			var index = $(".seat_area").children().eq(i).attr("value");
-			
+			var index = $(".seat_area").children().eq(i).attr("value");			
 			if (index==1) {
 				$(index).addClass("already-selected");
 			}
@@ -197,9 +187,7 @@
 			}
 		}
 	}
-
-=======
->>>>>>> branch 'master' of https://github.com/soyoungsoo/project.git
+	
 	function howMuch() {
 		var adprice;
 		var tenprice;
@@ -253,7 +241,7 @@
 						<div class = "ajax-cover">												
 						</div>
 						<div class="seat_Barea" id="Barea">
-							<div class = "seat_area" style="height: 184px; margin-left: 308.5px;" id = "area">
+							<div class = "seat_area" style="height: 184px; margin-left: 308.5px;" id = "area">							
 							</div>
 						</div>
 						<div class="pay-container">

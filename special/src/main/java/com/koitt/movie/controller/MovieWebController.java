@@ -49,17 +49,16 @@ import com.koitt.movie.service.ReservationService;
 public class MovieWebController {
 
 	//private static final String UPLOAD_FOLDER ="/movieImage";
+	private Logger logger = LogManager.getLogger(this.getClass());
+	
 	private static final String UPLOAD_FOLDER ="/resources/image";		
+	
 	@Autowired
 	private MemberService MemberService;
 	@Autowired
-	private ReservationService ticketService;
-	
-	private Logger logger = LogManager.getLogger(this.getClass());
-
+	private ReservationService ticketService;	
 	@Autowired
 	private MovieService movieService;
-
 	@Autowired
 	private FileService fileService;	
 
@@ -130,7 +129,7 @@ public class MovieWebController {
 		i_list =movieService.select_Intro_S(intro);
 		actors = movieService.select_Actors(Integer.parseInt(mno));		
 		list = movieService.commentAll(Integer.parseInt(mno));
-		System.out.println(i_list);
+		
 		model.addAttribute("Intro",i_list);
 		model.addAttribute("actors",actors);
 		model.addAttribute("comment", list);
@@ -174,7 +173,7 @@ public class MovieWebController {
 		
 		// MultipartFile 객체에서 파일명을 가져온다.
 		String originalName = post.getOriginalFilename();
-		System.out.println("origin "+originalName);
+		
 		// upload 폴더가 없다면, upload 폴더 생성
 		File directory = new File(path);
 		if (!directory.exists()) {
@@ -253,7 +252,7 @@ public class MovieWebController {
 		if (oldFilename != null && !oldFilename.trim().isEmpty()) {
 			fileService.remove(request, UPLOAD_FOLDER, oldFilename);
 		}
-		System.out.println("실행");
+		
 		return "redirect:list.do";
 	}
 
@@ -288,7 +287,7 @@ public class MovieWebController {
 			Member member = (Member) session.getAttribute("member");
 			Integer memNo = member.getMemno();
 			String seatno_cut[] = seatno.split(",");
-			System.out.println("scount "+ scount);
+			
 			for (String string : seatno_cut) {
 				reservation.setMemno(memNo);
 				reservation.setMno(mno);
@@ -301,7 +300,7 @@ public class MovieWebController {
 				seat.setScount(scount);
 				ticketService.ticketing(reservation);
 				ticketService.stateChange(seat);
-				System.out.println(seat);
+				
 			}	
 				
 			response.setContentType("text/html; charset=UTF-8");
@@ -313,6 +312,22 @@ public class MovieWebController {
 			return null;
 		}
 		
+		@RequestMapping(value = "/ticket-del", method = RequestMethod.POST)
+		public String ticketCancel(HttpServletResponse response,Integer rno,Integer tno, Integer scount, String seatno) throws Exception {
+			Seat seat = new Seat();			
+			seat.setTno(tno);
+			seat.setScount(scount);
+			seat.setSeatno(seatno);
+			seat.setIssue(0);
+		
+			ticketService.Cancel(rno);
+			ticketService.stateChange(seat);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('예매 취소되었습니다..');</script>");
+			out.flush();
+			return "user/reserve";
+		}
 		@RequestMapping(value = "/schedule.do", method = RequestMethod.GET)
 		public String schedule(Model model,Integer mno)
 			throws CommonException, UnsupportedEncodingException{				
@@ -336,8 +351,7 @@ public class MovieWebController {
 			
 			Integer scount = sc.getScount();
 			seat.setTno(tno);
-			seat.setScount(scount);			
-			System.out.println(seat);
+			seat.setScount(scount);						
 			movieService.seatEnrollment(seat);			
 			return "redirect:list.do";			
 		}
@@ -414,16 +428,15 @@ public class MovieWebController {
 		public String Intro(HttpServletRequest request, Integer mno, MultipartFile[] image, String video) throws Exception {
 			Intro intro = new Intro();
 			intro.setVideo(video);
-			int length = image.length;
-			System.out.println("ddd " +length);
+			int length = image.length;			
 			for (MultipartFile file : image) {	
-				System.out.println("file "+file.getOriginalFilename());
+				
 					// 최상위 경로 밑에 upload 폴더의 경로를 가져온다.
 					String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);					
 					intro.setMno(mno);									
 					// MultipartFile 객체에서 파일명을 가져온다.
 					String originalName = file.getOriginalFilename();
-					System.out.println("origin "+originalName);
+					
 					// upload 폴더가 없다면, upload 폴더 생성
 					File directory = new File(path);
 					if (!directory.exists()) {

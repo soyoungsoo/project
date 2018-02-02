@@ -10,11 +10,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<link rel="stylesheet" href="<c:url value='/resources/bootstrap/css/bootstrap.min.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/bootstrap/css/bootstrap-theme.min.css'/>">
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/main.css'/>">
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/register.css'/>">
-<link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/preview.css'/>">
+<link rel="stylesheet"
+	href="<c:url value='/resources/bootstrap/css/bootstrap.min.css'/>">
+<link rel="stylesheet"
+	href="<c:url value='/resources/bootstrap/css/bootstrap-theme.min.css'/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/resources/css/main.css'/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/resources/css/register.css'/>">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value='/resources/css/preview.css'/>">
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!-- <script src="../lightslider-master/src/js/lightslider.js"></script>-->
@@ -151,26 +156,109 @@
 				</div>
 			</div>
 			<div class="prev-content">
-				<div class="video">		
-					<c:forEach var="intro" items="${Intro}">
-						<c:if test="${intro.video ne null }">
-                            <li class="pic-1"><iframe width="1000" height="400" src="<c:url value='${intro.video}'/>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></li>
-                        </c:if>
-                         <c:if test="${intro.image ne null }">
-                           <li class="pic-2"><img width="28%" src="<c:url value='../../img/${intro.image}'/>"></li>
-                         </c:if>          
-                         <li>ㅇㅇ</li>                      
-                     </c:forEach>				                      	                             
+				<div class="video">							                  	                            
 <!-- 						<iframe width="1000" height="400" -->
 <!-- 							src="https://www.youtube.com/embed/zaz-ZsnutnM" frameborder="0" -->
 <!-- 							gesture="media" allow="encrypted-media" allowfullscreen></iframe>					 -->
 				</div>
 				<div class="prev">
-					<div class="prev-top">
-						<div class="thumb">
-							<img src="<c:url value='../../img/${item.post}'/>"> <a class="ticketing-btn"
-								href="/special/movie/ticket?mno=${item.mno}">예매하기</a>
+					<div id="carousel-example-generic" class="carousel slide"
+						data-ride="carousel">
+						<!-- Indicators -->
+						<ol class="carousel-indicators">
+							<li data-target="#carousel-example-generic" data-slide-to="0"
+								class="active"></li>
+							<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+							<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+						</ol>
+					 	    
+						<!-- Wrapper for slides -->						
+						<div class="carousel-inner" role="listbox">
+							 <c:forEach var="intro" items="${Intro}">
+								 <c:if test="${intro.video ne null }">
+									<div class="item active">
+										<iframe width="100%" height="500"
+											src="<c:url value='${intro.video}'/>" frameborder="0"
+											gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+										<div class="carousel-caption"></div>
+									</div>                           
+		                         </c:if>
+		                         <c:if test="${intro.image ne null }">                           
+		                           <div class="item">
+										<img src="<c:url value='../../img/${intro.image}'/>" alt="imgs" width="100%" height="40%">
+										<div class="carousel-caption"></div>
+									</div>
+		                         </c:if>                                          
+	                     	</c:forEach>			
+<!-- 							<div class="item active"> -->
+<!-- 								<img src="image/2.jpg" alt="imgs" width="100%" height="40%"> -->
+<!-- 								<div class="carousel-caption"></div> -->
+<!-- 							</div> -->
+<!-- 							<div class="item"> -->
+<!-- 								<img src="image/black.JPG" alt="imgs" width="100%" height="40%"> -->
+<!-- 								<div class="carousel-caption"></div> -->
+<!-- 							</div> -->
+<!-- 							<div class="item"> -->
+<!-- 								<iframe width="100%" height="400" -->
+<!-- 									src="https://www.youtube.com/embed/zaz-ZsnutnM" frameborder="0" -->
+<!-- 									gesture="media" allow="encrypted-media" allowfullscreen></iframe> -->
+<!-- 								<div class="carousel-caption"></div> -->
+<!-- 							</div> -->
 						</div>
+						<!-- Controls -->
+						<a class="left carousel-control" href="#carousel-example-generic"
+							role="button" data-slide="prev"> <span
+							class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+							<span class="sr-only">Previous</span>
+						</a> <a class="right carousel-control"
+							href="#carousel-example-generic" role="button" data-slide="next">
+							<span class="glyphicon glyphicon-chevron-right"
+							aria-hidden="true"></span> <span class="sr-only">Next</span>
+						</a>
+					</div>
+				</div>
+
+				<div class="prev-top">
+					<div class="thumb">
+						<img src="<c:url value='../../img/${item.post}'/>"> <a
+							class="ticketing-btn"
+							href="/special/movie/ticket?mno=${item.mno}">예매하기</a>
+					</div>
+					<div class="top-ex">
+						<h2 class="mov-title">${ item.title }</h2>
+						<ul class="ranking">
+							<li><strong>예매율</strong> <span> <em>1</em> 위 (42.1%)
+							</span></li>
+							<li><p class="star_rating">
+									<a class="on">★</a> <a class="on">★</a> <a class="on">★</a> <a
+										class="on">★</a> <a>★</a>
+								</p></li>
+							<li>(총 9,888,000 명)</li>
+						</ul>
+						<ul class="mov-grade">
+							<li>[장르] ${ item.genre }</li>
+							<li>[국내] ${ item.grade }</li>
+							<li>[상영 시간] ${ item.mrun } 분</li>
+							<li>[상영일] <fmt:formatDate value="${ item.sdate }"
+									pattern="yyyy-MM-dd" />
+							</li>
+							<li>[종영일] <fmt:formatDate value="${ item.edate }"
+									pattern="yyyy-MM-dd" />
+							</li>
+							<!-- 								 <li>출연진 : <strong class="actors">홍진호</strong>,<strong -->
+							<!-- 									class="actors">홍진호</strong>,<strong class="actors">홍진호</strong></li>  -->
+							<c:if test="${ !empty post }">
+								<li>[첨부 파일] <a
+									href="<c:url value='/download.do?filename=${ item.post }'/>">${ post }</a></li>
+							</c:if>
+						</ul>
+						<!-- <ul id="img-slider" class="cs-hidden">
+                                <li class="pic-1"><img src="image/black.JPG"></li>
+                                <li class="pic-2"><img src="image/2.jpg"></li>
+                                <li class="pic-3"><img src="image/2.jpg"></li>
+                                <li class="pic-4"><img src="image/2.jpg"></li>
+                                <li class="pic-5"><img src="image/2.jpg"></li>
+                            </ul>-->
 						<div class="top-ex">
 							<h2 class="mov-title">${ item.title }</h2>
 							<ul class="ranking">
@@ -211,26 +299,32 @@
                             </ul>
 						</div>
 					</div>
-					<div class="prev-text">
-						<h2>시놉시스</h2>
-						<p>${fn:replace(item.content,crcn,"<br/>") }</p>
-					</div>
-					<hr>
 				</div>
-					<div class="admin-menu">
-						<ul>
-							<c:forEach var="list" items="${ member.userTypes }">
-								<c:choose>
-									<c:when test="${list.type == 'ADMIN'}">
-										<li><a class = "reg-btn" href="/special/movie/modify.do?mno=${item.mno}">수정하기</a></li>
-										<li><a class = "reg-btn" href="/special/movie/schedule.do?mno=${item.mno}">상영시간 추가하기</a></li>
-										<li><a class = "reg-btn" href="javascript:deleteCheck();">삭제하기</a></li>
-										<li><a class = "reg-btn" href="/special/movie/insert_actors?mno=${item.mno}">출연진 등록하기</a></li>
-										<li><a class = "reg-btn" href="/special/movie/insert_Intro?mno=${item.mno}">Intro 등록</a></li>
-									</c:when>
-								</c:choose>
-							</c:forEach>
-					</ul>				
+				<div class="prev-text">
+					<h2>시놉시스</h2>
+					<p>${fn:replace(item.content,crcn,"<br/>") }</p>
+				</div>
+				<hr>
+			</div>
+			<div class="admin-menu">
+				<ul>
+					<c:forEach var="list" items="${ member.userTypes }">
+						<c:choose>
+							<c:when test="${list.type == 'ADMIN'}">
+								<li><a class="reg-btn"
+									href="/special/movie/modify.do?mno=${item.mno}">수정하기</a></li>
+								<li><a class="reg-btn"
+									href="/special/movie/schedule.do?mno=${item.mno}">상영시간 추가하기</a></li>
+								<li><a class="reg-btn" href="javascript:deleteCheck();">삭제하기</a></li>
+								<li><a class="reg-btn"
+									href="/special/movie/insert_actors?mno=${item.mno}">출연진
+										등록하기</a></li>
+								<li><a class="reg-btn"
+									href="/special/movie/insert_Intro?mno=${item.mno}">Intro 등록</a></li>
+							</c:when>
+						</c:choose>
+					</c:forEach>
+				</ul>
 			</div>
 			<div class="actors-image">
 						<ul>
@@ -244,23 +338,26 @@
 							</c:forEach>
 						</ul>
 					</div>
+				<ul>					
+				</ul>
+			</div>
 			<div class="star-box">
 				<form action="/special/movie/comment" method="post" id="starForm">
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-					<input type="hidden" name="mno_i" value="${item.mno}">
-					<span class="star-input"> <span class="input"> <input
-							type="radio" name="star_input" value="1" id="p1"> <label
-							for="p1">1</label> <input type="radio" name="star_input"
-							value="2" id="p2"> <label for="p2">2</label> <input
-							type="radio" name="star_input" value="3" id="p3"> <label
-							for="p3">3</label> <input type="radio" name="star_input"
-							value="4" id="p4"> <label for="p4">4</label> <input
-							type="radio" name="star_input" value="5" id="p5"> <label
-							for="p5">5</label>
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}"> <input type="hidden" name="mno_i"
+						value="${item.mno}"> <span class="star-input"> <span
+						class="input"> <input type="radio" name="star_input"
+							value="1" id="p1"> <label for="p1">1</label> <input
+							type="radio" name="star_input" value="2" id="p2"> <label
+							for="p2">2</label> <input type="radio" name="star_input"
+							value="3" id="p3"> <label for="p3">3</label> <input
+							type="radio" name="star_input" value="4" id="p4"> <label
+							for="p4">4</label> <input type="radio" name="star_input"
+							value="5" id="p5"> <label for="p5">5</label>
 					</span> <output for="star-input" id="star-output">
 							<b id="star-count">0</b>점
 						</output>
-					</span>										
+					</span>							
 					<div class="input-area">		
 						<c:set var="member_id" value="${member.id}" />											
 							<c:choose>
@@ -279,8 +376,7 @@
 								</c:when>
 							</c:choose>												
 					</div>
-					<hr style="position: relative; top: 20px;">
-
+					<hr style="position: relative; top: 20px;">																
 					<div class="repl-box text-center">																			
 						<ul class="repl-list">		
 							<c:forEach var="cm" items="${comment}">
@@ -330,21 +426,54 @@
 													<c:when test="${cm.id eq member.id}">														
 														<a href="/special/movie/delete?cno=${cm.cno}&mno=${item.mno}">삭제하기</a>
 													</c:when>
-												</c:choose>																							
-										</li>																			
-									</c:when>									
-								</c:choose>
-									</c:forEach>				
-						</ul>
+													<c:when test="${cm.score eq 2 }">
+														<p class="star_rating" id="${cm.cno}">
+															<a href="#" class="on">★</a> <a href="#" class="on">★</a>
+														</p>
+													</c:when>
+													<c:when test="${cm.score eq 3 }">
+														<p class="star_rating" id="${cm.cno}">
+															<a href="#" class="on">★</a> <a href="#" class="on">★</a>
+															<a href="#" class="on">★</a>
+														</p>
+													</c:when>
+													<c:when test="${cm.score eq 4 }">
+														<p class="star_rating" id="${cm.cno}">
+															<a href="#" class="on">★</a> <a href="#" class="on">★</a>
+															<a href="#" class="on">★</a> <a href="#" class="on">★</a>
+														</p>
+													</c:when>
+													<c:when test="${cm.score eq 5 }">
+														<p class="star_rating" id="${cm.cno}">
+															<a href="#" class="on">★</a> <a href="#" class="on">★</a>
+															<a href="#" class="on">★</a> <a href="#" class="on">★</a>
+															<a href="#" class="on">★</a>
+														</p>
+													</c:when>
+												</c:choose>
+												<p class="${cm.cno}">
+													<strong class="rep-user-name">${cm.id}</strong>${cm.mcomment}
+												</p> <a title="${cm.cno}" class="good-btn"
+												onclick="evalCheck(this);" style="cursor: pointer">♡ <strong
+													class="count">${cm.vcount}</strong></a> <c:choose>
+													<c:when test="${cm.id eq member.id}">
+														<a
+															href="/special/movie/delete?cno=${cm.cno}&mno=${item.mno}">삭제하기</a>
+													</c:when>
+												</c:choose></li>
+										</c:when>
+									</c:choose>
+								</c:forEach>
+							</ul>
 					</div>
 				</form>
-			</div>			
+			</div>
 		</div>
 		<div class="footer">
-			<p class="copyright">&copy;copyright reserved larl</p>			
-		</div>
-	</div>
-	<script src="<c:url value='/resources/bootstrap/js/jquery-1.12.4.min.js'/>"></script>
+			<p class="copyright">&copy;copyright reserved larl</p>
+		</div>	
+	<script
+		src="<c:url value='/resources/bootstrap/js/jquery-1.12.4.min.js'/>"></script>
 	<script src="<c:url value='/resources/js/jquery-1.11.3.min.js'/>"></script>
 	<script src="<c:url value='/resources/js/star.js'/>"></script>
 	<script src="<c:url value='/resources/bootstrap/js/bootstrap.min.js'/>"></script>

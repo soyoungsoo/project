@@ -107,8 +107,10 @@ select rdate, tno, seatno, issue, scount, d, f from (
 			where mno = 1 and tno = 1 and Sc.RDATE = '2018-01-17 19:00' and s.scount=sc.scount
 			)
 INSERT INTO Actors VALUES(seq_ano.nextval,1,'하정우','배우');
-INSERT INTO Actors VALUES(seq_ano.nextval,1,'하정우','배우');
-
+INSERT INTO reservation VALUES(seq_rno.nextval,21,1,1,'E-1',sysdate,1);
+		
+SELECT * from reservation where memno = 1; 
+	DELETE FROM RESERVATION WHERE rno = #{rno}
 select * from reservation;
 select * from movie_intro;
 delete from movie_intro where ino =3;

@@ -9,9 +9,8 @@
 			select distinct rdate, tno, Scount, d,f from (
 			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0) d,(select count(*) from SEAT)f
 			from seat s, (select * from schedule) sc 
-			where mno = #{mno} and Sc.RDATE LIKE  '%'||#{rdate}||'%'
-			order by  sc.rdate asc
-			)
+			where mno = #{mno} and Sc.RDATE LIKE  '%'||#{rdate}||'%'		
+			)	order by rdate asc
 		</select>
 
 		<select id="select" parameterType="Seat" resultType="Seat">
