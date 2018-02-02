@@ -1,0 +1,41 @@
+#video-input {
+    width: 235px;
+    margin-bottom: 20px;
+}
+.actors-input {
+    width: 200px;
+    margin-left: 30px;
+}
+
+.content ul {
+    width: 980px;
+    height: 100px;
+    text-align: center;
+}
+.content ul li:nth-child(4n+1) {
+    margin-left: 0;
+}
+
+.content ul li:nth-child(1) {
+    margin-left: 0;
+}
+
+.content ul li {
+    width: 175px;
+    height: 100px;
+    float: none;
+    display: inline-block;
+    margin-top: 0px;
+}
+
+.table-join {
+    width: 980px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.table-join tr th{
+    width: 200px;
+}
+.text-right {
+    padding-right: 50px;
+}

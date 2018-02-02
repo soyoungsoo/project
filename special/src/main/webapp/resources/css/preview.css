@@ -301,3 +301,9 @@
 .count {
     margin-left: 4px;
 }
+.carousel-inner > .item > img {
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      max-height: 500px;
+ } 
