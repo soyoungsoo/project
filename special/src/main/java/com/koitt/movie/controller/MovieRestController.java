@@ -50,8 +50,7 @@ public class MovieRestController {
 																		
 			schedule.setMno(mno);					
 			schedule.setRdate(date);						
-			list = smService.selectDate(schedule);										
-			System.out.println(list);
+			list = smService.selectDate(schedule);													
 			return new ResponseEntity<List<Seat>>(list,HttpStatus.OK);
 	}	
 	@RequestMapping(value = "/seat", method = RequestMethod.GET,produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -125,8 +124,7 @@ public class MovieRestController {
 		  endgrouppage = endgrouppage > allpages ? allpages :  endgrouppage;		  
 		  page.setEndgrouppage(endgrouppage);		
 		  
-		  list.add(page);
-		  System.out.println("list " +list);
+		  list.add(page);		  
 		return new ResponseEntity<List<Paging>>(list,HttpStatus.OK);			
 	}	
 
