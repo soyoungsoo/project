@@ -151,10 +151,19 @@
 				</div>
 			</div>
 			<div class="prev-content">
-				<div class="video">
-					<iframe width="1000" height="400"
-						src="https://www.youtube.com/embed/zaz-ZsnutnM" frameborder="0"
-						gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+				<div class="video">		
+					<c:forEach var="intro" items="${Intro}">
+						<c:if test="${intro.video ne null }">
+                            <li class="pic-1"><iframe width="1000" height="400" src="<c:url value='${intro.video}'/>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></li>
+                        </c:if>
+                         <c:if test="${intro.image ne null }">
+                           <li class="pic-2"><img width="28%" src="<c:url value='../../img/${intro.image}'/>"></li>
+                         </c:if>          
+                         <li>ㅇㅇ</li>                      
+                     </c:forEach>				                      	                             
+<!-- 						<iframe width="1000" height="400" -->
+<!-- 							src="https://www.youtube.com/embed/zaz-ZsnutnM" frameborder="0" -->
+<!-- 							gesture="media" allow="encrypted-media" allowfullscreen></iframe>					 -->
 				</div>
 				<div class="prev">
 					<div class="prev-top">
@@ -191,12 +200,14 @@
 								</c:if>
 							</ul>
 						 	<ul id="img-slider" class="cs-hidden">
-						 	<c:forEach var="intro" items="${Intro}">
-						 		<c:if test="${intro.video ne null }">
-                                <li class="pic-1"><iframe width="854" height="480" src="<c:url value='${intro.video}'/>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></li>
-                                </c:if>
-                                <li class="pic-2"><img src="<c:url value='../../img/${intro.image}'/>"></li>                                
-                            </c:forEach>
+<%-- 						 	<c:forEach var="intro" items="${Intro}"> --%>
+<%-- 						 		<c:if test="${intro.video ne null }"> --%>
+<%--                                 <li class="pic-1"><iframe width="900" height="400" src="<c:url value='${intro.video}'/>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></li> --%>
+<%--                                 </c:if> --%>
+<%--                                 <c:if test="${intro.image ne null }"> --%>
+<%--                                 <li class="pic-2"><img src="<c:url value='../../img/${intro.image}'/>"></li> --%>
+<%--                                 </c:if>                                 --%>
+<%--                             </c:forEach> --%>
                             </ul>
 						</div>
 					</div>
@@ -225,7 +236,11 @@
 						<ul>
 							<li>감독 및 출연</li>
 							<c:forEach var="info" items="${actors}">
-							<li><img src="<c:url value='../../img/${info.photo}'/>"><strong>${info.name}</strong></br>${info.job}</li>
+							<li>
+								<div>
+									<img width="150px" height="150px" style="border-radius:50%;" src="<c:url value='../../img/${info.photo}'/>">
+								</div>
+							</br><strong>${info.name}</strong></br>${info.job}</li>
 							</c:forEach>
 						</ul>
 					</div>
