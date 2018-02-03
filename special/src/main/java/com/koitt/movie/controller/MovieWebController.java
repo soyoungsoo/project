@@ -6,9 +6,11 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -108,28 +110,40 @@ public class MovieWebController {
 
 	// 글 상세 화면
 	@RequestMapping(value = "/detail.do", method = RequestMethod.GET)
-	public String detail(Model model, 
+	public String detail(HttpServletRequest request, Model model, 
 			@RequestParam(value = "mno", required=true) String mno)
 					throws CommonException, Exception {
-		Movie movie = null;
 		Intro intro = new Intro();
+		double totalScore = 0,rate	= 0; 
+		Integer  totalView = null;							
+		Movie movie = null;
 		List<Comment> list = null;
 		List<Actors> actors = null;
 		List<Intro> i_list = null;
 		String filename = null;
-		intro.setMno(Integer.parseInt(mno));
-				
+		intro.setMno(Integer.parseInt(mno));			
 		movie = movieService.detail(mno);
 		filename = movie.getPost();
 		
 		if (filename != null && !filename.trim().isEmpty()) {
 			filename = URLDecoder.decode(filename, "UTF-8");
-		}
-		
+		}						
+		if(movieService.totalScore(Integer.parseInt(mno))!=null) {
+			totalScore = movieService.totalScore(Integer.parseInt(mno));
+		};
+		if(movieService.totalView(Integer.parseInt(mno))!=null) {
+			totalView = movieService.totalView(Integer.parseInt(mno));
+		};
+		if(movieService.ReserveRate(Integer.parseInt(mno))!=null) {
+			rate = (double) movieService.ReserveRate(Integer.parseInt(mno));
+		};				
 		i_list =movieService.select_Intro_S(intro);
 		actors = movieService.select_Actors(Integer.parseInt(mno));		
-		list = movieService.commentAll(Integer.parseInt(mno));
+		list = movieService.commentAll(Integer.parseInt(mno));					
 		
+		request.setAttribute("total-ts",totalScore);
+		request.setAttribute("total-tv",totalView);
+		request.setAttribute("total-rate",rate);
 		model.addAttribute("Intro",i_list);
 		model.addAttribute("actors",actors);
 		model.addAttribute("comment", list);

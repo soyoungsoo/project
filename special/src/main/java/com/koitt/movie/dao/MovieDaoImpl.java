@@ -241,4 +241,40 @@ public class MovieDaoImpl implements MovieDao{
 		}		
 		return list;
 	}
+
+	@Override
+	public Integer totalScore(Integer mno) throws CommonException {	
+		Integer ts = null;
+		try {			
+			ts = sqlSession.selectOne(MAPPER_NAMESPACE + ".totalScore",mno);			
+		}catch (Exception e) {
+			logger.debug(e.getMessage());			
+			throw new CommonException("E21: 영화 평점 가져오기 실패");			
+		}		
+		return ts;
+	}
+
+	@Override
+	public Integer totalView(Integer mno) throws CommonException {
+		Integer tv = null;
+		try {			
+			tv = sqlSession.selectOne(MAPPER_NAMESPACE + ".totalView", mno);			
+		}catch (Exception e) {
+			logger.debug(e.getMessage());			
+			throw new CommonException("E21: 영화 관람객 수 가져오기 실패");			
+		}		
+		return tv;
+	}
+
+	@Override
+	public Integer ReserveRate(Integer mno) throws CommonException {
+		Integer rr = null;
+		try {			
+			rr = sqlSession.selectOne(MAPPER_NAMESPACE + ".ReserveRate", mno);			
+		}catch (Exception e) {
+			logger.debug(e.getMessage());			
+			throw new CommonException("E21: 영화 예매율 가져오기 실패");			
+		}		
+		return rr;
+	}
 }

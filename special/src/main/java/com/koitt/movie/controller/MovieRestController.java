@@ -84,9 +84,15 @@ public class MovieRestController {
 	@RequestMapping(value = "/vcount", method = RequestMethod.GET)
 	public ResponseEntity<Comment> vcount(HttpSession session,Integer mno, Integer cno)
 		throws CommonException{
+		int status = 0; 
 		Member member = (Member)session.getAttribute("member");
 		String id = member.getId();
-		int status = (int)session.getAttribute(cno+id);
+		System.out.println("id " +id);
+		System.out.println("cno " +cno);	
+		if(session.getAttribute(cno+id) != null) {
+			status = (int)session.getAttribute(cno+id);
+		}
+		System.out.println("status " +status);
 		if (status != 1) {
 			Comment c = new Comment();
 			c.setMno(mno);

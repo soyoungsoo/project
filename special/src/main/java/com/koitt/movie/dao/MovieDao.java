@@ -51,4 +51,10 @@ public interface MovieDao {
 	public void insert_Intro(Intro intro) throws CommonException;
 	// 영화 소개 가져오기
 	public List<Intro> select_Intro(Intro intro) throws CommonException;
+	// 영화 평점
+	public Integer totalScore(Integer mno) throws CommonException;
+	// 영화 관람객 수
+	public Integer totalView(Integer mno) throws CommonException;
+	// 영화 예매율
+	public Integer ReserveRate(Integer mno) throws CommonException;
 }

@@ -67,7 +67,7 @@
 				$.each(data, function (key, value) {					
 					var curtime = new Date(getTimeStamp());					
 					var rdate = new Date(value.rdate);					
-					if(curtime>rdate){ 	 																														 															
+					if(curtime<rdate){ 	 																														 															
  						var str='<form action="/special/movie/ticket-del" method="post" id="ticket-info'+value.rno +'">'+
  	 							'<ul class = "my-reserve">' + 
  								'<li class = "reserve-place"> 상영관 :'+ value.tno +'</li>'+

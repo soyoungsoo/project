@@ -73,7 +73,7 @@
 		}else{
         var counts = $(target).children().text();
         var mno = ${item.mno};
-        var cno = $(target).attr("title");        
+        var cno = $(target).attr("title");           
         if($(target).hasClass("clicked")) {
             alert("이미 공감하셨습니다.");
         }
@@ -227,13 +227,53 @@
 					<div class="top-ex">
 						<h2 class="mov-title">${ item.title }</h2>
 						<ul class="ranking">
-							<li><strong>예매율</strong> <span> <em>1</em> 위 (42.1%)
+							<li><strong>예매율</strong> <span> <em>1</em> 위 <%out.print(request.getAttribute("total-rate")); %>%
 							</span></li>
-							<li><p class="star_rating">
-									<a class="on">★</a> <a class="on">★</a> <a class="on">★</a> <a
-										class="on">★</a> <a>★</a>
-								</p></li>
-							<li>(총 9,888,000 명)</li>
+							<%double ts= (double)request.getAttribute("total-ts"); %>															
+							<% if(ts == 0){ %>												
+								<li><p class="star_rating">
+										<a>★</a> <a >★</a> <a>★</a> <a
+											>★</a> <a>★</a><span>0.0</span>
+									</p>									
+								</li>
+							<%} %>
+							<% if(ts == 1){ %>												
+								<li><p class="star_rating">
+										<a class="on">★</a> <a >★</a> <a>★</a> <a
+											>★</a> <a>★</a><span><%out.print(request.getAttribute("total-ts")); %></span>
+									</p>									
+								</li>
+							<%} %>
+							<% if(ts == 2){ %>
+								<li><p class="star_rating">
+										<a class="on">★</a> <a class="on">★</a> <a >★</a> <a
+											>★</a> <a>★</a><a><%out.print(request.getAttribute("total-ts")); %></a>
+									</p>									
+								</li>
+							<% } %>
+							<% if(ts == 3){ %>
+								<li><p class="star_rating">
+										<a class="on">★</a> <a class="on">★</a> <a class="on">★</a> <a
+											>★</a> <a>★</a><a><%out.print(request.getAttribute("total-ts")); %></a>
+									</p>									
+								</li>
+							<% } %>
+							<% if(ts == 4){ %>
+								<li><p class="star_rating">
+										<a class="on">★</a> <a class="on">★</a> <a class="on">★</a> <a
+											class="on">★</a> <a>★</a><a><%out.print(request.getAttribute("total-ts")); %></a>
+									</p>									
+								</li>
+							<% } %>
+							<% if(ts == 5){ %>
+								<li><p class="star_rating">
+										<a class="on">★</a> <a class="on">★</a> <a class="on">★</a> <a
+											 class="on">★</a> <a class="on">★</a><a><%out.print(request.getAttribute("total-ts")); %></a>
+									</p>									
+								</li>							
+							<% } %>
+							
+							<li>(누적관객 수 <% out.print(request.getAttribute("total-tv")); %>명)</li>																					
 						</ul>
 						<ul class="mov-grade">
 							<li>[장르] ${ item.genre }</li>
@@ -259,34 +299,7 @@
                                 <li class="pic-4"><img src="image/2.jpg"></li>
                                 <li class="pic-5"><img src="image/2.jpg"></li>
                             </ul>-->
-						<div class="top-ex">
-							<h2 class="mov-title">${ item.title }</h2>
-							<ul class="ranking">
-								<li><strong>예매율</strong> <span> <em>1</em> 위 (42.1%)
-								</span></li>
-								<li><p class="star_rating">
-										<a class="on">★</a> <a class="on">★</a> <a class="on">★</a> <a
-											class="on">★</a> <a>★</a>
-									</p></li>
-								<li>(총 9,888,000 명)</li>
-							</ul>
-							<ul class="mov-grade">
-								<li>[장르] ${ item.genre }</li>
-								<li>[국내] ${ item.grade }</li>
-								<li>[상영 시간] ${ item.mrun } 분</li>
-								<li>[상영일] <fmt:formatDate value="${ item.sdate }"
-										pattern="yyyy-MM-dd" />
-								</li>
-								<li>[종영일] <fmt:formatDate value="${ item.edate }"
-										pattern="yyyy-MM-dd" />
-								</li>
-<!-- 								 <li>출연진 : <strong class="actors">홍진호</strong>,<strong -->
-<!-- 									class="actors">홍진호</strong>,<strong class="actors">홍진호</strong></li>  -->
-								<c:if test="${ !empty post }">
-									<li>[첨부 파일] <a
-										href="<c:url value='/download.do?filename=${ item.post }'/>">${ post }</a></li>
-								</c:if>
-							</ul>
+						<div class="top-ex">																	
 						 	<ul id="img-slider" class="cs-hidden">
 <%-- 						 	<c:forEach var="intro" items="${Intro}"> --%>
 <%-- 						 		<c:if test="${intro.video ne null }"> --%>
@@ -390,24 +403,24 @@
 										<c:choose>
 												<c:when test="${cm.score eq 1 }">
 												<p class="star_rating" id="${cm.cno}">
-													<a href="#" class="on">★</a>
+													<a href="#" class="on">★</a> <a>★</a> <a>★</a> <a>★</a> <a>★</a> 
 												</p>
 											</c:when>
 											<c:when test="${cm.score eq 2 }">
 												<p class="star_rating" id="${cm.cno}">
-													<a href="#" class="on">★</a> <a href="#" class="on">★</a>
+													<a href="#" class="on">★</a> <a href="#" class="on">★</a><a>★</a><a>★</a><a>★</a>
 												</p>
 											</c:when>
 											<c:when test="${cm.score eq 3 }">
 												<p class="star_rating" id="${cm.cno}">
 													<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
-													   href="#" class="on">★</a>
+													   href="#" class="on">★</a> <a>★</a> <a>★</a>
 												</p>
 											</c:when>
 											<c:when test="${cm.score eq 4 }">
 												<p class="star_rating" id="${cm.cno}">
 													<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
-													   href="#" class="on">★</a> <a href="#" class="on">★</a> 
+													   href="#" class="on">★</a> <a href="#" class="on">★</a> <a>★</a>
 												</p>
 											</c:when>
 											<c:when test="${cm.score eq 5 }">
@@ -425,42 +438,9 @@
 												<c:choose>
 													<c:when test="${cm.id eq member.id}">														
 														<a href="/special/movie/delete?cno=${cm.cno}&mno=${item.mno}">삭제하기</a>
-													</c:when>
-													<c:when test="${cm.score eq 2 }">
-														<p class="star_rating" id="${cm.cno}">
-															<a href="#" class="on">★</a> <a href="#" class="on">★</a>
-														</p>
-													</c:when>
-													<c:when test="${cm.score eq 3 }">
-														<p class="star_rating" id="${cm.cno}">
-															<a href="#" class="on">★</a> <a href="#" class="on">★</a>
-															<a href="#" class="on">★</a>
-														</p>
-													</c:when>
-													<c:when test="${cm.score eq 4 }">
-														<p class="star_rating" id="${cm.cno}">
-															<a href="#" class="on">★</a> <a href="#" class="on">★</a>
-															<a href="#" class="on">★</a> <a href="#" class="on">★</a>
-														</p>
-													</c:when>
-													<c:when test="${cm.score eq 5 }">
-														<p class="star_rating" id="${cm.cno}">
-															<a href="#" class="on">★</a> <a href="#" class="on">★</a>
-															<a href="#" class="on">★</a> <a href="#" class="on">★</a>
-															<a href="#" class="on">★</a>
-														</p>
-													</c:when>
+													</c:when>												
 												</c:choose>
-												<p class="${cm.cno}">
-													<strong class="rep-user-name">${cm.id}</strong>${cm.mcomment}
-												</p> <a title="${cm.cno}" class="good-btn"
-												onclick="evalCheck(this);" style="cursor: pointer">♡ <strong
-													class="count">${cm.vcount}</strong></a> <c:choose>
-													<c:when test="${cm.id eq member.id}">
-														<a
-															href="/special/movie/delete?cno=${cm.cno}&mno=${item.mno}">삭제하기</a>
-													</c:when>
-												</c:choose></li>
+											</li>
 										</c:when>
 									</c:choose>
 								</c:forEach>

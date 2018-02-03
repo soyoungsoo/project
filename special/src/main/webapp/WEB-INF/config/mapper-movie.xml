@@ -78,6 +78,18 @@
 		WHERE r BETWEEN ((#{curPage}-1)*5)+1 AND (#{curPage}*5) AND mno = #{mno}
 	</select>
 
+	<select id="totalScore" parameterType="Integer" resultType="Integer">
+		select NVL(sum(score)/NULLIF(count(*),0),0) from movie_comment WHERE mno = #{mno}
+	</select>
+	
+	<select id="totalView" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM RESERVATION WHERE MNO = #{mno} 
+	</select>
+	
+	<select id="ReserveRate" parameterType="Integer" resultType="Integer">
+		SELECT NVL((SELECT COUNT(*) FROM RESERVATION) / NULLIF((SELECT COUNT(*) FROM SCHEDULE SC, SEAT S WHERE SC.SCOUNT = S.SCOUNT AND MNO = #{mno}), 0 ), 0 ) 
+		FROM DUAL
+	</select>
 	
 	<delete id="delete" parameterType="String">
 		DELETE FROM MOVIE WHERE	mno= #{mno}

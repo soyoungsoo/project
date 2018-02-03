@@ -60,12 +60,10 @@ public class MovieServiceImpl implements MovieService{
 	public Movie detail(String no) throws CommonException {		
 		return dao.select(no);
 	}
-
 	@Override
 	public List<Movie> list() throws CommonException {				
 		return dao.selectAll();
-	}
-	
+	}	
 	@Transactional
 	@Override
 	public void runCount(Schedule schedule) throws CommonException {
@@ -123,5 +121,17 @@ public class MovieServiceImpl implements MovieService{
 	@Override
 	public List<Intro> select_Intro_S(Intro intro) throws CommonException {
 		return dao.select_Intro(intro);
+	}
+	@Override
+	public Integer totalScore(Integer mno) throws CommonException {		
+		return dao.totalScore(mno);
+	}
+	@Override
+	public Integer totalView(Integer mno) throws CommonException { 
+		return dao.totalView(mno);
+	}
+	@Override
+	public Integer ReserveRate(Integer mno) throws CommonException {
+		return dao.ReserveRate(mno);
 	}
 }
