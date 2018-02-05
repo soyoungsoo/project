@@ -77,6 +77,8 @@ CREATE TABLE Schedule (
 	rdate VARCHAR2(150) NOT NULL, /* 상영일자 */
 	Scount NUMBER, /* 상영회차*/
 	Mno NUMBER, /* 영화번호 */
+	tno number,
+	CONSTRAINT fk_Schedule FOREIGN KEY (tno) REFERENCES theater (tno),
 	CONSTRAINT pk_Schedule PRIMARY KEY (Scount)
 );
 

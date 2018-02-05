@@ -90,7 +90,7 @@ public class MovieDaoImpl implements MovieDao{
 	@Override
 	public void movie_schedule(Schedule schedule) throws CommonException {	
 		try {							
-				sqlSession.insert(MAPPER_NAMESPACE + ".insert-schedule", schedule);		
+				sqlSession.insert(MAPPER_NAMESPACE + ".insert-schedule", schedule);						
 			}catch (Exception e) {
 				logger.debug(e.getMessage());
 				throw new CommonException("E06: 상영회차 등록 실패");

@@ -50,7 +50,8 @@ public class MovieRestController {
 																		
 			schedule.setMno(mno);					
 			schedule.setRdate(date);						
-			list = smService.selectDate(schedule);													
+			list = smService.selectDate(schedule);	
+			System.out.println("list " +list);
 			return new ResponseEntity<List<Seat>>(list,HttpStatus.OK);
 	}	
 	@RequestMapping(value = "/seat", method = RequestMethod.GET,produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
@@ -91,8 +92,7 @@ public class MovieRestController {
 		System.out.println("cno " +cno);	
 		if(session.getAttribute(cno+id) != null) {
 			status = (int)session.getAttribute(cno+id);
-		}
-		System.out.println("status " +status);
+		}		
 		if (status != 1) {
 			Comment c = new Comment();
 			c.setMno(mno);

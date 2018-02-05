@@ -301,7 +301,7 @@ public class MovieWebController {
 			Member member = (Member) session.getAttribute("member");
 			Integer memNo = member.getMemno();
 			String seatno_cut[] = seatno.split(",");
-			
+			System.out.println("scount " +scount);
 			for (String string : seatno_cut) {
 				reservation.setMemno(memNo);
 				reservation.setMno(mno);
@@ -313,8 +313,7 @@ public class MovieWebController {
 				seat.setIssue(1);
 				seat.setScount(scount);
 				ticketService.ticketing(reservation);
-				ticketService.stateChange(seat);
-				
+				ticketService.stateChange(seat);				
 			}	
 				
 			response.setContentType("text/html; charset=UTF-8");
@@ -350,8 +349,8 @@ public class MovieWebController {
 		}
 		
 		@RequestMapping(value = "/schedule", method = RequestMethod.POST)
-		public String schedule(HttpServletRequest request,Integer mno,Integer tno, String runTime, String runDay)
-			throws CommonException, UnsupportedEncodingException{				
+		public String schedule(HttpServletRequest request,Integer mno,Integer tno, String runTime, String runDay,String seatno)
+			throws CommonException, UnsupportedEncodingException{
 			
 			Schedule sc = new Schedule();
 			Seat seat = new Seat();
@@ -361,12 +360,22 @@ public class MovieWebController {
 			sb.append(runTime);						
 			sc.setMno(mno);
 			sc.setRdate(sb.toString());		
-			movieService.runCount(sc);
-			
+			sc.setTno(tno);
+			movieService.runCount(sc);			
 			Integer scount = sc.getScount();
 			seat.setTno(tno);
-			seat.setScount(scount);						
-			movieService.seatEnrollment(seat);			
+			seat.setScount(scount);							
+			movieService.seatEnrollment(seat);		
+			if(seatno != null) {
+				String[] seatnos = seatno.split(",");
+				
+				for (String string : seatnos) {
+					seat.setIssue(2);
+					seat.setSeatno(string);
+					ticketService.stateChange(seat);
+					System.out.println("foreach "+seat);
+				}
+			}
 			return "redirect:list.do";			
 		}
 		@RequestMapping(value = "/comment", method = RequestMethod.POST)

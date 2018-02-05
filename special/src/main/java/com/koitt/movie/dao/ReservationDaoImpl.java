@@ -31,8 +31,7 @@ public class ReservationDaoImpl implements ReservationDao {
 			sqlSession.insert(MAPPER_NAMESPACE + ".insert", reservation);			
 		} catch (Exception e) {
 			logger.debug(e.getMessage());
-			logger.debug(new CommonException("ticketing 실패"));
-			e.printStackTrace();
+			logger.debug(new CommonException("ticketing 실패"));			
 		}		
 	}
 
@@ -42,8 +41,7 @@ public class ReservationDaoImpl implements ReservationDao {
 			sqlSession.delete(MAPPER_NAMESPACE + ".delete", rno);			
 		} catch (Exception e) {
 			logger.debug(e.getMessage());
-			logger.debug(new CommonException("취소 실패"));
-			e.printStackTrace();
+			logger.debug(new CommonException("취소 실패"));			
 		}
 		
 	}
@@ -75,6 +73,7 @@ public class ReservationDaoImpl implements ReservationDao {
 	@Override
 	public void stateChange(Seat seat) throws CommonException {
 		try {			
+			System.out.println("dao " + seat);
 			sqlSession.update(MAPPER_NAMESPACE + ".seatUpdate", seat);
 		} catch (Exception e) {
 			logger.debug(e.getMessage());

@@ -124,7 +124,7 @@ public class UserWebController {
 			
 			Member sessionmember = (Member)session.getAttribute("member");			
 			String id = sessionmember.getId();
-			System.out.println("id " +id);
+			
 			if(id == null) {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
@@ -134,8 +134,8 @@ public class UserWebController {
 			}
 			// 기존 비밀번호 검사 후 수정할지 결정
 			boolean isMatched = MemberService.isPasswordMatched(id, oldPassword);			
-			System.out.println(oldPassword);			
-			System.out.println("isMatched " + isMatched);
+						
+			
 			if (!isMatched) {
 				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
@@ -174,8 +174,8 @@ public class UserWebController {
 		public String delete(HttpServletRequest request, HttpServletResponse response, HttpSession session, String password) throws CommonException, UnsupportedEncodingException {
 			Member member = (Member)session.getAttribute("member");
 			String id = member.getId();
-			System.out.println("id "+id);
-			System.out.println("id "+ password);
+			
+			
 			boolean isMatched = MemberService.delete(id, password);		
 			
 			response.setContentType("text/html; charset=UTF-8");

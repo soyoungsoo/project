@@ -121,7 +121,8 @@ select * from schedule where rdate = '2018-01-16 01:20';
 select * from seat where scount =66
 	
 select * from movie_comment
-	
+select * from seat;
+select * from schedule;
 /*전체평점*/
 select NVL(sum(score)/NULLIF(count(*),0),0) from movie_comment WHERE mno = #{mno};
 /* 관람객 수*/
@@ -130,4 +131,29 @@ select count(*) from reservation where mno =1;
 /* 예매율 */    
 SELECT NVL((SELECT COUNT(*) FROM RESERVATION) / NULLIF((SELECT COUNT(*) FROM SCHEDULE SC, SEAT S WHERE SC.SCOUNT = S.SCOUNT AND MNO = 2), 0 ), 0 ) FROM DUAL
 
-
+	select rdate, Scount,  d, f from
+	(select distinct rdate, Scount, d,f from (
+			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0) d,(select count(*) from SEAT)f
+			from seat s, (select * from schedule) sc 
+			where mno = 21 and Sc.RDATE LIKE  '2018-01-17 %'
+			))
+			select * from seat where scount = 87;
+			
+			
+			
+			
+			select * from reservation
+			select * from seat s, schedule sc  where sc.scount= s.scount;
+			
+			select distinct rdate, tno, Scount, d,f from (
+			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0) d,(select count(*) from SEAT)f
+			from seat s, (select * from schedule) sc 
+			where mno = 1 and Sc.RDATE LIKE   '2018-02-04%'	 and s.scount=sc.scount
+			)	order by rdate asc
+			
+			
+					select rdate, tno, seatno, issue, scount, d, f from (
+			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0 and scount =85) d,(select count(*) from SEAT WHERE scount =85)f
+			from seat s, (select * from schedule) sc 
+			where mno = 1 and sc.tno = 1 and Sc.RDATE = '2018-01-17 19:00' and s.scount=sc.scount
+			)

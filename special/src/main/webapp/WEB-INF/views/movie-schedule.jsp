@@ -24,17 +24,23 @@ function Cancel() {
 }
 
 function alreadyBooked(target) {
-
+	var seatno = $(target).attr("value");
+	
 	if ($(target).hasClass("seat-broken")) {
-		$(target).removeClass("seat-broken");
+		$(target).removeClass("seat-broken");				
+		$("#"+seatno).remove();	
 	}
 	else {
 		$(target).addClass("seat-broken");
+		$("#joinForm").append('<input type="hidden" name="seatno" id="'+seatno+'" value="'+ seatno +'">');
 	}
 	
 	
 }
-
+function SerchGet(){
+	var selectElement = $("#select-key")[0].value;	
+	$("#joinForm").append('<input type="hidden" name="tno" value="'+ selectElement +'">');
+}
 </script>
 </head>
 <body>
@@ -54,145 +60,154 @@ function alreadyBooked(target) {
 									<span class="seat_tit" style="left: -30px; top: 0px;">A</span>
 									<a class="p0 grNum3 A-1" data-seat="A1" seat-group="grNum3"
 										title="좌석 번호: A-1 - 일반석" seat-code="1A01"
-										onclick="alreadyBooked(this);" value="">1</a> 
+										onclick="alreadyBooked(this);" value="A-1">1</a> 
 										<a class="p0 grNum3 A-2"
 										data-seat="A2" seat-group="grNum3" title="좌석 번호: A-2 - 일반석"
-										seat-code="1A02 " onclick="alreadyBooked(this);" value="">2</a> 
+										seat-code="1A02 " onclick="alreadyBooked(this);" value="A-2">2</a> 
 										<a class="p0 grNum4 A-3" data-seat="A3" seat-group="grNum4"
 										title="좌석 번호: A-3 - 일반석" seat-code="1A03"
-										onclick="alreadyBooked(this);" value="">3</a> <a class="p0 grNum4 A-4"
+										onclick="alreadyBooked(this);" value="A-3">3</a> <a class="p0 grNum4 A-4"
 										data-seat="A4" seat-group="grNum4" title="좌석 번호: A-4 - 일반석"
-										seat-code="1A04" onclick="alreadyBooked(this);" value="">4</a> <a
+										seat-code="1A04" onclick="alreadyBooked(this);" value="A-4">4</a> <a
 										class="p0 grNum4 A-5" data-seat="A5" seat-group="grNum4"
 										title="좌석 번호: A-5 - 일반석" seat-code="1A05 "
-										onclick="alreadyBooked(this);" value="">5</a> <a class="p0 grNum4 A-6"
+										onclick="alreadyBooked(this);" value="A-5">5</a> <a class="p0 grNum4 A-6"
 										data-seat="A6" seat-group="grNum4" title="좌석 번호: A-6 - 일반석"
-										seat-code="1A06 " onclick="alreadyBooked(this);" value="">6</a> <a
+										seat-code="1A06 " onclick="alreadyBooked(this);" value="A-6">6</a> <a
 										class="p0 grNum4 A-7" data-seat="A7" seat-group="grNum4"
 										title="좌석 번호: A-7 - 일반석" seat-code="1A07"
-										onclick="alreadyBooked(this);" value="">7</a> <a class="p0 grNum4 A-8"
+										onclick="alreadyBooked(this);" value="A-7">7</a> <a class="p0 grNum4 A-8"
 										data-seat="A8" seat-group="grNum4" title="좌석 번호: A-8 - 일반석"
-										seat-code="1A08" onclick="alreadyBooked(this);" value="">8</a> <a
+										seat-code="1A08" onclick="alreadyBooked(this);" value="A-8">8</a> <a
 										class="p0 grNum4 A-9" data-seat="A9" seat-group="grNum4"
 										title="좌석 번호: A-9 - 일반석" seat-code="1A09"
-										onclick="alreadyBooked(this);" value="">9</a> <a class="p0 grNum5 A-10"
+										onclick="alreadyBooked(this);" value="A-9">9</a> <a class="p0 grNum5 A-10"
 										data-seat="A10" seat-group="grNum5" title="좌석 번호: A-10 - 일반석"
-										seat-code="1A10" onclick="alreadyBooked(this);" value="">10</a> <span
+										seat-code="1A10" onclick="alreadyBooked(this);" value="A-10">10</a> <span
 										class="seat_tit" style="left: -30px; top: 27px;">B</span> <a
 										class="p0 grNum6 B-1" data-seat="B1" seat-statuscode="0"
 										block-code="p0" seat-group="grNum6" title="좌석 번호:B-1 - 일반석"
-										seat-code="1B01" onclick="alreadyBooked(this);" value="">1</a> <a
+										seat-code="1B01" onclick="alreadyBooked(this);" value="B-1">1</a> <a
 										class="p0 grNum6 B-2" data-seat="B2" seat-statuscode="0"
 										block-code="p0" seat-group="grNum6" title="좌석 번호:B-2 - 일반석"
-										seat-code="1B02" onclick="alreadyBooked(this);" value="">2</a> <a
+										seat-code="1B02" onclick="alreadyBooked(this);" value="B-2">2</a> <a
 										class="p0 grNum7 B-3" data-seat="B3" seat-statuscode="0"
 										block-code="p0" seat-group="grNum7" title="좌석 번호:B-3 - 일반석"
-										seat-code="1B03" onclick="alreadyBooked(this);" value="">3</a> <a
+										seat-code="1B03" onclick="alreadyBooked(this);" value="B-3">3</a> <a
 										class="p0 grNum7 B-4" data-seat="B4" seat-statuscode="0"
 										block-code="p0" seat-group="grNum7" title="좌석 번호:B-4 - 일반석"
-										seat-code="1B04" onclick="alreadyBooked(this);" value="">4</a> <a
+										seat-code="1B04" onclick="alreadyBooked(this);" value="B-4">4</a> <a
 										class="p0 grNum7 B-5" data-seat="B5" seat-statuscode="0"
 										block-code="p0" seat-group="grNum7" title="좌석 번호:B-5 - 일반석"
-										seat-code="1B05" onclick="alreadyBooked(this);" value="">5</a> <a
+										seat-code="1B05" onclick="alreadyBooked(this);" value="B-5">5</a> <a
 										class="p0 grNum7 B-6" data-seat="B6" seat-statuscode="0"
 										block-code="p0" seat-group="grNum7" title="좌석 번호:B-6 - 일반석"
-										seat-code="1B06" onclick="alreadyBooked(this);" value="">6</a> <a
+										seat-code="1B06" onclick="alreadyBooked(this);" value="B-6">6</a> <a
 										class="p0 grNum7 B-7" data-seat="B7" seat-statuscode="0"
 										block-code="p0" seat-group="grNum7" title="좌석 번호:B-7 - 일반석"
-										seat-code="1B07" onclick="alreadyBooked(this);" value="">7</a> <a
+										seat-code="1B07" onclick="alreadyBooked(this);" value="B-7">7</a> <a
 										class="p0 grNum7 B-8" data-seat="B8" seat-statuscode="0"
 										block-code="p0" seat-group="grNum7" title="좌석 번호:B-8 - 일반석"
-										seat-code="1B08" onclick="alreadyBooked(this);" value="">8</a> <a
+										seat-code="1B08" onclick="alreadyBooked(this);" value="B-8">8</a> <a
 										class="p0 grNum7 B-9" data-seat="B9" seat-statuscode="0"
 										block-code="p0" seat-group="grNum7" title="좌석 번호:B-9 - 일반석"
-										seat-code="1B09" onclick="alreadyBooked(this);" value="">9</a> <a
+										seat-code="1B09" onclick="alreadyBooked(this);" value="B-9">9</a> <a
 										class="p0 grNum8 B-10" data-seat="B10" seat-statuscode="0"
 										block-code="p0" seat-group="grNum8" title="좌석 번호:B-10 - 일반석"
-										seat-code="1B10" onclick="alreadyBooked(this);" value="">10</a> <span
+										seat-code="1B10" onclick="alreadyBooked(this);" value="B-10">10</a> <span
 										class="seat_tit" style="left: -30px; top: 54px;">C</span> <a
 										class="p0 grNum9 C-1" data-seat="C1" seat-statuscode="0"
 										block-code="p0" seat-group="grNum9" title="좌석 번호:C-1 - 일반석"
-										seat-code="1C01" onclick="alreadyBooked(this);" value="">1</a> <a
+										seat-code="1C01" onclick="alreadyBooked(this);" value="C-1">1</a> <a
 										class="p0 grNum9 C-2" data-seat="C2" seat-statuscode="0"
 										block-code="p0" seat-group="grNum9" title="좌석 번호:C-2 - 일반석"
-										seat-code="1C02" onclick="alreadyBooked(this);" value="">2</a> <a
+										seat-code="1C02" onclick="alreadyBooked(this);" value="C-2">2</a> <a
 										class="p0 grNum10 C-3" data-seat="C3" seat-statuscode="0"
 										block-code="p0" seat-group="grNum10" title="좌석 번호:C-3 - 일반석"
-										seat-code="1C03" onclick="alreadyBooked(this);" value="">3</a> <a
+										seat-code="1C03" onclick="alreadyBooked(this);" value="C-3">3</a> <a
 										class="p0 grNum10 C-4" data-seat="C4" seat-statuscode="0"
 										block-code="p0" seat-group="grNum10" title="좌석 번호:C-4 - 일반석"
-										seat-code="1C04" onclick="alreadyBooked(this);" value="">4</a> <a
+										seat-code="1C04" onclick="alreadyBooked(this);" value="C-4">4</a> <a
 										class="p0 grNum10 C-5" data-seat="C5" seat-statuscode="0"
 										block-code="p0" seat-group="grNum10" title="좌석 번호:C-5 - 일반석"
-										seat-code="1C05" onclick="alreadyBooked(this);" value="">5</a> <a
+										seat-code="1C05" onclick="alreadyBooked(this);" value="C-5">5</a> <a
 										class="p0 grNum10 C-6" data-seat="C6" seat-statuscode="0"
 										block-code="p0" seat-group="grNum10" title="좌석 번호:C-6 - 일반석"
-										seat-code="1C06" onclick="alreadyBooked(this);" value="">6</a> <a
+										seat-code="1C06" onclick="alreadyBooked(this);" value="C-6">6</a> <a
 										class="p0 grNum10 C-7" data-seat="C7" seat-statuscode="0"
 										block-code="p0" seat-group="grNum10" title="좌석 번호:C-7 - 일반석"
-										seat-code="1C07" onclick="alreadyBooked(this);" value="">7</a> <a
+										seat-code="1C07" onclick="alreadyBooked(this);" value="C-7">7</a> <a
 										class="p0 grNum10 C-8" data-seat="C8" seat-statuscode="0"
 										block-code="p0" seat-group="grNum10" title="좌석 번호:C-8 - 일반석"
-										seat-code="1C08" onclick="alreadyBooked(this);" value="">8</a> <a
+										seat-code="1C08" onclick="alreadyBooked(this);" value="C-8">8</a> <a
 										class="p0 grNum11 C-9" data-seat="C9" seat-statuscode="0"
 										block-code="p0" seat-group="grNum11" title="좌석 번호:C-9 - 일반석"
-										seat-code="1C09" onclick="alreadyBooked(this);" value="">9</a> <a
+										seat-code="1C09" onclick="alreadyBooked(this);" value="C-9">9</a> <a
 										class="p0 grNum11 C-10" data-seat="C10" seat-statuscode="0"
 										block-code="p0" seat-group="grNum11" title="좌석 번호:C-10 - 일반석"
-										seat-code="1C10" onclick="alreadyBooked(this);" value="">10</a> <span
+										seat-code="1C10" onclick="alreadyBooked(this);" value="C-10">10</a> <span
 										class="seat_tit" style="left: -30px; top: 82px;">D</span> <a
 										class="p0 grNum12 D-1" data-seat="D1" seat-statuscode="0"
 										block-code="p0" seat-group="grNum12" title="좌석 번호:D-1 - 일반석"
-										seat-code="1D01" onclick="alreadyBooked(this);" value="">1</a> <a
+										seat-code="1D01" onclick="alreadyBooked(this);" value="D-1">1</a> <a
 										class="p0 grNum12 D-2" data-seat="D2" seat-statuscode="0"
 										block-code="p0" seat-group="grNum12" title="좌석 번호:D-2 - 일반석"
-										seat-code="1D02" onclick="alreadyBooked(this);" value="">2</a> <a
+										seat-code="1D02" onclick="alreadyBooked(this);" value="D-2">2</a> <a
 										class="p0 grNum13 D-3" data-seat="D3" seat-statuscode="0"
 										block-code="p0" seat-group="grNum13" title="좌석 번호:D-3 - 일반석"
-										seat-code="1D03" onclick="alreadyBooked(this);" value="">3</a> <a
+										seat-code="1D03" onclick="alreadyBooked(this);" value="D-3">3</a> <a
 										class="p0 grNum13 D-4" data-seat="D4" seat-statuscode="0"
 										block-code="p0" seat-group="grNum13" title="좌석 번호:D-4 - 일반석"
-										seat-code="1D04" onclick="alreadyBooked(this);" value="">4</a> <a
+										seat-code="1D04" onclick="alreadyBooked(this);" value="D-4">4</a> <a
 										class="p0 grNum13 D-5" data-seat="D5" seat-statuscode="0"
 										block-code="p0" seat-group="grNum13" title="좌석 번호:D-5 - 일반석"
-										seat-code="1D05" onclick="alreadyBooked(this);" value="">5</a> <a
+										seat-code="1D05" onclick="alreadyBooked(this);" value="D-5">5</a> <a
 										class="p0 grNum13 D-6" data-seat="D6" seat-statuscode="0"
 										block-code="p0" seat-group="grNum13" title="좌석 번호:D-6 - 일반석"
-										seat-code="1D06" onclick="alreadyBooked(this);" value="">6</a> <a
+										seat-code="1D06" onclick="alreadyBooked(this);" value="D-6">6</a> <a
 										class="p0 grNum13 D-7" data-seat="D7" seat-statuscode="0"
 										block-code="p0" seat-group="grNum13" title="좌석 번호:D-7 - 일반석"
-										seat-code="1D07" onclick="alreadyBooked(this);" value="">7</a> <a
+										seat-code="1D07" onclick="alreadyBooked(this);" value="D-7">7</a> <a
 										class="p0 grNum13 D-8" data-seat="D8" seat-statuscode="0"
 										block-code="p0" seat-group="grNum13" title="좌석 번호:D-8 - 일반석"
-										seat-code="1D08" onclick="alreadyBooked(this);" value="">8</a> <a
+										seat-code="1D08" onclick="alreadyBooked(this);" value="D-8">8</a> <a
 										class="p0 grNum14 D-9" data-seat="D9" seat-statuscode="0"
 										block-code="p0" seat-group="grNum14" title="좌석 번호:D-9 - 일반석"
-										seat-code="1D09" onclick="alreadyBooked(this);" value="">9</a> <a
+										seat-code="1D09" onclick="alreadyBooked(this);" value="D-9">9</a> <a
 										class="p0 grNum14 D-10" data-seat="D10" seat-statuscode="0"
 										block-code="p0" seat-group="grNum14" title="좌석 번호:D-10 - 일반석"
-										seat-code="1D10" onclick="alreadyBooked(this);" value="">10</a> <span
+										seat-code="1D10" onclick="alreadyBooked(this);" value="D-10">10</a> <span
 										class="seat_tit" style="left: -30px; top: 109px;">E</span> <a
 										class="p0 grNum16 E-1" data-seat="E1" seat-statuscode="0"
 										block-code="p0" seat-group="grNum16" title="좌석 번호:E-1 - 일반석"
-										seat-code="1E01" onclick="alreadyBooked(this);" value="">1</a> <a
+										seat-code="1E01" onclick="alreadyBooked(this);" value="E-1">1</a> <a
 										class="p0 grNum16 E-2" data-seat="E2" seat-statuscode="0"
 										block-code="p0" seat-group="grNum16" title="좌석 번호:E-2 - 일반석"
-										seat-code="1E02" onclick="alreadyBooked(this);" value="">2</a> <a
+										seat-code="1E02" onclick="alreadyBooked(this);" value="E-2">2</a> <a
 										class="p0 grNum18 E-3" data-seat="E3" seat-statuscode="0"
 										block-code="p0" seat-group="grNum18" title="좌석 번호:E-3 - 일반석"
-										seat-code="1E03" onclick="alreadyBooked(this);" value="">3</a> <a
+										seat-code="1E03" onclick="alreadyBooked(this);" value="E-3">3</a> <a
 										class="p0 grNum18 E-4" data-seat="E4" seat-statuscode="0"
 										block-code="p0" seat-group="grNum18" title="좌석 번호:E-4 - 일반석"
-										seat-code="1E04" onclick="alreadyBooked(this);" value="">4</a> <a
+										seat-code="1E04" onclick="alreadyBooked(this);" value="E-4">4</a> <a
 										class="p0 grNum18 E-5" data-seat="E5" seat-statuscode="0"
 										block-code="p0" seat-group="grNum18" title="좌석 번호:E-5 - 일반석"
-										seat-code="1E05" onclick="alreadyBooked(this);" value="">5</a>
+										seat-code="1E05" onclick="alreadyBooked(this);" value="E-5">5</a>
 								</div>
 							</div>
 						<table class="table-join">
 							<tr>
 								<th class="text-right">- 상영관</th>
-								<td class="text-center"><input id="sname" type = "number" name="tno"></td>
+								<td class="text-center">
+								<select id="select-key" class="form-control" onchange="SerchGet();">
+								 <option selected="selected">상영관 선택</option>
+								 <option id="o1" value="1">1관</option>
+								 <option id="o2" value="2">2관</option>
+								 <option id="o3" value="3">3관</option>
+								 <option id="o3" value="4">4관</option>
+								 <option id="o3" value="5">5관</option>
+								 </select>	
+</td>
 							</tr>
 							<tr>
 								<th class="text-right">- 상영일</th>

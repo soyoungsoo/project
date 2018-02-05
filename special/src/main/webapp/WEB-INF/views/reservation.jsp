@@ -43,14 +43,15 @@
 		        $('#reserv-form').submit();    
 		    }		    
 		}
-		function selectedSeat(target) {						
+		function selectedSeat(target) {			
+			
 			var cs = $(target).attr("class");			
 			var sub_cs = cs.substring(7,8);						
 		
 			var title = $(target).attr("title");										   	
 		    var sub_tno = title.substring(6,7);		    
 		    var sub_seatno = title.substring(15,18);			     		   		
-			var sub_scount = cs.substring(9,10);						
+			var sub_scount = cs.substring(9,11);							
 			if(sub_cs == 0){							
 				var t_class = $(target).attr("class", 'p0 '+sub_seatno + ' 0 ' +'1');								    			
 				var str ="";
@@ -76,7 +77,7 @@
 		    } else {
 		        $(target).addClass(attachClass);
 		    }
-		}
+		}	
 	
 		function SerachGet() {									
 			var selectElement = $("input:radio[name=day]:checked").val();								
@@ -90,8 +91,7 @@
 				processData: false,
 				contentType: false ,
 				cache: false,
-				success: function(data, textStatus, xhr) {					
-					
+				success: function(data, textStatus, xhr) {														
 					$.each(data, function (key, value) {												// + key + '">'							
 					    var eachrow = '<input type="hidden" id="ajax_scount" name="scount_a" value="'+ value.scount +'">' +
 						    		'<ul class="ajax-button'+ key +'" id="'+ value.rdate +'">' +					    		 	
@@ -105,7 +105,7 @@
 					}); // each	 					        						 					     	 	 											  																	
 			}, // success
 			error: function(error) {
-				alert('실패');
+				alert('실패');				
 				alert(JSON.stringify(error));
 			} // eeror
 		});	// ajax
@@ -204,7 +204,71 @@
 
 		$(".total-price").text(tenprice + adprice);
 	}
-	
+	function getday(param){
+		var date = new Date();	
+		if(param == null){	
+			var day =date.getDate();
+		}else{
+			var day =date.getDate()+param;
+		}
+		return day;
+	}
+	function getTimeStamp(param) {
+		  var d = new Date();		
+		  if(param == null){
+		  var s =
+		    leadingZeros(d.getFullYear(), 4) + '-' +
+		    leadingZeros(d.getMonth() + 1, 2) + '-' +
+		    leadingZeros(d.getDate(), 2);		 	
+		  return s;
+		  } else{
+		  var s =
+			leadingZeros(d.getFullYear(), 4)+ '-' +
+			leadingZeros(d.getMonth() + 1, 2) + '-' +
+			leadingZeros(d.getDate()+param, 2)	 	
+		 return s;
+		  }
+		}		
+				
+		function leadingZeros(n, digits) {
+		  var zero = '';
+		  n = n.toString();
+		
+		  if (n.length < digits) {
+		    for (i = 0; i < digits - n.length; i++)
+		      zero += '0';
+		  }
+		  return zero + n;
+		}
+		$(document).ready(function() {	
+			var week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');			
+			var todays = new Date();
+			var today = todays.getDay();			
+			var todayLabel = week[today];		
+			// 0 일 6 토		
+			
+			 $('#jan-13').attr("title",week[0]+'<br> '+ getday());	
+	         $('#jan-14').attr("title",week[1]+'<br> '+ getday(1));	
+	         $('#jan-15').attr("title",week[2]+'<br> '+ getday(2));	
+	         $('#jan-16').attr("title",week[3]+'<br> '+ getday(3));	
+	         $('#jan-17').attr("title",week[4]+'<br> '+ getday(4));	
+	         $('#jan-18').attr("title",week[5]+'<br> '+ getday(5));
+	         $('#jan-19').attr("title",week[6]+'<br> '+ getday(6));
+	         $('#jan-20').attr("title",week[7]+'<br> '+ getday(7));
+	         $('#jan-21').attr("title",week[8]+'<br> '+ getday(8));
+	         $('#jan-22').attr("title",week[9]+'<br> '+ getday(9));	
+	         	
+	         $('#jan-13').val(getTimeStamp());	
+	         $('#jan-14').val(getTimeStamp(1));	
+	         $('#jan-15').val(getTimeStamp(2));	
+	         $('#jan-16').val(getTimeStamp(3));	
+	         $('#jan-17').val(getTimeStamp(4));	
+	         $('#jan-18').val(getTimeStamp(5));
+	         $('#jan-19').val(getTimeStamp(6));	
+	         $('#jan-20').val(getTimeStamp(7));	
+	         $('#jan-21').val(getTimeStamp(8));	
+	         $('#jan-22').val(getTimeStamp(9));		
+	    });		
 </script>
 </head>
 <body>				 	
@@ -214,10 +278,10 @@
                 <div class="logo text-center"> <a href="<c:url value='/'/>">Movie Theater</a> </div>
             </div>
             <div class="content ">           
-                   <div class="calendar text-center">
-						<input type="radio" class="cal-radio" name="day" value="2018-01-13" id="jan-13" title="토<br> 13"> 
-						<input type="radio" class="cal-radio" name="day" value="2018-01-14" id="jan-14" title="일<br> 14"> 
-						<input type="radio" class="cal-radio" name="day" value="2018-01-15" id="jan-15" title="월<br> 15"> 
+                   <div class="calendar text-center" id="testdd">
+						<input type="radio" class="cal-radio" name="day" id="jan-13" title="토<br> 13"> 
+						<input type="radio" class="cal-radio" name="day" id="jan-14" title="일<br> 14"> 
+						<input type="radio" class="cal-radio" name="day" id="jan-15" title="월<br> 15"> 
 						<input type="radio" class="cal-radio" name="day" value="2018-01-16" id="jan-16" title="화<br> 16">
 						<input type="radio" class="cal-radio" name="day" value="2018-01-17" id="jan-17" title="수<br> 17"> 
 						<input type="radio" class="cal-radio" name="day" value="2018-01-18" id="jan-18" title="목<br> 18"> 

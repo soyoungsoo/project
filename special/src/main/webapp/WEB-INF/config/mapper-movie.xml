@@ -16,7 +16,7 @@
 		<selectKey keyProperty="Scount" resultType="Integer" order="BEFORE">
 			SELECT SEQ_SCOUNT.NEXTVAL Scount FROM DUAL			
 		</selectKey>	
-		INSERT INTO SCHEDULE VALUES (#{rdate}, #{Scount}, #{mno})
+		INSERT INTO SCHEDULE VALUES (#{rdate}, #{Scount}, #{mno},#{tno})
 	</insert>
 		
 	<insert id="insert-seat" parameterType="Seat" statementType="CALLABLE">		
@@ -65,7 +65,7 @@
 	</select>
 	
 	<select id="commentSelect" parameterType="Integer" resultType="Comment">		
-		SELECT * FROM MOVIE_COMMENT WHERE CNO = #{cno}
+		SELECT * FROM MOVIE_COMMENT WHERE CNO = #{cno} order by vcount desc
 	</select>
 	
 	<select id="PageCount" parameterType="Integer" resultType="Integer">		
