@@ -23,7 +23,7 @@ START WITH 1 INCREMENT BY 1;
 /* 추가 */
 INSERT INTO
 Movie(Mno,title,content,genre,grade,mrun,sdate,edate,post)
-VALUES (mno_seq.nextval,'코코','dd','영원히 기억하고 싶은 황홀한 모험이 시작된다!
+VALUES (mno_seq.nextval,'코코','영원히 기억하고 싶은 황홀한 모험이 시작된다!
 
 뮤지션을 꿈꾸는 소년 미구엘은 전설적인 가수 에르네스토의 기타에 손을 댔다 ‘죽은 자들의 세상’에 들어가게 된다.
 그리고 그곳에서 만난 의문의 사나이 헥터와 함께 상상조차 못했던 모험을 시작하게 되는데…
@@ -33,13 +33,9 @@ INSERT INTO user_type(id,type)
 VALUES (1,'ADMIN');
 INSERT INTO user_type(id,type) 
 VALUES (2,'USER');
-/* 회원 추가*/
-INSERT INTO Member
-VALUES (memno_seq.nextval,'admin','1234','관리자','2018-01-06','admin@koitt.com');
-
 
 /* 회원 타입 추가*/
-insert into user_info_type(memno,user_info_type_id) values (1,1);
+insert into user_info_type(memno,user_info_type_id) values (2,1);
 insert into user_info_type(memno,user_info_type_id) values (1,2);
 /* 상영관 추가(관, 좌석 수) */
 INSERT INTO theater VALUES(1,45);
@@ -48,16 +44,32 @@ INSERT INTO theater VALUES(3,45);
 INSERT INTO theater VALUES(4,45);
 INSERT INTO theater VALUES(5,45);
 
+select * from seat where scount = 2
 
+select rdate, tno, seatno, issue, scount from (
+			select S.TNO, S.SEATNO, S.ISSUE , Sc.SCOUNT, rdate, sc.mno
+			from seat s, (select * from schedule) sc 
+			where mno = 1 and sc.tno = 1 and Sc.RDATE = '2018-02-05 19:00' and s.scount=sc.scount
+			)
+
+			select distinct rdate, tno, Scount, d,f from (
+			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0 and scount = 2) d,(select count(*) from SEAT where scount = 2 )f
+			from seat s, (select * from schedule) sc 
+			where mno = 1 and Sc.RDATE LIKE  '2018-02-05 %' AND s.scount=sc.scount		
+			)	order by rdate asc
 /* 영화 스케줄 표*/
 INSERT INTO SCHEDULE VALUES ('2018-02-05 17:00',SEQ_SCOUNT.NEXTVAL,1,1);
 INSERT INTO SCHEDULE VALUES ('2018-02-05 19:00',SEQ_SCOUNT.NEXTVAL,1,1);
 
+select * from movie_intro
+ update movie_intro 
+ set video = ''
+ from ino = 2;
 /*좌석 (상영관, 좌석이름, 좌석 상태, 상영회차)*/
-INSERT INTO seat VALUES (1,'A-1',0,2);
-INSERT INTO seat VALUES (1,'A-2',0,2);
-INSERT INTO seat VALUES (1,'A-3',0,2);
-INSERT INTO seat VALUES (1,'A-4',0,2);
+INSERT INTO seat VALUES (1,'A-1',0,1);
+INSERT INTO seat VALUES (1,'A-2',0,1);
+INSERT INTO seat VALUES (1,'A-3',0,1);
+INSERT INTO seat VALUES (1,'A-4',0,1);
 INSERT INTO seat VALUES (1,'A-5',0,1);
 INSERT INTO seat VALUES (1,'A-6',0,1);
 INSERT INTO seat VALUES (1,'A-7',0,1);
@@ -98,7 +110,7 @@ INSERT INTO seat VALUES (1,'E-1',0,1);
 INSERT INTO seat VALUES (1,'E-2',0,1);
 INSERT INTO seat VALUES (1,'E-3',0,1);
 INSERT INTO seat VALUES (1,'E-4',0,1);
-INSERT INTO seat VALUES (1,'E-5',0,2);
+INSERT INTO seat VALUES (1,'E-5',0,1);
 
 
 INSERT INTO Actors VALUES(seq_ano.nextval,1,'하정우','배우');

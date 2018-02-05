@@ -405,7 +405,7 @@ public class MovieWebController {
 		@RequestMapping(value = "/insert_actors", method = RequestMethod.POST)
 		public String save(HttpServletRequest request, MultipartFile[] photo,String name, String job,Integer mno)
 				throws Exception {			
-			Actors actors = new Actors();			
+			Actors actors = new Actors();					
 			String[] names = name.split(",");
 			String[] jobs = job.split(",");
 			int length = names.length;							

@@ -60,7 +60,7 @@
                 </ul>
             </div>
             <div class="content">
-                <form method="post" action="/special/movie/insert_actors" enctype="multipart/form-data" id="joinForm">
+                <form method="post" action="/special/movie/insert_Intro" enctype="multipart/form-data" id="joinForm">
                     <table id="Introview" class="table-join">
                         <tr>
                             <th class="text-center" colspan="2">
