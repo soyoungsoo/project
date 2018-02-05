@@ -86,9 +86,11 @@
 				processData: false,
 				contentType: false ,
 				cache: false,
-				success: function(data, textStatus, xhr) {	
+				success: function(data, textStatus, xhr) {									
+					if(data != undefined){
 					 var index = parseInt(counts)+1;
-			            $(target).html("♥" + "<strong class = 'count'>"+index+"</strong>");																					
+			            $(target).html("♥" + "<strong class = 'count'>"+index+"</strong>");
+					}																					
 				}, // success
 			error: function(error) {
 				  alert("이미 공감하셨습니다.");
@@ -97,47 +99,6 @@
         }
     }
 }	
-// 	function modify(target){		
-// 		var mn = ${item.mno};			
-// 		var cno = $(target).attr("title");		
-// 		 $.ajax({
-// 				type: 'get',				
-// 				url: 'http://localhost:8082/special/rest' + '/update',
-// 				data: 'cno=' +cno,
-// 				processData: false,
-// 				contentType: false,
-// 				dataType: 'json',
-// 				cache: false,
-// 				success: function(data) {						
-// 					 var d = $("."+cno);			
-// 					 $("#"+cno).remove();				 		
-// 					 //'<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">'+
-// 					 //'<input type="hidden" name="mno_i" value="${item.mno}">'+
-// 					 //'<form action="/special/movie/update" method="post" id="starForm_update">'+						
-// 					d.html('<span class="star-input"> <span class="input"> <input'+
-// 									' type="radio" name="star_input" value="1" id="p1"> <label'+
-// 									' for="p1">1</label> <input type="radio" name="star_input"'+
-// 									' value="2" id="p2"> <label for="p2">2</label> <input'+
-// 									' type="radio" name="star_input" value="3" id="p3"> <label'+
-// 									' for="p3">3</label> <input type="radio" name="star_input"'+
-// 									' value="4" id="p4"> <label for="p4">4</label> <input'+
-// 									' type="radio" name="star_input" value="5" id="p5"> <label'+
-// 									' for="p5">5</label>'+
-// 							'</span> <output for="star-input" id="star-output" style="display:none;">'+
-// 									'<b id="star-count_update">0</b>점'+
-// 								'</output>'+
-// 							'</span>'+
-// 							'<strong class="rep-user-name">'+data.id +'</strong>'+
-// 							'<textarea name="write_area" style="resize: none" class="reply-box_update"'+
-// 							' id="repl" placeholder="'+ data.mcomment+'">' + '</textarea>' +
-// 							'<a href="javascript:{}" onclick="submitTest_update();" class="reg-btn"'+
-// 								' id="repl-btn">댓글 수정</a>');
-// 				}, // success
-// 			error: function(error) {
-// 				  alert("이미 공감하셨습니다.");
-// 			} // eeror
-// 		});	// ajax
-// 	}	
 </script>
 </head>
 
@@ -191,20 +152,6 @@
 									</div>
 		                         </c:if>                                          
 	                     	</c:forEach>			
-<!-- 							<div class="item active"> -->
-<!-- 								<img src="image/2.jpg" alt="imgs" width="100%" height="40%"> -->
-<!-- 								<div class="carousel-caption"></div> -->
-<!-- 							</div> -->
-<!-- 							<div class="item"> -->
-<!-- 								<img src="image/black.JPG" alt="imgs" width="100%" height="40%"> -->
-<!-- 								<div class="carousel-caption"></div> -->
-<!-- 							</div> -->
-<!-- 							<div class="item"> -->
-<!-- 								<iframe width="100%" height="400" -->
-<!-- 									src="https://www.youtube.com/embed/zaz-ZsnutnM" frameborder="0" -->
-<!-- 									gesture="media" allow="encrypted-media" allowfullscreen></iframe> -->
-<!-- 								<div class="carousel-caption"></div> -->
-<!-- 							</div> -->
 						</div>
 						<!-- Controls -->
 						<a class="left carousel-control" href="#carousel-example-generic"

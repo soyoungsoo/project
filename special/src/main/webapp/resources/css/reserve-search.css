@@ -20,6 +20,7 @@
             background: white;
             text-align: center;
             width: 240px;
+            height:345px;
             border: 1px solid gray;
         }
         .content ul li:nth-child(4n+1) {

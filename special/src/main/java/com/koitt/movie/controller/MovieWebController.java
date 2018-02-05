@@ -130,6 +130,7 @@ public class MovieWebController {
 		}						
 		if(movieService.totalScore(Integer.parseInt(mno))!=null) {
 			totalScore = movieService.totalScore(Integer.parseInt(mno));
+			System.out.println("ts " +totalScore);
 		};
 		if(movieService.totalView(Integer.parseInt(mno))!=null) {
 			totalView = movieService.totalView(Integer.parseInt(mno));

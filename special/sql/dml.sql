@@ -44,7 +44,9 @@ INSERT INTO theater VALUES(3,45);
 INSERT INTO theater VALUES(4,45);
 INSERT INTO theater VALUES(5,45);
 
-select * from seat where scount = 2
+	select NVL(sum(score)/NULLIF(count(*),0),0) from movie_comment WHERE mno = 1
+	
+select * from reservation where scount = 2
 
 select rdate, tno, seatno, issue, scount from (
 			select S.TNO, S.SEATNO, S.ISSUE , Sc.SCOUNT, rdate, sc.mno

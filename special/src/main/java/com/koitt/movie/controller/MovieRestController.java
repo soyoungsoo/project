@@ -92,6 +92,7 @@ public class MovieRestController {
 		System.out.println("cno " +cno);	
 		if(session.getAttribute(cno+id) != null) {
 			status = (int)session.getAttribute(cno+id);
+			System.out.println(status);
 		}		
 		if (status != 1) {
 			Comment c = new Comment();
