@@ -95,9 +95,8 @@
 					$.each(data, function (key, value) {												// + key + '">'							
 					    var eachrow = '<input type="hidden" id="ajax_scount" name="scount_a" value="'+ value.scount +'">' +
 						    		'<ul class="ajax-button'+ key +'" id="'+ value.rdate +'">' +					    		 	
-						    		  '<li class="ajax-button' + key +'"><a name="'+ value.scount +'"onclick="chk(this);" id="ajax-buttona" style="text-decoration:none; cursor:pointer">' + '<span id="tno">'+  value.tno +  '</span><span>관</span><br/>'+ 
-						    		 '<span id="rdate">'+ '<em>' + value.rdate + ' ' + '</em>' + '</span><br/>' +
-						    		  '<span>'+ '<em>' +  value.d + '/'+ value.f + '</em>' + '</span>' +
+						    		  '<li style="text-align:center;" class="ajax-button' + key +'"><a title="'+value.tno+'" name="'+ value.scount +'"onclick="chk(this);" id="ajax-buttona" style="text-decoration:none; cursor:pointer">' + '<span id="tno">'+  value.tno +  '</span><span>관</span><br/>'+ 
+						    		 '<span id="rdate">'+ '<em>' + value.rdate + ' ' + '</em>' + '</span><br/>' +						    		
 					                  '</a></li>' + '</ul>';
 								                  			                  					                   	               						          
 					        $('.ajax-cover').append(eachrow).trigger("create");	
@@ -122,9 +121,8 @@
 			while(dd.hasChildNodes()){																		
 				dd.removeChild(dd.firstChild);
 			}
-		}
-
-		var tno = $("#tno").text();
+		}		
+		var tno = $(target).attr("title");		
 		var before_date = $(target).parents("ul").attr("id");			
 		var rdate = before_date.substring(0,16);																 																								
 			$.ajax({
@@ -134,7 +132,7 @@
 				processData: false,
 				contentType: false,
 				cache: false,				
-				success: function(data) {				 		 			 											
+				success: function(data) {							
 			$.each(data , function(key, value) {								
 				var htmlrow = 
 					//  p0 

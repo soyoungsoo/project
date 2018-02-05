@@ -181,8 +181,9 @@
 											src="<c:url value='${intro.video}'/>" frameborder="0"
 											gesture="media" allow="encrypted-media" allowfullscreen></iframe>
 										<div class="carousel-caption"></div>
-									</div>                           
+									</div>									                           
 		                         </c:if>
+		                         
 		                         <c:if test="${intro.image ne null }">                           
 		                           <div class="item">
 										<img src="<c:url value='../../img/${intro.image}'/>" alt="imgs" width="100%" height="40%">
