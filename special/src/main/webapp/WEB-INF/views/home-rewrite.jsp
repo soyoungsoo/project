@@ -46,7 +46,7 @@
 				</ul>
 			</div>
 			<div class="content">
-				<ul>							
+				<ul>					
 					<c:forEach items="${ list }" var="item">
 						<li><img class="inner-content-imgs" src="<c:url value="../../img/${item.post}"/>"/>																
 							<div class="view">

@@ -95,7 +95,7 @@
 					$.each(data, function (key, value) {												// + key + '">'							
 					    var eachrow = '<input type="hidden" id="ajax_scount" name="scount_a" value="'+ value.scount +'">' +
 						    		'<ul class="ajax-button'+ key +'" id="'+ value.rdate +'">' +					    		 	
-						    		  '<li class="ajax-button' + key +'"><a name="'+ value.scount +'"onclick="chk(this);" id="ajax-buttona" style="text-decoration:none; cursor:pointer">' + '<span id="tno">'+  value.tno +  '</span><br/>'+ 
+						    		  '<li class="ajax-button' + key +'"><a name="'+ value.scount +'"onclick="chk(this);" id="ajax-buttona" style="text-decoration:none; cursor:pointer">' + '<span id="tno">'+  value.tno +  '</span><span>관</span><br/>'+ 
 						    		 '<span id="rdate">'+ '<em>' + value.rdate + ' ' + '</em>' + '</span><br/>' +
 						    		  '<span>'+ '<em>' +  value.d + '/'+ value.f + '</em>' + '</span>' +
 					                  '</a></li>' + '</ul>';

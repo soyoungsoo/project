@@ -1,8 +1,10 @@
 drop sequence mno_seq;
+drop sequence seq_rno;
 drop sequence memno_seq;
 drop sequence SEQ_SCOUNT;
-drop sequence seq_rno;
 drop sequence seq_cno;
+drop sequence seq_ano;
+drop sequence seq_ino;
 /* 영화 쿼리*/
 CREATE SEQUENCE MNO_SEQ
 START WITH 1 INCREMENT BY 1;
@@ -45,11 +47,12 @@ INSERT INTO theater VALUES(2,45);
 INSERT INTO theater VALUES(3,45);
 INSERT INTO theater VALUES(4,45);
 INSERT INTO theater VALUES(5,45);
-/* 상영관 조회*/
-SELECT * FROM THEATER;
-select * from seat;
-select * from schedule;
-delete from seat where seatno = 'A-1';
+
+
+/* 영화 스케줄 표*/
+INSERT INTO SCHEDULE VALUES ('2018-02-05 17:00',SEQ_SCOUNT.NEXTVAL,1);
+INSERT INTO SCHEDULE VALUES ('2018-02-05 19:00',SEQ_SCOUNT.NEXTVAL,1);
+
 /*좌석 (상영관, 좌석이름, 좌석 상태, 상영회차)*/
 INSERT INTO seat VALUES (1,'A-1',0,2);
 INSERT INTO seat VALUES (1,'A-2',0,2);
@@ -97,63 +100,5 @@ INSERT INTO seat VALUES (1,'E-3',0,1);
 INSERT INTO seat VALUES (1,'E-4',0,1);
 INSERT INTO seat VALUES (1,'E-5',0,2);
 
-/* 영화 스케줄 표*/
-INSERT INTO SCHEDULE VALUES ('2018-01-17 17:00',SEQ_SCOUNT.NEXTVAL,1);
-INSERT INTO SCHEDULE VALUES ('2018-01-17 19:00',SEQ_SCOUNT.NEXTVAL,1);
 
-select rdate, tno, seatno, issue, scount, d, f from (
-			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno,(select count(*) from seat where issue=0 and scount=1)d ,(select count(*) from SEAT)f
-			from seat s, (select * from schedule) sc 
-			where mno = 1 and tno = 1 and Sc.RDATE = '2018-01-17 19:00' and s.scount=sc.scount
-			)
 INSERT INTO Actors VALUES(seq_ano.nextval,1,'하정우','배우');
-INSERT INTO reservation VALUES(seq_rno.nextval,21,1,1,'E-1',sysdate,1);
-		
-SELECT * from reservation where memno = 1; 
-	DELETE FROM RESERVATION WHERE rno = #{rno}
-select * from reservation;
-select * from movie_intro;
-delete from movie_intro where ino =3;
-delete from movie_intro where ino =4;
-delete from movie_intro where ino =5;
-delete from movie_intro where ino =6;
-select * from schedule where rdate = '2018-01-16 01:20';
-select * from seat where scount =66
-	
-select * from movie_comment
-select * from seat;
-select * from schedule;
-/*전체평점*/
-select NVL(sum(score)/NULLIF(count(*),0),0) from movie_comment WHERE mno = #{mno};
-/* 관람객 수*/
-select count(*) from reservation where mno =1; 
-
-/* 예매율 */    
-SELECT NVL((SELECT COUNT(*) FROM RESERVATION) / NULLIF((SELECT COUNT(*) FROM SCHEDULE SC, SEAT S WHERE SC.SCOUNT = S.SCOUNT AND MNO = 2), 0 ), 0 ) FROM DUAL
-
-	select rdate, Scount,  d, f from
-	(select distinct rdate, Scount, d,f from (
-			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0) d,(select count(*) from SEAT)f
-			from seat s, (select * from schedule) sc 
-			where mno = 21 and Sc.RDATE LIKE  '2018-01-17 %'
-			))
-			select * from seat where scount = 87;
-			
-			
-			
-			
-			select * from reservation
-			select * from seat s, schedule sc  where sc.scount= s.scount;
-			
-			select distinct rdate, tno, Scount, d,f from (
-			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0) d,(select count(*) from SEAT)f
-			from seat s, (select * from schedule) sc 
-			where mno = 1 and Sc.RDATE LIKE   '2018-02-04%'	 and s.scount=sc.scount
-			)	order by rdate asc
-			
-			
-					select rdate, tno, seatno, issue, scount, d, f from (
-			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0 and scount =85) d,(select count(*) from SEAT WHERE scount =85)f
-			from seat s, (select * from schedule) sc 
-			where mno = 1 and sc.tno = 1 and Sc.RDATE = '2018-01-17 19:00' and s.scount=sc.scount
-			)
