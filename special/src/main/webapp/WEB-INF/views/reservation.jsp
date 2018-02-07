@@ -20,37 +20,7 @@
 .screen_tit ul li a {  }
 </style>
 <script>
-		$(function(){
-
-			var week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');			
-			var todays = new Date();
-			var today = todays.getDay();			
-			var todayLabel = week[today];		
-			// 0 일 6 토		
-			
-			 $('#jan-13').attr("title",week[0]+'<br> '+ getday());	
-	         $('#jan-14').attr("title",week[1]+'<br> '+ getday(1));	
-	         $('#jan-15').attr("title",week[2]+'<br> '+ getday(2));	
-	         $('#jan-16').attr("title",week[3]+'<br> '+ getday(3));	
-	         $('#jan-17').attr("title",week[4]+'<br> '+ getday(4));	
-	         $('#jan-18').attr("title",week[5]+'<br> '+ getday(5));
-	         $('#jan-19').attr("title",week[6]+'<br> '+ getday(6));
-	         $('#jan-20').attr("title",week[7]+'<br> '+ getday(7));
-	         $('#jan-21').attr("title",week[8]+'<br> '+ getday(8));
-	         $('#jan-22').attr("title",week[9]+'<br> '+ getday(9));	
-	         	
-	         $('#jan-13').val(getTimeStamp());	
-	         $('#jan-14').val(getTimeStamp(1));	
-	         $('#jan-15').val(getTimeStamp(2));	
-	         $('#jan-16').val(getTimeStamp(3));	
-	         $('#jan-17').val(getTimeStamp(4));	
-	         $('#jan-18').val(getTimeStamp(5));
-	         $('#jan-19').val(getTimeStamp(6));	
-	         $('#jan-20').val(getTimeStamp(7));	
-	         $('#jan-21').val(getTimeStamp(8));	
-	         $('#jan-22').val(getTimeStamp(9));		
-
-			
+		$(function(){			
 			$('.screen_tit').hide();
 			$('.select-age').hide();
 			setInterval("howMuch()", 100);
@@ -298,18 +268,19 @@
 					var week = new Array('일', '월', '화', '수', '목', '금', '토','일','월','화');			
 					var todays = new Date();
 					var today = todays.getDay();			
-					var todayLabel = week[today];		
+					var todayLabel = week[today];	
+					var expression = 24*60*60*1000;	
 					// 0 일 6 토		
-					 $('#jan-13').attr("title",week[0]+'<br> '+ getday());	
-			         $('#jan-14').attr("title",week[1]+'<br> '+ getday(1));	
-			         $('#jan-15').attr("title",week[2]+'<br> '+ getday(2));	
-			         $('#jan-16').attr("title",week[3]+'<br> '+ getday(3));	
-			         $('#jan-17').attr("title",week[4]+'<br> '+ getday(4));	
-			         $('#jan-18').attr("title",week[5]+'<br> '+ getday(5));
-			         $('#jan-19').attr("title",week[6]+'<br> '+ getday(6));
-			         $('#jan-20').attr("title",week[7]+'<br> '+ getday(7));
-			         $('#jan-21').attr("title",week[8]+'<br> '+ getday(8));
-			         $('#jan-22').attr("title",week[9]+'<br> '+ getday(9));	
+					 $('#jan-13').attr("title",week[today]+'<br> '+ getday());	
+			         $('#jan-14').attr("title",week[new Date(todays.valueOf()+(expression)).getDay()]+'<br> '+ getday(1));	
+			         $('#jan-15').attr("title",week[new Date(todays.valueOf()+(expression*2)).getDay()]+'<br> '+ getday(2));	
+			         $('#jan-16').attr("title",week[new Date(todays.valueOf()+(expression*3)).getDay()]+'<br> '+ getday(3));	
+			         $('#jan-17').attr("title",week[new Date(todays.valueOf()+(expression*4)).getDay()]+'<br> '+ getday(4));	
+			         $('#jan-18').attr("title",week[new Date(todays.valueOf()+(expression*5)).getDay()]+'<br> '+ getday(5));
+			         $('#jan-19').attr("title",week[new Date(todays.valueOf()+(expression*6)).getDay()]+'<br> '+ getday(6));
+			         $('#jan-20').attr("title",week[new Date(todays.valueOf()+(expression*7)).getDay()]+'<br> '+ getday(7));
+			         $('#jan-21').attr("title",week[new Date(todays.valueOf()+(expression*8)).getDay()]+'<br> '+ getday(8));
+			         $('#jan-22').attr("title",week[new Date(todays.valueOf()+(expression*9)).getDay()]+'<br> '+ getday(9));	
 			         	
 			         $('#jan-13').val(getTimeStamp());	
 			         $('#jan-14').val(getTimeStamp(1));	
