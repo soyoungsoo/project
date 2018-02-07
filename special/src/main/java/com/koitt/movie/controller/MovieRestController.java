@@ -44,7 +44,7 @@ public class MovieRestController {
 		
 	@RequestMapping(value = "/select", method = RequestMethod.GET,produces = { MediaType.APPLICATION_JSON_UTF8_VALUE,
 			 MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<List<Seat>> select(@RequestParam("selectElement")String date , @RequestParam("inputVal") Integer mno,UriComponentsBuilder ucBuilder) throws ParseException {
+	public ResponseEntity<List<Seat>> select(@RequestParam("selectElement")String date , @RequestParam("inputVal") Integer mno) throws ParseException {
 			List<Seat> list = null;			
 			Schedule schedule = new Schedule();
 																		
@@ -105,34 +105,5 @@ public class MovieRestController {
 		}
 		
 		return new ResponseEntity<Comment>(HttpStatus.NO_CONTENT);			
-	}	
-	@RequestMapping(value = "/page", method = RequestMethod.GET)
-	public ResponseEntity<List<Paging>> page(Integer curPage,Integer mno)
-		throws CommonException{					
-		  Paging page = new Paging();
-		  List<Paging> list = null;
-   		  // 페이지번호가 없는경우		
-		  Integer intpnum = (curPage == null) ? 1 : curPage;				
-		  page.setCurPage(intpnum);
-		  page.setMno(mno);		  
-		  
-		  // 현재 페이지 목록 출력
-		  list = mService.curPage(page);
-		  // 전체페이지
-		  Integer allpages = mService.AllPage(mno);
-		  page.setAllpages(allpages);
-		  // 페이지그룹개수
-		  double grouppage = 5;
-		  // 시작페이지번호
-		  int startgrouppage = ((int)Math.floor((intpnum-1)/grouppage))*(int)grouppage+1;
-		  page.setStartgrouppage(startgrouppage);
-		  // 종료페이지번호
-		  Integer endgrouppage = startgrouppage+((int)grouppage-1);
-		  endgrouppage = endgrouppage > allpages ? allpages :  endgrouppage;		  
-		  page.setEndgrouppage(endgrouppage);		
-		  
-		  list.add(page);		  
-		return new ResponseEntity<List<Paging>>(list,HttpStatus.OK);			
-	}	
-
+	}		
 }

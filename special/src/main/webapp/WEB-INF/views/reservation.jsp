@@ -123,11 +123,12 @@
 				cache: false,
 				success: function(data, textStatus, xhr) {														
 					$.each(data, function (key, value) {												// + key + '">'							
-					    var eachrow = '<input type="hidden" id="ajax_scount" name="scount_a" value="'+ value.scount +'">' +
+					     var eachrow = '<input type="hidden" id="ajax_scount" name="scount_a" value="'+ value.scount +'">' +
 						    		'<ul class="ajax-button'+ key +'" id="'+ value.rdate +'">' +					    		 	
 						    		  '<li style="text-align:center;" class="ajax-button' + key +'"><a title="'+value.tno+'" name="'+ value.scount +'"onclick="chk(this);" id="ajax-buttona" style="text-decoration:none; cursor:pointer">' + '<span id="tno">'+  value.tno +  '</span><span>관</span><br/>'+ 
 						    		 '<span id="rdate">'+ '<em>' + value.rdate + ' ' + '</em>' + '</span><br/>' +						    		
-					                  '</a></li>' + '</ul>';
+					                  '</a></li>' + '</ul>'; 
+					         
 								                  			                  					                   	               						          
 					        $('.ajax-cover').append(eachrow).trigger("create");	
 					         $('.screen_tit').show();							 					     	 	 											  							

@@ -33,7 +33,7 @@ INSERT INTO user_type(id,type)
 VALUES (1,'ADMIN');
 INSERT INTO user_type(id,type) 
 VALUES (2,'USER');
-
+delete from MOVIE where mno = 1;
 /* 회원 타입 추가*/
 insert into user_info_type(memno,user_info_type_id) values (2,1);
 insert into user_info_type(memno,user_info_type_id) values (1,2);
@@ -44,29 +44,11 @@ INSERT INTO theater VALUES(3,45);
 INSERT INTO theater VALUES(4,45);
 INSERT INTO theater VALUES(5,45);
 
-	select NVL(sum(score)/NULLIF(count(*),0),0) from movie_comment WHERE mno = 1
-	
-select * from reservation where scount = 2
-
-select rdate, tno, seatno, issue, scount from (
-			select S.TNO, S.SEATNO, S.ISSUE , Sc.SCOUNT, rdate, sc.mno
-			from seat s, (select * from schedule) sc 
-			where mno = 1 and sc.tno = 1 and Sc.RDATE = '2018-02-05 19:00' and s.scount=sc.scount
-			)
-
-			select distinct rdate, tno, Scount, d,f from (
-			select S.TNO, S.SEATNO, S.ISSUE ,Sc.SCOUNT,rdate, sc.mno, (select count(*) from seat where issue=0 and scount = 2) d,(select count(*) from SEAT where scount = 2 )f
-			from seat s, (select * from schedule) sc 
-			where mno = 1 and Sc.RDATE LIKE  '2018-02-05 %' AND s.scount=sc.scount		
-			)	order by rdate asc
 /* 영화 스케줄 표*/
 INSERT INTO SCHEDULE VALUES ('2018-02-05 17:00',SEQ_SCOUNT.NEXTVAL,1,1);
 INSERT INTO SCHEDULE VALUES ('2018-02-05 19:00',SEQ_SCOUNT.NEXTVAL,1,1);
 
-select * from movie_intro
- update movie_intro 
- set video = ''
- from ino = 2;
+
 /*좌석 (상영관, 좌석이름, 좌석 상태, 상영회차)*/
 INSERT INTO seat VALUES (1,'A-1',0,1);
 INSERT INTO seat VALUES (1,'A-2',0,1);
@@ -114,5 +96,3 @@ INSERT INTO seat VALUES (1,'E-3',0,1);
 INSERT INTO seat VALUES (1,'E-4',0,1);
 INSERT INTO seat VALUES (1,'E-5',0,1);
 
-
-INSERT INTO Actors VALUES(seq_ano.nextval,1,'하정우','배우');

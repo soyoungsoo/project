@@ -232,31 +232,14 @@
 							</li>
 							<li>[종영일] <fmt:formatDate value="${ item.edate }"
 									pattern="yyyy-MM-dd" />
-							</li>
-							<!-- 								 <li>출연진 : <strong class="actors">홍진호</strong>,<strong -->
-							<!-- 									class="actors">홍진호</strong>,<strong class="actors">홍진호</strong></li>  -->
+							</li>							
 							<c:if test="${ !empty post }">
 								<li>[첨부 파일] <a
 									href="<c:url value='/download.do?filename=${ item.post }'/>">${ post }</a></li>
 							</c:if>
-						</ul>
-						<!-- <ul id="img-slider" class="cs-hidden">
-                                <li class="pic-1"><img src="image/black.JPG"></li>
-                                <li class="pic-2"><img src="image/2.jpg"></li>
-                                <li class="pic-3"><img src="image/2.jpg"></li>
-                                <li class="pic-4"><img src="image/2.jpg"></li>
-                                <li class="pic-5"><img src="image/2.jpg"></li>
-                            </ul>-->
+						</ul>						
 						<div class="top-ex">																	
 						 	<ul id="img-slider" class="cs-hidden">
-<%-- 						 	<c:forEach var="intro" items="${Intro}"> --%>
-<%-- 						 		<c:if test="${intro.video ne null }"> --%>
-<%--                                 <li class="pic-1"><iframe width="900" height="400" src="<c:url value='${intro.video}'/>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></li> --%>
-<%--                                 </c:if> --%>
-<%--                                 <c:if test="${intro.image ne null }"> --%>
-<%--                                 <li class="pic-2"><img src="<c:url value='../../img/${intro.image}'/>"></li> --%>
-<%--                                 </c:if>                                 --%>
-<%--                             </c:forEach> --%>
                             </ul>
 						</div>
 					</div>
@@ -286,7 +269,7 @@
 						</c:choose>
 					</c:forEach>
 				</ul>
-			</div>
+			</div>			
 			<div class="actors-image">
 						<ul>
 							<li>감독 및 출연</li>
@@ -298,9 +281,7 @@
 							</br><strong>${info.name}</strong></br>${info.job}</li>
 							</c:forEach>
 						</ul>
-					</div>
-				<ul>					
-				</ul>
+					</div>				
 			</div>
 			<div class="star-box">
 				<form action="/special/movie/comment" method="post" id="starForm">
@@ -387,7 +368,7 @@
 													<c:when test="${cm.id eq member.id}">														
 														<a href="/special/movie/delete?cno=${cm.cno}&mno=${item.mno}">삭제하기</a>
 													</c:when>												
-												</c:choose>
+												</c:choose>												
 											</li>
 										</c:when>
 									</c:choose>

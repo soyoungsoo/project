@@ -6,11 +6,10 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.jws.soap.SOAPBinding;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -129,8 +128,7 @@ public class MovieWebController {
 			filename = URLDecoder.decode(filename, "UTF-8");
 		}						
 		if(movieService.totalScore(Integer.parseInt(mno))!=null) {
-			totalScore = movieService.totalScore(Integer.parseInt(mno));
-			System.out.println("ts " +totalScore);
+			totalScore = movieService.totalScore(Integer.parseInt(mno));			
 		};
 		if(movieService.totalView(Integer.parseInt(mno))!=null) {
 			totalView = movieService.totalView(Integer.parseInt(mno));
@@ -301,8 +299,7 @@ public class MovieWebController {
 			Seat seat = new Seat();
 			Member member = (Member) session.getAttribute("member");
 			Integer memNo = member.getMemno();
-			String seatno_cut[] = seatno.split(",");
-			System.out.println("scount " +scount);
+			String seatno_cut[] = seatno.split(",");			
 			for (String string : seatno_cut) {
 				reservation.setMemno(memNo);
 				reservation.setMno(mno);
@@ -404,7 +401,7 @@ public class MovieWebController {
 			return "actors-insert";
 		}
 		@RequestMapping(value = "/insert_actors", method = RequestMethod.POST)
-		public String save(HttpServletRequest request, MultipartFile[] photo,String name, String job,Integer mno)
+		public String actros(HttpServletRequest request, MultipartFile[] photo,String name, String job,Integer mno)
 				throws Exception {			
 			Actors actors = new Actors();					
 			String[] names = name.split(",");

@@ -9,7 +9,7 @@ DROP TABLE seat CASCADE CONSTRAINTS;
 DROP TABLE reservation CASCADE CONSTRAINTS;
 DROP TABLE movie_comment CASCADE CONSTRAINTS;
 DROP TABLE movie_Intro CASCADE CONSTRAINTS;
-
+delete from movie where mno = 1 cascade constraints;
 /* 영화 */
 CREATE TABLE Movie (
 	Mno NUMBER NOT NULL, /* 영화번호 */
@@ -30,7 +30,7 @@ CREATE TABLE MOVIE_INTRO(
 	image VARCHAR2(300),
 	video VARCHAR2(300),
 	CONSTRAINT pk_MOVIE_INTRO PRIMARY KEY (Ino),
-	CONSTRAINT fk_MOVIE_INTRO FOREIGN KEY (Mno) REFERENCES Movie (Mno)
+	CONSTRAINT fk_MOVIE_INTRO FOREIGN KEY (Mno) REFERENCES Movie (Mno)  ON DELETE CASCADE
 );
 /* 회원 */
 CREATE TABLE Member (
@@ -68,7 +68,7 @@ CREATE TABLE Actors (
 	job NVARCHAR2(30) NOT NULL, /* 직업 */
 	photo VARCHAR2(300),
 	CONSTRAINT pk_Actors PRIMARY KEY (ano),
-	CONSTRAINT fk_Movie FOREIGN KEY (Mno) REFERENCES Movie (Mno)	
+	CONSTRAINT fk_Movie FOREIGN KEY (Mno) REFERENCES Movie (Mno) ON DELETE CASCADE	
 );
 
 
@@ -108,7 +108,7 @@ CREATE TABLE reservation (
 	Scount NUMBER, /*상영회차*/
 	CONSTRAINT pk_reservation21 PRIMARY KEY (rno),
 	CONSTRAINT fk_Member3 FOREIGN KEY (MemNo) REFERENCES Member(MemNo),
-	CONSTRAINT fk_Movie12 FOREIGN KEY (Mno) REFERENCES Movie(Mno),
+	CONSTRAINT fk_Movie12 FOREIGN KEY (Mno) REFERENCES Movie(Mno) ON DELETE CASCADE,
 	CONSTRAINT fk_theater12 FOREIGN KEY (tno) REFERENCES theater(tno),
 	CONSTRAINT fk_Schedule_r FOREIGN KEY (Scount) REFERENCES Schedule(Scount)
 );
@@ -123,6 +123,6 @@ CREATE TABLE movie_comment (
 	vcount NUMBER, /* 추천수 */
 	ctime TIMESTAMP,
 	CONSTRAINT pk_coment PRIMARY KEY (cno),
-	CONSTRAINT fk_coment_movie FOREIGN KEY (Mno) REFERENCES Movie(Mno),
+	CONSTRAINT fk_coment_movie FOREIGN KEY (Mno) REFERENCES Movie(Mno) ON DELETE CASCADE,
 	CONSTRAINT fk_coment_member FOREIGN KEY (id) REFERENCES Member(id)	
 );
