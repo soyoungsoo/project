@@ -307,3 +307,19 @@
       min-width: 100%;
       max-height: 500px;
  } 
+ .mpeople_wrap {width:1000px; background:#f9f6ec;}
+.mpeople_inner {width:980px; margin:0 auto; padding:50px 0}
+.mpeople_tit {margin-bottom:20px; font-size:22px; color:#231f20}
+.slide_mbox {position:relative; width:918px; padding-left: 90px; background: url('image/bg_btn_slide_mpeople.gif') 0 50px no-repeat;}/* 201703212 sunho width padding 추가 이미지 변경*/
+.slide_spot {overflow:hidden; position:relative; width:830px}/*20170323sunho slide 변경*/
+.slide_spot ul {width:3000px; height:190px;} /* 201703212 sunho width height 변경 */
+.slide_spot ul:after {content:''; display:block; clear:both}
+.slide_spot ul li {position:absolute; left:0; top:0; height:175px; width: 129px; text-align:center; font-size:14px}/* 201703212 sunho 사이즈 변경 */
+.slide_spot ul li:first-child {margin-left:0}
+.slide_spot .pic {position:relative; overflow:hidden; width:129px; height:128px; margin:0 auto}
+.slide_spot .pic .mask {display:block; position:absolute; top:0; left:0; width:100%; height:128px; background:url('image/bg_mask_event02.png') no-repeat 0 0; z-index:2}
+.slide_spot .pic img {width:100%; min-height:128px}
+.slide_spot ul li .name {margin-top:15px; color:#231f20; font-size:12px; line-height: 15px;}/* 201703212 sunho line height 추가 */
+.slide_spot ul li .role {color:#666; line-height:18px; font-size:12px}
+.slide_mbox .btn_prev {display:block; position:absolute; left:20px; top:50px}/* 201703212 sunho left 값 변경 90 에서 0으로 */
+.slide_mbox .btn_next {display:block; position:absolute; right:-40px; top:50px}/* 201703212 sunho right -70 -> 0 ->40으로 변경*/

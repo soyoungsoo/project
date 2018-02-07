@@ -43,9 +43,43 @@
 // 		});	// ajax
 
 // 	});
-	$(function() {
-		$("#star-output").hide();
-	});
+	 $(function() {
+            var idx = idx2 = 0;
+            var slide_width = 168;
+            var slide_count = $("#ulCasting li").size();
+            $(".btn_prev").css("display","none");
+            if (slide_count > 5) {
+                var temp = slide_count - 5;
+            }
+            $(".btn_prev").click(function() {
+                var min_loc = $("#ulCasting li:first").css("left");
+                for (var i = 0; i < slide_count; i++) {
+                    $("#ulCasting li").eq(i).animate({left: "+=" + slide_width + "px"}, 500);
+                }
+                if (min_loc <= "0px") {
+                    $(".btn_prev").css("display", "none");
+                    $(".btn_next").css("display","block");
+                } else {
+                    $(".btn_prev").css("display", "block");
+                }
+            });
+
+            $(".btn_next").click(function() {
+                var max_loc = $("#ulCasting li:last").css("left");
+                for (var i = 0; i < slide_count; i++) {
+                    $("#ulCasting li").eq(i).animate({left: "-=" + slide_width + "px"}, 500);
+                }
+                if (max_loc >= (String(temp) + "px")) {
+                    $(".btn_next").css("display", "none");
+                    $(".btn_prev").css("display","block");
+                } else {
+                    $(".btn_next").css("display", "block");
+                }
+            });
+
+            $("#star-output").hide();
+
+        });
 	function deleteCheck() {
 		if (confirm("삭제 하시겠습니까?")) {
 			location.href = "/special/movie/remove.do?mno=${item.mno}";
@@ -270,19 +304,68 @@
 					</c:forEach>
 				</ul>
 			</div>			
-			<div class="actors-image">
-						<ul>
-							<li>감독 및 출연</li>
-							<c:forEach var="info" items="${actors}">
-							<li>
-								<div>
-									<img width="150px" height="150px" style="border-radius:50%;" src="<c:url value='../../img/${info.photo}'/>">
-								</div>
-							</br><strong>${info.name}</strong></br>${info.job}</li>
-							</c:forEach>
-						</ul>
-					</div>				
-			</div>
+			<div class="mpeople_wrap">
+                <div class="mpeople_inner">
+                    <h3 class="mpeople_tit Lang-LBL0000">감독 및 출연</h3>
+                    <div class="slide_mbox">
+                        <a style="cursor: pointer" class="btn_prev"><img src="image/btn_slide_prev.png" alt="이전" /></a>
+                        <div class="slide_spot">
+                            <ul id="ulCasting">
+                                <li style="left:0px;">
+                                    <div class="pic">
+                                        <span class="mask"></span>
+                                        <img style="border-radius:50%;" src="image/2.jpg" alt="홍진호">
+                                    </div>
+                                    <p class="name">홍진호</p>
+                                    <p class="role">방송인</p>
+                                </li>
+                                <li style="left:168px;">
+                                    <div class="pic">
+                                        <span class="mask"></span>
+                                        <img style="border-radius:50%;" src="image/2.jpg" alt="홍진호">
+                                    </div>
+                                    <p class="name">홍진호</p>
+                                    <p class="role">방송인</p>
+                                </li>
+                                <li style="left:336px;">
+                                    <div class="pic">
+                                        <span class="mask"></span>
+                                        <img style="border-radius:50%;" src="image/black.JPG" alt="홍진호">
+                                    </div>
+                                    <p class="name">홍진호</p>
+                                    <p class="role">방송인</p>
+                                </li>
+                                <li style="left:504px;">
+                                    <div class="pic">
+                                        <span class="mask"></span>
+                                        <img style="border-radius:50%;" src="image/2.jpg" alt="홍진호">
+                                    </div>
+                                    <p class="name">홍진호</p>
+                                    <p class="role">방송인</p>
+                                </li>
+                                <li style="left:672px;">
+                                    <div class="pic">
+                                        <span class="mask"></span>
+                                        <img style="border-radius:50%;" src="image/2.jpg" alt="홍진호">
+                                    </div>
+                                    <p class="name">홍진호</p>
+                                    <p class="role">방송인</p>
+                                </li>
+                                <li style="left:840px;">
+                                    <div class="pic">
+                                        <span class="mask"></span>
+                                        <img style="border-radius:50%;" src="image/black.JPG" alt="홍진호">
+                                    </div>
+                                    <p class="name">홍진호</p>
+                                    <p class="role">방송인</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <a class="btn_next" style="cursor: pointer"><img src="image/btn_slide_next.png" alt="다음"/></a>
+                    </div>
+                </div>
+            </div>
+        </div>
 			<div class="star-box">
 				<form action="/special/movie/comment" method="post" id="starForm">
 					<input type="hidden" name="${_csrf.parameterName}"
