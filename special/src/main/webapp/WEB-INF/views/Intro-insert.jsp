@@ -24,10 +24,7 @@
     }
 
     function submitTest() {
-        if ($(".detail-video").val() === "") {
-            alert("동영상의 주소를 입력해 주세요!");
-            return false;
-        } else if ($(".detail-images").val() === "") {
+        if ($(".detail-images").val() === "") {
             alert("이미지를 넣어주세요!");
             return false;
         } else {

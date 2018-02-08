@@ -420,8 +420,7 @@ public class MovieWebController {
 					File directory = new File(path);
 					if (!directory.exists()) {
 						directory.mkdir();
-					}
-	
+					}				
 					// attachment 객체를 이용하여, 파일을 서버에 전송
 					if (file != null && !file.isEmpty()) {
 						int idx = originalName.lastIndexOf(".");
@@ -433,10 +432,10 @@ public class MovieWebController {
 						file.transferTo(new File(path, uploadFilename));
 						uploadFilename = URLEncoder.encode(uploadFilename, "UTF-8");
 						
-						actors.setPhoto(uploadFilename);
-					}	
-				}	
-				movieService.insert_Actors(actors);
+						actors.setPhoto(uploadFilename);						
+					}
+					movieService.insert_Actors(actors);
+				}					
 			}
 			return "redirect:list.do";
 		}
@@ -448,8 +447,7 @@ public class MovieWebController {
 		@RequestMapping(value = "/insert_Intro", method = RequestMethod.POST)
 		public String Intro(HttpServletRequest request, Integer mno, MultipartFile[] image, String video) throws Exception {
 			Intro intro = new Intro();
-			intro.setVideo(video);
-			int length = image.length;			
+			intro.setVideo(video);				
 			for (MultipartFile file : image) {	
 				
 					// 최상위 경로 밑에 upload 폴더의 경로를 가져온다.
@@ -476,11 +474,11 @@ public class MovieWebController {
 						uploadFilename = URLEncoder.encode(uploadFilename, "UTF-8");
 						
 						intro.setImage(uploadFilename);
+						System.out.println(uploadFilename);
 					}	
 					movieService.insert_Intro_S(intro);
-				}	
-			
-			
+					intro.setVideo(null);
+				}							
 			return "redirect:list.do";
 		}
 	}

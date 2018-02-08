@@ -19,7 +19,7 @@
 	}
 	function Cancel() {
 		if (confirm("진행중인것을 그만두고 나가시겠습니까?")) {
-			location.href = "../special/movie/list.do";
+			location.href = "/special/movie/list.do";
 		}
 	}
 	function submitTest() {

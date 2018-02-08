@@ -310,9 +310,9 @@
 			</div>			
 			<div class="mpeople_wrap">
                 <div class="mpeople_inner">
-                    <h3 class="mpeople_tit Lang-LBL0000">감독 및 출연</h3>
+                    <h3 class="mpeople_tit Lang-LBL0000">감독 및 출연</h3>                     
                     <div class="slide_mbox">
-                        <a style="cursor: pointer" class="btn_prev"><img src="image/btn_slide_prev.png" alt="이전" /></a>
+                        <a style="cursor: pointer" class="btn_prev"><img src="<c:url value='resource/image/btn_slide_prev.png'/>" alt="이전" /></a>
                         <div class="slide_spot">                        
                             <ul id="ulCasting">                              	                                   
                             <c:forEach var="actor" items="${actors}" varStatus="status">                                                                                                
@@ -327,7 +327,7 @@
                                 </c:forEach>
                             </ul>
                         </div>
-                        <a class="btn_next" style="cursor: pointer"><img src="image/btn_slide_next.png" alt="다음"/></a>
+                        <a class="btn_next" style="cursor: pointer"><img src="<c:url value='resource/image/btn_slide_next.png'/>" alt="다음"/></a>
                     </div>
                 </div>
             </div>
