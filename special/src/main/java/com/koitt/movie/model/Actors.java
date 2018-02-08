@@ -1,9 +1,5 @@
 package com.koitt.movie.model;
 
-import java.util.List;
-
-import org.springframework.web.multipart.MultipartFile;
-
 public class Actors {
 
 	private Integer ano;

@@ -48,8 +48,9 @@
             var slide_width = 168;
             var slide_count = $("#ulCasting li").size();
             $(".btn_prev").css("display","none");
-            if (slide_count > 5) {
-                var temp = slide_count - 5;
+            if (slide_count < 5) {
+            	$(".btn_prev").css("display","none");
+            	$(".btn_next").css("display","none");
             }
             $(".btn_prev").click(function() {
                 var min_loc = $("#ulCasting li:first").css("left");
@@ -66,9 +67,12 @@
 
             $(".btn_next").click(function() {
                 var max_loc = $("#ulCasting li:last").css("left");
+                var locTemp = max_loc.split("px");
+                var temp = 0;
                 for (var i = 0; i < slide_count; i++) {
                     $("#ulCasting li").eq(i).animate({left: "-=" + slide_width + "px"}, 500);
                 }
+                temp = parseInt(locTemp[0]-168);
                 if (max_loc >= (String(temp) + "px")) {
                     $(".btn_next").css("display", "none");
                     $(".btn_prev").css("display","block");
@@ -309,56 +313,18 @@
                     <h3 class="mpeople_tit Lang-LBL0000">감독 및 출연</h3>
                     <div class="slide_mbox">
                         <a style="cursor: pointer" class="btn_prev"><img src="image/btn_slide_prev.png" alt="이전" /></a>
-                        <div class="slide_spot">
-                            <ul id="ulCasting">
-                                <li style="left:0px;">
-                                    <div class="pic">
-                                        <span class="mask"></span>
-                                        <img style="border-radius:50%;" src="image/2.jpg" alt="홍진호">
-                                    </div>
-                                    <p class="name">홍진호</p>
-                                    <p class="role">방송인</p>
-                                </li>
-                                <li style="left:168px;">
-                                    <div class="pic">
-                                        <span class="mask"></span>
-                                        <img style="border-radius:50%;" src="image/2.jpg" alt="홍진호">
-                                    </div>
-                                    <p class="name">홍진호</p>
-                                    <p class="role">방송인</p>
-                                </li>
-                                <li style="left:336px;">
-                                    <div class="pic">
-                                        <span class="mask"></span>
-                                        <img style="border-radius:50%;" src="image/black.JPG" alt="홍진호">
-                                    </div>
-                                    <p class="name">홍진호</p>
-                                    <p class="role">방송인</p>
-                                </li>
-                                <li style="left:504px;">
-                                    <div class="pic">
-                                        <span class="mask"></span>
-                                        <img style="border-radius:50%;" src="image/2.jpg" alt="홍진호">
-                                    </div>
-                                    <p class="name">홍진호</p>
-                                    <p class="role">방송인</p>
-                                </li>
-                                <li style="left:672px;">
-                                    <div class="pic">
-                                        <span class="mask"></span>
-                                        <img style="border-radius:50%;" src="image/2.jpg" alt="홍진호">
-                                    </div>
-                                    <p class="name">홍진호</p>
-                                    <p class="role">방송인</p>
-                                </li>
-                                <li style="left:840px;">
-                                    <div class="pic">
-                                        <span class="mask"></span>
-                                        <img style="border-radius:50%;" src="image/black.JPG" alt="홍진호">
-                                    </div>
-                                    <p class="name">홍진호</p>
-                                    <p class="role">방송인</p>
-                                </li>
+                        <div class="slide_spot">                        
+                            <ul id="ulCasting">                              	                                   
+                            <c:forEach var="actor" items="${actors}" varStatus="status">                                                                                                
+	                                <li style="left:calc(168*${status.count-1}px);">
+	                                    <div class="pic">
+	                                        <span class="mask"></span>
+	                                        <img style="border-radius:50%;" src="<c:url value='../../img/${actor.photo}'/>" alt="홍진호">
+	                                    </div>
+	                                    <p class="name">${actor.name}</p>
+	                                    <p class="role">${actor.job}</p>
+	                                </li>
+                                </c:forEach>
                             </ul>
                         </div>
                         <a class="btn_next" style="cursor: pointer"><img src="image/btn_slide_next.png" alt="다음"/></a>
